@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Ch9
 {
+	[Windows.UI.Xaml.Data.Bindable]
 	public class Post
 	{
 		public string Title { get; set; }

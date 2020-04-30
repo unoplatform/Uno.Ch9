@@ -7,6 +7,7 @@ using Windows.Media.Playback;
 
 namespace Ch9.ViewModels
 {
+	[Windows.UI.Xaml.Data.Bindable]
 	public class PostViewModel
 	{
 		public PostViewModel(ViewModelBase parent, Post post)
