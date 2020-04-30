@@ -1,9 +1,55 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'windows-2019'
+jobs:
+  - job: Windows
 
-steps:
-- script: echo Change me
-  displayName: 'Run a one-line script'
+    pool:
+      vmImage: 'windows-2019'
+
+    variables:
+      - name: ANDROID_NDK_HOME
+        value: C:\Microsoft\AndroidNDK64\android-ndk-r16b
+      - name: ANDROID_NDK_PATH
+        value: C:\Microsoft\AndroidNDK64\android-ndk-r16b
+      - name: AndroidNdkDirectory
+        value: C:\Microsoft\AndroidNDK64\android-ndk-r16b
+
+
+    - task: UseDotNet@2
+      inputs:
+        packageType: 'runtime'
+        version: '2.2.0'
+
+    - task: nventiveCanaryUpdater@5
+      condition: and(succeeded(), eq(variables['IsCanary'], 'true'))
+      inputs:
+        solution: 'src/Ch9.sln'
+        usePrivateFeed: false
+        useNuGetOrg: true
+        mergeBranch: true
+        gitUserName: 'nventive DevOps'
+        gitUserEmail: 'nv-devops@outlook.com'
+        branchToMerge: 'master'
+        nugetUpdaterVersion: '2.0.4'
+        allowDowngrade: true
+        packageAuthor: 'nventive'
+        summaryFile: '$(UnoPackageOutputPath)/Canary.md'
+        resultFile: '$(UnoPackageOutputPath)/update_result.json'
+        additionalPublicSources: https://pkgs.dev.azure.com/uno-platform/1dd81cbd-cb35-41de-a570-b0df3571a196/_packaging/unoplatformdev/nuget/v3/index.json
+
+    - task: GitVersion@5
+
+    - task: MSBuild@1
+      inputs:
+        solution: src/Uno.AzureDevOps.sln
+        configuration: Release
+        platform: $(BuildPlatform)
+        restoreNugetPackages: false
+        msbuildArguments: /r
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        ArtifactName: $(BuildPlatform)
+        PathtoPublish: $(UnoPackageOutputPath)
+        publishLocation: Container

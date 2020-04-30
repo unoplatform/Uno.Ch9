@@ -5,7 +5,7 @@ pull_request_rules:
       - base=master
 
       # All Azure builds should be green:
-      - status-success=Uno.UI - CI
+      - status-success=Uno.Ch9
 
       # CLA check must pass:
       #- "status-success=license/cla"
