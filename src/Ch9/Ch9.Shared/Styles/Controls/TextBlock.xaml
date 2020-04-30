@@ -1,0 +1,126 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:local="using:Ch9.Shared.Styles.Controls">
+
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="../Application/Colors.xaml" />
+		<!-- <ResourceDictionary Source="../Application/Fonts.xaml" /> -->
+	</ResourceDictionary.MergedDictionaries>
+
+	<!--
+	******************************************************************
+		DEFAULT TEXTBLOCK STYLE
+	******************************************************************
+	-->
+
+	<Style x:Key="DefaultTypo"
+		   TargetType="TextBlock">
+		<Setter Property="FontWeight"
+				Value="Normal" />
+		<Setter Property="FontStyle"
+				Value="Normal" />
+		<Setter Property="LineStackingStrategy"
+				Value="BlockLineHeight" />
+		<Setter Property="TextTrimming"
+				Value="CharacterEllipsis" />
+		<Setter Property="TextWrapping"
+				Value="Wrap" />
+		<Setter Property="Foreground"
+				Value="{ThemeResource Color01Brush}" />
+	</Style>
+
+	<!--
+	******************************************************************
+		STYLE GUIDE TEXTBLOCKS STYLES
+	******************************************************************
+	-->
+
+	<!-- Typo01 -->
+	<Style x:Key="Typo01"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource DefaultTypo}">
+		
+		<Setter Property="Foreground"
+				Value="{ThemeResource Color06Brush}" />
+		<Setter Property="FontSize"
+				Value="22" />
+		<Setter Property="FontWeight"
+				Value="Bold" />
+	</Style>
+	
+	<!-- Typo02 -->
+	<Style x:Key="Typo02"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource DefaultTypo}">
+		
+		<Setter Property="Foreground"
+				Value="{ThemeResource Color06Brush}" />
+		<Setter Property="FontSize"
+				Value="18" />
+		<Setter Property="FontWeight"
+				Value="Bold" />
+	</Style>
+	
+	<!-- Typo03 -->
+	<Style x:Key="Typo03"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource DefaultTypo}">
+		
+		<Setter Property="Foreground"
+				Value="{ThemeResource Color07Brush}" />
+		<Setter Property="FontSize"
+				Value="15" />
+	</Style>
+	
+	<!-- Typo04 -->
+	<Style x:Key="Typo04"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource DefaultTypo}">
+		
+		<Setter Property="Foreground"
+				Value="{ThemeResource MediaPlayerControlColorBrush}" />
+		<Setter Property="FontSize"
+				Value="15" />
+	</Style>
+	
+	<!-- Typo05 -->
+	<Style x:Key="Typo05"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource DefaultTypo}">
+		
+		<Setter Property="Foreground"
+				Value="{ThemeResource Color04Brush}" />
+		<Setter Property="FontSize"
+				Value="12" />
+		<Setter Property="FontWeight"
+				Value="Medium" />
+	</Style>
+	
+	<!-- Typo06 -->
+	<Style x:Key="Typo06"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource DefaultTypo}">
+		
+		<Setter Property="Foreground"
+				Value="{ThemeResource Color07Brush}" />
+		<Setter Property="FontSize"
+				Value="15" />
+		<Setter Property="FontWeight"
+				Value="SemiBold" />
+	</Style>
+	
+	<!-- MediaPlayerTypo -->
+	<Style x:Key="MediaPlayerTypo"
+		   TargetType="TextBlock"
+		   BasedOn="{StaticResource DefaultTypo}">
+		
+		<Setter Property="Foreground"
+				Value="{ThemeResource MediaPlayerControlColorBrush}" />
+		<Setter Property="FontSize"
+				Value="11" />
+	</Style>
+	
+	<!-- Default -->
+	<Style BasedOn="{StaticResource DefaultTypo}"
+		   TargetType="TextBlock" />
+</ResourceDictionary>

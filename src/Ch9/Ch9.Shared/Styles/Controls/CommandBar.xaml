@@ -1,0 +1,170 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:xamarin="http://Uno.UI/xamarin"
+					xmlns:ios="http://Uno.UI/ios"
+					xmlns:android="http://Uno.UI/android"
+					xmlns:toolkit="using:Uno.UI.Toolkit"
+					mc:Ignorable="xamarin android ios">
+
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="../Application/Colors.xaml" />
+	</ResourceDictionary.MergedDictionaries>
+
+	<Style x:Key="DefaultCommandBarStyle"
+		   TargetType="CommandBar"
+		   xamarin:BasedOn="{StaticResource NativeDefaultCommandBar}">
+
+		<Setter Property="toolkit:CommandBarExtensions.BackButtonForeground"
+                Value="{ThemeResource CommandBarForegroundBrush}" />
+		<Setter Property="Background"
+                Value="{ThemeResource CommandBarBackgroundBrush}" />
+		<Setter Property="Foreground"
+                Value="{ThemeResource CommandBarForegroundBrush}" />
+		<Setter Property="Padding"
+				Value="{StaticResource StatusBarThickness}" />
+		<Setter Property="Content"
+				Value="" />
+
+		<android:Setter Property="toolkit:UIElementExtensions.Elevation"
+						Value="4" />
+
+		<ios:Setter Property="(toolkit:CommandBarExtensions.BackButtonTitle)"
+					Value="" />
+
+		<win:Setter Property="Height"
+					Value="40" />
+
+		<ios:Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="CommandBar">
+
+					<Border BorderBrush="{TemplateBinding Background}"
+							BorderThickness="{TemplateBinding Padding}"
+							Background="{TemplateBinding Background}">
+						
+						<!--Native CommandBar Presenter  -->
+						<NativeCommandBarPresenter Height="100" />
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</ios:Setter>
+
+		<win:Setter Property="ContentTemplate">
+			<Setter.Value>
+				<DataTemplate>
+
+					<!-- CommandBar Title -->
+					<TextBlock Text="{Binding}"
+							   HorizontalAlignment="Left"
+							   VerticalAlignment="Center"
+							   FontWeight="Bold"
+							   Margin="12,0" />
+				</DataTemplate>
+			</Setter.Value>
+		</win:Setter>
+
+		<win:Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="CommandBar">
+
+					<Grid x:Name="LayoutRoot"
+						  Background="{TemplateBinding Background}"
+						  Height="{TemplateBinding Height}">
+
+						<Grid x:Name="ContentRoot"
+							  Background="{TemplateBinding Background}"
+							  Height="{TemplateBinding Height}"
+							  Opacity="{TemplateBinding Opacity}"
+							  Margin="{TemplateBinding Padding}">
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<!-- Navigation Command -->
+							<ContentControl x:Name="NavigationCommand"
+											Content="{Binding (toolkit:CommandBarExtensions.NavigationCommand), RelativeSource={RelativeSource TemplatedParent}}"
+											Foreground="{TemplateBinding Foreground}"
+											IsTabStop="False"
+											Grid.Column="0" />
+
+							<!-- Content Control -->
+							<ContentControl x:Name="ContentControl"
+											Content="{TemplateBinding Content}"
+											ContentTemplate="{TemplateBinding ContentTemplate}"
+											Foreground="{TemplateBinding Foreground}"
+											HorizontalContentAlignment="Stretch"
+											VerticalContentAlignment="Stretch"
+											HorizontalAlignment="Stretch"
+											VerticalAlignment="Stretch"
+											IsTabStop="False"
+											Grid.Column="0"
+											Grid.ColumnSpan="3"/>
+							
+							<!-- Primary ItemsControl -->
+							<ItemsControl x:Name="PrimaryItemsControl"
+										  MinHeight="{ThemeResource AppBarThemeMinHeight}"
+										  HorizontalAlignment="Right"
+										  IsTabStop="False"
+										  Grid.Column="2">
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<StackPanel Orientation="Horizontal" />
+									</ItemsPanelTemplate>
+								</ItemsControl.ItemsPanel>
+							</ItemsControl>
+							
+							<!-- High Contrast Border -->
+							<Rectangle x:Name="HighContrastBorder"
+									   Stroke="{ThemeResource SystemControlForegroundTransparentBrush}"
+									   StrokeThickness="1"
+									   VerticalAlignment="Stretch"
+									   Visibility="Collapsed"
+									   x:DeferLoadStrategy="Lazy"
+									   Grid.ColumnSpan="3" />
+						</Grid>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</win:Setter>
+	</Style>
+
+	<Style x:Key="ImageCommandBarStyle"
+			TargetType="CommandBar"
+			BasedOn="{StaticResource DefaultCommandBarStyle}">
+		
+		<xamarin:Setter Property="Content">
+			<Setter.Value>
+				
+				<!-- Image -->
+				<Image Source="ms-appx:///Assets/Ch9LogoNavBar.png"
+						Stretch="None"
+						VerticalAlignment="Center"
+						HorizontalAlignment="Center"/>
+			</Setter.Value>
+		</xamarin:Setter>
+		
+		<win:Setter Property="ContentTemplate">
+			<Setter.Value>
+				<DataTemplate>
+					<Grid>
+						
+						<!-- Image -->
+						<Image Source="ms-appx:///Assets/Ch9LogoNavBar.png"
+								Stretch="None"
+								VerticalAlignment="Center"
+								HorizontalAlignment="Center"/>
+					</Grid>
+				</DataTemplate>
+			</Setter.Value>
+		</win:Setter>
+	</Style>
+		
+	<Style TargetType="CommandBar"
+		   BasedOn="{StaticResource DefaultCommandBarStyle}" />
+
+</ResourceDictionary>

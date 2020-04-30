@@ -1,0 +1,155 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:xamarin="http://Uno.UI/xamarin"
+					mc:Ignorable="d xamarin">
+
+	<ResourceDictionary.ThemeDictionaries>
+
+		<!-- Light Theme -->
+		<ResourceDictionary x:Key="Light">
+
+			<!-- Raw colors -->
+			<Color x:Key="Color01">#FF000000</Color>
+			<Color x:Key="Color01_75_Opacity">#BF000000</Color>
+			<Color x:Key="Color02">#FFFFFFFF</Color>
+			<Color x:Key="Color03">#FFFFB20B</Color>
+			<Color x:Key="Color04">#FFD2730E</Color>
+			<Color x:Key="Color05">#FFFEE8B6</Color>
+			<Color x:Key="Color06">#FF151515</Color>
+			<Color x:Key="Color07">#FF4e4e4f</Color>
+			<Color x:Key="Color08">#FFFFFFFF</Color>
+
+			<Color x:Key="Shadow">#38000000</Color>
+			<Color x:Key="MediaPlayerControlColor">#FFFFFFFF</Color>
+			<Color x:Key="MediaPlayerBackgroundColor">#FF000000</Color>
+			<Color x:Key="CommandBarForegroundColor">#FF000000</Color>
+
+			<!-- Color brushes -->
+			<SolidColorBrush x:Key="Color01Brush"
+							 Color="{StaticResource Color01}" />
+			<SolidColorBrush x:Key="Color01_75_OpacityBrush"
+							 Color="{StaticResource Color01_75_Opacity}" />
+			<SolidColorBrush x:Key="Color02Brush"
+							 Color="{StaticResource Color02}" />
+			<SolidColorBrush x:Key="Color03Brush"
+							 Color="{StaticResource Color03}" />
+			<SolidColorBrush x:Key="Color04Brush"
+							 Color="{StaticResource Color04}" />
+			<SolidColorBrush x:Key="Color05Brush"
+							 Color="{StaticResource Color05}" />
+			<SolidColorBrush x:Key="Color06Brush"
+							 Color="{StaticResource Color06}" />
+			<SolidColorBrush x:Key="Color07Brush"
+							 Color="{StaticResource Color07}" />
+			<SolidColorBrush x:Key="Color08Brush"
+							 Color="{StaticResource Color08}" />
+
+			<!-- Misc Brushes -->
+			<win:AcrylicBrush x:Key="AppBackgroundBrush"
+							  BackgroundSource="HostBackdrop"
+							  TintColor="{StaticResource Color08}"
+							  TintOpacity="0.8"
+							  FallbackColor="{StaticResource Color08}" />
+
+			<xamarin:SolidColorBrush x:Key="AppBackgroundBrush"
+									 Color="{StaticResource Color08}" />
+
+			<SolidColorBrush x:Key="PrimaryForegroundColorBrush"
+							 Color="{StaticResource PrimaryForegroundColor}" />
+			<SolidColorBrush x:Key="TransparentColorBrush"
+							 Color="Transparent" />
+
+			<SolidColorBrush x:Key="CommandBarBackgroundBrush"
+							 Color="{StaticResource Color02}" />
+			<SolidColorBrush x:Key="CommandBarForegroundBrush"
+							 Color="{StaticResource CommandBarForegroundColor}" />
+
+			<SolidColorBrush x:Key="ShadowBrush"
+							 Color="{StaticResource Shadow}" />
+			<SolidColorBrush x:Key="MediaPlayerControlColorBrush"
+							 Color="{StaticResource MediaPlayerControlColor}" />
+			<SolidColorBrush x:Key="VideoPlayerBottomBrush"
+							 Color="{StaticResource MediaPlayerBackgroundColor}" />
+
+			<!-- Not a color but we needed 2 different images for light and dark theme -->
+			<ImageBrush x:Key="UnoWinUI_ImageBrush"
+						ImageSource="ms-appx:///Assets/UnoWinUiLogos.png"
+						Stretch="Uniform" />
+		</ResourceDictionary>
+
+		<!-- Dark Theme -->
+		<ResourceDictionary x:Key="Dark">
+
+			<!-- Raw colors -->
+			<Color x:Key="Color01">#FF131415</Color>
+			<Color x:Key="Color01_75_Opacity">#BF131415</Color>
+			<Color x:Key="Color02">#FF1F1F20</Color>
+			<Color x:Key="Color03">#FFFFDF83</Color>
+			<Color x:Key="Color04">#FFEECC85</Color>
+			<Color x:Key="Color05">#FF342F25</Color>
+			<Color x:Key="Color06">#FFF3F3F3</Color>
+			<Color x:Key="Color07">#FF9E9E9E</Color>
+			<Color x:Key="Color08">#FF131415</Color>
+
+			<Color x:Key="Shadow">#60000000</Color>
+			<Color x:Key="MediaPlayerControlColor">#FFFFFFFF</Color>
+			<Color x:Key="MediaPlayerBackgroundColor">#FF000000</Color>
+			<Color x:Key="CommandBarForegroundColor">#FFFFFFFF</Color>
+
+			<!-- Color brushes -->
+			<SolidColorBrush x:Key="Color01Brush"
+							 Color="{StaticResource Color01}" />
+			<SolidColorBrush x:Key="Color01_75_OpacityBrush"
+							 Color="{StaticResource Color01_75_Opacity}" />
+			<SolidColorBrush x:Key="Color02Brush"
+							 Color="{StaticResource Color02}" />
+			<SolidColorBrush x:Key="Color03Brush"
+							 Color="{StaticResource Color03}" />
+			<SolidColorBrush x:Key="Color04Brush"
+							 Color="{StaticResource Color04}" />
+			<SolidColorBrush x:Key="Color05Brush"
+							 Color="{StaticResource Color05}" />
+			<SolidColorBrush x:Key="Color06Brush"
+							 Color="{StaticResource Color06}" />
+			<SolidColorBrush x:Key="Color07Brush"
+							 Color="{StaticResource Color07}" />
+			<SolidColorBrush x:Key="Color08Brush"
+							 Color="{StaticResource Color08}" />
+
+			<!-- Misc Brushes -->
+			<win:AcrylicBrush x:Key="AppBackgroundBrush"
+							  BackgroundSource="HostBackdrop"
+							  TintColor="{StaticResource Color08}"
+							  TintOpacity="0.85"
+							  FallbackColor="{StaticResource Color08}" />
+
+			<xamarin:SolidColorBrush x:Key="AppBackgroundBrush"
+									 Color="{StaticResource Color08}" />
+
+			<SolidColorBrush x:Key="PrimaryForegroundColorBrush"
+							 Color="{StaticResource PrimaryForegroundColor}" />
+			<SolidColorBrush x:Key="TransparentColorBrush"
+							 Color="Transparent" />
+
+			<SolidColorBrush x:Key="CommandBarBackgroundBrush"
+							 Color="{StaticResource Color02}" />
+			<SolidColorBrush x:Key="CommandBarForegroundBrush"
+							 Color="{StaticResource CommandBarForegroundColor}" />
+
+			<SolidColorBrush x:Key="ShadowBrush"
+							 Color="{StaticResource Shadow}" />
+			<SolidColorBrush x:Key="MediaPlayerControlColorBrush"
+							 Color="{StaticResource MediaPlayerControlColor}" />
+			<SolidColorBrush x:Key="VideoPlayerBottomBrush"
+							 Color="{StaticResource MediaPlayerBackgroundColor}" />
+
+			<!-- Not a color but we needed 2 different images for light and dark theme -->
+			<ImageBrush x:Key="UnoWinUI_ImageBrush"
+						ImageSource="ms-appx:///Assets/UnoWinUiLogosDark.png"
+						Stretch="Uniform" />
+		</ResourceDictionary>
+	</ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>
