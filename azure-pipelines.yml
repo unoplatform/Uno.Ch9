@@ -15,7 +15,7 @@ jobs:
       - name: AndroidNdkDirectory
         value: C:\Microsoft\AndroidNDK64\android-ndk-r16b
 
-
+    steps:
     - task: UseDotNet@2
       inputs:
         packageType: 'runtime'
@@ -42,14 +42,7 @@ jobs:
 
     - task: MSBuild@1
       inputs:
-        solution: src/Uno.AzureDevOps.sln
+        solution: src/Ch9.sln
         configuration: Release
-        platform: $(BuildPlatform)
         restoreNugetPackages: false
         msbuildArguments: /r
-
-    - task: PublishBuildArtifacts@1
-      inputs:
-        ArtifactName: $(BuildPlatform)
-        PathtoPublish: $(UnoPackageOutputPath)
-        publishLocation: Container
