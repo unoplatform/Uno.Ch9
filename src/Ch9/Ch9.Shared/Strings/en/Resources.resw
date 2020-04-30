@@ -129,8 +129,11 @@
 	<data name="MainPage_EmptyListMessage.Text" xml:space="preserve">
     <value>Nothing to show</value>
   </data>
-	<data name="MainPage_NoSelection.Text" xml:space="preserve">
-    <value>Select a video</value>
+  <data name="MainPage_NoSelectionTitle.Text" xml:space="preserve">
+    <value>No video selected</value>
+  </data>
+  <data name="MainPage_NoSelectionMessage.Text" xml:space="preserve">
+    <value>Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!</value>
   </data>
 	<data name="HasNetworkErrorToErrorTitle.TrueValue" xml:space="preserve">
     <value>No internet connection</value>
