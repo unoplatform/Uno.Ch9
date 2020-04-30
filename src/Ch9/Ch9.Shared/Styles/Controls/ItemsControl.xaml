@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:local="using:Ch9.Styles.Controls">
+	
+	<!-- Category Item Template -->
+	<DataTemplate x:Key="CategoryItemTemplate">
+		<Grid Background="{ThemeResource Color05Brush}"
+			  CornerRadius="16"
+			  Height="30">
+
+			<!-- Category Name -->
+			<TextBlock Text="{Binding}"
+					   Style="{StaticResource Typo05}"
+					   VerticalAlignment="Center"
+					   Margin="12,0" />
+		</Grid>
+	</DataTemplate>
+</ResourceDictionary>

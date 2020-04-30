@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>6279c845-92f8-4333-ab99-3d213163593c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Ch9</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEnumerableHasAnyToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableBoolToCustomValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableToCustomValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Post.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\ITaskNotifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\ITaskNotifier.Generic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\TaskNotifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PostContent.xaml.cs">
+      <DependentUpon>PostContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IPostsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\PostsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\IStackNavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\StackNavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Startup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PostViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)PostContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Application\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Application\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Application\_Application.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\AppBarButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\CommandBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\Frame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\ItemsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\ListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\MediaPlayerElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\Path.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\TextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\_Controls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9LogoNavBar.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9LogoNavBar.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9LogoNavBar.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9LogoNavBar.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9LogoNavBar.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9_logo.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9_logo.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9_logo.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9_logo.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9_logo.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\ErrorIllustration.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\ErrorIllustration.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\ErrorIllustration.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\ErrorIllustration.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\ErrorIllustration.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\NoWifiIllustration.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\NoWifiIllustration.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\NoWifiIllustration.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\NoWifiIllustration.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\NoWifiIllustration.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SharedAssets.md" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoWinUiLogos.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoWinUiLogos.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoWinUiLogos.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoWinUiLogos.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoWinUiLogos.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoWinUiLogosDark.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoWinUiLogosDark.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoWinUiLogosDark.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoWinUiLogosDark.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\UnoWinUiLogosDark.scale-400.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Framework\Navigation\" />
+  </ItemGroup>
+</Project>

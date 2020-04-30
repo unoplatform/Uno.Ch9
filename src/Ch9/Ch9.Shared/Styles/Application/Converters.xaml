@@ -1,0 +1,58 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					xmlns:converters="using:Ch9">
+
+	<x:Boolean x:Key="TrueValue">True</x:Boolean>
+	<x:Boolean x:Key="FalseValue">False</x:Boolean>
+
+	<converters:FromNullableBoolToCustomValueConverter x:Key="TrueToVisible"
+													   TrueValue="Visible"
+													   NullOrFalseValue="Collapsed" />
+
+	<converters:FromNullableBoolToCustomValueConverter x:Key="TrueToCollapsed"
+													   TrueValue="Collapsed"
+													   NullOrFalseValue="Visible" />
+
+	<converters:FromNullableToCustomValueConverter x:Key="NullToCollapsed"
+												   ValueIfNotNull="Visible"
+												   ValueIfNull="Collapsed" />
+
+	<converters:FromNullableToCustomValueConverter x:Key="NullToVisible"
+												   ValueIfNotNull="Collapsed"
+												   ValueIfNull="Visible" />
+
+	<converters:FromNullableToCustomValueConverter x:Key="NullToFalse"
+												   ValueIfNotNull="{StaticResource TrueValue}"
+												   ValueIfNull="{StaticResource FalseValue}" />
+
+	<converters:FromNullableToCustomValueConverter x:Key="NullToTrue"
+												   ValueIfNotNull="{StaticResource FalseValue}"
+												   ValueIfNull="{StaticResource TrueValue}" />
+
+	<converters:FromNullableBoolToCustomValueConverter x:Key="HasNetworkErrorToErrorTitle"
+													   TrueValue="No internet connection"
+													   NullOrFalseValue="Uh oh!"
+													   x:Uid="MainPage_ErrorStateTitle" />
+
+	<converters:FromNullableBoolToCustomValueConverter x:Key="HasNetworkErrorToErrorMessage"
+													   TrueValue="Please check your internet connection and try again"
+													   NullOrFalseValue="Something went wrong. Please try again"
+													   x:Uid="MainPage_ErrorStateMessage" />
+
+	<converters:FromNullableBoolToCustomValueConverter x:Key="HasNetworkErrorToErrorImage"
+													   TrueValue="ms-appx:///Assets/NoWifiIllustration.png"
+													   NullOrFalseValue="ms-appx:///Assets/ErrorIllustration.png" />
+
+	<converters:FromNullableBoolToCustomValueConverter x:Key="HasNetworkErrorToErrorImageMargin"
+													   TrueValue="79,0,0,0"
+													   NullOrFalseValue="0,0,0,0" />
+
+	<converters:FromEnumerableHasAnyToVisibilityConverter x:Key="EnumerableHasAnyToVisible"
+														  VisibilityOnEnumerableHasAny="Visible"
+														  VisibilityOnEnumerableNull="Collapsed" />
+
+	<converters:FromEnumerableHasAnyToVisibilityConverter x:Key="EnumerableHasAnyToCollapsed"
+														  VisibilityOnEnumerableHasAny="Collapsed"
+														  VisibilityOnEnumerableNull="Collapsed" />
+</ResourceDictionary>
