@@ -21,7 +21,7 @@
 
     <Style TargetType="ListView"
            x:Key="DefaultListViewStyle">
-        
+
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="TabNavigation"
@@ -44,7 +44,7 @@
                 Value="False" />
         <Setter Property="ScrollViewer.BringIntoViewOnFocusChange"
                 Value="True" />
-        
+
         <Setter Property="ItemContainerTransitions">
             <Setter.Value>
                 <TransitionCollection>
@@ -55,7 +55,7 @@
                 </TransitionCollection>
             </Setter.Value>
         </Setter>
-        
+
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -63,7 +63,7 @@
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListView">
@@ -85,7 +85,7 @@
                                       IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
                                       BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
                                       AutomationProperties.AccessibilityView="Raw">
-                            
+
                             <ItemsPresenter Header="{TemplateBinding Header}"
                                             HeaderTemplate="{TemplateBinding HeaderTemplate}"
                                             HeaderTransitions="{TemplateBinding HeaderTransitions}"
@@ -102,7 +102,7 @@
 
     <Style TargetType="ListViewItem"
            x:Key="DefaultListViewItemStyle">
-        
+
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="TabNavigation"
@@ -121,10 +121,11 @@
                 Value="True" />
         <Setter Property="Padding"
                 Value="0" />
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
+
                     <Grid x:Name="ContentBorder"
                           Background="{TemplateBinding Background}"
                           BorderBrush="{TemplateBinding BorderBrush}"
@@ -132,27 +133,62 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
-                                <VisualState x:Name="PointerOver" />
-                                <VisualState x:Name="Pressed" />
-                                <VisualState x:Name="Selected" />
-                                <VisualState x:Name="PointerOverSelected" />
-                                <VisualState x:Name="PressedSelected" />
+
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.Opacity"
+                                                Value="0.85" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="ContentPresenter.Opacity"
+                                                Value="0.75" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Target="SelectedStateOverlay.Visibility"
+                                                Value="Visible" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="PointerOverSelected">
+                                    <VisualState.Setters>
+                                        <Setter Target="SelectedStateOverlay.Visibility"
+                                                Value="Visible" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="PressedSelected">
+                                    <VisualState.Setters>
+                                        <Setter Target="SelectedStateOverlay.Visibility"
+                                                Value="Visible" />
+                                    </VisualState.Setters>
+                                </VisualState>
                             </VisualStateGroup>
+
                             <VisualStateGroup x:Name="DisabledStates">
                                 <VisualState x:Name="Enabled" />
                                 <VisualState x:Name="Disabled" />
                             </VisualStateGroup>
+
                             <VisualStateGroup x:Name="MultiSelectStates">
                                 <!-- For MultiSelectStates states, use the complete style in Uno.UI. See links on top of this file. -->
                             </VisualStateGroup>
+
                             <VisualStateGroup x:Name="ReorderHintStates">
                                 <!-- For reordering states, use the complete style in Uno.UI. See links on top of this file.-->
                             </VisualStateGroup>
+
                             <VisualStateGroup x:Name="DragStates">
                                 <!-- For drag states, use the complete style in Uno.UI. See links on top of this file. -->
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
+                        <!-- Content Presenter -->
                         <ContentPresenter x:Name="ContentPresenter"
                                           ContentTransitions="{TemplateBinding ContentTransitions}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -160,6 +196,24 @@
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Margin="{TemplateBinding Padding}" />
+
+                        <!-- Selected State -->
+                        <Grid x:Name="SelectedStateOverlay"
+                              Visibility="Collapsed"
+                              Background="{ThemeResource Color01_75_OpacityBrush}"
+                              CornerRadius="8"
+                              Height="80"
+                              MaxWidth="300"
+                              VerticalAlignment="Top"
+                              Margin="30,80,30,0">
+
+                            <!-- Title -->
+                            <TextBlock Text="Currently Playing"
+                                       x:Uid="MainPage_CurrentlyPlaying"
+                                       Style="{StaticResource Typo04}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
