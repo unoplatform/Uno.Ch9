@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -26,6 +27,8 @@ namespace Ch9
 			this.NavigationCacheMode = NavigationCacheMode.Required;
 
 			DataContext = new MainPageViewModel();
+
+			PostList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
 		}
 
 		public MainPageViewModel ViewModel => DataContext as MainPageViewModel;
@@ -37,9 +40,17 @@ namespace Ch9
 			ViewModel.OnNavigatedTo();
 		}
 
-		private void OnPostItemClick(object sender, ItemClickEventArgs e)
+		private void OnItemsSourceChanged(DependencyObject sender, DependencyProperty dp)
 		{
-			ViewModel.ShowPost.Execute(e.ClickedItem);
+			// Auto select the first element if the items change and the window is wide.
+			var listView = sender as ListView;
+			var items = listView?.ItemsSource as ICollection;
+
+			if (items?.Count > 0 &&
+				Windows.UI.Xaml.Window.Current.Bounds.Width >= 500)
+			{
+				listView.SelectedIndex = 0;
+			}
 		}
 	}
 }
