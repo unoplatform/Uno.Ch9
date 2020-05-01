@@ -95,22 +95,10 @@ namespace Ch9
 
 				var postViewModels = posts.Select(p => new PostViewModel(this, p)).ToArray();
 
-				SetDefaultSelection(postViewModels);
-
 				return postViewModels;
 			}
 
 			Posts = new TaskNotifier<PostViewModel[]>(GetPosts());
-		}
-
-		private void SetDefaultSelection(PostViewModel[] postViewModels)
-		{
-			if (DeviceInfo.Idiom == DeviceIdiom.Tablet ||
-				DeviceInfo.Idiom == DeviceIdiom.Desktop ||
-				DeviceInfo.Idiom == DeviceIdiom.TV)
-			{
-				SelectedPost = postViewModels.FirstOrDefault();
-			}
 		}
 	}
 }
