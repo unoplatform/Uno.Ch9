@@ -12,9 +12,7 @@ variables:
   value: $(Build.ArtifactStagingDirectory)
 - name: SolutionFileName
   value: src/Ch9.sln
-
-trigger: none
-
+  
 jobs:
 - job: Windows
   strategy:
