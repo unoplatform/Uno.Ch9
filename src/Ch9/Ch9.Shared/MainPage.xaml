@@ -272,17 +272,18 @@
             </Grid>
         </Grid>
 
-        <!-- No Selection -->
-        <Grid Grid.Row="1"
-              Grid.Column="1"
-              Visibility="{Binding SelectedPost, Converter={StaticResource NullToVisible}}">
+		<!-- No Selection -->
+        <Grid Visibility="{Binding SelectedPost, Converter={StaticResource NullToVisible}}"
+			  Background="{ThemeResource Color02Brush}"  
+			  Grid.Row="1"
+              Grid.Column="1">
 
             <StackPanel VerticalAlignment="Center">
 
                 <!-- Image -->
-                <Image Source="ms-appx:///Assets/Ch9_logo.png"
+                <Image Source="ms-appx:///Assets/NoVideoSelectedIllustration.png"
                        Stretch="Uniform"
-                       Width="80"
+                       Width="280"
                        HorizontalAlignment="Center" />
 
                 <!-- Title -->
@@ -305,7 +306,8 @@
         <!-- Selected Post -->
         <Grid x:Name="PostPresenter"
               Visibility="{Binding SelectedPost, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
-              Grid.RowSpan="2"
+              Background="{ThemeResource Color02Brush}"  
+			  Grid.RowSpan="2"
               Grid.Column="0"
               Grid.ColumnSpan="2">
 
