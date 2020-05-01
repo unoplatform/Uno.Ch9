@@ -1,48 +1,67 @@
-trigger:
-- master
+resources:
+   containers:
+     - container: windows
+       image: nventive/build-agent:vs16.4.0
+
+variables:
+- name: NUGET_VERSION
+  value: 5.1.0
+- name: ApplicationOutputPath
+  value: $(Build.ArtifactStagingDirectory)
+- name: PackageOutputPath
+  value: $(Build.ArtifactStagingDirectory)
+- name: SolutionFileName
+  value: src/Ch9.sln
+
+trigger: none
 
 jobs:
-  - job: Windows
+- job: Windows
+  strategy:
+    maxParallel: 3
+    matrix:
+      Release_Android:
+        ApplicationConfiguration: Release_Android
+        ApplicationPlatform: Any CPU
+        Environment: Staging
+      Release_UWA:
+        ApplicationConfiguration: Release_UWP
+        ApplicationPlatform: x64
+        Environment: Staging
 
-    pool:
-      vmImage: 'windows-2019'
+  pool:
+    name: Container
 
-    variables:
-      - name: ANDROID_NDK_HOME
-        value: C:\Microsoft\AndroidNDK64\android-ndk-r16b
-      - name: ANDROID_NDK_PATH
-        value: C:\Microsoft\AndroidNDK64\android-ndk-r16b
-      - name: AndroidNdkDirectory
-        value: C:\Microsoft\AndroidNDK64\android-ndk-r16b
+  workspace:
+    clean: all
 
-    steps:
-    - task: UseDotNet@2
-      inputs:
-        packageType: 'runtime'
-        version: '2.2.0'
+  container: windows
 
-    - task: nventiveCanaryUpdater@5
-      condition: and(succeeded(), eq(variables['IsCanary'], 'true'))
-      inputs:
-        solution: 'src/Ch9.sln'
-        usePrivateFeed: false
-        useNuGetOrg: true
-        mergeBranch: true
-        gitUserName: 'nventive DevOps'
-        gitUserEmail: 'nv-devops@outlook.com'
-        branchToMerge: 'master'
-        nugetUpdaterVersion: '2.0.4'
-        allowDowngrade: true
-        packageAuthor: 'nventive'
-        summaryFile: '$(UnoPackageOutputPath)/Canary.md'
-        resultFile: '$(UnoPackageOutputPath)/update_result.json'
-        additionalPublicSources: https://pkgs.dev.azure.com/uno-platform/1dd81cbd-cb35-41de-a570-b0df3571a196/_packaging/unoplatformdev/nuget/v3/index.json
+  steps:
+  - template: steps.yml
 
-    - task: GitVersion@5
+- job: macOS
+  strategy:
+    maxParallel: 1
+    matrix:
+      Release_iOS:
+        ApplicationConfiguration: Release_iOS
+        ApplicationPlatform: Any CPU
+        Environment: Staging
 
-    - task: MSBuild@1
-      inputs:
-        solution: src/Ch9.sln
-        configuration: Release
-        restoreNugetPackages: false
-        msbuildArguments: /r
+  pool:
+    name: Default
+    demands:
+    - Xamarin.iOS -equals 13.8
+
+  workspace:
+    clean: all
+
+  variables:
+  - name: NUGET_PACKAGES
+    value: $(Agent.TempDirectory)/.nuget
+  - name: NUGET_HTTP_CACHE_PATH
+    value: $(Agent.TempDirectory)/.nuget-http-cache.
+
+  steps:
+  - template: steps.yml
