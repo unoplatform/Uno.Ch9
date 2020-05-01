@@ -280,7 +280,7 @@
             <StackPanel VerticalAlignment="Center">
 
                 <!-- Image -->
-                <Image Source="ms-appx:///Assets/Channel_9_logo.png"
+                <Image Source="ms-appx:///Assets/Ch9_logo.png"
                        Stretch="Uniform"
                        Width="80"
                        HorizontalAlignment="Center" />
