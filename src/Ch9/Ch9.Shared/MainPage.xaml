@@ -226,16 +226,17 @@
 						  ItemsSource="{Binding Posts.Result}"
 						  ItemTemplate="{StaticResource PostItemTemplate}"
 						  ItemClick="OnPostItemClick"
-						  IsItemClickEnabled="True"
-						  Padding="0,0,0,54" />
+						  IsItemClickEnabled="True" />
 
 				<!-- Empty List Message -->
-				<TextBlock Text="Nothing to show"
-						   x:Uid="MainPage_EmptyListMessage"
-						   Visibility="{Binding Posts.Result, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
-						   VerticalAlignment="Top"
-						   Margin="16,0" />
-			</Grid>
+                <TextBlock Visibility="{Binding Posts.Result, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
+                           Text="Nothing to show"
+                           x:Uid="MainPage_EmptyListMessage"
+                           Style="{StaticResource Typo02}"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="16,0" />
+            </Grid>
 			
 			<!-- Error -->
 			<Grid Visibility="{Binding Posts.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
@@ -276,13 +277,30 @@
 			  Grid.Column="1"
 			  Visibility="{Binding SelectedPost, Converter={StaticResource NullToVisible}}">
 
-			<!-- Message -->
-			<TextBlock Text="Select a video"
-					   x:Uid="MainPage_NoSelection"
-					   VerticalAlignment="Center"
-					   TextAlignment="Center"
-					   Margin="32,0,32,0" />
-		</Grid>
+            <StackPanel VerticalAlignment="Center">
+
+                <!-- Image -->
+                <Image Source="ms-appx:///Assets/Channel_9_logo.png"
+                       Stretch="Uniform"
+                       Width="80"
+                       HorizontalAlignment="Center" />
+
+                <!-- Title -->
+                <TextBlock Text="No video selected"
+                           x:Uid="MainPage_NoSelectionTitle"
+                           Style="{StaticResource Typo02}"
+                           TextAlignment="Center"
+                           Margin="32,16,32,0" />
+
+                <!-- Message -->
+                <TextBlock Text="Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!"
+                           x:Uid="MainPage_NoSelectionMessage"
+                           Style="{StaticResource Typo03}"
+                           TextAlignment="Center"
+                           MaxWidth="380"
+                           Margin="32,8,32,0" />
+            </StackPanel>
+        </Grid>
 
 		<!-- Selected Post -->
 		<Grid x:Name="PostPresenter"
