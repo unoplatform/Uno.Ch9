@@ -26,6 +26,10 @@ namespace Ch9
 			{
 				RunTask(task);
 			}
+			else if (task.IsFaulted && Connectivity.NetworkAccess != NetworkAccess.Internet)
+			{
+				IsInternetFaulted = true;
+			}
 		}
 
 		/// <inheritdoc />
@@ -83,13 +87,12 @@ namespace Ch9
 				{
 					if (task.IsFaulted)
 					{
-#if !__WASM__
 						if (Connectivity.NetworkAccess != NetworkAccess.Internet)
 						{
 							IsInternetFaulted = true;
 							PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsInternetFaulted)));
 						}
-#endif
+
 						Console.Error.WriteLine(task.Exception);
 						_onFaulted?.Invoke(task.Exception);
 					}
