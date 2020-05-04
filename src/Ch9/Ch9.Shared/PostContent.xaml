@@ -82,7 +82,7 @@
                     <!-- Category List -->
                     <ItemsControl ItemsSource="{Binding Post.Categories}"
                                   ItemTemplate="{StaticResource CategoryItemTemplate}"
-                                  Margin="0,24,0,32">
+                                  Margin="0,24,0,64">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <ctoolkit:WrapPanel HorizontalSpacing="12"
