@@ -320,8 +320,7 @@
 
                 <!-- Post -->
                 <local:PostContent DataContext="{Binding SelectedPost}"
-                                   VerticalAlignment="Top"
-                                   Margin="0,0,0,32" />
+                                   VerticalAlignment="Top" />
             </ScrollViewer>
 
             <Grid toolkit:VisibleBoundsPadding.PaddingMask="Top">
