@@ -6,9 +6,9 @@
 					xmlns:toolkit="using:Uno.UI.Toolkit"
 					mc:Ignorable="xamarin">
 
-	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="../Application/Colors.xaml" />
-	</ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
 
 	<Style TargetType="MediaPlayerElement"
 		   x:Key="DefaultMediaPlayerElementStyle">

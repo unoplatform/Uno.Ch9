@@ -8,9 +8,9 @@
 					xmlns:toolkit="using:Uno.UI.Toolkit"
 					mc:Ignorable="xamarin android ios">
 
-	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="../Application/Colors.xaml" />
-	</ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
 
 	<Style x:Key="DefaultCommandBarStyle"
 		   TargetType="CommandBar"
@@ -87,7 +87,6 @@
 
 							<!-- Navigation Command -->
 							<ContentControl x:Name="NavigationCommand"
-											Content="{Binding (toolkit:CommandBarExtensions.NavigationCommand), RelativeSource={RelativeSource TemplatedParent}}"
 											Foreground="{TemplateBinding Foreground}"
 											IsTabStop="False"
 											Grid.Column="0" />
