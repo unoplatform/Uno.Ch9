@@ -13,7 +13,15 @@ variables:
 - name: SolutionFileName
   value: src/Ch9.sln
 
-trigger: none
+trigger:
+  branches:
+    include:
+      - master
+ 
+pr: 
+  branches:
+    include:
+      - master
 
 jobs:
 - job: Windows
