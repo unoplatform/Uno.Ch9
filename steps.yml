@@ -39,6 +39,7 @@
     msbuildArchitecture: x86
     configuration: $(ApplicationConfiguration)
     platform: $(ApplicationPlatform)
+    msbuildArguments: '/p:PackageCertificatePassword="$(UWPCertificatePassword)"'
     clean: false
     maximumCpuCount: true
     restoreNugetPackages: false

@@ -2,10 +2,9 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:local="using:Ch9.Shared.Styles.Controls">
 
-	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="../Application/Colors.xaml" />
-		<!-- <ResourceDictionary Source="../Application/Fonts.xaml" /> -->
-	</ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
 
 	<!--
 	******************************************************************

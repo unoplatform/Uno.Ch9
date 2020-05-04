@@ -2,8 +2,8 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="Converters.xaml" />
-		<ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="ms-appx:///Styles/Application/Converters.xaml" />
+        <ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
