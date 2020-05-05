@@ -47,7 +47,7 @@ namespace Ch9
 			var items = listView?.ItemsSource as ICollection;
 
 			if (items?.Count > 0 &&
-				Windows.UI.Xaml.Window.Current.Bounds.Width >= 500)
+				Windows.UI.Xaml.Window.Current.Bounds.Width >= 800)
 			{
 				listView.SelectedIndex = 0;
 			}
