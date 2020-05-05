@@ -107,14 +107,14 @@
 				<VisualState x:Name="WideAndSelected">
 					<VisualState.StateTriggers>
 						<triggers:CompositeStateTrigger Operator="And">
-							<triggers:AdaptiveTrigger MinWindowWidth="500" />
+							<triggers:AdaptiveTrigger MinWindowWidth="800" />
 							<StateTrigger IsActive="{x:Bind ViewModel.SelectedPost, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
 						</triggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
 					<VisualState.Setters>
 						<Setter Target="LeftColumn.Width"
-								Value="428" />
+								Value="375" />
 						<Setter Target="RightColumn.Width"
 								Value="*" />
 						<Setter Target="PostPresenter.Row"
@@ -135,14 +135,14 @@
 				<VisualState x:Name="WideAndNotSelected">
 					<VisualState.StateTriggers>
 						<triggers:CompositeStateTrigger Operator="And">
-							<triggers:AdaptiveTrigger MinWindowWidth="500" />
+							<triggers:AdaptiveTrigger MinWindowWidth="800" />
 							<StateTrigger IsActive="{x:Bind ViewModel.SelectedPost, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
 						</triggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
 					<VisualState.Setters>
 						<Setter Target="LeftColumn.Width"
-								Value="428" />
+								Value="375" />
 						<Setter Target="RightColumn.Width"
 								Value="*" />
 						<Setter Target="PostPresenter.Row"
