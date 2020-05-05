@@ -204,19 +204,20 @@
 											  Elevation="8"
 											  Margin="16,16,16,0">
 
-							<!-- Content Presenter -->
-							<Grid x:Name="SelectionBorder"
-								  BorderBrush="{ThemeResource Color03Brush}"
-								  BorderThickness="0"
-								  CornerRadius="8">
-								<ContentPresenter x:Name="ContentPresenter"
-												  ContentTransitions="{TemplateBinding ContentTransitions}"
-												  ContentTemplate="{TemplateBinding ContentTemplate}"
-												  Content="{TemplateBinding Content}"
-												  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-												  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-							</Grid>
+							<ContentPresenter x:Name="ContentPresenter"
+											  ContentTransitions="{TemplateBinding ContentTransitions}"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  Content="{TemplateBinding Content}"
+											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
 						</toolkit:ElevatedView>
+						
+						<!-- Content Presenter -->
+						<Grid x:Name="SelectionBorder"
+							  BorderBrush="{ThemeResource Color03Brush}"
+							  BorderThickness="0"
+							  CornerRadius="8"
+							  Margin="16,16,16,0" />
 
 						<!-- Selected State -->
 						<Grid x:Name="SelectedStateOverlay"
