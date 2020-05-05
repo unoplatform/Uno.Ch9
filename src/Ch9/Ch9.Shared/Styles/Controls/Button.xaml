@@ -47,13 +47,19 @@
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
-								<VisualState x:Name="PointerOver" />
+								<VisualState x:Name="PointerOver">
+									<VisualState.Setters>
+										<Setter Target="RootGrid.Opacity"
+												Value="0.70" />
+									</VisualState.Setters>
+								</VisualState>
+								
 								<VisualState x:Name="Disabled" />
 								
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
 										<Setter Target="RootGrid.Opacity"
-												Value="0.65" />
+												Value="0.60" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
@@ -175,7 +181,13 @@
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
-								<VisualState x:Name="PointerOver" />
+								<VisualState x:Name="PointerOver">
+									<VisualState.Setters>
+										<Setter Target="RootGrid.Opacity"
+												Value="0.70" />
+									</VisualState.Setters>
+								</VisualState>
+								
 								<VisualState x:Name="Disabled" />
 								
 								<VisualState x:Name="Pressed">
