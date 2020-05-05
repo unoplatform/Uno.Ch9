@@ -308,7 +308,7 @@
 
 			<!-- Modal background -->
 			<Border x:Name="ModalBackground"
-					Background="{ThemeResource AppBackgroundBrush}" />
+					Background="{ThemeResource Color02Brush}" />
 
 			<!-- Presenter -->
 			<ScrollViewer>
