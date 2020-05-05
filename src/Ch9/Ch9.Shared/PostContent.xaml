@@ -18,8 +18,7 @@
                 <!-- Video Player -->
                 <MediaPlayerElement x:Name="MediaPlayer"
                                     Source="{Binding VideoSource}"
-                                    IsFullWindow="{Binding Parent.IsVideoFullWindow, Mode=TwoWay}"
-                                    Height="300" />
+                                    IsFullWindow="{Binding Parent.IsVideoFullWindow, Mode=TwoWay}" />
             </Grid>
 
             <Grid>
