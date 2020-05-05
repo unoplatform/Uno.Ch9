@@ -23,9 +23,9 @@
     -->
     <Assembly Name="*Application*" Dynamic="Required All" />
     
-    
     <!-- Add your application specific runtime directives here. -->
-
-
+    
+    <!-- SyndicationFeed uses reflection to get the RSS data. This is to support nativetoolchain. -->
+    <Assembly Name="System.ServiceModel.Syndication" Dynamic="Required All" />
   </Application>
 </Directives>
