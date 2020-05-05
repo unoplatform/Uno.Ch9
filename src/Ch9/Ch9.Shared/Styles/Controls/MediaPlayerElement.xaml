@@ -404,7 +404,7 @@
 
 							<!-- Play / Pause Button -->
 							<Button x:Name="PlayPauseButton"
-									Style="{StaticResource HiddenButtonStyle}"                                    
+									Style="{StaticResource PlayPauseButtonStyle}"                                    
                                     HorizontalAlignment="Stretch"
 									VerticalAlignment="Stretch">
 								<Grid Background="{ThemeResource Color01_75_OpacityBrush}"
