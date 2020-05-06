@@ -8,55 +8,123 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource Color02Brush}">
+	<Grid Background="{ThemeResource Color02Brush}">
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup>
+				<VisualState x:Name="Narrow">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="400" />
+					</VisualState.StateTriggers>
 
-        <!-- Content -->
-        <StackPanel>
+					<VisualState.Setters>
+						<Setter Target="MediaPlayer.Height"
+								Value="225" />
+					</VisualState.Setters>
+				</VisualState>
 
-            <Grid toolkit:VisibleBoundsPadding.PaddingMask="Top">
+				<VisualState x:Name="Medium">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="500" />
+					</VisualState.StateTriggers>
 
-                <!-- Video Player -->
-                <MediaPlayerElement x:Name="MediaPlayer"
-                                    Source="{Binding VideoSource}"
-                                    IsFullWindow="{Binding Parent.IsVideoFullWindow, Mode=TwoWay}"
-                                    Height="300" />
-            </Grid>
+					<VisualState.Setters>
+						<Setter Target="MediaPlayer.Height"
+								Value="290" />
+					</VisualState.Setters>
+				</VisualState>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"
-                                      MaxWidth="610" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+				<VisualState x:Name="Wide">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="800" />
+					</VisualState.StateTriggers>
 
-                <StackPanel Margin="16,0">
+					<VisualState.Setters>
+						<Setter Target="MediaPlayer.Height"
+								Value="240" />
+					</VisualState.Setters>
+				</VisualState>
 
-                    <Grid Margin="0,6,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+				<VisualState x:Name="VeryWide">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="900" />
+					</VisualState.StateTriggers>
 
-                        <!-- Share button -->
-                        <Button Command="{Binding Parent.SharePost}"
-                                CommandParameter="{Binding}"
-                                Style="{StaticResource HiddenButtonStyle}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                MinWidth="0"
-                                Grid.Column="0">
+					<VisualState.Setters>
+						<Setter Target="MediaPlayer.Height"
+								Value="295" />
+					</VisualState.Setters>
+				</VisualState>
 
-                            <!-- Icon -->
-                            <Path Style="{StaticResource ShareIconPath}"
-                                  VerticalAlignment="Center"
-                                  Margin="0,0,10,0" />
-                        </Button>
+				<VisualState x:Name="Large">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="1000" />
+					</VisualState.StateTriggers>
 
-                        <!-- Show + Date -->
-                        <TextBlock Style="{StaticResource Typo03}"
-                                   VerticalAlignment="Top"
-                                   Margin="0,10,0,0"
-                                   Grid.Column="1">
+					<VisualState.Setters>
+						<Setter Target="MediaPlayer.Height"
+								Value="350" />
+					</VisualState.Setters>
+				</VisualState>
+
+				<VisualState x:Name="VeryLarge">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="1200" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<Setter Target="MediaPlayer.Height"
+								Value="400" />
+					</VisualState.Setters>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+
+		<!-- Content -->
+		<StackPanel>
+
+			<Grid toolkit:VisibleBoundsPadding.PaddingMask="Top">
+
+				<!-- Video Player -->
+				<MediaPlayerElement x:Name="MediaPlayer"
+									Source="{Binding VideoSource}"
+									IsFullWindow="{Binding Parent.IsVideoFullWindow, Mode=TwoWay}"
+									Height="180" />
+			</Grid>
+
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"
+									  MaxWidth="610" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+
+				<StackPanel Margin="16,0">
+
+					<Grid Margin="0,6,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+
+						<!-- Share button -->
+						<Button Command="{Binding Parent.SharePost}"
+								CommandParameter="{Binding}"
+								Style="{StaticResource HiddenButtonStyle}"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Top"
+								MinWidth="0"
+								Grid.Column="0">
+
+							<!-- Icon -->
+							<Path Style="{StaticResource ShareIconPath}"
+								  VerticalAlignment="Center"
+								  Margin="0,0,10,0" />
+						</Button>
+
+						<!-- Show + Date -->
+						<TextBlock Style="{StaticResource Typo03}"
+								   VerticalAlignment="Top"
+								   Margin="0,10,0,0"
+								   Grid.Column="1">
 							
 							<!-- Title -->
 							<Run Text="{Binding Post.Show}" />
@@ -66,33 +134,33 @@
 						
 							<!-- Release Date -->
 							<Run Text="{Binding Post.FormattedDate}" />
-                        </TextBlock>
-                    </Grid>
+						</TextBlock>
+					</Grid>
 
-                    <!-- Title -->
-                    <TextBlock Text="{Binding Post.Title}"
-                               Style="{StaticResource Typo01}"
-                               Margin="0,2,0,0" />
+					<!-- Title -->
+					<TextBlock Text="{Binding Post.Title}"
+							   Style="{StaticResource Typo01}"
+							   Margin="0,2,0,0" />
 
-                    <!-- Summary -->
-                    <TextBlock Text="{Binding Post.Summary}"
-                               Style="{StaticResource Typo03}"
-                               Margin="0,16,0,0" />
+					<!-- Summary -->
+					<TextBlock Text="{Binding Post.Summary}"
+							   Style="{StaticResource Typo03}"
+							   Margin="0,16,0,0" />
 
-                    <!-- Category List -->
-                    <ItemsControl ItemsSource="{Binding Post.Categories}"
-                                  ItemTemplate="{StaticResource CategoryItemTemplate}"
-                                  Margin="0,24,0,24">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <ctoolkit:WrapPanel HorizontalSpacing="12"
-                                                    VerticalSpacing="12"
-                                                    Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-                </StackPanel>
-            </Grid>
-        </StackPanel>
-    </Grid>
+					<!-- Category List -->
+					<ItemsControl ItemsSource="{Binding Post.Categories}"
+								  ItemTemplate="{StaticResource CategoryItemTemplate}"
+								  Margin="0,24,0,24">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<ctoolkit:WrapPanel HorizontalSpacing="12"
+													VerticalSpacing="12"
+													Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+					</ItemsControl>
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+	</Grid>
 </UserControl>
