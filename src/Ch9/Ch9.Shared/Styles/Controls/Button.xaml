@@ -3,7 +3,7 @@
 					xmlns:local="using:Ch9.Shared.Styles.Controls">
 
 	<ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
+		<ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 	<!-- Hidden Button Style -->
@@ -35,7 +35,7 @@
 				Value="0" />
 		<Setter Property="Padding"
 				Value="0" />
-		
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
@@ -53,75 +53,9 @@
 												Value="0.70" />
 									</VisualState.Setters>
 								</VisualState>
-								
+
 								<VisualState x:Name="Disabled" />
-								
-								<VisualState x:Name="Pressed">
-									<VisualState.Setters>
-										<Setter Target="RootGrid.Opacity"
-												Value="0.60" />
-									</VisualState.Setters>
-								</VisualState>
-							</VisualStateGroup>
-						</VisualStateManager.VisualStateGroups>
 
-						<!-- Content Presenter -->
-						<ContentPresenter x:Name="ContentPresenter"
-										  Content="{TemplateBinding Content}"
-										  ContentTransitions="{TemplateBinding ContentTransitions}"
-										  ContentTemplate="{TemplateBinding ContentTemplate}"
-										  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-										  AutomationProperties.AccessibilityView="Raw"
-										  Margin="{TemplateBinding Padding}" />
-					</Grid>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style
-		   
-	<Style x:Key="PlayPauseButtonStyle"
-		   TargetType="Button">
-
-		<Setter Property="Background"
-				Value="{StaticResource TransparentColorBrush}" />
-		<Setter Property="BorderBrush"
-				Value="{StaticResource TransparentColorBrush}" />
-		<Setter Property="BorderThickness"
-				Value="0" />
-		<Setter Property="MinHeight"
-				Value="40" />
-		<Setter Property="MinWidth"
-				Value="40" />
-		<Setter Property="HorizontalAlignment"
-				Value="Stretch" />
-		<Setter Property="HorizontalContentAlignment"
-				Value="Stretch" />
-		<Setter Property="VerticalAlignment"
-				Value="Stretch" />
-		<Setter Property="VerticalContentAlignment"
-				Value="Stretch" />
-		<Setter Property="UseSystemFocusVisuals"
-				Value="True" />
-		<Setter Property="Margin"
-				Value="0" />
-		<Setter Property="Padding"
-				Value="0" />
-		
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="Button">
-					<Grid x:Name="RootGrid"
-						  Background="{TemplateBinding Background}"
-						  BorderBrush="{TemplateBinding BorderBrush}"
-						  BorderThickness="{TemplateBinding BorderThickness}">
-
-						<VisualStateManager.VisualStateGroups>
-							<VisualStateGroup x:Name="CommonStates">
-								<VisualState x:Name="Normal" />
-							<VisualState x:Name="PointerOver" />
-							<VisualState x:Name="Disabled" />
-								
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
 										<Setter Target="RootGrid.Opacity"
@@ -146,6 +80,72 @@
 		</Setter>
 	</Style>
 
+	<Style x:Key="PlayPauseButtonStyle"
+		   TargetType="Button">
+
+	<Setter Property="Background"
+			Value="{StaticResource TransparentColorBrush}" />
+	<Setter Property="BorderBrush"
+			Value="{StaticResource TransparentColorBrush}" />
+	<Setter Property="BorderThickness"
+			Value="0" />
+	<Setter Property="MinHeight"
+			Value="40" />
+	<Setter Property="MinWidth"
+			Value="40" />
+	<Setter Property="HorizontalAlignment"
+			Value="Stretch" />
+	<Setter Property="HorizontalContentAlignment"
+			Value="Stretch" />
+	<Setter Property="VerticalAlignment"
+			Value="Stretch" />
+	<Setter Property="VerticalContentAlignment"
+			Value="Stretch" />
+	<Setter Property="UseSystemFocusVisuals"
+			Value="True" />
+	<Setter Property="Margin"
+			Value="0" />
+	<Setter Property="Padding"
+			Value="0" />
+
+	<Setter Property="Template">
+		<Setter.Value>
+			<ControlTemplate TargetType="Button">
+				<Grid x:Name="RootGrid"
+					  Background="{TemplateBinding Background}"
+					  BorderBrush="{TemplateBinding BorderBrush}"
+					  BorderThickness="{TemplateBinding BorderThickness}">
+
+					<VisualStateManager.VisualStateGroups>
+						<VisualStateGroup x:Name="CommonStates">
+							<VisualState x:Name="Normal" />
+							<VisualState x:Name="PointerOver" />
+							<VisualState x:Name="Disabled" />
+
+							<VisualState x:Name="Pressed">
+								<VisualState.Setters>
+									<Setter Target="RootGrid.Opacity"
+											Value="0.60" />
+								</VisualState.Setters>
+							</VisualState>
+						</VisualStateGroup>
+					</VisualStateManager.VisualStateGroups>
+
+					<!-- Content Presenter -->
+					<ContentPresenter x:Name="ContentPresenter"
+									  Content="{TemplateBinding Content}"
+									  ContentTransitions="{TemplateBinding ContentTransitions}"
+									  ContentTemplate="{TemplateBinding ContentTemplate}"
+									  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+									  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+									  AutomationProperties.AccessibilityView="Raw"
+									  Margin="{TemplateBinding Padding}" />
+				</Grid>
+			</ControlTemplate>
+		</Setter.Value>
+	</Setter>
+	</Style>
+
 	<!-- Video Player Button Style -->
 	<Style x:Key="VideoPlayerButtonStyle"
 		   TargetType="Button">
@@ -163,14 +163,14 @@
 		<Setter Property="HorizontalContentAlignment"
 				Value="Stretch" />
 		<Setter Property="Background"
-                Value="{ThemeResource Color01_75_OpacityBrush}" />
+				Value="{ThemeResource Color01_75_OpacityBrush}" />
 		<Setter Property="Margin"
 				Value="8" />
 
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
-					
+
 					<Border x:Name="RootGrid"
 							Background="{TemplateBinding Background}"
 							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -181,7 +181,7 @@
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="PointerOver" />
 								<VisualState x:Name="Disabled" />
-								
+
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
 										<Setter Target="RootGrid.Opacity"
@@ -204,7 +204,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 	<!-- Error State Button Style -->
 	<!-- Stye for the "Try Again" button displayed during errors -->
 	<Style x:Key="ErrorStateButtonStyle"
@@ -234,7 +234,7 @@
 				Value="0" />
 		<Setter Property="CornerRadius"
 				Value="8" />
-		
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
@@ -253,9 +253,9 @@
 												Value="0.70" />
 									</VisualState.Setters>
 								</VisualState>
-								
+
 								<VisualState x:Name="Disabled" />
-								
+
 								<VisualState x:Name="Pressed">
 									<VisualState.Setters>
 										<Setter Target="RootGrid.Opacity"
@@ -270,7 +270,7 @@
 								   Style="{StaticResource Typo02}"
 								   TextAlignment="Center"
 								   VerticalAlignment="Center"
-								   Margin="40,0"/>
+								   Margin="40,0" />
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
