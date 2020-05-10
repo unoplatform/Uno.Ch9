@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-	<data name="ApplicationName" xml:space="preserve">
+  <data name="ApplicationName" xml:space="preserve">
     <value>Ch9</value>
   </data>
-	<data name="MainPage_CommandBar_Title.Content" xml:space="preserve">
+  <data name="MainPage_CommandBar_Title.Content" xml:space="preserve">
     <value>Ch9</value>
   </data>
-	<data name="MainPage_Loading.Text" xml:space="preserve">
+  <data name="MainPage_Loading.Text" xml:space="preserve">
     <value>Loading...</value>
   </data>
-	<data name="MainPage_EmptyListMessage.Text" xml:space="preserve">
+  <data name="MainPage_EmptyListMessage.Text" xml:space="preserve">
     <value>Nothing to show</value>
   </data>
   <data name="MainPage_NoSelectionTitle.Text" xml:space="preserve">
@@ -135,45 +135,42 @@
   <data name="MainPage_NoSelectionMessage.Text" xml:space="preserve">
     <value>Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!</value>
   </data>
-	<data name="HasNetworkErrorToErrorTitle.TrueValue" xml:space="preserve">
+  <data name="HasNetworkErrorToErrorTitle.TrueValue" xml:space="preserve">
     <value>No internet connection</value>
   </data>
-	<data name="HasNetworkErrorToErrorTitle.NullOrFalseValue" xml:space="preserve">
+  <data name="HasNetworkErrorToErrorTitle.NullOrFalseValue" xml:space="preserve">
     <value>Uh oh!</value>
   </data>
-	<data name="HasNetworkErrorToErrorMessage.TrueValue" xml:space="preserve">
+  <data name="HasNetworkErrorToErrorMessage.TrueValue" xml:space="preserve">
     <value>Please check your internet connection 
 and try again</value>
   </data>
-	<data name="HasNetworkErrorToErrorMessage.NullOrFalseValue" xml:space="preserve">
+  <data name="HasNetworkErrorToErrorMessage.NullOrFalseValue" xml:space="preserve">
     <value>Something went wrong. 
 Please try again</value>
   </data>
-	<data name="MainPage_ErrorStateButtonLabel.Content" xml:space="preserve">
+  <data name="MainPage_ErrorStateButtonLabel.Content" xml:space="preserve">
     <value>Try Again</value>
   </data>
-	<data name="PostPage_CommandBar_Title.Content" xml:space="preserve">
+  <data name="PostPage_CommandBar_Title.Content" xml:space="preserve">
     <value>Post</value>
   </data>
-	<data name="AboutPage_Title.Text" xml:space="preserve">
+  <data name="AboutPage_Title.Text" xml:space="preserve">
     <value>About</value>
   </data>
-	<data name="AboutPage_Content.Text" xml:space="preserve">
-    <value>Ch9 is a demo app which showcases the power of using WinUI and Uno Platform for developing single-codebase, cross-platform applications for Windows, iOS, Android and WebAssembly. It uses the publicly-available video feed from Microsoft’s Channel 9 for content.</value>
-  </data>
-	<data name="AboutPage_SourceCode.Text" xml:space="preserve">
+  <data name="AboutPage_SourceCode.Text" xml:space="preserve">
     <value>App Source Code available at:</value>
   </data>
-	<data name="AboutPage_GitHubRepoUrl.Text" xml:space="preserve">
+  <data name="AboutPage_GitHubRepoUrl.Text" xml:space="preserve">
     <value>https://github.com/unoplatform/Uno.Ch9</value>
   </data>
-	<data name="AboutPage_Or.Text" xml:space="preserve">
+  <data name="AboutPage_Or.Text" xml:space="preserve">
     <value>Or</value>
   </data>
-	<data name="AboutPage_UnoRepoUrl.Text" xml:space="preserve">
+  <data name="AboutPage_UnoRepoUrl.Text" xml:space="preserve">
     <value>https://github.com/unoplatform</value>
   </data>
-	<data name="AboutPage_BuiltWith.Text" xml:space="preserve">
+  <data name="AboutPage_BuiltWith.Text" xml:space="preserve">
     <value>BUILT WITH</value>
   </data>
 </root>
