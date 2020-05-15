@@ -25,7 +25,10 @@ namespace Ch9
 
 		public Uri VideoUri { get; set; }
 
-		public string FormattedDate => Date.ToString("MMMM dd");
+		public string FormattedDate =>
+			Date.Year == DateTime.Now.Year 
+				? Date.ToString("MMMM dd") 
+				: Date.ToString("MMMM dd yyyy");
 
 		public string FormattedDuration => Duration.ToString("mm':'ss");
 	}
