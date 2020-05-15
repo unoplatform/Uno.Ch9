@@ -29,7 +29,8 @@ namespace Ch9
 		private void InitializePostsService(ISimpleIoc serviceProvider)
 		{
 			serviceProvider.Register<IPostsService>(() => new PostsService(
-				rssRootUrl: "https://channel9.msdn.com/feeds/rss"
+				new SourceFeed("https://s.ch9.ms/feeds/rss"),
+				new SourceFeed("https://s.ch9.ms/Shows/Visual-Studio-Toolbox/feed", "Visual Studio Toolbox")
 			));
 		}
 	}

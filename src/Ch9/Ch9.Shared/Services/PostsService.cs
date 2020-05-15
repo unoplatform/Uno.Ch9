@@ -15,20 +15,37 @@ namespace Ch9
 		private const string YahooNamespace = "http://search.yahoo.com/mrss/";
 		private const string ITunesNamespace = "http://www.itunes.com/dtds/podcast-1.0.dtd";
 
-		private readonly string _rssRootUrl;
+		private readonly SourceFeed[] _feeds;
 
-		public PostsService(string rssRootUrl)
+		public PostsService(params SourceFeed[] feeds)
 		{
-			_rssRootUrl = rssRootUrl ?? throw new ArgumentNullException(nameof(rssRootUrl));
+			_feeds = feeds ?? throw new ArgumentNullException(nameof(feeds));
 		}
 
 		public Task<Post[]> GetRecentPosts()
 		{
-			var rssFeed = GetRssFeed(_rssRootUrl);
+			var posts = new List<Post>();
 
-			var posts = rssFeed.Items.Select(CreatePost).ToArray();
+			foreach (var feed in _feeds)
+			{
+				var rssFeed = GetRssFeed(feed.Url);
 
-			return Task.FromResult(posts);
+				var feedPosts = rssFeed
+					.Items
+					.Select(i => CreatePost(i, feed))
+					.ToArray();
+
+				posts.AddRange(feedPosts);
+			}
+
+			var comparer = new PostEqualityComparer();
+
+			var orderedPosts = posts
+				.Distinct(comparer)
+				.OrderByDescending(p => p.Date)
+				.ToArray();
+
+			return Task.FromResult(orderedPosts);
 		}
 
 		private SyndicationFeed GetRssFeed(string url)
@@ -39,12 +56,12 @@ namespace Ch9
 			}
 		}
 
-		private Post CreatePost(SyndicationItem item)
+		private Post CreatePost(SyndicationItem item, SourceFeed source)
 		{
 			return new Post
 			{
 				Title = GetTitle(item),
-				Show = GetShow(item),
+				Show = source.Show ?? GetShow(item),
 				Summary = GetSummary(item),
 				Date = item.PublishDate,
 				Categories = GetCategories(item).ToArray(),
@@ -120,6 +137,20 @@ namespace Ch9
 		private Uri GetVideoUri(SyndicationItem item)
 		{
 			return item.Links.SingleOrDefault(s => s.MediaType == "video/mp4").Uri;
+		}
+
+		private class PostEqualityComparer : IEqualityComparer<Post>
+		{
+			public bool Equals(Post x, Post y)
+			{
+				if (ReferenceEquals(x, y)) return true;
+				if (x is null || y is null) return false;
+				if (x.Title == y.Title) return true;
+
+				return false;
+			}
+
+			public int GetHashCode(Post obj) => obj.Title.GetHashCode();
 		}
 	}
 }

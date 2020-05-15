@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableBoolToCustomValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableToCustomValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Post.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\SourceFeed.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\ITaskNotifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\ITaskNotifier.Generic.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\TaskNotifier.cs" />
