@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="eee26b2d-730e-4108-91b6-3394291a4111"
-    Publisher="CN=UnoPlatformCh9, O=UnoPlatform, C=US"
+    Name="nventive.Ch9"
+    Publisher="CN=A7F71C9C-7236-4675-87F7-3EB01594E491"
     Version="1.0.4.0" />
 
-  <mp:PhoneIdentity PhoneProductId="94be9d31-4dfc-4ef9-9dbc-1628b0d764d3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="f3d68c69-3327-438b-b64e-3a8879f86986" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Ch9</DisplayName>
-    <PublisherDisplayName>Ch9</PublisherDisplayName>
+    <PublisherDisplayName>nventive</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
