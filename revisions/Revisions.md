@@ -26,3 +26,7 @@ A release is [available on AppCenter](https://install.appcenter.ms/orgs/uno-plat
 ## Version 1.0.0
 
 - Initial version.
+
+## Version 1.0.3
+
+- Added Visual Studio Toolbox
