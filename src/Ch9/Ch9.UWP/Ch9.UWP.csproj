@@ -116,7 +116,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
-    <PackageReference Include="Uno.UI" Version="2.3.0-dev.90" />
+    <PackageReference Include="Uno.UI" Version="2.4.4" />
     <PackageReference Include="Uno.GalaSoft.MvvmLight.Platform" Version="5.4.0-uno.134" />
     <PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.119" />
     <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.71.g38c59ea2a0" />
