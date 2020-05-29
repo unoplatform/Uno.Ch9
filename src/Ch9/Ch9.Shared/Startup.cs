@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Ch9.Services;
 
 namespace Ch9
 {
@@ -28,10 +29,8 @@ namespace Ch9
 
 		private void InitializePostsService(ISimpleIoc serviceProvider)
 		{
-			serviceProvider.Register<IPostsService>(() => new PostsService(
-				new SourceFeed("https://s.ch9.ms/feeds/rss"),
-				new SourceFeed("https://s.ch9.ms/Shows/Visual-Studio-Toolbox/feed", "Visual Studio Toolbox")
-			));
+			serviceProvider.Register<IEpisodeService>(() => new EpisodeService());
+            serviceProvider.Register<IShowService>(() => new ShowService());
 		}
 	}
 }

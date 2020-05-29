@@ -153,7 +153,7 @@ Please try again</value>
     <value>Try Again</value>
   </data>
   <data name="PostPage_CommandBar_Title.Content" xml:space="preserve">
-    <value>Post</value>
+    <value>Episode</value>
   </data>
   <data name="AboutPage_Title.Text" xml:space="preserve">
     <value>About</value>

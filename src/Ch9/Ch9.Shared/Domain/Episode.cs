@@ -5,7 +5,7 @@ using System.Text;
 namespace Ch9
 {
 	[Windows.UI.Xaml.Data.Bindable]
-	public class Post
+	public class Episode 
 	{
 		public string Title { get; set; }
 

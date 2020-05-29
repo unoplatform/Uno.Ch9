@@ -18,19 +18,21 @@
     <Compile Include="$(MSBuildThisFileDirectory)AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEnumerableHasAnyToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableBoolToCustomValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableToCustomValueConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Domain\Post.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Domain\SourceFeed.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Episode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Show.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\ITaskNotifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\ITaskNotifier.Generic.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\TaskNotifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PostContent.xaml.cs">
       <DependentUpon>PostContent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Services\IPostsService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\PostsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IEpisodeService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IShowService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\EpisodeService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -40,10 +42,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ShowService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShowPage.xaml.cs">
+      <DependentUpon>ShowPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShowPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EpisodeListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Startup.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PostViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EpisodeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)AboutPage.xaml">
@@ -55,6 +63,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)PostContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)ShowPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

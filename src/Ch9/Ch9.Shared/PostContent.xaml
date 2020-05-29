@@ -127,28 +127,28 @@
 								   Grid.Column="1">
 							
 							<!-- Title -->
-							<Run Text="{Binding Post.Show}" />
+							<Run Text="{Binding Episode.Show}" />
 						
 							<!-- Separator -->
 							<Run Text="•" />
 						
 							<!-- Release Date -->
-							<Run Text="{Binding Post.FormattedDate}" />
+							<Run Text="{Binding Episode.FormattedDate}" />
 						</TextBlock>
 					</Grid>
 
 					<!-- Title -->
-					<TextBlock Text="{Binding Post.Title}"
+                    <TextBlock Text="{Binding Episode.Title}"
 							   Style="{StaticResource Typo01}"
 							   Margin="0,2,0,0" />
 
 					<!-- Summary -->
-					<TextBlock Text="{Binding Post.Summary}"
+                    <TextBlock Text="{Binding Episode.Summary}"
 							   Style="{StaticResource Typo03}"
 							   Margin="0,16,0,0" />
 
 					<!-- Category List -->
-					<ItemsControl ItemsSource="{Binding Post.Categories}"
+                    <ItemsControl ItemsSource="{Binding Episode.Categories}"
 								  ItemTemplate="{StaticResource CategoryItemTemplate}"
 								  Margin="0,24,0,24">
 						<ItemsControl.ItemsPanel>

@@ -22,7 +22,7 @@
 					  Height="200">
 
 					<!-- Image -->
-					<Image Source="{Binding Post.ImageUri}"
+					<Image Source="{Binding Episode.ImageUri}"
 						   Stretch="UniformToFill" />
 
 					<!-- Formatted Duration -->
@@ -33,7 +33,7 @@
 							Margin="12">
 
 						<!-- Value -->
-						<TextBlock Text="{Binding Post.FormattedDuration}"
+                        <TextBlock Text="{Binding Episode.FormattedDuration}"
 								   Style="{StaticResource Typo04}"
 								   Margin="12,7" />
 					</Border>
@@ -47,22 +47,22 @@
 							   Margin="0,8,0,0">
 						
 							<!-- Show -->
-							<Run Text="{Binding Post.Show}" />
+							<Run Text="{Binding Episode.Show}" />
 						
 							<!-- Separator -->
 							<Run Text="•" />
 						
 							<!-- Release Date -->
-							<Run Text="{Binding Post.FormattedDate}" />
+							<Run Text="{Binding Episode.FormattedDate}" />
 					</TextBlock>
 
 					<!-- Title -->
-					<TextBlock Text="{Binding Post.Title}"
+                    <TextBlock Text="{Binding Episode.Title}"
 							   Style="{StaticResource Typo02}"
 							   Margin="0,6,0,0" />
 
 					<!-- Category List -->
-					<ItemsControl ItemsSource="{Binding Post.Categories}"
+                    <ItemsControl ItemsSource="{Binding Episode.Categories}"
 								  ItemTemplate="{StaticResource CategoryItemTemplate}"
 								  Margin="0,12,0,24">
 						<ItemsControl.ItemsPanel>
@@ -108,7 +108,7 @@
 					<VisualState.StateTriggers>
 						<triggers:CompositeStateTrigger Operator="And">
 							<triggers:AdaptiveTrigger MinWindowWidth="800" />
-							<StateTrigger IsActive="{x:Bind ViewModel.SelectedPost, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
+                            <StateTrigger IsActive="{x:Bind ViewModel.EpisodeList.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
 						</triggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
@@ -136,7 +136,7 @@
 					<VisualState.StateTriggers>
 						<triggers:CompositeStateTrigger Operator="And">
 							<triggers:AdaptiveTrigger MinWindowWidth="800" />
-							<StateTrigger IsActive="{x:Bind ViewModel.SelectedPost, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
+							<StateTrigger IsActive="{x:Bind ViewModel.EpisodeList.SelectedEpisode, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
 						</triggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
@@ -163,7 +163,7 @@
 				<VisualState x:Name="NarrowAndSelected">
 					<VisualState.StateTriggers>
 						<triggers:CompositeStateTrigger Operator="And">
-							<StateTrigger IsActive="{x:Bind ViewModel.SelectedPost, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
+                            <StateTrigger IsActive="{x:Bind ViewModel.EpisodeList.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
 						</triggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
@@ -194,7 +194,7 @@
 		<Grid Grid.Row="1">
 
 			<!-- Loading -->
-			<Grid Visibility="{Binding Posts.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
+			<Grid Visibility="{Binding EpisodeList.Episodes.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
 				<StackPanel VerticalAlignment="Center"
 							HorizontalAlignment="Center">
 
@@ -214,17 +214,17 @@
 			</Grid>
 
 			<!-- Content -->
-			<Grid Visibility="{Binding Posts.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
+            <Grid Visibility="{Binding EpisodeList.Episodes.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
 
 				<!-- List of posts -->
 				<ListView x:Name="PostList"
-						  ItemsSource="{Binding Posts.Result}"
+						  ItemsSource="{Binding EpisodeList.Episodes.Result}"
 						  ItemTemplate="{StaticResource PostItemTemplate}"
 						  SelectionMode="Single"
-						  SelectedItem="{Binding SelectedPost, Mode=TwoWay}" />
+						  SelectedItem="{Binding EpisodeList.SelectedEpisode, Mode=TwoWay}" />
 
 				<!-- Empty List Message -->
-				<TextBlock Visibility="{Binding Posts.Result, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
+                <TextBlock Visibility="{Binding EpisodeList.Episodes.Result, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
 						   Text="Nothing to show"
 						   x:Uid="MainPage_EmptyListMessage"
 						   Style="{StaticResource Typo02}"
@@ -234,25 +234,25 @@
 			</Grid>
 
 			<!-- Error -->
-			<Grid Visibility="{Binding Posts.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+            <Grid Visibility="{Binding EpisodeList.Episodes.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 				  Background="{ThemeResource Color08Brush}">
 
 				<StackPanel VerticalAlignment="Center">
 
 					<!-- Image -->
-					<Image Source="{Binding Posts.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImage}}"
+                    <Image Source="{Binding EpisodeList.Episodes.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImage}}"
 						   Stretch="None"
 						   HorizontalAlignment="Center"
-						   Margin="{Binding Posts.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImageMargin}}" />
+						   Margin="{Binding EpisodeList.Episodes.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImageMargin}}" />
 
 					<!-- Title -->
-					<TextBlock Text="{Binding Posts.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorTitle}}"
+                    <TextBlock Text="{Binding EpisodeList.Episodes.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorTitle}}"
 							   Style="{StaticResource Typo02}"
 							   TextAlignment="Center"
 							   Margin="40,12,40,0" />
 
 					<!-- Message -->
-					<TextBlock Text="{Binding Posts.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorMessage}}"
+                    <TextBlock Text="{Binding EpisodeList.Episodes.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorMessage}}"
 							   Style="{StaticResource Typo03}"
 							   TextAlignment="Center"
 							   Margin="40,8,40,0" />
@@ -268,7 +268,7 @@
 		</Grid>
 
 		<!-- No Selection -->
-		<Grid Visibility="{Binding SelectedPost, Converter={StaticResource NullToVisible}}"
+		<Grid Visibility="{Binding EpisodeList.SelectedEpisode, Converter={StaticResource NullToVisible}}"
 			  Background="{ThemeResource Color02Brush}"
 			  Grid.Row="1"
 			  Grid.Column="1">
@@ -300,7 +300,7 @@
 
 		<!-- Selected Post -->
 		<Grid x:Name="PostPresenter"
-			  Visibility="{Binding SelectedPost, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+			  Visibility="{Binding EpisodeList.SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 			  Background="{ThemeResource Color02Brush}"
 			  Grid.RowSpan="2"
 			  Grid.Column="0"
@@ -314,7 +314,7 @@
 			<ScrollViewer>
 
 				<!-- Post -->
-				<local:PostContent DataContext="{Binding SelectedPost}"
+                <local:PostContent DataContext="{Binding EpisodeList.SelectedEpisode}"
 								   VerticalAlignment="Top" />
 			</ScrollViewer>
 
@@ -322,7 +322,7 @@
 
 				<!-- Dismiss button -->
 				<Button x:Name="DismissButton"
-						Command="{Binding DismissPost}"
+						Command="{Binding EpisodeList.DismissPost}"
 						Style="{StaticResource VideoPlayerButtonStyle}"
 						HorizontalAlignment="Right"
 						VerticalAlignment="Top"
