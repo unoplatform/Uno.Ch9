@@ -22,6 +22,7 @@ namespace Ch9
 
 				navigationService.Configure(nameof(MainPage), typeof(MainPage));
 				navigationService.Configure(nameof(AboutPage), typeof(AboutPage));
+                navigationService.Configure(nameof(ShowPage), typeof(ShowPage));
 
 				return new StackNavigationService(navigationService);
 			});

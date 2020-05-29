@@ -9,7 +9,8 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:android="http://Uno.UI/android"
 	  xmlns:triggers="using:WindowsStateTriggers"
-	  mc:Ignorable="d android">
+	  mc:Ignorable="d android"
+      x:Name="This">
 
 	<Page.Resources>
 
@@ -91,8 +92,9 @@
         -->
 
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
 		<Grid.ColumnDefinitions>
@@ -118,7 +120,7 @@
 						<Setter Target="RightColumn.Width"
 								Value="*" />
 						<Setter Target="PostPresenter.Row"
-								Value="1" />
+								Value="2" />
 						<Setter Target="PostPresenter.Column"
 								Value="1" />
 						<Setter Target="PostPresenter.ColumnSpan"
@@ -146,7 +148,7 @@
 						<Setter Target="RightColumn.Width"
 								Value="*" />
 						<Setter Target="PostPresenter.Row"
-								Value="1" />
+								Value="2" />
 						<Setter Target="PostPresenter.Column"
 								Value="1" />
 						<Setter Target="PostPresenter.ColumnSpan"
@@ -170,7 +172,7 @@
 					<VisualState.Setters>
 						<Setter Target="CommandBar.Visibility"
 								Value="Collapsed" />
-					</VisualState.Setters>
+                    </VisualState.Setters>
 				</VisualState>
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
@@ -190,8 +192,30 @@
 			</CommandBar.PrimaryCommands>
 		</CommandBar>
 
-		<!-- Post List -->
-		<Grid Grid.Row="1">
+        <GridView ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  Grid.Row="1" 
+				  Grid.Column="0"
+                  HorizontalAlignment="Center"
+                  Grid.ColumnSpan="2"
+            ScrollViewer.HorizontalScrollMode="Enabled"
+			ItemsSource="{Binding Shows}"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollMode="Disabled">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+            <GridView.ItemTemplate>
+                <DataTemplate>
+
+                    <Button Content="{Binding Name}" Command="{Binding ElementName=This, Path=DataContext.DisplayShow}" />
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+
+        <!-- Post List -->
+		<Grid Grid.Row="2">
 
 			<!-- Loading -->
 			<Grid Visibility="{Binding EpisodeList.Episodes.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
@@ -215,8 +239,7 @@
 
 			<!-- Content -->
             <Grid Visibility="{Binding EpisodeList.Episodes.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
-
-				<!-- List of posts -->
+                <!-- List of posts -->
 				<ListView x:Name="PostList"
 						  ItemsSource="{Binding EpisodeList.Episodes.Result}"
 						  ItemTemplate="{StaticResource PostItemTemplate}"
@@ -270,8 +293,8 @@
 		<!-- No Selection -->
 		<Grid Visibility="{Binding EpisodeList.SelectedEpisode, Converter={StaticResource NullToVisible}}"
 			  Background="{ThemeResource Color02Brush}"
-			  Grid.Row="1"
-			  Grid.Column="1">
+			  Grid.Row="2"
+              Grid.Column="1">
 
 			<StackPanel VerticalAlignment="Center">
 
@@ -302,7 +325,7 @@
 		<Grid x:Name="PostPresenter"
 			  Visibility="{Binding EpisodeList.SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 			  Background="{ThemeResource Color02Brush}"
-			  Grid.RowSpan="2"
+              Grid.Row="2"
 			  Grid.Column="0"
 			  Grid.ColumnSpan="2">
 

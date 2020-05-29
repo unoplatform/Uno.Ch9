@@ -28,18 +28,18 @@ namespace Ch9
             });
         }
 
+        public ICommand ToAboutPage { get; }
+
+        public ICommand DisplayShow { get; set; }
+
+        public ICollection<Show> Shows { get; set; }
+
         private EpisodeListViewModel _episodesList;
         public EpisodeListViewModel EpisodeList
         {
             get => _episodesList;
             set => Set(() => EpisodeList, ref _episodesList, value);
         }
-
-        public ICommand ToAboutPage { get; }
-
-        public ICommand DisplayShow { get; set; }
-
-        public ICollection<Show> Shows { get; set; }
 
         public void OnNavigatedTo()
         {

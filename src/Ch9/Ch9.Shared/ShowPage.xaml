@@ -5,10 +5,31 @@
     xmlns:local="using:Ch9"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    xmlns:android="http://Uno.UI/android"
+    mc:Ignorable="d android"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="{ThemeResource AppBackgroundBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <CommandBar x:Name="CommandBar"
+                    Style="{StaticResource ImageCommandBarStyle}"
+                    Grid.ColumnSpan="2">
+
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Command="{Binding ShowAboutPage}"
+                              android:Margin="0,0,16,0">
+                    <Path Style="{StaticResource InfoIconPath}"
+                          Fill="{ThemeResource CommandBarForegroundBrush}"
+                          VerticalAlignment="Center" />
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
 
     </Grid>
 </Page>

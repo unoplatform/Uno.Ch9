@@ -43,6 +43,16 @@ namespace Ch9.ViewModels
             LoadEpisodes();
         }
 
+        public ICommand DisplaySelectedPost { get; }
+
+        public ICommand DismissPost { get; }
+
+        public ICommand ReloadPage { get; }
+
+        public ICommand SharePost { get; }
+
+        public ICommand ToSelectedShowPage { get; }
+
         private EpisodeViewModel _selectedEpisode;
         public EpisodeViewModel SelectedEpisode
         {
@@ -83,13 +93,5 @@ namespace Ch9.ViewModels
 
             Episodes = new TaskNotifier<EpisodeViewModel[]>(GetEpisodes());
         }
-
-        public ICommand DisplaySelectedPost { get; }
-
-        public ICommand DismissPost { get; }
-
-        public ICommand ReloadPage { get; }
-
-        public ICommand SharePost { get; }
     }
 }
