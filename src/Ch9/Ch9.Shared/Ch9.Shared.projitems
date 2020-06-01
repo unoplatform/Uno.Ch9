@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableToCustomValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Episode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Show.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\SourceFeed.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EpisodeContent.xaml.cs">
       <DependentUpon>EpisodeContent.xaml</DependentUpon>
     </Compile>

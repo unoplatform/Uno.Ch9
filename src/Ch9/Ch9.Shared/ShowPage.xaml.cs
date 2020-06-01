@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Ch9.Domain;
 using Ch9.ViewModels;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -37,7 +38,7 @@ namespace Ch9
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ViewModel = new ShowPageViewModel(e.Parameter as Show);
+            ViewModel = new ShowPageViewModel(e.Parameter as SourceFeed);
         }
     }
 }

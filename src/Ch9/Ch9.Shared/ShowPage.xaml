@@ -32,7 +32,7 @@
         </CommandBar>
 
         <TextBlock Grid.Row="1" 
-                   Text="{Binding CurrentShow.Name}"
+                   Text="{Binding EpisodesList.Show.Name}"
                    HorizontalAlignment="Center"
                    Style="{StaticResource Typo01}"
                    Margin="0,2,0,0" />

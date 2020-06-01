@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Ch9.Domain;
 
 namespace Ch9
 {
@@ -11,6 +12,6 @@ namespace Ch9
 		/// Gets a collection of recent posts.
 		/// </summary>
 		/// <returns>Collection of recent posts</returns>
-		Task<Episode[]> GetRecentEpisodes(Show show = null);
-	}
+		Task<Episode[]> GetRecentEpisodes(SourceFeed showFeed = null);
+    }
 }

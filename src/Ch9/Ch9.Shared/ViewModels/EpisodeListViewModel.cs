@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Ch9.Domain;
+using Ch9.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using Xamarin.Essentials;
 
 namespace Ch9.ViewModels
@@ -13,11 +16,22 @@ namespace Ch9.ViewModels
     public class EpisodeListViewModel : ViewModelBase
     {
 
-        public Show Show { get; set; }
-
-        public EpisodeListViewModel(Show show = null)
+        private Show _show;
+        public Show Show
         {
-            Show = show;
+            get => _show;
+            set => Set(() => Show, ref _show, value);
+        }
+
+        private SourceFeed ShowFeed { get; set; }
+
+        private readonly IShowService _showService;
+
+        public EpisodeListViewModel(SourceFeed showFeed = null)
+        {
+            ShowFeed = showFeed;
+
+            _showService = SimpleIoc.Default.GetInstance<IShowService>();
 
             ReloadPage = new RelayCommand(LoadEpisodes);
 
@@ -82,9 +96,11 @@ namespace Ch9.ViewModels
         {
             async Task<EpisodeViewModel[]> GetEpisodes()
             {
-                var episodes = await App.ServiceProvider.GetInstance<IEpisodeService>().GetRecentEpisodes(Show);
+                var episodes = await App.ServiceProvider.GetInstance<IEpisodeService>().GetRecentEpisodes(ShowFeed);
 
                 var episodesViewModel = episodes.Select(p => new EpisodeViewModel(this, p)).ToArray();
+
+                Show = _showService.GetCurrentShow();
 
                 return episodesViewModel;
             }
