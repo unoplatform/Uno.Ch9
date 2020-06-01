@@ -131,7 +131,7 @@
                   HorizontalAlignment="Center"
                   Grid.ColumnSpan="2"
             ScrollViewer.HorizontalScrollMode="Enabled"
-			ItemsSource="{Binding Shows}"
+			ItemsSource="{Binding ShowFeeds}"
             ScrollViewer.VerticalScrollBarVisibility="Disabled"
             ScrollViewer.VerticalScrollMode="Disabled">
             <GridView.ItemsPanel>

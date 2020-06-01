@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Ch9.Domain;
+using Ch9.Services;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Ch9.ViewModels
 {
     public class ShowPageViewModel : ViewModelBase
     {
-        public ShowPageViewModel(Show show)
+        public ShowPageViewModel(SourceFeed showFeed)
         {
-            CurrentShow = show;
-            EpisodesList = new EpisodeListViewModel(show);
+            EpisodesList = new EpisodeListViewModel(showFeed);
         }
 
         private EpisodeListViewModel _episodesList;
@@ -19,13 +21,5 @@ namespace Ch9.ViewModels
             get => _episodesList;
             set => Set(() => EpisodesList, ref _episodesList, value);
         }
-
-        private Show _currentShow;
-        public Show CurrentShow
-        {
-            get => _currentShow;
-            set => Set(ref _currentShow, value);
-        }
-
     }
 }

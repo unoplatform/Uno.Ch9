@@ -7,6 +7,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using Ch9.Domain;
+using Ch9.Services;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace Ch9
 {
@@ -14,13 +17,15 @@ namespace Ch9
     {
         private const string YahooNamespace = "http://search.yahoo.com/mrss/";
         private const string ITunesNamespace = "http://www.itunes.com/dtds/podcast-1.0.dtd";
-        public const string Channel9 = "https://s.ch9.ms/feeds/rss";
+        private const string Channel9 = "https://s.ch9.ms/feeds/rss";
 
-        public Task<Episode[]> GetRecentEpisodes(Show show = null)
+        private readonly IShowService _showService;
+
+        public Task<Episode[]> GetRecentEpisodes(SourceFeed showFeed = null)
         {
             string url;
 
-            url = show == null ? Channel9 : show.Url;
+            url = showFeed == null ? Channel9 : showFeed.Url;
 
             return Task.Run(() =>
             {
@@ -28,9 +33,11 @@ namespace Ch9
 
                 var rssFeed = GetRssFeed(url);
 
+                _showService.SetCurrentShow(rssFeed.Description.Text, rssFeed.ImageUrl, rssFeed.Title.Text);
+
                 var feedPosts = rssFeed
                     .Items
-                    .Select(i => CreatePost(i, show?.Name))
+                    .Select(i => CreatePost(i))
                     .ToArray();
 
                 episodes.AddRange(feedPosts);
@@ -48,16 +55,16 @@ namespace Ch9
         {
             using (var reader = XmlReader.Create(url))
             {
-                return SyndicationFeed.Load(reader);
+               return SyndicationFeed.Load(reader);
             }
         }
 
-        private Episode CreatePost(SyndicationItem item, string showName)
+        private Episode CreatePost(SyndicationItem item)
         {
             return new Episode
             {
                 Title = GetTitle(item),
-                Show = showName ?? GetShow(item),
+                Show =  GetShow(item),
                 Summary = GetSummary(item),
                 Date = item.PublishDate,
                 Categories = GetCategories(item).ToArray(),
@@ -77,9 +84,7 @@ namespace Ch9
 
         private string GetShow(SyndicationItem item)
         {
-            var show = item.Title.Text.Split("|").ElementAt(1);
-
-            return show?.Trim();
+            return _showService.GetCurrentShow().Name;
         }
 
         private string GetSummary(SyndicationItem item)
@@ -101,6 +106,12 @@ namespace Ch9
 
         private const int ThumbnailPreferredWidth = 512;
         private static readonly Regex ThumbnailRegex = new Regex("(.*)_(.*)\\.(.*)");
+
+        public EpisodeService()
+        {
+            _showService = SimpleIoc.Default.GetInstance<IShowService>();
+        }
+
         private Uri GetThumbnailUri(SyndicationItem item)
         {
             var thumbnails = item.ElementExtensions.ReadElementExtensions<XElement>("thumbnail", YahooNamespace);

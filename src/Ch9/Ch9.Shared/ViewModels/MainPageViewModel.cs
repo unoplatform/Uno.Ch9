@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Ch9.Domain;
 using Ch9.Services;
 using Xamarin.Essentials;
 
@@ -20,11 +21,11 @@ namespace Ch9
                 App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(AboutPage));
             });
 
-            Shows = App.ServiceProvider.GetInstance<IShowService>().GetShows();
+            ShowFeeds = App.ServiceProvider.GetInstance<IShowService>().GetShowFeeds();
 
-            DisplayShow = new RelayCommand<Show>(show  =>
+            DisplayShow = new RelayCommand<SourceFeed>(showFeed  =>
             {
-                App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(ShowPage), show);
+                App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(ShowPage), showFeed);
             });
         }
 
@@ -32,7 +33,7 @@ namespace Ch9
 
         public ICommand DisplayShow { get; set; }
 
-        public ICollection<Show> Shows { get; set; }
+        public ICollection<SourceFeed> ShowFeeds { get; set; }
 
         private EpisodeListViewModel _episodesList;
         public EpisodeListViewModel EpisodesList
