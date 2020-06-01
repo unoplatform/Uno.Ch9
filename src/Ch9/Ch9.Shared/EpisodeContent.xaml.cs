@@ -16,18 +16,18 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Ch9
 {
-	public sealed partial class PostContent : UserControl
-	{
-		public PostContent()
-		{
-			this.InitializeComponent();
+    public sealed partial class EpisodeContent : UserControl
+    {
+        public EpisodeContent()
+        {
+            this.InitializeComponent();
 
-			App.Instance.Suspending += OnAppSuspended;
-		}
+            App.Instance.Suspending += OnAppSuspended;
+        }
 
-		private void OnAppSuspended(object sender, SuspendingEventArgs e)
-		{
-			this.MediaPlayer.MediaPlayer?.Pause();
-		}
-	}
+        private void OnAppSuspended(object sender, SuspendingEventArgs e)
+        {
+            this.MediaPlayer.MediaPlayer?.Pause();
+        }
+    }
 }

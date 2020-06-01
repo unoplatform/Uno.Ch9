@@ -51,8 +51,6 @@ namespace Ch9.ViewModels
 
         public ICommand SharePost { get; }
 
-        public ICommand ToSelectedShowPage { get; }
-
         private EpisodeViewModel _selectedEpisode;
         public EpisodeViewModel SelectedEpisode
         {

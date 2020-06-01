@@ -206,9 +206,9 @@ namespace Ch9
 
 				// Modal dismiss
 				if ((_rootFrame.Content as FrameworkElement)?.DataContext is MainPageViewModel mainPage &&
-					mainPage.EpisodeList.SelectedEpisode != null)
+					mainPage.EpisodesList.SelectedEpisode != null)
 				{
-					mainPage.EpisodeList.DismissPost.Execute(null);
+					mainPage.EpisodesList.DismissPost.Execute(null);
 					e.Handled = true;
 				}
 			}

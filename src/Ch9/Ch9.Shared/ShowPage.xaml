@@ -13,9 +13,9 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
 
         <CommandBar x:Name="CommandBar"
                     Style="{StaticResource ImageCommandBarStyle}"
@@ -31,5 +31,51 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
+        <TextBlock Grid.Row="1" 
+                   Text="{Binding CurrentShow.Name}"
+                   HorizontalAlignment="Center"
+                   Style="{StaticResource Typo01}"
+                   Margin="0,2,0,0" />
+
+        <Grid Grid.Row="2">
+            <!-- Loading -->
+            <Grid Visibility="{Binding EpisodesList.Episodes.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
+                <StackPanel VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+
+                    <!-- Progress Ring -->
+                    <ProgressRing IsActive="True"
+                                  Height="20"
+                                  Width="20"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Margin="0,12" />
+
+                    <!-- Loading Message -->
+                    <TextBlock Text="Loading..."
+                               x:Uid="MainPage_Loading"
+                               Style="{StaticResource Typo01}" />
+                </StackPanel>
+            </Grid>
+
+            <!-- Content -->
+            <Grid Visibility="{Binding EpisodesList.Episodes.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
+                <!-- List of posts -->
+                <ListView x:Name="PostList"
+                          ItemsSource="{Binding EpisodesList.Episodes.Result}"
+                          ItemTemplate="{StaticResource PostItemTemplate}"
+                          SelectionMode="Single"
+                          SelectedItem="{Binding EpisodesList.Episodes.SelectedEpisode, Mode=TwoWay}" />
+
+                <!-- Empty List Message -->
+                <TextBlock Visibility="{Binding EpisodesList.Episodes.Result, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
+                           Text="Nothing to show"
+                           x:Uid="MainPage_EmptyListMessage"
+                           Style="{StaticResource Typo02}"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="16,0" />
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

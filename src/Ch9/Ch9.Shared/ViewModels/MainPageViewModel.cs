@@ -35,17 +35,17 @@ namespace Ch9
         public ICollection<Show> Shows { get; set; }
 
         private EpisodeListViewModel _episodesList;
-        public EpisodeListViewModel EpisodeList
+        public EpisodeListViewModel EpisodesList
         {
             get => _episodesList;
-            set => Set(() => EpisodeList, ref _episodesList, value);
+            set => Set(() => EpisodesList, ref _episodesList, value);
         }
 
         public void OnNavigatedTo()
         {
-            if (EpisodeList == null)
+            if (EpisodesList == null)
             {
-                EpisodeList = new EpisodeListViewModel();
+                EpisodesList = new EpisodeListViewModel();
             }
         }
     }

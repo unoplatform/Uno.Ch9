@@ -18,18 +18,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEnumerableHasAnyToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableBoolToCustomValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableToCustomValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Episode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Show.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EpisodeContent.xaml.cs">
+      <DependentUpon>EpisodeContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\ITaskNotifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\ITaskNotifier.Generic.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\TaskNotifier.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PostContent.xaml.cs">
-      <DependentUpon>PostContent.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Services\IEpisodeService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IShowService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\EpisodeService.cs" />
@@ -58,11 +57,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)EpisodeContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)PostContent.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\_Controls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Templates\PostItemTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

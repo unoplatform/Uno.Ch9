@@ -9,14 +9,22 @@ namespace Ch9.ViewModels
     {
         public ShowPageViewModel(Show show)
         {
-            Episodes = new EpisodeListViewModel(show);
+            CurrentShow = show;
+            EpisodesList = new EpisodeListViewModel(show);
         }
 
-        private EpisodeListViewModel _episodes;
-        public EpisodeListViewModel Episodes
+        private EpisodeListViewModel _episodesList;
+        public EpisodeListViewModel EpisodesList
         {
-            get => _episodes;
-            set => Set(() => Episodes, ref _episodes, value);
+            get => _episodesList;
+            set => Set(() => EpisodesList, ref _episodesList, value);
+        }
+
+        private Show _currentShow;
+        public Show CurrentShow
+        {
+            get => _currentShow;
+            set => Set(ref _currentShow, value);
         }
 
     }
