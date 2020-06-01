@@ -209,7 +209,9 @@
             <GridView.ItemTemplate>
                 <DataTemplate>
 
-                    <Button Content="{Binding Name}" Command="{Binding ElementName=This, Path=DataContext.DisplayShow}" />
+                    <Button Content="{Binding Name}" 
+                            Command="{Binding ElementName=This, Path=DataContext.DisplayShow}"
+                            CommandParameter="{Binding}" />
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
