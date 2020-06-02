@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:android="http://Uno.UI/android"
+    xmlns:windowsStateTriggers="using:WindowsStateTriggers"
+    xmlns:toolkit="using:Uno.UI.Toolkit"
     mc:Ignorable="d android"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -16,6 +18,86 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="LeftColumn"
+							  Width="*" />
+            <ColumnDefinition x:Name="RightColumn"
+							  Width="0" />
+        </Grid.ColumnDefinitions>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="WideAndSelected">
+                    <VisualState.StateTriggers>
+                        <windowsStateTriggers:CompositeStateTrigger Operator="And">
+                            <windowsStateTriggers:AdaptiveTrigger MinWindowWidth="800" />
+                            <StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
+                        </windowsStateTriggers:CompositeStateTrigger>
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="LeftColumn.Width"
+								Value="375" />
+                        <Setter Target="RightColumn.Width"
+								Value="*" />
+                        <Setter Target="PostPresenter.Row"
+								Value="2" />
+                        <Setter Target="PostPresenter.Column"
+								Value="1" />
+                        <Setter Target="PostPresenter.ColumnSpan"
+								Value="1" />
+                        <Setter Target="ModalBackground.Visibility"
+								Value="Collapsed" />
+                        <Setter Target="DismissButton.Visibility"
+								Value="Collapsed" />
+                        <Setter Target="PostList.Padding"
+								Value="12,0" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="WideAndNotSelected">
+                    <VisualState.StateTriggers>
+                        <windowsStateTriggers:CompositeStateTrigger Operator="And">
+                            <windowsStateTriggers:AdaptiveTrigger MinWindowWidth="800" />
+                            <StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
+                        </windowsStateTriggers:CompositeStateTrigger>
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="LeftColumn.Width"
+								Value="375" />
+                        <Setter Target="RightColumn.Width"
+								Value="*" />
+                        <Setter Target="PostPresenter.Row"
+								Value="2" />
+                        <Setter Target="PostPresenter.Column"
+								Value="1" />
+                        <Setter Target="PostPresenter.ColumnSpan"
+								Value="1" />
+                        <Setter Target="ModalBackground.Visibility"
+								Value="Collapsed" />
+                        <Setter Target="DismissButton.Visibility"
+								Value="Collapsed" />
+                        <Setter Target="PostList.Padding"
+								Value="12,0" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="NarrowAndSelected">
+                    <VisualState.StateTriggers>
+                        <windowsStateTriggers:CompositeStateTrigger Operator="And">
+                            <StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
+                        </windowsStateTriggers:CompositeStateTrigger>
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="CommandBar.Visibility"
+								Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
         <CommandBar x:Name="CommandBar"
                     Style="{StaticResource ImageCommandBarStyle}"
@@ -31,13 +113,56 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
-        <TextBlock Grid.Row="1" 
-                   Text="{Binding EpisodesList.Show.Name}"
-                   HorizontalAlignment="Center"
-                   Style="{StaticResource Typo01}"
-                   Margin="0,2,0,0" />
+        <!-- Show details -->
+        <Grid Visibility="{Binding EpisodesList.Episodes.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}"
+              Grid.Row="1"
+              Grid.ColumnSpan="2"
+              Grid.Column="0"
+              HorizontalAlignment="Center"
+              Padding="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="2">
+            <!-- Show Image -->
+            <Image Source="{Binding EpisodesList.Show.Image}"
+                   Grid.RowSpan="2"
+                   Width="114"
+                   MaxHeight="64"/>
+    
+            <!-- Show Name -->
+            <TextBlock Grid.Row="0"
+                       Grid.Column="1"
+                       Text="{Binding EpisodesList.Show.Name}"
+                       Style="{StaticResource Typo01}"
+                       Margin="16,2,0,0" />
+
+            <!-- Episodes count -->
+            <TextBlock Grid.Row="1"
+                       Grid.Column="1"
+                       Style="{StaticResource Typo02}"
+                       Margin="16,4,0,0">
+                <Run Text="{Binding EpisodesList.EpisodesCount}" />
+
+                <Run Text="Episodes" />
+            </TextBlock>
+
+            <!-- Show description -->
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding EpisodesList.Show.Description}"
+                       Style="{StaticResource Typo03}"
+                       Margin="0,15,0,0" />
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0">
             <!-- Loading -->
             <Grid Visibility="{Binding EpisodesList.Episodes.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
                 <StackPanel VerticalAlignment="Center"
@@ -65,7 +190,7 @@
                           ItemsSource="{Binding EpisodesList.Episodes.Result}"
                           ItemTemplate="{StaticResource PostItemTemplate}"
                           SelectionMode="Single"
-                          SelectedItem="{Binding EpisodesList.Episodes.SelectedEpisode, Mode=TwoWay}" />
+                          SelectedItem="{Binding EpisodesList.SelectedEpisode, Mode=TwoWay}" />
 
                 <!-- Empty List Message -->
                 <TextBlock Visibility="{Binding EpisodesList.Episodes.Result, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
@@ -75,6 +200,70 @@
                            TextAlignment="Center"
                            VerticalAlignment="Center"
                            Margin="16,0" />
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2"
+              Grid.Column="1"
+              Visibility="{Binding EpisodesList.SelectedEpisode, Converter={StaticResource NullToVisible}}"
+              Background="{ThemeResource Color02Brush}">
+
+            <StackPanel VerticalAlignment="Center">
+
+                <!-- Image -->
+                <Image Source="ms-appx:///Assets/NoVideoSelectedIllustration.png"
+                       Stretch="Uniform"
+                       Width="280"
+                       HorizontalAlignment="Center" />
+
+                <!-- Title -->
+                <TextBlock Text="No video selected"
+                           x:Uid="MainPage_NoSelectionTitle"
+                           Style="{StaticResource Typo02}"
+                           TextAlignment="Center"
+                           Margin="32,16,32,0" />
+
+                <!-- Message -->
+                <TextBlock Text="Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!"
+                           x:Uid="MainPage_NoSelectionMessage"
+                           Style="{StaticResource Typo03}"
+                           TextAlignment="Center"
+                           MaxWidth="380"
+                           Margin="32,8,32,0" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2"
+              x:Name="PostPresenter"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Visibility="{Binding EpisodesList.SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+              Background="{ThemeResource Color02Brush}">
+
+            <!-- Modal background -->
+            <Border x:Name="ModalBackground"
+                    Background="{ThemeResource Color02Brush}" />
+
+            <!-- Presenter -->
+            <ScrollViewer>
+
+                <!-- Post -->
+                <local:EpisodeContent DataContext="{Binding EpisodesList.SelectedEpisode}"
+                                      VerticalAlignment="Top" />
+            </ScrollViewer>
+
+            <Grid toolkit:VisibleBoundsPadding.PaddingMask="Top">
+
+                <!-- Dismiss button -->
+                <Button x:Name="DismissButton"
+                        Command="{Binding EpisodesList.DismissPost}"
+                        Style="{StaticResource VideoPlayerButtonStyle}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="8">
+                    <Path Style="{StaticResource CloseIconPath}"
+                          VerticalAlignment="Center" />
+                </Button>
             </Grid>
         </Grid>
     </Grid>

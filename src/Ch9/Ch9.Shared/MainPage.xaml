@@ -12,9 +12,9 @@
 	  mc:Ignorable="d android"
       x:Name="This">
 
-	<Grid Background="{ThemeResource AppBackgroundBrush}">
+    <Grid Background="{ThemeResource AppBackgroundBrush}">
 
-		<!--           WIDE                     NARROW             NARROW 
+        <!--           WIDE                     NARROW             NARROW 
                                             (no selection)       (selection)
         
             | - - - - - - - - - - - -|     | - - - - - - |     | - - - - - - | 
@@ -24,164 +24,185 @@
             | - - - - - - - - - - - -|     | - - - - - - |     | - - - - - - | 
         -->
 
-		<Grid.RowDefinitions>
+        <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-		</Grid.RowDefinitions>
+        </Grid.RowDefinitions>
 
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition x:Name="LeftColumn"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="LeftColumn"
 							  Width="*" />
-			<ColumnDefinition x:Name="RightColumn"
+            <ColumnDefinition x:Name="RightColumn"
 							  Width="0" />
-		</Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
 
-		<VisualStateManager.VisualStateGroups>
-			<VisualStateGroup>
-				<VisualState x:Name="WideAndSelected">
-					<VisualState.StateTriggers>
-						<triggers:CompositeStateTrigger Operator="And">
-							<triggers:AdaptiveTrigger MinWindowWidth="800" />
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="WideAndSelected">
+                    <VisualState.StateTriggers>
+                        <triggers:CompositeStateTrigger Operator="And">
+                            <triggers:AdaptiveTrigger MinWindowWidth="800" />
                             <StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
-						</triggers:CompositeStateTrigger>
-					</VisualState.StateTriggers>
+                        </triggers:CompositeStateTrigger>
+                    </VisualState.StateTriggers>
 
-					<VisualState.Setters>
-						<Setter Target="LeftColumn.Width"
+                    <VisualState.Setters>
+                        <Setter Target="LeftColumn.Width"
 								Value="375" />
-						<Setter Target="RightColumn.Width"
+                        <Setter Target="RightColumn.Width"
 								Value="*" />
-						<Setter Target="PostPresenter.Row"
+                        <Setter Target="PostPresenter.Row"
 								Value="2" />
-						<Setter Target="PostPresenter.Column"
+                        <Setter Target="PostPresenter.Column"
 								Value="1" />
-						<Setter Target="PostPresenter.ColumnSpan"
+                        <Setter Target="PostPresenter.ColumnSpan"
 								Value="1" />
-						<Setter Target="ModalBackground.Visibility"
+                        <Setter Target="ModalBackground.Visibility"
 								Value="Collapsed" />
-						<Setter Target="DismissButton.Visibility"
+                        <Setter Target="DismissButton.Visibility"
 								Value="Collapsed" />
-						<Setter Target="PostList.Padding"
+                        <Setter Target="PostList.Padding"
 								Value="12,0" />
-					</VisualState.Setters>
-				</VisualState>
+                    </VisualState.Setters>
+                </VisualState>
 
-				<VisualState x:Name="WideAndNotSelected">
-					<VisualState.StateTriggers>
-						<triggers:CompositeStateTrigger Operator="And">
-							<triggers:AdaptiveTrigger MinWindowWidth="800" />
-							<StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
-						</triggers:CompositeStateTrigger>
-					</VisualState.StateTriggers>
+                <VisualState x:Name="WideAndNotSelected">
+                    <VisualState.StateTriggers>
+                        <triggers:CompositeStateTrigger Operator="And">
+                            <triggers:AdaptiveTrigger MinWindowWidth="800" />
+                            <StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
+                        </triggers:CompositeStateTrigger>
+                    </VisualState.StateTriggers>
 
-					<VisualState.Setters>
-						<Setter Target="LeftColumn.Width"
+                    <VisualState.Setters>
+                        <Setter Target="LeftColumn.Width"
 								Value="375" />
-						<Setter Target="RightColumn.Width"
+                        <Setter Target="RightColumn.Width"
 								Value="*" />
-						<Setter Target="PostPresenter.Row"
+                        <Setter Target="PostPresenter.Row"
 								Value="2" />
-						<Setter Target="PostPresenter.Column"
+                        <Setter Target="PostPresenter.Column"
 								Value="1" />
-						<Setter Target="PostPresenter.ColumnSpan"
+                        <Setter Target="PostPresenter.ColumnSpan"
 								Value="1" />
-						<Setter Target="ModalBackground.Visibility"
+                        <Setter Target="ModalBackground.Visibility"
 								Value="Collapsed" />
-						<Setter Target="DismissButton.Visibility"
+                        <Setter Target="DismissButton.Visibility"
 								Value="Collapsed" />
-						<Setter Target="PostList.Padding"
+                        <Setter Target="PostList.Padding"
 								Value="12,0" />
-					</VisualState.Setters>
-				</VisualState>
+                    </VisualState.Setters>
+                </VisualState>
 
-				<VisualState x:Name="NarrowAndSelected">
-					<VisualState.StateTriggers>
-						<triggers:CompositeStateTrigger Operator="And">
+                <VisualState x:Name="NarrowAndSelected">
+                    <VisualState.StateTriggers>
+                        <triggers:CompositeStateTrigger Operator="And">
                             <StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
-						</triggers:CompositeStateTrigger>
-					</VisualState.StateTriggers>
+                        </triggers:CompositeStateTrigger>
+                    </VisualState.StateTriggers>
 
-					<VisualState.Setters>
-						<Setter Target="CommandBar.Visibility"
+                    <VisualState.Setters>
+                        <Setter Target="CommandBar.Visibility"
 								Value="Collapsed" />
                     </VisualState.Setters>
-				</VisualState>
-			</VisualStateGroup>
-		</VisualStateManager.VisualStateGroups>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
-		<!-- Command Bar -->
-		<CommandBar x:Name="CommandBar"
+        <!-- Command Bar -->
+        <CommandBar x:Name="CommandBar"
 					Style="{StaticResource ImageCommandBarStyle}"
 					Grid.ColumnSpan="2">
 
-			<CommandBar.PrimaryCommands>
-				<AppBarButton Command="{Binding ToAboutPage}"
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Command="{Binding ToAboutPage}"
 							  android:Margin="0,0,16,0">
-					<Path Style="{StaticResource InfoIconPath}"
+                    <Path Style="{StaticResource InfoIconPath}"
 						  Fill="{ThemeResource CommandBarForegroundBrush}"
 						  VerticalAlignment="Center" />
-				</AppBarButton>
-			</CommandBar.PrimaryCommands>
-		</CommandBar>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
 
-        <GridView ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  Grid.Row="1" 
+        <Grid x:Name="NavigationTabsContainer"
+              BorderThickness="0,0,0,1"
+			  Margin="0,0,0,5"
+			  Grid.ColumnSpan="2"
+			  Grid.Column="0"
+              Grid.Row="1">
+            <Grid x:Name="NavigationTabRoot">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Fresh content View Tab -->
+                <RadioButton x:Name="FreshContentBtn"
+                             GroupName="ViewTabsThin"
+                             Content="Recent"
+							 IsChecked="True"
+                             Grid.Column="0" />
+
+                <!-- Shows View Tab -->
+                <RadioButton x:Name="ShowContentBtn"
+                             GroupName="ViewTabsThin"
+                             Content="Shows"
+                             Grid.Column="1" />
+            </Grid>
+        </Grid>
+
+        <!-- Shows list view -->
+        <ListView Grid.Row="2"
+				  Visibility="{Binding IsChecked, ElementName=ShowContentBtn, Converter={StaticResource TrueToVisible}}"
 				  Grid.Column="0"
-                  HorizontalAlignment="Center"
+                  HorizontalAlignment="Stretch"
                   Grid.ColumnSpan="2"
-            ScrollViewer.HorizontalScrollMode="Enabled"
-			ItemsSource="{Binding ShowFeeds}"
-            ScrollViewer.VerticalScrollBarVisibility="Disabled"
-            ScrollViewer.VerticalScrollMode="Disabled">
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-            <GridView.ItemTemplate>
+                  ItemsSource="{Binding ShowFeeds}">
+            <ListView.ItemTemplate>
                 <DataTemplate>
 
                     <Button Content="{Binding Name}" 
                             Command="{Binding ElementName=This, Path=DataContext.DisplayShow}"
                             CommandParameter="{Binding}" />
                 </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <!-- Post List -->
-		<Grid Grid.Row="2">
-
-			<!-- Loading -->
-			<Grid Visibility="{Binding EpisodesList.Episodes.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
-				<StackPanel VerticalAlignment="Center"
+        <Grid Grid.Row="2"
+			  Grid.Column="0"
+              Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}">
+            <!-- Loading -->
+            <Grid Visibility="{Binding EpisodesList.Episodes.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
+                <StackPanel VerticalAlignment="Center"
 							HorizontalAlignment="Center">
 
-					<!-- Progress Ring -->
-					<ProgressRing IsActive="True"
+                    <!-- Progress Ring -->
+                    <ProgressRing IsActive="True"
 								  Height="20"
 								  Width="20"
 								  HorizontalAlignment="Center"
 								  VerticalAlignment="Center"
 								  Margin="0,12" />
 
-					<!-- Loading Message -->
-					<TextBlock Text="Loading..."
+                    <!-- Loading Message -->
+                    <TextBlock Text="Loading..."
 							   x:Uid="MainPage_Loading"
 							   Style="{StaticResource Typo01}" />
-				</StackPanel>
-			</Grid>
+                </StackPanel>
+            </Grid>
 
-			<!-- Content -->
+            <!-- Content -->
             <Grid Visibility="{Binding EpisodesList.Episodes.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
                 <!-- List of posts -->
-				<ListView x:Name="PostList"
+                <ListView x:Name="PostList"
 						  ItemsSource="{Binding EpisodesList.Episodes.Result}"
 						  ItemTemplate="{StaticResource PostItemTemplate}"
 						  SelectionMode="Single"
 						  SelectedItem="{Binding EpisodesList.SelectedEpisode, Mode=TwoWay}" />
 
-				<!-- Empty List Message -->
+                <!-- Empty List Message -->
                 <TextBlock Visibility="{Binding EpisodesList.Episodes.Result, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
 						   Text="Nothing to show"
 						   x:Uid="MainPage_EmptyListMessage"
@@ -189,106 +210,112 @@
 						   TextAlignment="Center"
 						   VerticalAlignment="Center"
 						   Margin="16,0" />
-			</Grid>
+            </Grid>
 
-			<!-- Error -->
+            <!-- Error -->
             <Grid Visibility="{Binding EpisodesList.Episodes.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 				  Background="{ThemeResource Color08Brush}">
 
-				<StackPanel VerticalAlignment="Center">
+                <StackPanel VerticalAlignment="Center">
 
-					<!-- Image -->
+                    <!-- Image -->
                     <Image Source="{Binding EpisodesList.Episodes.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImage}}"
 						   Stretch="None"
 						   HorizontalAlignment="Center"
 						   Margin="{Binding EpisodesList.Episodes.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImageMargin}}" />
 
-					<!-- Title -->
+                    <!-- Title -->
                     <TextBlock Text="{Binding EpisodesList.Episodes.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorTitle}}"
 							   Style="{StaticResource Typo02}"
 							   TextAlignment="Center"
 							   Margin="40,12,40,0" />
 
-					<!-- Message -->
+                    <!-- Message -->
                     <TextBlock Text="{Binding EpisodesList.Episodes.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorMessage}}"
 							   Style="{StaticResource Typo03}"
 							   TextAlignment="Center"
 							   Margin="40,8,40,0" />
 
-					<!-- Reload button -->
-					<Button Content="Try Again"
+                    <!-- Reload button -->
+                    <Button Content="Try Again"
 							x:Uid="MainPage_ErrorStateButtonLabel"
 							Command="{Binding ReloadPage}"
 							Style="{StaticResource ErrorStateButtonStyle}"
 							Margin="40,40,40,0" />
-				</StackPanel>
-			</Grid>
-		</Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
 
-		<!-- No Selection -->
-		<Grid Visibility="{Binding EpisodesList.SelectedEpisode, Converter={StaticResource NullToVisible}}"
-			  Background="{ThemeResource Color02Brush}"
-			  Grid.Row="2"
-              Grid.Column="1">
+        <!-- No Selection -->
+        <Grid Grid.Row="2"
+			  Grid.Column="1"
+              Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}">
 
-			<StackPanel VerticalAlignment="Center">
+            <Grid Visibility="{Binding EpisodesList.SelectedEpisode, Converter={StaticResource NullToVisible}}"
+                  Background="{ThemeResource Color02Brush}">
 
-				<!-- Image -->
-				<Image Source="ms-appx:///Assets/NoVideoSelectedIllustration.png"
+                <StackPanel VerticalAlignment="Center">
+
+                    <!-- Image -->
+                    <Image Source="ms-appx:///Assets/NoVideoSelectedIllustration.png"
 					   Stretch="Uniform"
 					   Width="280"
 					   HorizontalAlignment="Center" />
 
-				<!-- Title -->
-				<TextBlock Text="No video selected"
+                    <!-- Title -->
+                    <TextBlock Text="No video selected"
 						   x:Uid="MainPage_NoSelectionTitle"
 						   Style="{StaticResource Typo02}"
 						   TextAlignment="Center"
 						   Margin="32,16,32,0" />
 
-				<!-- Message -->
-				<TextBlock Text="Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!"
+                    <!-- Message -->
+                    <TextBlock Text="Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!"
 						   x:Uid="MainPage_NoSelectionMessage"
 						   Style="{StaticResource Typo03}"
 						   TextAlignment="Center"
 						   MaxWidth="380"
 						   Margin="32,8,32,0" />
-			</StackPanel>
-		</Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
 
-		<!-- Selected Post -->
-		<Grid x:Name="PostPresenter"
-			  Visibility="{Binding EpisodesList.SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
-			  Background="{ThemeResource Color02Brush}"
-              Grid.Row="2"
+        <!-- Selected Post -->
+        <Grid Grid.Row="2"
+			  x:Name="PostPresenter"
 			  Grid.Column="0"
-			  Grid.ColumnSpan="2">
+			  Grid.ColumnSpan="2"
+              Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}">
 
-			<!-- Modal background -->
-			<Border x:Name="ModalBackground"
+            <Grid Visibility="{Binding EpisodesList.SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+                  Background="{ThemeResource Color02Brush}">
+
+                <!-- Modal background -->
+                <Border x:Name="ModalBackground"
 					Background="{ThemeResource Color02Brush}" />
 
-			<!-- Presenter -->
-			<ScrollViewer>
+                <!-- Presenter -->
+                <ScrollViewer>
 
-				<!-- Post -->
-                <local:EpisodeContent DataContext="{Binding EpisodesList.SelectedEpisode}"
+                    <!-- Post -->
+                    <local:EpisodeContent DataContext="{Binding EpisodesList.SelectedEpisode}"
 								   VerticalAlignment="Top" />
-			</ScrollViewer>
+                </ScrollViewer>
 
-			<Grid toolkit:VisibleBoundsPadding.PaddingMask="Top">
+                <Grid toolkit:VisibleBoundsPadding.PaddingMask="Top">
 
-				<!-- Dismiss button -->
-				<Button x:Name="DismissButton"
+                    <!-- Dismiss button -->
+                    <Button x:Name="DismissButton"
 						Command="{Binding EpisodesList.DismissPost}"
 						Style="{StaticResource VideoPlayerButtonStyle}"
 						HorizontalAlignment="Right"
 						VerticalAlignment="Top"
 						Margin="8">
-					<Path Style="{StaticResource CloseIconPath}"
+                        <Path Style="{StaticResource CloseIconPath}"
 						  VerticalAlignment="Center" />
-				</Button>
-			</Grid>
-		</Grid>
-	</Grid>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
 </Page>
