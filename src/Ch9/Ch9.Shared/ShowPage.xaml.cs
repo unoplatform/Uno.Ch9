@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace Ch9
         public ShowPage()
         {
             this.InitializeComponent();
+            PostList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
         }
 
         public ShowPageViewModel ViewModel 
@@ -39,6 +41,19 @@ namespace Ch9
         {
             base.OnNavigatedTo(e);
             ViewModel = new ShowPageViewModel(e.Parameter as SourceFeed);
+        }
+
+        private void OnItemsSourceChanged(DependencyObject sender, DependencyProperty dp)
+        {
+            // Auto select the first element if the items change and the window is wide.
+            var listView = sender as ListView;
+            var items = listView?.ItemsSource as ICollection;
+
+            if (items?.Count > 0 &&
+                Windows.UI.Xaml.Window.Current.Bounds.Width >= 800)
+            {
+                listView.SelectedIndex = 0;
+            }
         }
     }
 }

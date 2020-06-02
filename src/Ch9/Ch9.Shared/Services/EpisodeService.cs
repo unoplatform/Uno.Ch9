@@ -37,7 +37,7 @@ namespace Ch9
 
                 var feedPosts = rssFeed
                     .Items
-                    .Select(i => CreatePost(i))
+                    .Select(i => CreatePost(i, showFeed))
                     .ToArray();
 
                 episodes.AddRange(feedPosts);
@@ -59,12 +59,12 @@ namespace Ch9
             }
         }
 
-        private Episode CreatePost(SyndicationItem item)
+        private Episode CreatePost(SyndicationItem item, SourceFeed showFeed)
         {
             return new Episode
             {
                 Title = GetTitle(item),
-                Show =  GetShow(item),
+                Show =  GetShow(item, showFeed),
                 Summary = GetSummary(item),
                 Date = item.PublishDate,
                 Categories = GetCategories(item).ToArray(),
@@ -82,9 +82,13 @@ namespace Ch9
             return title?.Trim();
         }
 
-        private string GetShow(SyndicationItem item)
+        private string GetShow(SyndicationItem item, SourceFeed showFeed)
         {
-            return _showService.GetCurrentShow().Name;
+            if (showFeed != null) return _showService.GetCurrentShow().Name;
+
+            var show = item.Title.Text.Split("|").ElementAt(1);
+            return show?.Trim();
+
         }
 
         private string GetSummary(SyndicationItem item)
