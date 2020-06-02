@@ -23,6 +23,13 @@ namespace Ch9.ViewModels
             set => Set(() => Show, ref _show, value);
         }
 
+        private int _episodesCount;
+        public int EpisodesCount
+        {
+            get => _episodesCount;
+            set => Set(() => EpisodesCount, ref _episodesCount, value);
+        }
+
         private SourceFeed ShowFeed { get; set; }
 
         private readonly IShowService _showService;
@@ -97,9 +104,11 @@ namespace Ch9.ViewModels
             async Task<EpisodeViewModel[]> GetEpisodes()
             {
                 var episodes = await App.ServiceProvider.GetInstance<IEpisodeService>().GetRecentEpisodes(ShowFeed);
+                EpisodesCount = episodes.Length;
 
                 var episodesViewModel = episodes.Select(p => new EpisodeViewModel(this, p)).ToArray();
 
+                //Get the current show for the given episode lists
                 Show = _showService.GetCurrentShow();
 
                 return episodesViewModel;
