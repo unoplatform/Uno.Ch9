@@ -81,7 +81,7 @@
 		   TargetType="Thumb">
 
         <Setter Property="Background"
-                Value="{ThemeResource Color03Brush}" />
+                Value="{StaticResource Color03Brush}" />
         <Setter Property="Height"
                 Value="12" />
         <Setter Property="Width"
@@ -109,7 +109,7 @@
 				Value="100" />
 
 		<Setter Property="Foreground"
-				Value="{ThemeResource TransparentColorBrush}" />
+				Value="{StaticResource TransparentColorBrush}" />
 		<Setter Property="Background"
 				Value="{StaticResource TransparentColorBrush}" />
 		<Setter Property="BorderBrush"
@@ -123,7 +123,7 @@
 		   TargetType="Slider">
 
 		<Setter Property="Background"
-				Value="{ThemeResource Color02Brush}" />
+				Value="{StaticResource Color02Brush}" />
 		<Setter Property="BorderThickness"
 				Value="0" />
 		<Setter Property="MinWidth"
@@ -183,7 +183,7 @@
 
 						<!-- Slider -->
 						<Grid x:Name="SliderContainer"
-							  Background="{ThemeResource TransparentColorBrush}"
+							  Background="{StaticResource TransparentColorBrush}"
 							  Control.IsTemplateFocusTarget="True">
 
 							<Grid x:Name="HorizontalTemplate">
@@ -208,7 +208,7 @@
 
 								<!-- Horizontal Decrease Rect -->
 								<Rectangle x:Name="HorizontalDecreaseRect"
-										   Fill="{ThemeResource Color03Brush}"
+										   Fill="{StaticResource Color03Brush}"
 										   Height="{ThemeResource SliderTrackThemeHeight}"/>
 
 								<!-- Thumb -->
@@ -407,7 +407,7 @@
 									Style="{StaticResource PlayPauseButtonStyle}"                                    
                                     HorizontalAlignment="Stretch"
 									VerticalAlignment="Stretch">
-								<Grid Background="{ThemeResource Color01_75_OpacityBrush}"
+								<Grid Background="{StaticResource Color01_75_OpacityBrush}"
 									  CornerRadius="2"
 									  Height="62"
 									  Width="62">

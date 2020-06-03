@@ -27,26 +27,6 @@
 			<Color x:Key="MediaPlayerBackgroundColor">#FF000000</Color>
 			<Color x:Key="CommandBarForegroundColor">#FF000000</Color>
 
-			<!-- Color brushes -->
-			<SolidColorBrush x:Key="Color01Brush"
-							 Color="{StaticResource Color01}" />
-			<SolidColorBrush x:Key="Color01_75_OpacityBrush"
-							 Color="{StaticResource Color01_75_Opacity}" />
-			<SolidColorBrush x:Key="Color02Brush"
-							 Color="{StaticResource Color02}" />
-			<SolidColorBrush x:Key="Color03Brush"
-							 Color="{StaticResource Color03}" />
-			<SolidColorBrush x:Key="Color04Brush"
-							 Color="{StaticResource Color04}" />
-			<SolidColorBrush x:Key="Color05Brush"
-							 Color="{StaticResource Color05}" />
-			<SolidColorBrush x:Key="Color06Brush"
-							 Color="{StaticResource Color06}" />
-			<SolidColorBrush x:Key="Color07Brush"
-							 Color="{StaticResource Color07}" />
-			<SolidColorBrush x:Key="Color08Brush"
-							 Color="{StaticResource Color08}" />
-
 			<!-- Misc Brushes -->
 			<win:AcrylicBrush x:Key="AppBackgroundBrush"
 							  BackgroundSource="HostBackdrop"
@@ -56,23 +36,6 @@
 
 			<xamarin:SolidColorBrush x:Key="AppBackgroundBrush"
 									 Color="{StaticResource Color08}" />
-
-			<SolidColorBrush x:Key="PrimaryForegroundColorBrush"
-							 Color="{StaticResource PrimaryForegroundColor}" />
-			<SolidColorBrush x:Key="TransparentColorBrush"
-							 Color="Transparent" />
-
-			<SolidColorBrush x:Key="CommandBarBackgroundBrush"
-							 Color="{StaticResource Color02}" />
-			<SolidColorBrush x:Key="CommandBarForegroundBrush"
-							 Color="{StaticResource CommandBarForegroundColor}" />
-
-			<SolidColorBrush x:Key="ShadowBrush"
-							 Color="{StaticResource Shadow}" />
-			<SolidColorBrush x:Key="MediaPlayerControlColorBrush"
-							 Color="{StaticResource MediaPlayerControlColor}" />
-			<SolidColorBrush x:Key="VideoPlayerBottomBrush"
-							 Color="{StaticResource MediaPlayerBackgroundColor}" />
 
 			<!-- Not a color but we needed 2 different images for light and dark theme -->
 			<ImageBrush x:Key="UnoWinUI_ImageBrush"
@@ -99,25 +62,7 @@
 			<Color x:Key="MediaPlayerBackgroundColor">#FF000000</Color>
 			<Color x:Key="CommandBarForegroundColor">#FFFFFFFF</Color>
 
-			<!-- Color brushes -->
-			<SolidColorBrush x:Key="Color01Brush"
-							 Color="{StaticResource Color01}" />
-			<SolidColorBrush x:Key="Color01_75_OpacityBrush"
-							 Color="{StaticResource Color01_75_Opacity}" />
-			<SolidColorBrush x:Key="Color02Brush"
-							 Color="{StaticResource Color02}" />
-			<SolidColorBrush x:Key="Color03Brush"
-							 Color="{StaticResource Color03}" />
-			<SolidColorBrush x:Key="Color04Brush"
-							 Color="{StaticResource Color04}" />
-			<SolidColorBrush x:Key="Color05Brush"
-							 Color="{StaticResource Color05}" />
-			<SolidColorBrush x:Key="Color06Brush"
-							 Color="{StaticResource Color06}" />
-			<SolidColorBrush x:Key="Color07Brush"
-							 Color="{StaticResource Color07}" />
-			<SolidColorBrush x:Key="Color08Brush"
-							 Color="{StaticResource Color08}" />
+
 
 			<!-- Misc Brushes -->
 			<win:AcrylicBrush x:Key="AppBackgroundBrush"
@@ -129,27 +74,47 @@
 			<xamarin:SolidColorBrush x:Key="AppBackgroundBrush"
 									 Color="{StaticResource Color08}" />
 
-			<SolidColorBrush x:Key="PrimaryForegroundColorBrush"
-							 Color="{StaticResource PrimaryForegroundColor}" />
-			<SolidColorBrush x:Key="TransparentColorBrush"
-							 Color="Transparent" />
-
-			<SolidColorBrush x:Key="CommandBarBackgroundBrush"
-							 Color="{StaticResource Color02}" />
-			<SolidColorBrush x:Key="CommandBarForegroundBrush"
-							 Color="{StaticResource CommandBarForegroundColor}" />
-
-			<SolidColorBrush x:Key="ShadowBrush"
-							 Color="{StaticResource Shadow}" />
-			<SolidColorBrush x:Key="MediaPlayerControlColorBrush"
-							 Color="{StaticResource MediaPlayerControlColor}" />
-			<SolidColorBrush x:Key="VideoPlayerBottomBrush"
-							 Color="{StaticResource MediaPlayerBackgroundColor}" />
-
 			<!-- Not a color but we needed 2 different images for light and dark theme -->
 			<ImageBrush x:Key="UnoWinUI_ImageBrush"
 						ImageSource="ms-appx:///Assets/UnoWinUiLogosDark.png"
 						Stretch="Uniform" />
 		</ResourceDictionary>
 	</ResourceDictionary.ThemeDictionaries>
+
+	<!-- Color brushes -->
+	<SolidColorBrush x:Key="Color01Brush"
+					 Color="{ThemeResource Color01}" />
+	<SolidColorBrush x:Key="Color01_75_OpacityBrush"
+					 Color="{ThemeResource Color01_75_Opacity}" />
+	<SolidColorBrush x:Key="Color02Brush"
+					 Color="{ThemeResource Color02}" />
+	<SolidColorBrush x:Key="Color03Brush"
+					 Color="{ThemeResource Color03}" />
+	<SolidColorBrush x:Key="Color04Brush"
+					 Color="{ThemeResource Color04}" />
+	<SolidColorBrush x:Key="Color05Brush"
+					 Color="{ThemeResource Color05}" />
+	<SolidColorBrush x:Key="Color06Brush"
+					 Color="{ThemeResource Color06}" />
+	<SolidColorBrush x:Key="Color07Brush"
+					 Color="{ThemeResource Color07}" />
+	<SolidColorBrush x:Key="Color08Brush"
+					 Color="{ThemeResource Color08}" />
+
+	<SolidColorBrush x:Key="PrimaryForegroundColorBrush"
+					 Color="{ThemeResource PrimaryForegroundColor}" />
+	<SolidColorBrush x:Key="TransparentColorBrush"
+					 Color="Transparent" />
+
+	<SolidColorBrush x:Key="CommandBarBackgroundBrush"
+					 Color="{ThemeResource Color02}" />
+	<SolidColorBrush x:Key="CommandBarForegroundBrush"
+					 Color="{ThemeResource CommandBarForegroundColor}" />
+
+	<SolidColorBrush x:Key="ShadowBrush"
+					 Color="{ThemeResource Shadow}" />
+	<SolidColorBrush x:Key="MediaPlayerControlColorBrush"
+					 Color="{ThemeResource MediaPlayerControlColor}" />
+	<SolidColorBrush x:Key="VideoPlayerBottomBrush"
+					 Color="{ThemeResource MediaPlayerBackgroundColor}" />
 </ResourceDictionary>

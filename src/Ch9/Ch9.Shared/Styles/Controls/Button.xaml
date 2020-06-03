@@ -163,7 +163,7 @@
 		<Setter Property="HorizontalContentAlignment"
 				Value="Stretch" />
 		<Setter Property="Background"
-				Value="{ThemeResource Color01_75_OpacityBrush}" />
+				Value="{StaticResource Color01_75_OpacityBrush}" />
 		<Setter Property="Margin"
 				Value="8" />
 
@@ -211,7 +211,7 @@
 		   TargetType="Button">
 
 		<Setter Property="Background"
-				Value="{ThemeResource Color03Brush}" />
+				Value="{StaticResource Color03Brush}" />
 		<Setter Property="BorderThickness"
 				Value="0" />
 		<Setter Property="MinHeight"
