@@ -102,8 +102,93 @@
 		</Setter>
 	</Style>
 
-	<Style TargetType="ListViewItem"
-		   x:Key="DefaultListViewItemStyle">
+	<Style x:Key="DefaultListViewItemStyle"
+		   TargetType="ListViewItem">
+
+		<Setter Property="Background"
+				Value="Transparent" />
+		<Setter Property="TabNavigation"
+				Value="Local" />
+		<Setter Property="IsHoldingEnabled"
+				Value="True" />
+		<Setter Property="HorizontalContentAlignment"
+				Value="Stretch" />
+		<Setter Property="VerticalContentAlignment"
+				Value="Stretch" />
+		<Setter Property="MinWidth"
+				Value="{ThemeResource ListViewItemMinWidth}" />
+		<Setter Property="MinHeight"
+				Value="{ThemeResource ListViewItemMinHeight}" />
+		<Setter Property="UseSystemFocusVisuals"
+				Value="True" />
+		<Setter Property="Padding"
+				Value="0" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ListViewItem">
+
+					<Grid x:Name="ContentBorder"
+						  Background="{TemplateBinding Background}"
+						  BorderBrush="{TemplateBinding BorderBrush}"
+						  BorderThickness="{TemplateBinding BorderThickness}"
+						  MaxWidth="395">
+						
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+
+								<VisualState x:Name="PointerOver">
+									<VisualState.Setters>
+										<Setter Target="ContentPresenter.Opacity"
+												Value="0.85" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Pressed">
+									<VisualState.Setters>
+										<Setter Target="ContentPresenter.Opacity"
+												Value="0.75" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="Selected" />
+								<VisualState x:Name="PointerOverSelected" />
+								<VisualState x:Name="PressedSelected" />
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="DisabledStates">
+								<VisualState x:Name="Enabled" />
+								<VisualState x:Name="Disabled" />
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="MultiSelectStates">
+								<!-- For MultiSelectStates states, use the complete style in Uno.UI. See links on top of this file. -->
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="ReorderHintStates">
+								<!-- For reordering states, use the complete style in Uno.UI. See links on top of this file.-->
+							</VisualStateGroup>
+
+							<VisualStateGroup x:Name="DragStates">
+								<!-- For drag states, use the complete style in Uno.UI. See links on top of this file. -->
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<ContentPresenter x:Name="ContentPresenter"
+										  ContentTransitions="{TemplateBinding ContentTransitions}"
+										  ContentTemplate="{TemplateBinding ContentTemplate}"
+										  Content="{TemplateBinding Content}"
+										  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+	<Style x:Key="PostListViewItemStyle"
+		   TargetType="ListViewItem">
 
 		<Setter Property="Background"
 				Value="Transparent" />
@@ -198,7 +283,7 @@
 						</VisualStateManager.VisualStateGroups>
 
 						<!-- Elevated View -->
-						<toolkit:ElevatedView Background="{ThemeResource Color02Brush}"
+						<toolkit:ElevatedView Background="{StaticResource Color02Brush}"
 											  win:BorderBrush="{StaticResource ShadowBrush}"
 											  win:BorderThickness="1"
 											  CornerRadius="9"
@@ -215,7 +300,7 @@
 						
 						<!-- Content Presenter -->
 						<Grid x:Name="SelectionBorder"
-							  BorderBrush="{ThemeResource Color03Brush}"
+							  BorderBrush="{StaticResource Color03Brush}"
 							  BorderThickness="0"
 							  CornerRadius="8"
 							  Margin="16,16,16,0" />
@@ -223,7 +308,7 @@
 						<!-- Selected State -->
 						<Grid x:Name="SelectedStateOverlay"
 							  Visibility="Collapsed"
-							  Background="{ThemeResource Color01_75_OpacityBrush}"
+							  Background="{StaticResource Color01_75_OpacityBrush}"
 							  CornerRadius="2"
 							  VerticalAlignment="Top"
 							  HorizontalAlignment="Left"

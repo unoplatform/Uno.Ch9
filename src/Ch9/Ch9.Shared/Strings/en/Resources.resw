@@ -170,7 +170,16 @@ Please try again</value>
   <data name="AboutPage_UnoRepoUrl.Text" xml:space="preserve">
     <value>https://github.com/unoplatform</value>
   </data>
-  <data name="AboutPage_BuiltWith.Text" xml:space="preserve">
+	<data name="AboutPage_BuiltWith.Text" xml:space="preserve">
     <value>BUILT WITH</value>
+  </data>
+	<data name="MainPage_Recent.Content" xml:space="preserve">
+    <value>Recent</value>
+  </data>
+	<data name="MainPage_Shows.Content" xml:space="preserve">
+    <value>Shows</value>
+  </data>
+	<data name="ShowPage_Episodes.Text" xml:space="preserve">
+    <value>Episodes</value>
   </data>
 </root>
