@@ -15,45 +15,65 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Ch9.Domain;
 using Ch9.ViewModels;
+using Uno.Extensions.Specialized;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Ch9
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class ShowPage : Page
-    {
-        public ShowPage()
-        {
-            this.InitializeComponent();
-            PostList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
-        }
+	/// <summary>
+	/// An empty page that can be used on its own or navigated to within a Frame.
+	/// </summary>
+	public sealed partial class ShowPage : Page
+	{
+		public ShowPage()
+		{
+			this.InitializeComponent();
+			PostList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
+		}
 
-        public ShowPageViewModel ViewModel 
-        { 
-            get => DataContext as ShowPageViewModel;
-            set => DataContext = value;
-        }
+		public ShowPageViewModel ViewModel
+		{
+			get => DataContext as ShowPageViewModel;
+			set => DataContext = value;
+		}
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            ViewModel = new ShowPageViewModel(e.Parameter as SourceFeed);
-        }
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+			ViewModel = new ShowPageViewModel(e.Parameter as SourceFeed);
+		}
 
-        private void OnItemsSourceChanged(DependencyObject sender, DependencyProperty dp)
-        {
-            // Auto select the first element if the items change and the window is wide.
-            var listView = sender as ListView;
-            var items = listView?.ItemsSource as ICollection;
+		private void OnItemsSourceChanged(DependencyObject sender, DependencyProperty dp)
+		{
+			// Auto select the first element if the items change and the window is wide.
+			var listView = sender as ListView;
+			var items = listView?.ItemsSource as ICollection;
 
-            if (items?.Count > 0 &&
-                Windows.UI.Xaml.Window.Current.Bounds.Width >= 800)
-            {
-                listView.SelectedIndex = 0;
-            }
-        }
-    }
+			if (items?.Count > 0 &&
+				Windows.UI.Xaml.Window.Current.Bounds.Width >= 800)
+			{
+				listView.SelectedIndex = 0;
+			}
+		}
+
+		private void PostListSelectionChanged(object sender, EventArgs e)
+		{
+			// Auto select the first element if the items change and the window is wide.
+			var listView = sender as ListView;
+			var items = listView?.ItemsSource as ICollection;
+
+			if (Windows.UI.Xaml.Window.Current.Bounds.Width <= 800)
+			{
+				ScrollViewer scroller = (ScrollViewer)NarrowScrollViewer;
+
+				scroller.ChangeView(
+					horizontalOffset: 0,
+					verticalOffset: 0,
+					zoomFactor: 1,
+					disableAnimation: true
+				);
+			}
+		}
+	}
 }

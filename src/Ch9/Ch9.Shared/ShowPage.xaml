@@ -92,6 +92,8 @@
 								Value="Collapsed" />
 						<Setter Target="ShowDetails.Visibility"
 								Value="Collapsed" />
+						<Setter Target="PostListContentRoot.Visibility"
+								Value="Collapsed" />
 					</VisualState.Setters>
 				</VisualState>
 			</VisualStateGroup>
@@ -188,7 +190,8 @@
 								  ItemTemplate="{StaticResource PostItemTemplate}"
 								  SelectionMode="Single"
 								  SelectedItem="{Binding EpisodesList.SelectedEpisode, Mode=TwoWay}"
-								  ItemContainerStyle="{StaticResource PostListViewItemStyle}" />
+								  ItemContainerStyle="{StaticResource PostListViewItemStyle}"
+								  SelectionChanged="PostListSelectionChanged" />
 
 						<!-- Empty List Message -->
 						<TextBlock Visibility="{Binding EpisodesList.Episodes.Result, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
