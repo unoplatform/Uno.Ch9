@@ -17,7 +17,7 @@ namespace Ch9.Services
 
         public ICollection<SourceFeed> GetShowFeeds()
         {
-            return new List<SourceFeed>
+            var showFeedList = new List<SourceFeed>
             {
                 new SourceFeed("https://s.ch9.ms/Shows/Visual-Studio-Toolbox/feed", "Visual Studio Toolbox"),
                 new SourceFeed("https://s.ch9.ms/Shows/Partly-Cloudy/feed", "Party Cloudy"),
@@ -36,6 +36,8 @@ namespace Ch9.Services
                 new SourceFeed("https://s.ch9.ms/Shows/Careers-Behind-the-Code/feed", "Careers Behind The Code"),
                 new SourceFeed("https://s.ch9.ms/Shows/On-NET/feed", "On Net"),
             };
+
+            return showFeedList.OrderBy(s => s.Name).ToList();
         }
 
         public Show GetCurrentShow()
