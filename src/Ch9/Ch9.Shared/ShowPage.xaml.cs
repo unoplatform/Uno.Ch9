@@ -57,7 +57,7 @@ namespace Ch9
 			}
 		}
 
-		private void PostListSelectionChanged(object sender, EventArgs e)
+		private void PostListSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			// Auto select the first element if the items change and the window is wide.
 			var listView = sender as ListView;

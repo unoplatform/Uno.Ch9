@@ -66,7 +66,9 @@
 								Value="1" />
 						<Setter Target="PostPresenter.Column"
 								Value="1" />
-						<Setter Target="ModalBackground.Visibility"
+                        <Setter Target="PostNoContent.Row"
+                                Value="1" />
+                        <Setter Target="ModalBackground.Visibility"
 								Value="Collapsed" />
 						<Setter Target="DismissButton.Visibility"
 								Value="Collapsed" />
@@ -100,10 +102,11 @@
 		</VisualStateManager.VisualStateGroups>
 
 		<CommandBar x:Name="CommandBar"
-					Style="{StaticResource ImageCommandBarStyle}">
+					Style="{StaticResource ImageCommandBarStyle}"
+                    Content="{Binding EpisodesList.Show.Name}">
 
 			<CommandBar.PrimaryCommands>
-				<AppBarButton Command="{Binding ShowAboutPage}"
+                <AppBarButton Command="{Binding ToAboutPage}"
 							  android:Margin="0,0,16,0">
 					<Path Style="{StaticResource InfoIconPath}"
 						  Fill="{StaticResource CommandBarForegroundBrush}"
@@ -112,8 +115,8 @@
 			</CommandBar.PrimaryCommands>
 		</CommandBar>
 
-		<ScrollViewer x:Name="NarrowScrollViewer"
-					  Grid.Row="1">
+        <ScrollViewer x:Name="NarrowScrollViewer"
+                      Grid.Row="1">
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
@@ -177,7 +180,7 @@
 							   Grid.Row="2" />
 				</StackPanel>
 
-				<!-- Post list content root -->
+                <!-- Post list content root -->
 				<Grid x:Name="PostListContentRoot" 
 					  Grid.Row="2">
 
@@ -204,11 +207,12 @@
 					</Grid>
 				</Grid>
 
-				<!-- Post Presenter -->
+                <!-- Post Presenter -->
 				<Grid x:Name="PostPresenter"
 					  Visibility="{Binding EpisodesList.SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 					  Background="{StaticResource Color02Brush}"
-					  Grid.Row="1">
+					  Grid.Row="1"
+                      Grid.Column="0">
 
 					<!-- Modal background -->
 					<Border x:Name="ModalBackground"
@@ -236,28 +240,59 @@
 						</Button>
 					</Grid>
 				</Grid>
-				
-				<!-- Loading -->
-				<Grid Visibility="{Binding EpisodesList.Episodes.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-					  Grid.Row="1"
-					  Grid.RowSpan="2">
-					<StackPanel VerticalAlignment="Center"
-								HorizontalAlignment="Center">
 
-						<!-- Progress Ring -->
-						<ProgressRing IsActive="True"
-										Height="20"
-										Width="20"
-										HorizontalAlignment="Center"
-										Margin="0,12" />
+                <Grid x:Name="PostNoContent"
+                      Visibility="{Binding EpisodesList.SelectedEpisode, Converter={StaticResource NullToVisible}}"
+                      Grid.Row="2"
+                      Grid.Column="1"
+                      Background="{StaticResource Color02Brush}">
 
-						<!-- Loading Message -->
-						<TextBlock Text="Loading..."
-									x:Uid="MainPage_Loading"
-									Style="{StaticResource Typo01}" />
-					</StackPanel>
-				</Grid>
-			</Grid>
+                    <StackPanel VerticalAlignment="Center">
+
+                        <!-- Image -->
+                        <Image Source="ms-appx:///Assets/NoVideoSelectedIllustration.png"
+                               Stretch="Uniform"
+                               Width="280"
+                               HorizontalAlignment="Center" />
+
+                        <!-- Title -->
+                        <TextBlock Text="No video selected"
+                                   x:Uid="MainPage_NoSelectionTitle"
+                                   Style="{StaticResource Typo02}"
+                                   TextAlignment="Center"
+                                   Margin="32,16,32,0" />
+
+                        <!-- Message -->
+                        <TextBlock Text="Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!"
+                                   x:Uid="MainPage_NoSelectionMessage"
+                                   Style="{StaticResource Typo03}"
+                                   TextAlignment="Center"
+                                   MaxWidth="380"
+                                   Margin="32,8,32,0" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
 		</ScrollViewer>
-	</Grid>
+       
+        <!-- Loading -->
+        <Grid Background="{ThemeResource AppBackgroundBrush}"
+              Visibility="{Binding EpisodesList.Episodes.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+              Grid.Row="1">
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+
+                <!-- Progress Ring -->
+                <ProgressRing IsActive="True"
+                              Height="20"
+                              Width="20"
+                              HorizontalAlignment="Center"
+                              Margin="0,12" />
+
+                <!-- Loading Message -->
+                <TextBlock Text="Loading..."
+                           x:Uid="MainPage_Loading"
+                           Style="{StaticResource Typo01}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
 </Page>

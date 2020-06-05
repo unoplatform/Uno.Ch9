@@ -26,6 +26,7 @@ namespace Ch9.Services
                 new SourceFeed("https://s.ch9.ms/Shows/This+Week+On+Channel+9/feed", "This Week On Channel9"),
                 new SourceFeed("https://s.ch9.ms/Blogs/One-Dev-Minute/feed", "On Dev Minute"),
                 new SourceFeed("https://s.ch9.ms/Series/Intro-to-Visual-Studio-for-Mac/feed", "Intro To Visual Studio For Mac"),
+                new SourceFeed("https://s.ch9.ms/Shows/AI-Show/feed", "AI Show"),
                 new SourceFeed("https://s.ch9.ms/Series/C-Advanced/feed", "C Advanced"),
                 new SourceFeed("https://s.ch9.ms/Series/CSharp-101/feed", "CSharp 101"),
                 new SourceFeed("https://s.ch9.ms/Series/NET-Core-101/feed", "NetCore 101"),
