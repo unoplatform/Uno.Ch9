@@ -105,8 +105,8 @@
 					<VisualState.Setters>
 						<Setter Target="CommandBar.Visibility"
 								Value="Collapsed" />
-						<Setter Target="NavigationTabSpacer.Visibility"
-								Value="Visible" />
+                        <Setter Target="NavigationTabsContainer.Visibility"
+								Value="Collapsed" />
 					</VisualState.Setters>
 				</VisualState>
 			</VisualStateGroup>
