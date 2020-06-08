@@ -52,17 +52,17 @@
 								Value="375" />
 						<Setter Target="RightColumn.Width"
 								Value="*" />
-						<Setter Target="PostPresenter.Row"
+						<Setter Target="EpisodePresenter.Row"
 								Value="2" />
-						<Setter Target="PostPresenter.Column"
+						<Setter Target="EpisodePresenter.Column"
 								Value="1" />
-						<Setter Target="PostPresenter.ColumnSpan"
+						<Setter Target="EpisodePresenter.ColumnSpan"
 								Value="1" />
 						<Setter Target="ModalBackground.Visibility"
 								Value="Collapsed" />
 						<Setter Target="DismissButton.Visibility"
 								Value="Collapsed" />
-						<Setter Target="PostList.Padding"
+                        <Setter Target="EpisodeList.Padding"
 								Value="12,0" />
 					</VisualState.Setters>
 				</VisualState>
@@ -80,17 +80,17 @@
 								Value="375" />
 						<Setter Target="RightColumn.Width"
 								Value="*" />
-						<Setter Target="PostPresenter.Row"
+						<Setter Target="EpisodePresenter.Row"
 								Value="2" />
-						<Setter Target="PostPresenter.Column"
+						<Setter Target="EpisodePresenter.Column"
 								Value="1" />
-						<Setter Target="PostPresenter.ColumnSpan"
+						<Setter Target="EpisodePresenter.ColumnSpan"
 								Value="1" />
 						<Setter Target="ModalBackground.Visibility"
 								Value="Collapsed" />
 						<Setter Target="DismissButton.Visibility"
 								Value="Collapsed" />
-						<Setter Target="PostList.Padding"
+                        <Setter Target="EpisodeList.Padding"
 								Value="12,0" />
 					</VisualState.Setters>
 				</VisualState>
@@ -103,9 +103,11 @@
 					</VisualState.StateTriggers>
 
 					<VisualState.Setters>
-                        <Setter Target="PostPresenter.Row"
+                        <Setter Target="CommandBar.Visibility"
+								Value="Collapsed" />
+                        <Setter Target="EpisodePresenter.Row"
                                 Value="0" />
-                        <Setter Target="PostPresenter.RowSpan"
+                        <Setter Target="EpisodePresenter.RowSpan"
                                 Value="3" />
                     </VisualState.Setters>
 				</VisualState>
@@ -115,6 +117,7 @@
 		<!-- Command Bar -->
 		<CommandBar x:Name="CommandBar"
 					Style="{StaticResource ImageCommandBarStyle}"
+                    Grid.Row="0"
 					Grid.ColumnSpan="2">
 
 			<CommandBar.PrimaryCommands>
@@ -128,9 +131,9 @@
 		</CommandBar>
 
 		<Grid x:Name="NavigationTabsContainer"
-			  Background="{StaticResource Color02Brush}"
-			  Grid.ColumnSpan="2"
-			  Grid.Row="1">
+              Background="{StaticResource Color02Brush}"
+              Grid.Row="1"
+              Grid.ColumnSpan="2">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
 				<ColumnDefinition Width="*" />
@@ -186,21 +189,21 @@
 		</ListView>
 
 		<!-- Episodes list -->
-		<Grid Grid.Row="2"
-			  Grid.Column="0"
-			  DataContext="{Binding Show}"
-			  Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}">
+		<Grid DataContext="{Binding Show}"
+              Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}"
+              Grid.Row="2"
+              Grid.Column="0">
 
 			<!-- Content -->
 			<Grid Visibility="{Binding Show.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
 
-				<!-- List of posts -->
-				<ListView x:Name="PostList"
+                <!-- List of episodes -->
+                <ListView x:Name="EpisodeList"
 						  ItemsSource="{Binding Episodes}"
 						  ItemTemplate="{StaticResource EpisodeItemTemplate}"
 						  SelectionMode="Single"
 						  SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}"
-						  ItemContainerStyle="{StaticResource PostListViewItemStyle}" />
+						  ItemContainerStyle="{StaticResource EpisodeListViewItemStyle}" />
 
 				<!-- Empty List Message -->
 				<TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
@@ -214,10 +217,10 @@
         </Grid>
 
 		<!-- No Selection -->
-		<Grid Grid.Row="2"
-			  Grid.Column="1"
-			  DataContext="{Binding Show}"
-			  Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}">
+		<Grid DataContext="{Binding Show}"
+              Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}"
+              Grid.Row="2"
+              Grid.Column="1">
 
 			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToVisible}}"
 				  Background="{StaticResource Color02Brush}">
@@ -248,13 +251,13 @@
 			</Grid>
 		</Grid>
 
-		<!-- Selected Post -->
-		<Grid Grid.Row="2"
-			  x:Name="PostPresenter"
-			  Grid.Column="0"
-			  Grid.ColumnSpan="2"
+		<!-- Selected Episode -->
+		<Grid x:Name="EpisodePresenter"
 			  DataContext="{Binding Show}"
-			  Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}">
+              Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}"
+              Grid.Row="2"
+              Grid.Column="0"
+              Grid.ColumnSpan="2">
 
 			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 				  Background="{StaticResource Color02Brush}">
@@ -265,7 +268,8 @@
 
 				<!-- Presenter -->
 				<ScrollViewer>
-					<!-- Post -->
+                    
+					<!-- Episode -->
 					<local:EpisodeContent DataContext="{Binding SelectedEpisode}"
 										  VerticalAlignment="Top" />
 				</ScrollViewer>
@@ -285,42 +289,16 @@
 					</Button>
 				</Grid>
 			</Grid>
-		</Grid>
-
-		<!-- Loading -->
-		<Grid Background="{ThemeResource AppBackgroundBrush}"
-			  DataContext="{Binding Show}"
-			  Visibility="{Binding Show.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-			  Grid.Row="1"
-			  Grid.RowSpan="2"
-			  Grid.Column="0"
-			  Grid.ColumnSpan="2">
-			<StackPanel VerticalAlignment="Center"
-						HorizontalAlignment="Center">
-
-				<!-- Progress Ring -->
-				<ProgressRing IsActive="True"
-							  Height="20"
-							  Width="20"
-							  HorizontalAlignment="Center"
-							  VerticalAlignment="Center"
-							  Margin="0,12" />
-
-				<!-- Loading Message -->
-				<TextBlock Text="Loading..."
-						   x:Uid="MainPage_Loading"
-						   Style="{StaticResource Typo01}" />
-			</StackPanel>
-		</Grid>
+        </Grid>
 
         <!-- Error -->
-        <Grid Grid.Row="1"
+        <Grid DataContext="{Binding Show}"
+              Visibility="{Binding Show.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+              Background="{StaticResource Color08Brush}"
+              Grid.Row="1"
               Grid.RowSpan="2"
               Grid.Column="0"
-              Grid.ColumnSpan="2"
-              DataContext="{Binding Show}"
-              Visibility="{Binding Show.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-              Background="{StaticResource Color08Brush}">
+              Grid.ColumnSpan="2">
 
             <StackPanel VerticalAlignment="Center">
 
@@ -350,5 +328,31 @@
                         Margin="40,40,40,0" />
             </StackPanel>
         </Grid>
+
+        <!-- Loading -->
+		<Grid Background="{ThemeResource AppBackgroundBrush}"
+			  DataContext="{Binding Show}"
+              Visibility="{Binding Show.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+              Grid.Row="1"
+              Grid.RowSpan="2"
+              Grid.Column="0"
+              Grid.ColumnSpan="2">
+			<StackPanel VerticalAlignment="Center"
+						HorizontalAlignment="Center">
+
+				<!-- Progress Ring -->
+				<ProgressRing IsActive="True"
+							  Height="20"
+							  Width="20"
+							  HorizontalAlignment="Center"
+							  VerticalAlignment="Center"
+							  Margin="0,12" />
+
+				<!-- Loading Message -->
+				<TextBlock Text="Loading..."
+						   x:Uid="MainPage_Loading"
+						   Style="{StaticResource Typo01}" />
+			</StackPanel>
+		</Grid>
     </Grid>
 </Page>

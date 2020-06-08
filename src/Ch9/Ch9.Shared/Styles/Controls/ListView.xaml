@@ -21,7 +21,11 @@
 		</Setter>
 	</xamarin:Style>
 
-	<Style TargetType="ListView"
+    <DataTemplate x:Key="EmptyListViewHeaderTemplate">
+        <Grid />
+    </DataTemplate>
+
+    <Style TargetType="ListView"
 		   x:Key="DefaultListViewStyle">
 
 		<Setter Property="IsTabStop"
@@ -187,7 +191,7 @@
 		</Setter>
 	</Style>
 	
-	<Style x:Key="PostListViewItemStyle"
+	<Style x:Key="EpisodeListViewItemStyle"
 		   TargetType="ListViewItem">
 
 		<Setter Property="Background"

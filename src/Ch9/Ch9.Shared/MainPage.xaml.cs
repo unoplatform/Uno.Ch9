@@ -28,7 +28,7 @@ namespace Ch9
 
 			DataContext = new MainPageViewModel();
 
-			PostList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
+			EpisodeList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
 		}
 
 		public MainPageViewModel ViewModel => DataContext as MainPageViewModel;

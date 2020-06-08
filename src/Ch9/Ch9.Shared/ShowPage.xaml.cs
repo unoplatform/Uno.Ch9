@@ -32,7 +32,7 @@ namespace Ch9
 
 			DataContext = new ShowPageViewModel();
 
-			PostList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
+			EpisodeList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
 		}
 
 		public ShowPageViewModel ViewModel => DataContext as ShowPageViewModel;
@@ -65,25 +65,6 @@ namespace Ch9
 				{
 					listView.SelectedIndex = 0;
 				});
-			}
-		}
-
-		private void PostListSelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			// Auto select the first element if the items change and the window is wide.
-			var listView = sender as ListView;
-			var items = listView?.ItemsSource as ICollection;
-
-			if (Windows.UI.Xaml.Window.Current.Bounds.Width <= 800)
-			{
-				ScrollViewer scroller = (ScrollViewer)NarrowScrollViewer;
-
-				scroller.ChangeView(
-					horizontalOffset: 0,
-					verticalOffset: 0,
-					zoomFactor: 1,
-					disableAnimation: true
-				);
 			}
 		}
 
