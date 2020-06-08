@@ -19,6 +19,7 @@
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEnumerableHasAnyToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEnumerableToItemsCountConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableBoolToCustomValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableToCustomValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Episode.cs" />

@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-					xmlns:converters="using:Ch9">
+					xmlns:converters="using:Ch9"
+					xmlns:converters1="using:Ch9.Converters">
 
 	<x:Boolean x:Key="TrueValue">True</x:Boolean>
 	<x:Boolean x:Key="FalseValue">False</x:Boolean>
@@ -55,4 +56,7 @@
 	<converters:FromEnumerableHasAnyToVisibilityConverter x:Key="EnumerableHasAnyToCollapsed"
 														  VisibilityOnEnumerableHasAny="Collapsed"
 														  VisibilityOnEnumerableNull="Collapsed" />
+
+    <converters:FromEnumerableToItemsCountConverter x:Key="EnumerableItemsCount" />
+
 </ResourceDictionary>

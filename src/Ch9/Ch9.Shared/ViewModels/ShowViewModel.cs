@@ -72,13 +72,6 @@ namespace Ch9.ViewModels
             set => Set(() => SelectedEpisode, ref _selectedEpisode, value);
         }
 
-        private int _episodesCount;
-        public int EpisodesCount
-        {
-            get => _episodesCount;
-            set => Set(() => EpisodesCount, ref _episodesCount, value);
-        }
-
         private bool _isVideoFullWindow;
         public bool IsVideoFullWindow
         {
@@ -100,8 +93,6 @@ namespace Ch9.ViewModels
                 {
                     return await App.ServiceProvider.GetInstance<IShowService>().GetShow(_sourceFeed);
                 });
-
-                EpisodesCount = show.Episodes.Count();
 
                 Episodes = show.Episodes.Select(p => new EpisodeViewModel(this, p)).ToArray();
 

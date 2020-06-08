@@ -168,7 +168,7 @@
 									   Margin="16,4,16,0">
 					
 							<!-- Episodes Count -->
-							<Run Text="{Binding EpisodesCount}" />
+							<Run Text="{Binding Show.Result.Episodes, Converter={StaticResource EnumerableItemsCount}}" />
 
 							<!-- Episodes -->
 							<Run Text="Episodes"
