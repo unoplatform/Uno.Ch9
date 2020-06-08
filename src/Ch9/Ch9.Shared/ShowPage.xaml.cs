@@ -29,6 +29,9 @@ namespace Ch9
 		public ShowPage()
 		{
 			this.InitializeComponent();
+
+			this.NavigationCacheMode = NavigationCacheMode.Required;
+
 			PostList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
 		}
 
@@ -41,7 +44,14 @@ namespace Ch9
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
+
 			ViewModel = new ShowPageViewModel(e.Parameter as SourceFeed);
+
+			if (PostList.Items.Count > 0 &&
+				Windows.UI.Xaml.Window.Current.Bounds.Width >= 800)
+			{
+				PostList.SelectedIndex = 0;
+			}
 		}
 
 		private void OnItemsSourceChanged(DependencyObject sender, DependencyProperty dp)

@@ -3,11 +3,8 @@ using Ch9.ViewModels;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Ch9.Domain;
-using Ch9.Services;
-using Xamarin.Essentials;
 
 namespace Ch9
 {
@@ -21,7 +18,10 @@ namespace Ch9
                 App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(AboutPage));
             });
 
-            ShowFeeds = App.ServiceProvider.GetInstance<IShowService>().GetShowFeeds();
+            Shows = App.ServiceProvider.GetInstance<IShowService>()
+                .GetShowFeeds()
+                .OrderBy(s => s.Name)
+                .ToArray();
 
             DisplayShow = new RelayCommand<SourceFeed>(showFeed  =>
             {
@@ -33,20 +33,20 @@ namespace Ch9
 
         public ICommand DisplayShow { get; set; }
 
-        public ICollection<SourceFeed> ShowFeeds { get; set; }
+        public IEnumerable<SourceFeed> Shows { get; set; }
 
-        private EpisodeListViewModel _episodesList;
-        public EpisodeListViewModel EpisodesList
+        private ShowViewModel _show;
+        public ShowViewModel Show
         {
-            get => _episodesList;
-            set => Set(() => EpisodesList, ref _episodesList, value);
+            get => _show;
+            set => Set(() => Show, ref _show, value);
         }
 
         public void OnNavigatedTo()
         {
-            if (EpisodesList == null)
+            if (Show == null)
             {
-                EpisodesList = new EpisodeListViewModel();
+                Show = new ShowViewModel();
             }
         }
     }

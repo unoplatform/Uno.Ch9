@@ -43,7 +43,7 @@
 					<VisualState.StateTriggers>
 						<triggers:CompositeStateTrigger Operator="And">
 							<triggers:AdaptiveTrigger MinWindowWidth="800" />
-							<StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
+							<StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
 						</triggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
@@ -71,7 +71,7 @@
 					<VisualState.StateTriggers>
 						<triggers:CompositeStateTrigger Operator="And">
 							<triggers:AdaptiveTrigger MinWindowWidth="800" />
-							<StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
+                            <StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
 						</triggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
@@ -98,7 +98,7 @@
 				<VisualState x:Name="NarrowAndSelected">
 					<VisualState.StateTriggers>
 						<triggers:CompositeStateTrigger Operator="And">
-							<StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
+                            <StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
 						</triggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
@@ -170,7 +170,7 @@
 
 		<!-- Shows list view -->
 		<ListView Visibility="{Binding IsChecked, ElementName=ShowContentBtn, Converter={StaticResource TrueToVisible}}"
-				  ItemsSource="{Binding ShowFeeds}"
+				  ItemsSource="{Binding Shows}"
 				  Background="{StaticResource Color02Brush}"
 				  MaxWidth="395"
 				  HorizontalAlignment="Stretch"
@@ -179,7 +179,6 @@
 				  Grid.ColumnSpan="2">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-
 					<Button Command="{Binding ElementName=This, Path=DataContext.DisplayShow}"
 							CommandParameter="{Binding}"
 							Style="{StaticResource HiddenButtonStyle}">
@@ -202,43 +201,25 @@
 			</ListView.ItemTemplate>
 		</ListView>
 
-		<!-- Post List -->
+		<!-- Episodes list -->
 		<Grid Grid.Row="2"
 			  Grid.Column="0"
+              DataContext="{Binding Show}"
 			  Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}">
-			<!-- Loading -->
-			<Grid Visibility="{Binding EpisodesList.Episodes.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}">
-				<StackPanel VerticalAlignment="Center"
-							HorizontalAlignment="Center">
-
-					<!-- Progress Ring -->
-					<ProgressRing IsActive="True"
-								  Height="20"
-								  Width="20"
-								  HorizontalAlignment="Center"
-								  VerticalAlignment="Center"
-								  Margin="0,12" />
-
-					<!-- Loading Message -->
-					<TextBlock Text="Loading..."
-							   x:Uid="MainPage_Loading"
-							   Style="{StaticResource Typo01}" />
-				</StackPanel>
-			</Grid>
 
 			<!-- Content -->
-			<Grid Visibility="{Binding EpisodesList.Episodes.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
+            <Grid Visibility="{Binding Show.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
 
 				<!-- List of posts -->
 				<ListView x:Name="PostList"
-						  ItemsSource="{Binding EpisodesList.Episodes.Result}"
+						  ItemsSource="{Binding Episodes}"
 						  ItemTemplate="{StaticResource PostItemTemplate}"
 						  SelectionMode="Single"
-						  SelectedItem="{Binding EpisodesList.SelectedEpisode, Mode=TwoWay}"
+						  SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}"
 						  ItemContainerStyle="{StaticResource PostListViewItemStyle}" />
 
 				<!-- Empty List Message -->
-				<TextBlock Visibility="{Binding EpisodesList.Episodes.Result, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
+                <TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
 						   Text="Nothing to show"
 						   x:Uid="MainPage_EmptyListMessage"
 						   Style="{StaticResource Typo02}"
@@ -248,25 +229,25 @@
 			</Grid>
 
 			<!-- Error -->
-			<Grid Visibility="{Binding EpisodesList.Episodes.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+            <Grid Visibility="{Binding Show.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 				  Background="{StaticResource Color08Brush}">
 
 				<StackPanel VerticalAlignment="Center">
 
 					<!-- Image -->
-					<Image Source="{Binding EpisodesList.Episodes.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImage}}"
+                    <Image Source="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImage}}"
 						   Stretch="None"
 						   HorizontalAlignment="Center"
-						   Margin="{Binding EpisodesList.Episodes.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImageMargin}}" />
+						   Margin="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImageMargin}}" />
 
 					<!-- Title -->
-					<TextBlock Text="{Binding EpisodesList.Episodes.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorTitle}}"
+                    <TextBlock Text="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorTitle}}"
 							   Style="{StaticResource Typo02}"
 							   TextAlignment="Center"
 							   Margin="40,12,40,0" />
 
 					<!-- Message -->
-					<TextBlock Text="{Binding EpisodesList.Episodes.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorMessage}}"
+                    <TextBlock Text="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorMessage}}"
 							   Style="{StaticResource Typo03}"
 							   TextAlignment="Center"
 							   Margin="40,8,40,0" />
@@ -284,9 +265,10 @@
 		<!-- No Selection -->
 		<Grid Grid.Row="2"
 			  Grid.Column="1"
+              DataContext="{Binding Show}"
 			  Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}">
 
-			<Grid Visibility="{Binding EpisodesList.SelectedEpisode, Converter={StaticResource NullToVisible}}"
+            <Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToVisible}}"
 				  Background="{StaticResource Color02Brush}">
 
 				<StackPanel VerticalAlignment="Center">
@@ -320,9 +302,10 @@
 			  x:Name="PostPresenter"
 			  Grid.Column="0"
 			  Grid.ColumnSpan="2"
+              DataContext="{Binding Show}"
 			  Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}">
 
-			<Grid Visibility="{Binding EpisodesList.SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+            <Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 				  Background="{StaticResource Color02Brush}">
 
 				<!-- Modal background -->
@@ -331,9 +314,8 @@
 
 				<!-- Presenter -->
 				<ScrollViewer>
-
 					<!-- Post -->
-					<local:EpisodeContent DataContext="{Binding EpisodesList.SelectedEpisode}"
+                    <local:EpisodeContent DataContext="{Binding SelectedEpisode}"
 										  VerticalAlignment="Top" />
 				</ScrollViewer>
 
@@ -341,7 +323,7 @@
 
 					<!-- Dismiss button -->
 					<Button x:Name="DismissButton"
-							Command="{Binding EpisodesList.DismissPost}"
+							Command="{Binding DismissSelectedEpisode}"
 							Style="{StaticResource VideoPlayerButtonStyle}"
 							HorizontalAlignment="Right"
 							VerticalAlignment="Top"
@@ -352,5 +334,31 @@
 				</Grid>
 			</Grid>
 		</Grid>
-	</Grid>
+        
+        <!-- Loading -->
+        <Grid Background="{ThemeResource AppBackgroundBrush}"
+              DataContext="{Binding Show}"
+              Visibility="{Binding Show.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+              Grid.Row="1"
+              Grid.RowSpan="2"
+			  Grid.Column="0"
+			  Grid.ColumnSpan="2">
+            <StackPanel VerticalAlignment="Center"
+							HorizontalAlignment="Center">
+
+                <!-- Progress Ring -->
+                <ProgressRing IsActive="True"
+								  Height="20"
+								  Width="20"
+								  HorizontalAlignment="Center"
+								  VerticalAlignment="Center"
+								  Margin="0,12" />
+
+                <!-- Loading Message -->
+                <TextBlock Text="Loading..."
+                           x:Uid="MainPage_Loading"
+                           Style="{StaticResource Typo01}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
 </Page>

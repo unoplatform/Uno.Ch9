@@ -10,15 +10,18 @@ namespace Ch9
 	{
 		private readonly Action<Exception> _onFaulted;
 		private readonly TaskScheduler _dispatcherTaskScheduler;
+		private readonly TimeSpan _minimumLoadingDuration;
 
 		public TaskNotifier(
 			Task<TResult> task, 
 			Action<Exception> onFaulted = null, 
-			TaskScheduler dispatcherTaskScheduler = null
+			TaskScheduler dispatcherTaskScheduler = null,
+			TimeSpan? minimumLoadingDuration = null
 		)
 		{
 			_dispatcherTaskScheduler = dispatcherTaskScheduler;
 			_onFaulted = onFaulted;
+			_minimumLoadingDuration = minimumLoadingDuration ?? TimeSpan.FromMilliseconds(300);
 
 			Task = task;
 
@@ -83,8 +86,11 @@ namespace Ch9
 		private void RunTask(Task taskToExecute)
 		{
 			taskToExecute.ContinueWith(
-				task =>
+				async task =>
 				{
+					// Add some delaying to avoid flickers.
+					await System.Threading.Tasks.Task.Delay(_minimumLoadingDuration);
+
 					if (task.IsFaulted)
 					{
 						if (Connectivity.NetworkAccess != NetworkAccess.Internet)

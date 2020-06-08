@@ -30,9 +30,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\ITaskNotifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\ITaskNotifier.Generic.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\TaskNotifier.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\IEpisodeService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IShowService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\EpisodeService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ShowService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -42,13 +41,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Services\ShowService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShowPage.xaml.cs">
       <DependentUpon>ShowPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShowPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutPageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EpisodeListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShowViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Startup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EpisodeViewModel.cs" />
