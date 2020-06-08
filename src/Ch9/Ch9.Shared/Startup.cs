@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Ch9.Services;
 
 namespace Ch9
 {
@@ -30,7 +29,6 @@ namespace Ch9
 
 		private void InitializePostsService(ISimpleIoc serviceProvider)
 		{
-			serviceProvider.Register<IEpisodeService>(() => new EpisodeService());
             serviceProvider.Register<IShowService>(() => new ShowService());
 		}
 	}

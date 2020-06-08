@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Ch9.Domain;
-using Ch9.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
 
 namespace Ch9.ViewModels
 {
     public class ShowPageViewModel : ViewModelBase
     {
-        public ShowPageViewModel(SourceFeed showFeed)
+        public ShowPageViewModel(SourceFeed sourceFeed)
         {
-            EpisodesList = new EpisodeListViewModel(showFeed);
+            SourceFeed = sourceFeed;
+
+            Show = new ShowViewModel(sourceFeed);
 
             ToAboutPage = new RelayCommand(() =>
             {
@@ -24,11 +25,13 @@ namespace Ch9.ViewModels
 
         public ICommand ToAboutPage { get; }
 
-        private EpisodeListViewModel _episodesList;
-        public EpisodeListViewModel EpisodesList
+        public SourceFeed SourceFeed { get; }
+
+        private ShowViewModel _show;
+        public ShowViewModel Show
         {
-            get => _episodesList;
-            set => Set(() => EpisodesList, ref _episodesList, value);
+            get => _show;
+            set => Set(() => Show, ref _show, value);
         }
     }
 }

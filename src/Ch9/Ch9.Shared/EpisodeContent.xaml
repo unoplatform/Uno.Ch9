@@ -106,7 +106,7 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Share button -->
-                        <Button Command="{Binding Parent.SharePost}"
+                        <Button Command="{Binding Parent.ShareEpisode}"
 								CommandParameter="{Binding}"
 								Style="{StaticResource HiddenButtonStyle}"
 								HorizontalAlignment="Left"

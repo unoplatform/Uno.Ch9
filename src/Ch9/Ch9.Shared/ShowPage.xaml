@@ -22,7 +22,7 @@
 					<VisualState.StateTriggers>
 						<windowsStateTriggers:CompositeStateTrigger Operator="And">
 							<windowsStateTriggers:AdaptiveTrigger MinWindowWidth="800" />
-							<StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
+							<StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
 						</windowsStateTriggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
@@ -53,7 +53,7 @@
 					<VisualState.StateTriggers>
 						<windowsStateTriggers:CompositeStateTrigger Operator="And">
 							<windowsStateTriggers:AdaptiveTrigger MinWindowWidth="800" />
-							<StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
+                            <StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
 						</windowsStateTriggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
@@ -85,7 +85,7 @@
 				<VisualState x:Name="NarrowAndSelected">
 					<VisualState.StateTriggers>
 						<windowsStateTriggers:CompositeStateTrigger Operator="And">
-							<StateTrigger IsActive="{x:Bind ViewModel.EpisodesList.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
+                            <StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
 						</windowsStateTriggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
@@ -103,7 +103,7 @@
 
 		<CommandBar x:Name="CommandBar"
 					Style="{StaticResource ImageCommandBarStyle}"
-					Content="{Binding EpisodesList.Show.Name}">
+                    Content="{Binding SourceFeed.Name}">
 
 			<CommandBar.PrimaryCommands>
 				<AppBarButton Command="{Binding ToAboutPage}"
@@ -115,9 +115,9 @@
 			</CommandBar.PrimaryCommands>
 		</CommandBar>
 
-		<ScrollViewer x:Name="NarrowScrollViewer"
-					  Grid.Row="1">
-			<Grid>
+        <ScrollViewer x:Name="NarrowScrollViewer"
+                      Grid.Row="1">
+			<Grid DataContext="{Binding Show}">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="*" />
@@ -134,8 +134,8 @@
 				</Grid.ColumnDefinitions>
 
 				<!-- Show details -->
-				<StackPanel x:Name="ShowDetails"
-							Visibility="{Binding EpisodesList.Episodes.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}"
+				<StackPanel x:Name="ShowDetails" 
+							Visibility="{Binding Show.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}"
 							Background="{StaticResource Color02Brush}"
 							Padding="16"
 							Grid.ColumnSpan="2"
@@ -152,14 +152,14 @@
 							  Width="64" />
 
 						<!-- Show Image -->
-						<Image Source="{Binding EpisodesList.Show.Image}"
-								Height="64"
-								Stretch="Uniform"/>
-						
+                        <Image Source="{Binding Show.Result.Image}"
+							   Height="64"
+							   Stretch="Uniform" />
+
 						<StackPanel Grid.Column="1">
 
 							<!-- Show Name -->
-							<TextBlock Text="{Binding EpisodesList.Show.Name}"
+                            <TextBlock Text="{Binding Show.Result.Name}"
 									   Style="{StaticResource Typo01}"
 									   Margin="16,2,16,0" />
 
@@ -168,7 +168,7 @@
 									   Margin="16,4,16,0">
 					
 							<!-- Episodes Count -->
-							<Run Text="{Binding EpisodesList.EpisodesCount}" />
+							<Run Text="{Binding EpisodesCount}" />
 
 							<!-- Episodes -->
 							<Run Text="Episodes"
@@ -178,7 +178,7 @@
 					</Grid>
 
 					<!-- Show description -->
-					<TextBlock Text="{Binding EpisodesList.Show.Description}"
+                    <TextBlock Text="{Binding Show.Result.Description}"
 							   Style="{StaticResource Typo03}"
 							   Margin="0,15,16,0"
 							   Grid.Row="2" />
@@ -189,19 +189,19 @@
 					  Grid.Row="2">
 
 					<!-- Content -->
-					<Grid Visibility="{Binding EpisodesList.Episodes.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
+                    <Grid Visibility="{Binding Show.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
 
 						<!-- List of posts -->
 						<ListView x:Name="PostList"
-								  ItemsSource="{Binding EpisodesList.Episodes.Result}"
+								  ItemsSource="{Binding Episodes}"
 								  ItemTemplate="{StaticResource PostItemTemplate}"
 								  SelectionMode="Single"
-								  SelectedItem="{Binding EpisodesList.SelectedEpisode, Mode=TwoWay}"
+								  SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}"
 								  ItemContainerStyle="{StaticResource PostListViewItemStyle}"
 								  SelectionChanged="PostListSelectionChanged" />
 
 						<!-- Empty List Message -->
-						<TextBlock Visibility="{Binding EpisodesList.Episodes.Result, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
+                        <TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
 								   Text="Nothing to show"
 								   x:Uid="MainPage_EmptyListMessage"
 								   Style="{StaticResource Typo02}"
@@ -213,7 +213,7 @@
 
 				<!-- Post Presenter -->
 				<Grid x:Name="PostPresenter"
-					  Visibility="{Binding EpisodesList.SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+					  Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 					  Background="{StaticResource Color02Brush}"
 					  Grid.Row="1"
 					  Grid.Column="0">
@@ -226,7 +226,7 @@
 					<ScrollViewer>
 
 						<!-- Post -->
-						<local:EpisodeContent DataContext="{Binding EpisodesList.SelectedEpisode}"
+                        <local:EpisodeContent DataContext="{Binding SelectedEpisode}"
 											  VerticalAlignment="Top" />
 					</ScrollViewer>
 
@@ -234,7 +234,7 @@
 
 						<!-- Dismiss button -->
 						<Button x:Name="DismissButton"
-								Command="{Binding EpisodesList.DismissPost}"
+								Command="{Binding DismissSelectedShow}"
 								Style="{StaticResource VideoPlayerButtonStyle}"
 								HorizontalAlignment="Right"
 								VerticalAlignment="Top"
@@ -245,11 +245,11 @@
 					</Grid>
 				</Grid>
 
-				<Grid x:Name="PostNoContent"
-					  Visibility="{Binding EpisodesList.SelectedEpisode, Converter={StaticResource NullToVisible}}"
-					  Grid.Row="2"
-					  Grid.Column="1"
-					  Background="{StaticResource Color02Brush}">
+                <Grid x:Name="PostNoContent"
+                      Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToVisible}}"
+                      Grid.Row="2"
+                      Grid.Column="1"
+                      Background="{StaticResource Color02Brush}">
 
 					<StackPanel VerticalAlignment="Center">
 
@@ -277,13 +277,14 @@
 				</Grid>
 			</Grid>
 		</ScrollViewer>
-
-		<!-- Loading -->
-		<Grid Background="{ThemeResource AppBackgroundBrush}"
-			  Visibility="{Binding EpisodesList.Episodes.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-			  Grid.Row="1">
-			<StackPanel VerticalAlignment="Center"
-						HorizontalAlignment="Center">
+       
+        <!-- Loading -->
+        <Grid Background="{ThemeResource AppBackgroundBrush}"
+              DataContext="{Binding Show}"
+              Visibility="{Binding Show.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+              Grid.Row="1">
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
 
 				<!-- Progress Ring -->
 				<ProgressRing IsActive="True"

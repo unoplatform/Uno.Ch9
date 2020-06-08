@@ -21,7 +21,7 @@ namespace Ch9
 
 		public Uri ImageUri { get; set; }
 
-		public Uri PostUri { get; set; }
+		public Uri EpisodeUri { get; set; }
 
 		public Uri VideoUri { get; set; }
 
