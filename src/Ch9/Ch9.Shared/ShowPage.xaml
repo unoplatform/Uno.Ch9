@@ -90,8 +90,6 @@
 					</VisualState.StateTriggers>
 
 					<VisualState.Setters>
-						<Setter Target="CommandBar.Visibility"
-								Value="Collapsed" />
 						<Setter Target="ShowDetails.Visibility"
 								Value="Collapsed" />
 						<Setter Target="PostListContentRoot.Visibility"

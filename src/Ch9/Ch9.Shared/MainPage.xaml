@@ -71,7 +71,7 @@
 					<VisualState.StateTriggers>
 						<triggers:CompositeStateTrigger Operator="And">
 							<triggers:AdaptiveTrigger MinWindowWidth="800" />
-                            <StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
+							<StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
 						</triggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
@@ -98,14 +98,12 @@
 				<VisualState x:Name="NarrowAndSelected">
 					<VisualState.StateTriggers>
 						<triggers:CompositeStateTrigger Operator="And">
-                            <StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
+							<StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
 						</triggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
 					<VisualState.Setters>
-						<Setter Target="CommandBar.Visibility"
-								Value="Collapsed" />
-                        <Setter Target="NavigationTabsContainer.Visibility"
+						<Setter Target="NavigationTabsContainer.Visibility"
 								Value="Collapsed" />
 					</VisualState.Setters>
 				</VisualState>
@@ -130,42 +128,26 @@
 		<Grid x:Name="NavigationTabsContainer"
 			  Background="{StaticResource Color02Brush}"
 			  Grid.ColumnSpan="2"
-			  Grid.Column="0"
 			  Grid.Row="1">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
 
-			<!-- Spacer -->
-			<Grid x:Name="NavigationTabSpacer" 
-				  toolkit:VisibleBoundsPadding.PaddingMask="Top"
-				  Visibility="Collapsed">
-				<Rectangle Height="1" />
-			</Grid>
+			<!-- Fresh content View Tab -->
+			<RadioButton x:Name="FreshContentBtn"
+						 GroupName="ViewTabsThin"
+						 Content="Recent"
+						 x:Uid="MainPage_Recent"
+						 IsChecked="True"
+						 Grid.Column="0" />
 
-			<Grid x:Name="NavigationTabRoot"
-				  Grid.Row="1">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="*" />
-				</Grid.ColumnDefinitions>
-
-				<!-- Fresh content View Tab -->
-				<RadioButton x:Name="FreshContentBtn"
-							 GroupName="ViewTabsThin"
-							 Content="Recent"
-							 x:Uid="MainPage_Recent"
-							 IsChecked="True"
-							 Grid.Column="0" />
-
-				<!-- Shows View Tab -->
-				<RadioButton x:Name="ShowContentBtn"
-							 GroupName="ViewTabsThin"
-							 Content="Shows"
-							 x:Uid="MainPage_Shows"
-							 Grid.Column="1" />
-			</Grid>
+			<!-- Shows View Tab -->
+			<RadioButton x:Name="ShowContentBtn"
+						 GroupName="ViewTabsThin"
+						 Content="Shows"
+						 x:Uid="MainPage_Shows"
+						 Grid.Column="1" />
 		</Grid>
 
 		<!-- Shows list view -->
@@ -204,11 +186,11 @@
 		<!-- Episodes list -->
 		<Grid Grid.Row="2"
 			  Grid.Column="0"
-              DataContext="{Binding Show}"
+			  DataContext="{Binding Show}"
 			  Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}">
 
 			<!-- Content -->
-            <Grid Visibility="{Binding Show.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
+			<Grid Visibility="{Binding Show.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
 
 				<!-- List of posts -->
 				<ListView x:Name="PostList"
@@ -219,7 +201,7 @@
 						  ItemContainerStyle="{StaticResource PostListViewItemStyle}" />
 
 				<!-- Empty List Message -->
-                <TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
+				<TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
 						   Text="Nothing to show"
 						   x:Uid="MainPage_EmptyListMessage"
 						   Style="{StaticResource Typo02}"
@@ -229,25 +211,25 @@
 			</Grid>
 
 			<!-- Error -->
-            <Grid Visibility="{Binding Show.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+			<Grid Visibility="{Binding Show.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 				  Background="{StaticResource Color08Brush}">
 
 				<StackPanel VerticalAlignment="Center">
 
 					<!-- Image -->
-                    <Image Source="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImage}}"
+					<Image Source="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImage}}"
 						   Stretch="None"
 						   HorizontalAlignment="Center"
 						   Margin="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImageMargin}}" />
 
 					<!-- Title -->
-                    <TextBlock Text="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorTitle}}"
+					<TextBlock Text="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorTitle}}"
 							   Style="{StaticResource Typo02}"
 							   TextAlignment="Center"
 							   Margin="40,12,40,0" />
 
 					<!-- Message -->
-                    <TextBlock Text="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorMessage}}"
+					<TextBlock Text="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorMessage}}"
 							   Style="{StaticResource Typo03}"
 							   TextAlignment="Center"
 							   Margin="40,8,40,0" />
@@ -265,10 +247,10 @@
 		<!-- No Selection -->
 		<Grid Grid.Row="2"
 			  Grid.Column="1"
-              DataContext="{Binding Show}"
+			  DataContext="{Binding Show}"
 			  Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}">
 
-            <Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToVisible}}"
+			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToVisible}}"
 				  Background="{StaticResource Color02Brush}">
 
 				<StackPanel VerticalAlignment="Center">
@@ -302,10 +284,10 @@
 			  x:Name="PostPresenter"
 			  Grid.Column="0"
 			  Grid.ColumnSpan="2"
-              DataContext="{Binding Show}"
+			  DataContext="{Binding Show}"
 			  Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}">
 
-            <Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 				  Background="{StaticResource Color02Brush}">
 
 				<!-- Modal background -->
@@ -315,7 +297,7 @@
 				<!-- Presenter -->
 				<ScrollViewer>
 					<!-- Post -->
-                    <local:EpisodeContent DataContext="{Binding SelectedEpisode}"
+					<local:EpisodeContent DataContext="{Binding SelectedEpisode}"
 										  VerticalAlignment="Top" />
 				</ScrollViewer>
 
@@ -335,31 +317,31 @@
 				</Grid>
 			</Grid>
 		</Grid>
-        
-        <!-- Loading -->
-        <Grid Background="{ThemeResource AppBackgroundBrush}"
-              DataContext="{Binding Show}"
-              Visibility="{Binding Show.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-              Grid.Row="1"
-              Grid.RowSpan="2"
+
+		<!-- Loading -->
+		<Grid Background="{ThemeResource AppBackgroundBrush}"
+			  DataContext="{Binding Show}"
+			  Visibility="{Binding Show.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+			  Grid.Row="1"
+			  Grid.RowSpan="2"
 			  Grid.Column="0"
 			  Grid.ColumnSpan="2">
-            <StackPanel VerticalAlignment="Center"
-							HorizontalAlignment="Center">
+			<StackPanel VerticalAlignment="Center"
+						HorizontalAlignment="Center">
 
-                <!-- Progress Ring -->
-                <ProgressRing IsActive="True"
-								  Height="20"
-								  Width="20"
-								  HorizontalAlignment="Center"
-								  VerticalAlignment="Center"
-								  Margin="0,12" />
+				<!-- Progress Ring -->
+				<ProgressRing IsActive="True"
+							  Height="20"
+							  Width="20"
+							  HorizontalAlignment="Center"
+							  VerticalAlignment="Center"
+							  Margin="0,12" />
 
-                <!-- Loading Message -->
-                <TextBlock Text="Loading..."
-                           x:Uid="MainPage_Loading"
-                           Style="{StaticResource Typo01}" />
-            </StackPanel>
-        </Grid>
-    </Grid>
+				<!-- Loading Message -->
+				<TextBlock Text="Loading..."
+						   x:Uid="MainPage_Loading"
+						   Style="{StaticResource Typo01}" />
+			</StackPanel>
+		</Grid>
+	</Grid>
 </Page>
