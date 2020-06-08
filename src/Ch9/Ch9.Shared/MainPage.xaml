@@ -103,9 +103,11 @@
 					</VisualState.StateTriggers>
 
 					<VisualState.Setters>
-						<Setter Target="NavigationTabsContainer.Visibility"
-								Value="Collapsed" />
-					</VisualState.Setters>
+                        <Setter Target="PostPresenter.Row"
+                                Value="0" />
+                        <Setter Target="PostPresenter.RowSpan"
+                                Value="3" />
+                    </VisualState.Setters>
 				</VisualState>
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>

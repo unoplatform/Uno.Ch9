@@ -94,13 +94,15 @@
 								Value="Collapsed" />
 						<Setter Target="PostListContentRoot.Visibility"
 								Value="Collapsed" />
-					</VisualState.Setters>
+                        <Setter Target="CommandBar.Visibility"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
 				</VisualState>
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
 
         <CommandBar x:Name="CommandBar"
-					Style="{StaticResource ImageCommandBarStyle}"
+                    Style="{StaticResource ImageCommandBarStyle}"
                     Content="{Binding SourceFeed.Name}" />
 
         <ScrollViewer x:Name="NarrowScrollViewer"
