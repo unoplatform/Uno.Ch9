@@ -103,9 +103,9 @@
 					</VisualState.StateTriggers>
 
 					<VisualState.Setters>
-						<Setter Target="PostPresenter.Row"
+						<Setter Target="EpisodePresenter.Row"
 								Value="0" />
-						<Setter Target="PostPresenter.RowSpan"
+						<Setter Target="EpisodePresenter.RowSpan"
 								Value="3" />
 					</VisualState.Setters>
 				</VisualState>
@@ -346,18 +346,18 @@
 			<StackPanel VerticalAlignment="Center"
 						HorizontalAlignment="Center">
 
-				<!-- Progress Ring -->
-				<ProgressRing IsActive="True"
-							  Height="20"
-							  Width="20"
-							  HorizontalAlignment="Center"
-							  VerticalAlignment="Center"
-							  Margin="0,12" />
+                <!-- Image -->
+				<Image Source="ms-appx:///Assets/Ch9_logo.png"
+					   Stretch="Uniform"
+					   Height="120"
+					   HorizontalAlignment="Center"
+					   Margin="0,12" />
 
 				<!-- Loading Message -->
 				<TextBlock Text="Loading..."
 						   x:Uid="MainPage_Loading"
-						   Style="{StaticResource Typo01}" />
+						   Style="{StaticResource Typo01}"
+						   TextAlignment="Center"/>
 			</StackPanel>
 		</Grid>
     </Grid>

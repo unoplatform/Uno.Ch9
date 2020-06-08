@@ -172,68 +172,18 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="2" />
 
-		<ScrollViewer x:Name="NarrowScrollViewer"
-					  Grid.Row="1">
-			<Grid DataContext="{Binding Show}">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="*" />
-
-					<!-- Used in narrow mode where post list goes under content -->
-					<RowDefinition Height="Auto" />
-				</Grid.RowDefinitions>
-
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition x:Name="LeftColumn"
-									  Width="*" />
-					<ColumnDefinition x:Name="RightColumn"
-									  Width="0" />
-				</Grid.ColumnDefinitions>
-
-				<!-- Show details -->
-				<StackPanel x:Name="ShowDetails"
-							Visibility="{Binding Show.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}"
-							Background="{StaticResource Color02Brush}"
-							Padding="16"
-							Grid.ColumnSpan="2"
-							Grid.Column="0">
-
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="Auto" />
-							<ColumnDefinition Width="*" />
-						</Grid.ColumnDefinitions>
-
-						<Grid Background="{StaticResource Color07Brush}"
-							  Height="64"
-							  Width="114" />
-
-						<!-- Show Image -->
-						<Image Source="{Binding Show.Result.Image}"
-							   Height="64"
-							   Width="114"
-							   Stretch="Uniform" />
-
-						<StackPanel Grid.Column="1">
-
-							<!-- Show Name -->
-							<TextBlock Text="{Binding Show.Result.Name}"
-									   Style="{StaticResource Typo01}"
-									   Margin="16,2,16,0" />
-
-							<!-- Episodes count -->
-							<TextBlock Style="{StaticResource Typo09}"
-									   Margin="16,4,16,0">
-					
-							<!-- Episodes Count -->
-							<Run Text="{Binding Show.Result.Episodes, Converter={StaticResource EnumerableItemsCount}}" />
-
-							<!-- Episodes -->
-							<Run Text="Episodes"
-								 x:Uid="ShowPage_Episodes" />
-							</TextBlock>
-						</StackPanel>
-					</Grid>
+        <!-- Show details -->
+        <Grid DataContext="{Binding Show}"
+              Visibility="{Binding Show.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}"
+              Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="2">
+            <ContentControl x:Name="ShowDetails"
+                            Content="{Binding Show.Result}"
+                            ContentTemplate="{StaticResource ShowDetailsTemplate}"
+                            HorizontalContentAlignment="Stretch"
+                            Visibility="Collapsed" />
+        </Grid>
 
         <!-- Episodes list -->
         <Grid DataContext="{Binding Show}"
