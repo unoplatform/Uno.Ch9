@@ -103,13 +103,11 @@
 					</VisualState.StateTriggers>
 
 					<VisualState.Setters>
-                        <Setter Target="CommandBar.Visibility"
-								Value="Collapsed" />
-                        <Setter Target="EpisodePresenter.Row"
-                                Value="0" />
-                        <Setter Target="EpisodePresenter.RowSpan"
-                                Value="3" />
-                    </VisualState.Setters>
+						<Setter Target="PostPresenter.Row"
+								Value="0" />
+						<Setter Target="PostPresenter.RowSpan"
+								Value="3" />
+					</VisualState.Setters>
 				</VisualState>
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
@@ -156,37 +154,45 @@
 		</Grid>
 
 		<!-- Shows list view -->
-		<ListView Visibility="{Binding IsChecked, ElementName=ShowContentBtn, Converter={StaticResource TrueToVisible}}"
+		<GridView Visibility="{Binding IsChecked, ElementName=ShowContentBtn, Converter={StaticResource TrueToVisible}}"
 				  ItemsSource="{Binding Shows}"
 				  Background="{StaticResource Color02Brush}"
-				  MaxWidth="395"
-				  HorizontalAlignment="Stretch"
+				  HorizontalAlignment="Center"
 				  Grid.Row="2"
 				  Grid.Column="0"
-				  Grid.ColumnSpan="2">
-			<ListView.ItemTemplate>
+				  Grid.ColumnSpan="2"
+				  Padding="12">
+			<GridView.ItemTemplate>
 				<DataTemplate>
+
 					<Button Command="{Binding ElementName=This, Path=DataContext.DisplayShow}"
 							CommandParameter="{Binding}"
 							Style="{StaticResource HiddenButtonStyle}">
 
 						<Grid Background="{StaticResource Color02Brush}">
+							<StackPanel Margin="12,8,12,0">
 
-							<!-- Label -->
-							<TextBlock Text="{Binding Name}"
-									   Style="{StaticResource Typo08}"
-									   Margin="16" />
+								<!-- Image -->
+								<Border Background="{StaticResource Color07Brush}" 
+										BorderBrush="{StaticResource Color07Brush}"
+										BorderThickness="1"
+										HorizontalAlignment="Left">
+									<Image Source="{Binding Image}"
+										   Width="270"
+										   Height="151"
+										   Stretch="UniformToFill" />
+								</Border>
 
-							<!-- Bottom Border -->
-							<Rectangle Fill="{StaticResource Color07Brush}"
-									   Opacity="0.25"
-									   Height="1"
-									   VerticalAlignment="Bottom" />
+								<!-- Label -->
+								<TextBlock Text="{Binding Name}"
+										   Style="{StaticResource Typo08}"
+										   Margin="0,12,0,8" />
+							</StackPanel>
 						</Grid>
 					</Button>
 				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
+			</GridView.ItemTemplate>
+		</GridView>
 
 		<!-- Episodes list -->
 		<Grid DataContext="{Binding Show}"

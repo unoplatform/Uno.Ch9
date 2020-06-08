@@ -23,23 +23,23 @@ namespace Ch9
         {
             return new List<SourceFeed>
             {
-                new SourceFeed("https://s.ch9.ms/Shows/Visual-Studio-Toolbox/feed", "Visual Studio Toolbox"),
-                new SourceFeed("https://s.ch9.ms/Shows/Partly-Cloudy/feed", "Party Cloudy"),
-                new SourceFeed("https://s.ch9.ms/Shows/Azure-Friday/feed", "Azure Friday"),
-                new SourceFeed("https://s.ch9.ms/Shows/XamarinShow/feed", "Xamarin Show"),
-                new SourceFeed("https://s.ch9.ms/Shows/This+Week+On+Channel+9/feed", "This Week On Channel9"),
-                new SourceFeed("https://s.ch9.ms/Blogs/One-Dev-Minute/feed", "On Dev Minute"),
-                new SourceFeed("https://s.ch9.ms/Series/Intro-to-Visual-Studio-for-Mac/feed", "Intro To Visual Studio For Mac"),
-                new SourceFeed("https://s.ch9.ms/Shows/AI-Show/feed", "AI Show"),
-                new SourceFeed("https://s.ch9.ms/Series/C-Advanced/feed", "C Advanced"),
-                new SourceFeed("https://s.ch9.ms/Series/CSharp-101/feed", "CSharp 101"),
-                new SourceFeed("https://s.ch9.ms/Series/NET-Core-101/feed", "NetCore 101"),
-                new SourceFeed("https://s.ch9.ms/Series/Intro-to-Visual-Studio/feed", "Intro To Visual Studio"),
-                new SourceFeed("https://s.ch9.ms/Series/Intro-to-Python-Development/feed", "Intro To Python Development"),
-                new SourceFeed("https://s.ch9.ms/Shows/Less-Code-More-Power/feed", "Less Code More Power"),
-                new SourceFeed("https://s.ch9.ms/Shows/CodeStories/feed", "Code Stories"),
-                new SourceFeed("https://s.ch9.ms/Shows/Careers-Behind-the-Code/feed", "Careers Behind The Code"),
-                new SourceFeed("https://s.ch9.ms/Shows/On-NET/feed", "On Net"),
+                new SourceFeed("https://s.ch9.ms/Shows/Visual-Studio-Toolbox/feed", "Visual Studio Toolbox", new Uri("https://f.ch9.ms/thumbnail/76a9b7c3-0474-4194-83ac-84a4e0919cc8.png")),
+                new SourceFeed("https://s.ch9.ms/Shows/Partly-Cloudy/feed", "Party Cloudy", new Uri("https://f.ch9.ms/thumbnail/b752fb27-198a-4a14-a7a9-f640801adb65.jpg")),
+                new SourceFeed("https://s.ch9.ms/Shows/Azure-Friday/feed", "Azure Friday", new Uri("https://f.ch9.ms/thumbnail/3cf59759-da96-47c7-b703-eb21e538dd09.png")),
+                new SourceFeed("https://s.ch9.ms/Shows/XamarinShow/feed", "Xamarin Show", new Uri("https://f.ch9.ms/thumbnail/8f2c0861-7314-44da-b0ee-f20b13906381.png")),
+                new SourceFeed("https://s.ch9.ms/Shows/This+Week+On+Channel+9/feed", "This Week On Channel9", new Uri("https://f.ch9.ms/thumbnail/65cbe7c6-31ba-4b5e-97bb-ca0a9ecd6203.png")),
+                new SourceFeed("https://s.ch9.ms/Blogs/One-Dev-Minute/feed", "On Dev Minute", new Uri("https://f.ch9.ms/thumbnail/79b44705-876c-4713-b135-cd3b20aae6bb.png")),
+                new SourceFeed("https://s.ch9.ms/Series/Intro-to-Visual-Studio-for-Mac/feed", "Intro To Visual Studio For Mac", new Uri("https://f.ch9.ms/thumbnail/33a2141b-0245-4ffc-b2d1-65142895db9b.jpg")),
+                new SourceFeed("https://s.ch9.ms/Shows/AI-Show/feed", "AI Show", new Uri("https://f.ch9.ms/thumbnail/b36b7fb8-5a33-4e87-b5ba-4c3ed3537a23.png")),
+                new SourceFeed("https://s.ch9.ms/Series/C-Advanced/feed", "C# Advanced", new Uri("https://f.ch9.ms/thumbnail/368c6b87-5a56-40fe-8291-365c3785aada.png")),
+                new SourceFeed("https://s.ch9.ms/Series/CSharp-101/feed", "CSharp 101", new Uri("https://f.ch9.ms/thumbnail/2888a106-8416-49fe-b4f7-200306758639.jpg")),
+                new SourceFeed("https://s.ch9.ms/Series/NET-Core-101/feed", "NetCore 101", new Uri("https://f.ch9.ms/thumbnail/06acd3e0-2207-44d3-87c6-3676e0e83215.jpg")),
+                new SourceFeed("https://s.ch9.ms/Series/Intro-to-Visual-Studio/feed", "Intro To Visual Studio", new Uri("https://f.ch9.ms/thumbnail/7d0b6c57-a4f8-4c25-8be5-822b0099ec59.jpg")),
+                new SourceFeed("https://s.ch9.ms/Series/Intro-to-Python-Development/feed", "Intro To Python Development", new Uri("https://f.ch9.ms/thumbnail/9df8280a-cbb8-451f-b41b-160e99c855c9.png")),
+                new SourceFeed("https://s.ch9.ms/Shows/Less-Code-More-Power/feed", "Less Code More Power", new Uri("https://f.ch9.ms/thumbnail/c89c39ac-92ac-416d-8f7a-a58ffdb867b3.png")),
+                new SourceFeed("https://s.ch9.ms/Shows/CodeStories/feed", "Code Stories", new Uri("https://f.ch9.ms/thumbnail/f5d0cb49-d3cc-4428-b20a-b3909a98e691.jpg")),
+                new SourceFeed("https://s.ch9.ms/Shows/Careers-Behind-the-Code/feed", "Careers Behind The Code", new Uri("https://f.ch9.ms/thumbnail/97eb6439-bc25-4552-9dba-708c6f02222a.jpg")),
+                new SourceFeed("https://s.ch9.ms/Shows/On-NET/feed", "On Net", new Uri("https://f.ch9.ms/thumbnail/c96889ca-5f16-4bde-ab54-be4f6ecdee7a.png")),
             };
         }
 
@@ -58,7 +58,7 @@ namespace Ch9
             var show = new Show()
             {
                 Description = rssFeed.Description.Text,
-                Image = rssFeed.ImageUrl,
+                Image = sourceFeed?.Image,
                 Name = sourceFeed?.Name
             };
 
