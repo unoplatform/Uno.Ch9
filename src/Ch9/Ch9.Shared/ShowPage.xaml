@@ -184,7 +184,7 @@
 						<!-- List of posts -->
 						<ListView x:Name="PostList"
 								  ItemsSource="{Binding Episodes}"
-								  ItemTemplate="{StaticResource PostItemTemplate}"
+								  ItemTemplate="{StaticResource EpisodeItemTemplate}"
 								  SelectionMode="Single"
 								  SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}"
 								  ItemContainerStyle="{StaticResource PostListViewItemStyle}"

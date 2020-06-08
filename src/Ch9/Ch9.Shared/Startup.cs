@@ -10,7 +10,7 @@ namespace Ch9
 		public void Initialize(ISimpleIoc serviceProvider)
 		{
 			InitializeNavigationService(serviceProvider);
-			InitializePostsService(serviceProvider);
+            InitializeBusinessServices(serviceProvider);
 		}
 
 		private void InitializeNavigationService(ISimpleIoc serviceProvider)
@@ -27,7 +27,7 @@ namespace Ch9
 			});
 		}
 
-		private void InitializePostsService(ISimpleIoc serviceProvider)
+		private void InitializeBusinessServices(ISimpleIoc serviceProvider)
 		{
             serviceProvider.Register<IShowService>(() => new ShowService());
 		}

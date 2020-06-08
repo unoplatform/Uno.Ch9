@@ -73,12 +73,12 @@ namespace Ch9
         {
             var episodes = new List<Episode>();
 
-            var feedPosts = rssFeed
+            var feedEpisodes = rssFeed
                 .Items
-                .Select(i => CreatePost(i, sourceFeed))
+                .Select(i => CreateEpisode(i, sourceFeed))
                 .ToArray();
 
-            episodes.AddRange(feedPosts);
+            episodes.AddRange(feedEpisodes);
 
             var comparer = new EpisodeEqualityComparer();
 
@@ -96,7 +96,7 @@ namespace Ch9
             }
         }
 
-        private Episode CreatePost(SyndicationItem item, SourceFeed sourceFeed)
+        private Episode CreateEpisode(SyndicationItem item, SourceFeed sourceFeed)
         {
             return new Episode
             {
@@ -106,7 +106,7 @@ namespace Ch9
                 Date = item.PublishDate,
                 Categories = GetCategories(item).ToArray(),
                 ImageUri = GetThumbnailUri(item),
-                EpisodeUri = GetPostUri(item),
+                EpisodeUri = GetEpisodeUri(item),
                 VideoUri = GetVideoUri(item),
                 Duration = GetDuration(item)
             };
@@ -174,7 +174,7 @@ namespace Ch9
                 : null;
         }
 
-        private Uri GetPostUri(SyndicationItem item)
+        private Uri GetEpisodeUri(SyndicationItem item)
         {
             return item.Links.SingleOrDefault(s => s.RelationshipType == "alternate").Uri;
         }
