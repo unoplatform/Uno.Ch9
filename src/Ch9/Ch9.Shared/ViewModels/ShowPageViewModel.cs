@@ -11,27 +11,23 @@ namespace Ch9.ViewModels
 {
     public class ShowPageViewModel : ViewModelBase
     {
-        public ShowPageViewModel(SourceFeed sourceFeed)
-        {
-            SourceFeed = sourceFeed;
-
-            Show = new ShowViewModel(sourceFeed);
-
-            ToAboutPage = new RelayCommand(() =>
-            {
-                App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(AboutPage));
-            });
-        }
-
-        public ICommand ToAboutPage { get; }
-
-        public SourceFeed SourceFeed { get; }
+        public SourceFeed SourceFeed { get; set; }
 
         private ShowViewModel _show;
         public ShowViewModel Show
         {
             get => _show;
             set => Set(() => Show, ref _show, value);
+        }
+
+        public void OnNavigatedTo(SourceFeed sourceFeed)
+        {
+            if (Show == null)
+            {
+                SourceFeed = sourceFeed;
+
+                Show = new ShowViewModel(SourceFeed);
+            }
         }
     }
 }

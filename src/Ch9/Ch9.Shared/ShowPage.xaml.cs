@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Ch9.Domain;
 using Ch9.ViewModels;
-using Uno.Extensions.Specialized;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -30,28 +30,18 @@ namespace Ch9
 		{
 			this.InitializeComponent();
 
-			this.NavigationCacheMode = NavigationCacheMode.Required;
+			DataContext = new ShowPageViewModel();
 
 			PostList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
 		}
 
-		public ShowPageViewModel ViewModel
-		{
-			get => DataContext as ShowPageViewModel;
-			set => DataContext = value;
-		}
+		public ShowPageViewModel ViewModel => DataContext as ShowPageViewModel;
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
 
-			ViewModel = new ShowPageViewModel(e.Parameter as SourceFeed);
-
-			if (PostList.Items.Count > 0 &&
-				Windows.UI.Xaml.Window.Current.Bounds.Width >= 800)
-			{
-				PostList.SelectedIndex = 0;
-			}
+			ViewModel.OnNavigatedTo(e.Parameter as SourceFeed);
 		}
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -70,7 +60,11 @@ namespace Ch9
 			if (items?.Count > 0 &&
 				Windows.UI.Xaml.Window.Current.Bounds.Width >= 800)
 			{
-				listView.SelectedIndex = 0;
+				// Dispatch item selection on the next loop.
+				_ = Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+				{
+					listView.SelectedIndex = 0;
+				});
 			}
 		}
 

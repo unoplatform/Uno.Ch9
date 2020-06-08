@@ -99,19 +99,9 @@
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
 
-		<CommandBar x:Name="CommandBar"
+        <CommandBar x:Name="CommandBar"
 					Style="{StaticResource ImageCommandBarStyle}"
-                    Content="{Binding SourceFeed.Name}">
-
-			<CommandBar.PrimaryCommands>
-				<AppBarButton Command="{Binding ToAboutPage}"
-							  android:Margin="0,0,16,0">
-					<Path Style="{StaticResource InfoIconPath}"
-						  Fill="{StaticResource CommandBarForegroundBrush}"
-						  VerticalAlignment="Center" />
-				</AppBarButton>
-			</CommandBar.PrimaryCommands>
-		</CommandBar>
+                    Content="{Binding SourceFeed.Name}" />
 
         <ScrollViewer x:Name="NarrowScrollViewer"
                       Grid.Row="1">
@@ -232,12 +222,13 @@
 
 						<!-- Dismiss button -->
 						<Button x:Name="DismissButton"
-								Command="{Binding DismissSelectedShow}"
+								Command="{Binding DismissSelectedEpisode}"
 								Style="{StaticResource VideoPlayerButtonStyle}"
 								HorizontalAlignment="Right"
 								VerticalAlignment="Top"
 								Margin="8">
-							<Path Style="{StaticResource CloseIconPath}"
+                            <Path Style="{StaticResource CloseIconPath}"
+                                  Data="M21.976 2.438L23.563 4.024 14.586 13 23.563 21.976 21.976 23.563 13 14.586 4.024 23.563 2.438 21.976 11.413 13 2.438 4.024 4.024 2.438 13 11.413z"
 								  VerticalAlignment="Center" />
 						</Button>
 					</Grid>
