@@ -54,7 +54,14 @@ namespace Ch9
 			}
 		}
 
-		private void OnItemsSourceChanged(DependencyObject sender, DependencyProperty dp)
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+			// Set selected episode to null to stop video playing when navigating away
+            if (DataContext is ShowPageViewModel vm) vm.Show.SelectedEpisode = null;
+        }
+
+        private void OnItemsSourceChanged(DependencyObject sender, DependencyProperty dp)
 		{
 			// Auto select the first element if the items change and the window is wide.
 			var listView = sender as ListView;
