@@ -6,9 +6,9 @@
 					xmlns:toolkit="using:Uno.UI.Toolkit"
 					mc:Ignorable="xamarin">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
-    </ResourceDictionary.MergedDictionaries>
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
+	</ResourceDictionary.MergedDictionaries>
 
 	<Style TargetType="MediaPlayerElement"
 		   x:Key="DefaultMediaPlayerElementStyle">
@@ -26,15 +26,15 @@
 		<Setter Property="AutoPlay"
 				Value="False" />
 		<Setter Property="Background"
-                Value="{StaticResource MediaPlayerBackgroundColor}" />
+				Value="{StaticResource MediaPlayerBackgroundColor}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="MediaPlayerElement">
-                    <Grid x:Name="LayoutRoot"
-                          Background="{TemplateBinding Background}">
+					<Grid x:Name="LayoutRoot"
+						  Background="{TemplateBinding Background}">
 
-                        <!-- Image -->
+						<!-- Image -->
 						<Image x:Name="PosterImage"
 							   Visibility="Collapsed"
 							   Source="{TemplateBinding PosterSource}"
@@ -80,14 +80,14 @@
 	<Style x:Key="MTC_SliderThumbStyle"
 		   TargetType="Thumb">
 
-        <Setter Property="Background"
-                Value="{StaticResource Color03Brush}" />
-        <Setter Property="Height"
-                Value="12" />
-        <Setter Property="Width"
-                Value="12" />
+		<Setter Property="Background"
+				Value="{StaticResource Color03Brush}" />
+		<Setter Property="Height"
+				Value="12" />
+		<Setter Property="Width"
+				Value="12" />
 
-        <Setter Property="Template">
+		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Thumb">
 					<Ellipse x:Name="ellipse"
@@ -142,7 +142,7 @@
 				Value="False" />
 		<Setter Property="Padding"
 				Value="0" />
-		
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="Slider">
@@ -160,24 +160,24 @@
 
 								<VisualState x:Name="FocusDisengaged" />
 
-                                <VisualState x:Name="FocusEngagedHorizontal">
-                                    <Storyboard>
+								<VisualState x:Name="FocusEngagedHorizontal">
+									<Storyboard>
 
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderContainer"
-                                                                       Storyboard.TargetProperty="(Control.IsTemplateFocusTarget)">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="False" />
-                                        </ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderContainer"
+																	   Storyboard.TargetProperty="(Control.IsTemplateFocusTarget)">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="False" />
+										</ObjectAnimationUsingKeyFrames>
 
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HorizontalThumb"
-                                                                       Storyboard.TargetProperty="(Control.IsTemplateFocusTarget)">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="True" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                    </VisualState>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="HorizontalThumb"
+																	   Storyboard.TargetProperty="(Control.IsTemplateFocusTarget)">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="True" />
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
 
-                                    <VisualState x:Name="FocusEngagedVertical" />
+								<VisualState x:Name="FocusEngagedVertical" />
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
@@ -192,7 +192,7 @@
 									<ColumnDefinition Width="Auto" />
 									<ColumnDefinition Width="*" />
 								</Grid.ColumnDefinitions>
-								
+
 								<!-- Horizontal Track Rect -->
 								<Rectangle x:Name="HorizontalTrackRect"
 										   Fill="{TemplateBinding Background}"
@@ -209,7 +209,7 @@
 								<!-- Horizontal Decrease Rect -->
 								<Rectangle x:Name="HorizontalDecreaseRect"
 										   Fill="{StaticResource Color03Brush}"
-										   Height="{ThemeResource SliderTrackThemeHeight}"/>
+										   Height="{ThemeResource SliderTrackThemeHeight}" />
 
 								<!-- Thumb -->
 								<Thumb x:Name="HorizontalThumb"
@@ -224,7 +224,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 	<!-- Default Media Transport Controls Style -->
 	<Style x:Key="DefaultMediaTransportControlsStyle"
 		   TargetType="MediaTransportControls">
@@ -250,9 +250,9 @@
 
 							<!-- ControlPanel Visibility states -->
 							<VisualStateGroup x:Name="ControlPanelVisibilityStates">
-                                <VisualState x:Name="ControlPanelFadeIn" />
+								<VisualState x:Name="ControlPanelFadeIn" />
 
-                                <VisualState x:Name="ControlPanelFadeOut">
+								<VisualState x:Name="ControlPanelFadeOut">
 									<Storyboard>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible"
 																	   Storyboard.TargetName="BottomControlPanel">
@@ -260,19 +260,19 @@
 																	Value="False" />
 										</ObjectAnimationUsingKeyFrames>
 
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible"
-                                                                       Storyboard.TargetName="TopControlPanel">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="False" />
-                                        </ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible"
+																	   Storyboard.TargetName="TopControlPanel">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="False" />
+										</ObjectAnimationUsingKeyFrames>
 
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible"
-                                                                       Storyboard.TargetName="FullScreenPanel">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="False" />
-                                        </ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible"
+																	   Storyboard.TargetName="FullScreenPanel">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="False" />
+										</ObjectAnimationUsingKeyFrames>
 
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+										<DoubleAnimation Storyboard.TargetProperty="Opacity"
 														 Storyboard.TargetName="BottomControlPanel"
 														 From="1"
 														 To="0"
@@ -285,17 +285,17 @@
 														 Duration="0:0:0.3" />
 
 										<DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="PlayPausePanel"
+														 Storyboard.TargetName="PlayPausePanel"
 														 From="1"
 														 To="0"
 														 Duration="0:0:0.3" />
 
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="FullScreenPanel"
-                                                         From="1"
-                                                         To="0"
-                                                         Duration="0:0:0.3" />
-                                    </Storyboard>
+										<DoubleAnimation Storyboard.TargetProperty="Opacity"
+														 Storyboard.TargetName="FullScreenPanel"
+														 From="1"
+														 To="0"
+														 Duration="0:0:0.3" />
+									</Storyboard>
 								</VisualState>
 							</VisualStateGroup>
 
@@ -339,36 +339,38 @@
 
 							<!-- PlayPause states -->
 							<VisualStateGroup x:Name="PlayPauseStates">
-                                <VisualState x:Name="PlayState">
-                                    <VisualState.Setters>
-                                        <Setter Target="BottomControlPanel.IsHitTestVisible"
-                                                Value="True" />
+								<VisualState x:Name="PlayState">
+									<VisualState.Setters>
+										<Setter Target="BottomControlPanel.IsHitTestVisible"
+												Value="True" />
 
-                                        <Setter Target="TopControlPanel.IsHitTestVisible"
-                                                Value="True" />
+										<Setter Target="TopControlPanel.IsHitTestVisible"
+												Value="True" />
 
-                                        <Setter Target="FullScreenPanel.IsHitTestVisible"
-                                                Value="True" />
+										<Setter Target="FullScreenPanel.IsHitTestVisible"
+												Value="True" />
 
-                                        <Setter Target="BottomControlPanel.Opacity"
-                                                Value="1" />
+										<Setter Target="BottomControlPanel.Opacity"
+												Value="1" />
 
-                                        <Setter Target="TopControlPanel.Opacity"
-                                                Value="1" />
+										<Setter Target="TopControlPanel.Opacity"
+												Value="1" />
 
-                                        <Setter Target="PlayPausePanel.Opacity"
-                                                Value="1" />
+										<Setter Target="PlayPausePanel.Opacity"
+												Value="1" />
 
-                                        <Setter Target="FullScreenPanel.Opacity"
-                                                Value="1" />
-                                    </VisualState.Setters>
-                                </VisualState>
+										<Setter Target="FullScreenPanel.Opacity"
+												Value="1" />
+									</VisualState.Setters>
+								</VisualState>
 
-                                <VisualState x:Name="PauseState">
-                                    <VisualState.Setters>
-                                        <Setter Target="PlayPauseSymbol.Style"
-                                                Value="{StaticResource PauseIconPath}" />
-                                    </VisualState.Setters>
+								<VisualState x:Name="PauseState">
+									<VisualState.Setters>
+										<Setter Target="PlayPauseSymbol.Style"
+												Value="{StaticResource PauseIconPath}" />
+										<Setter Target="PlayPauseSymbol.Data"
+												Value="M20.162003,0L32,0 32,32 20.162003,32z M0,0L11.837997,0 11.837997,32 0,32z" />
+									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
 
@@ -394,18 +396,24 @@
 											<DiscreteObjectKeyFrame KeyTime="0"
 																	Value="{StaticResource BackToScreenIconPath}" />
 										</ObjectAnimationUsingKeyFrames>
+										
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullWindowSymbol"
+																	   Storyboard.TargetProperty="Data">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="M18,16.6l7.5,7.5l-1.8,1.8l-7.5-7.5l-7.5,7.5l-1.8-1.8l7.5-7.5L6.8,9l1.8-1.8l7.7,7.7l7.7-7.7L25.6,9L18,16.6z" />
+										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
 								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
-                        <Grid x:Name="PlayPausePanel"
-                              toolkit:VisibleBoundsPadding.PaddingMask="Bottom">
+						<Grid x:Name="PlayPausePanel"
+							  toolkit:VisibleBoundsPadding.PaddingMask="Bottom">
 
 							<!-- Play / Pause Button -->
 							<Button x:Name="PlayPauseButton"
-									Style="{StaticResource PlayPauseButtonStyle}"                                    
-                                    HorizontalAlignment="Stretch"
+									Style="{StaticResource PlayPauseButtonStyle}"
+									HorizontalAlignment="Stretch"
 									VerticalAlignment="Stretch">
 								<Grid Background="{StaticResource Color01_75_OpacityBrush}"
 									  CornerRadius="2"
@@ -415,6 +423,7 @@
 									<!-- Icon -->
 									<Path x:Name="PlayPauseSymbol"
 										  Style="{StaticResource PlayIconPath}"
+										  Data="M0,0L15.825011,8.0009766 31.650999,15.997986 15.825011,23.998993 0,32 0,15.997986z"
 										  Height="25"
 										  Width="25" />
 								</Grid>
@@ -450,7 +459,8 @@
 
 								<!-- Icon -->
 								<Path x:Name="FullWindowSymbol"
-									  Style="{StaticResource FullScreenIconPath}" />
+									  Style="{StaticResource FullScreenIconPath}"
+									  Data="M5.4,4l9.6,9.6L13.6,15L4,5.4V15H2V4V2h2h11v2H5.4z M28,17v9.6L18.4,17L17,18.4l9.6,9.6H17v2h11h2v-2V17H28z"/>
 							</Button>
 						</Grid>
 
@@ -563,7 +573,8 @@
 
 											<!-- Play Icon -->
 											<Path x:Name="PlayPauseSymbolLeft"
-												  Style="{StaticResource PlayIconPath}" />
+												  Style="{StaticResource PlayIconPath}"
+												  Data="M0,0L15.825011,8.0009766 31.650999,15.997986 15.825011,23.998993 0,32 0,15.997986z"/>
 										</Button>
 									</Border>
 
