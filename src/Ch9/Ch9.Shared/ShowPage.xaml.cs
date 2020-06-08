@@ -47,8 +47,12 @@ namespace Ch9
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
+
 			// Set selected episode to null to stop video playing when navigating away
-            if (DataContext is ShowPageViewModel vm) vm.Show.SelectedEpisode = null;
+			if (ViewModel != null)
+			{
+				ViewModel.Show.DismissSelectedEpisode.Execute(null);
+			}
         }
 
         private void OnItemsSourceChanged(DependencyObject sender, DependencyProperty dp)
@@ -70,15 +74,9 @@ namespace Ch9
 
         private void VisualStateGroupCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
         {
-            var vm = DataContext as ShowPageViewModel;
-
-			if (e.NewState?.Name == "NarrowAndSelected")
-            {
-                if (vm != null) vm.IsNarrowAndSelected = true;
-            }
-            else
-            {
-				if (vm != null) vm.IsNarrowAndSelected = false;
+			if (ViewModel != null)
+			{
+				ViewModel.IsNarrowAndSelected = e.NewState?.Name == "NarrowAndSelected";
 			}
         }
 	}

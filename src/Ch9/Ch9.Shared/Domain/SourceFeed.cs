@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Ch9.Domain
 {
+    [Windows.UI.Xaml.Data.Bindable]
     public class SourceFeed
     {
         public SourceFeed(string url, string name = null)

@@ -194,7 +194,6 @@ namespace Ch9
 		{
 			void OnBackRequested(object sender, BackRequestedEventArgs e)
 			{
-
                 // ShowPage hook back request
                 if ((_rootFrame.Content as FrameworkElement)?.DataContext is ShowPageViewModel showPage &&
                     showPage.Show.SelectedEpisode != null && showPage.IsNarrowAndSelected)
