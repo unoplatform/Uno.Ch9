@@ -20,6 +20,13 @@ namespace Ch9.ViewModels
             set => Set(() => Show, ref _show, value);
         }
 
+        private bool _isNarrowAndSelected;
+        public bool IsNarrowAndSelected
+        {
+            get => _isNarrowAndSelected;
+            set => Set(() => IsNarrowAndSelected, ref _isNarrowAndSelected, value);
+        }
+
         public void OnNavigatedTo(SourceFeed sourceFeed)
         {
             if (Show == null)

@@ -86,5 +86,19 @@ namespace Ch9
 				);
 			}
 		}
+
+        private void VisualStateGroupCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
+        {
+            var vm = DataContext as ShowPageViewModel;
+
+			if (e.NewState?.Name == "NarrowAndSelected")
+            {
+                if (vm != null) vm.IsNarrowAndSelected = true;
+            }
+            else
+            {
+				if (vm != null) vm.IsNarrowAndSelected = false;
+			}
+        }
 	}
 }

@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Ch9.ViewModels;
 using Xamarin.Essentials;
 
 namespace Ch9
@@ -193,6 +194,17 @@ namespace Ch9
 		{
 			void OnBackRequested(object sender, BackRequestedEventArgs e)
 			{
+
+                // ShowPage hook back request
+                if ((_rootFrame.Content as FrameworkElement)?.DataContext is ShowPageViewModel showPage &&
+                    showPage.Show.SelectedEpisode != null && showPage.IsNarrowAndSelected)
+                {
+                    showPage.Show.DismissSelectedEpisode.Execute(null);
+                    e.Handled = true;
+					//don't navigate back as NarrowAndSelected
+                    return;
+                }
+
 				var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
 
 				if (navigationService.CanGoBack)
@@ -204,7 +216,7 @@ namespace Ch9
 					return;
 				}
 
-				// Modal dismiss
+				// MainPage hook back request
 				if ((_rootFrame.Content as FrameworkElement)?.DataContext is MainPageViewModel mainPage &&
 					mainPage.Show.SelectedEpisode != null)
 				{

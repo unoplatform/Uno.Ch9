@@ -5,9 +5,9 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:android="http://Uno.UI/android"
-	  xmlns:windowsStateTriggers="using:WindowsStateTriggers"
+      xmlns:windowsStateTriggers="using:WindowsStateTriggers"
 	  xmlns:toolkit="using:Uno.UI.Toolkit"
-	  mc:Ignorable="d android">
+      mc:Ignorable="d android">
 
 	<Grid Background="{ThemeResource AppBackgroundBrush}">
 
@@ -17,7 +17,7 @@
 		</Grid.RowDefinitions>
 
 		<VisualStateManager.VisualStateGroups>
-			<VisualStateGroup>
+            <VisualStateGroup CurrentStateChanged="VisualStateGroupCurrentStateChanged">
 				<VisualState x:Name="WideAndSelected">
 					<VisualState.StateTriggers>
 						<windowsStateTriggers:CompositeStateTrigger Operator="And">
