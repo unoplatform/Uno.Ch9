@@ -328,17 +328,18 @@
             <StackPanel VerticalAlignment="Center"
                         HorizontalAlignment="Center">
 
-                <!-- Progress Ring -->
-                <ProgressRing IsActive="True"
-                              Height="20"
-                              Width="20"
-                              HorizontalAlignment="Center"
-                              Margin="0,12" />
+                <!-- Image -->
+				<Image Source="ms-appx:///Assets/Ch9_logo.png"
+					   Stretch="Uniform"
+					   Height="120"
+					   HorizontalAlignment="Center"
+					   Margin="0,12" />
 
                 <!-- Loading Message -->
                 <TextBlock Text="Loading..."
                            x:Uid="MainPage_Loading"
-                           Style="{StaticResource Typo01}" />
+						   Style="{StaticResource Typo01}"
+						   TextAlignment="Center"/>
             </StackPanel>
         </Grid>
     </Grid>
