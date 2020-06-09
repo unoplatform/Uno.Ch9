@@ -6,6 +6,7 @@
         <ResourceDictionary Source="ms-appx:///Styles/Controls/Button.xaml" />
         <ResourceDictionary Source="ms-appx:///Styles/Controls/CommandBar.xaml" />
         <ResourceDictionary Source="ms-appx:///Styles/Controls/Frame.xaml" />
+        <ResourceDictionary Source="ms-appx:///Styles/Controls/GridView.xaml" />
         <ResourceDictionary Source="ms-appx:///Styles/Controls/ItemsControl.xaml" />
         <ResourceDictionary Source="ms-appx:///Styles/Controls/ListView.xaml" />
         <ResourceDictionary Source="ms-appx:///Styles/Controls/MediaPlayerElement.xaml" />
