@@ -44,17 +44,6 @@ namespace Ch9
 			ViewModel.OnNavigatedTo(e.Parameter as SourceFeed);
 		}
 
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            base.OnNavigatingFrom(e);
-
-			// Set selected episode to null to stop video playing when navigating away
-			if (ViewModel != null)
-			{
-				ViewModel.Show.DismissSelectedEpisode.Execute(null);
-			}
-        }
-
         private void OnItemsSourceChanged(DependencyObject sender, DependencyProperty dp)
 		{
 			// Auto select the first element if the items change and the window is wide.

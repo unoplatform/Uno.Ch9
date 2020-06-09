@@ -17,6 +17,7 @@ using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -127,7 +128,17 @@ namespace Ch9
         {
             if (CurrentFrame.CanGoBack)
             {
+                var page = CurrentFrame.Content as FrameworkElement;
+
                 CurrentFrame.GoBack();
+
+                _ = CurrentFrame.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, async () =>
+                {
+                    // This gives enough time for the animations to complete.
+                    await Task.Delay(TimeSpan.FromMilliseconds(250));
+
+                    page.DataContext = null;
+                });
             }
         }
 
