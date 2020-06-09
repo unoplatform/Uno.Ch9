@@ -102,13 +102,15 @@
 						</triggers:CompositeStateTrigger>
 					</VisualState.StateTriggers>
 
-					<VisualState.Setters>
-						<Setter Target="EpisodePresenter.Row"
-								Value="0" />
-						<Setter Target="EpisodePresenter.RowSpan"
-								Value="3" />
-					</VisualState.Setters>
-				</VisualState>
+                    <VisualState.Setters>
+                        <Setter Target="CommandBar.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="EpisodePresenter.Row"
+                                Value="0" />
+                        <Setter Target="EpisodePresenter.RowSpan"
+                                Value="3" />
+                    </VisualState.Setters>
+                </VisualState>
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
 
