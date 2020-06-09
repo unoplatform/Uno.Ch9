@@ -19,11 +19,19 @@
 												   ValueIfNotNull="Visible"
 												   ValueIfNull="Collapsed" />
 
-	<converters:FromNullableToCustomValueConverter x:Key="NullToVisible"
-												   ValueIfNotNull="Collapsed"
-												   ValueIfNull="Visible" />
+    <converters:FromNullableToCustomValueConverter x:Key="NullToVisible"
+                                                   ValueIfNotNull="Collapsed"
+                                                   ValueIfNull="Visible" />
 
-	<converters:FromNullableToCustomValueConverter x:Key="NullToFalse"
+    <converters:FromNullableBoolToCustomValueConverter x:Key="TrueToOpaque"
+                                                       TrueValue="1"
+                                                       NullOrFalseValue="0" />
+
+    <converters:FromNullableBoolToCustomValueConverter x:Key="TrueToTransparent"
+                                                       TrueValue="0"
+                                                       NullOrFalseValue="1" />
+
+    <converters:FromNullableToCustomValueConverter x:Key="NullToFalse"
 												   ValueIfNotNull="{StaticResource TrueValue}"
 												   ValueIfNull="{StaticResource FalseValue}" />
 

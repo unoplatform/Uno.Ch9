@@ -12,9 +12,9 @@
 	  mc:Ignorable="d android"
 	  x:Name="This">
 
-	<Grid Background="{ThemeResource AppBackgroundBrush}">
+    <Grid Background="{ThemeResource AppBackgroundBrush}">
 
-		<!--           WIDE                     NARROW             NARROW 
+        <!--           WIDE                     NARROW             NARROW 
                                             (no selection)       (selection)
         
             | - - - - - - - - - - - -|     | - - - - - - |     | - - - - - - | 
@@ -156,14 +156,13 @@
 		</Grid>
 
 		<!-- Shows list view -->
-		<GridView Visibility="{Binding IsChecked, ElementName=ShowContentBtn, Converter={StaticResource TrueToVisible}}"
-				  ItemsSource="{Binding Shows}"
-				  Background="{StaticResource Color02Brush}"
+		<GridView ItemsSource="{Binding Shows}"
+                  Opacity="{Binding IsChecked, ElementName=ShowContentBtn, Converter={StaticResource TrueToOpaque}}"
+                  Style="{StaticResource DefaultGridViewStyle}"
 				  HorizontalAlignment="Center"
 				  Grid.Row="2"
 				  Grid.Column="0"
-				  Grid.ColumnSpan="2"
-				  Padding="12">
+				  Grid.ColumnSpan="2">
 			<GridView.ItemTemplate>
 				<DataTemplate>
 
@@ -171,26 +170,31 @@
 							CommandParameter="{Binding}"
 							Style="{StaticResource HiddenButtonStyle}">
 
+						<toolkit:ElevatedView Background="{StaticResource Color02Brush}"
+											  win:BorderBrush="{StaticResource ShadowBrush}"
+											  win:BorderThickness="1"
+											  CornerRadius="9"
+											  Elevation="8"
+											  Margin="16,16,12,8">
 						<Grid Background="{StaticResource Color02Brush}">
-							<StackPanel Margin="12,8,12,0">
+							<StackPanel>
 
 								<!-- Image -->
 								<Border Background="{StaticResource Color07Brush}" 
-										BorderBrush="{StaticResource Color07Brush}"
-										BorderThickness="1"
-										HorizontalAlignment="Left">
+										CornerRadius="8,8,0,0">
 									<Image Source="{Binding Image}"
-										   Width="270"
-										   Height="151"
-										   Stretch="UniformToFill" />
+										   Stretch="UniformToFill"
+										   Height="200"
+										   Width="355"/>
 								</Border>
 
 								<!-- Label -->
 								<TextBlock Text="{Binding Name}"
-										   Style="{StaticResource Typo08}"
-										   Margin="0,12,0,8" />
+										   Style="{StaticResource Typo02}"
+										   Margin="12,8,0,16" />
 							</StackPanel>
 						</Grid>
+							</toolkit:ElevatedView>
 					</Button>
 				</DataTemplate>
 			</GridView.ItemTemplate>
@@ -198,7 +202,7 @@
 
 		<!-- Episodes list -->
 		<Grid DataContext="{Binding Show}"
-              Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}"
+              Opacity="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToOpaque}}"
               Grid.Row="2"
               Grid.Column="0">
 
