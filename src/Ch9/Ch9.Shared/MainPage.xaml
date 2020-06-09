@@ -203,6 +203,7 @@
 		<!-- Episodes list -->
 		<Grid DataContext="{Binding Show}"
               Opacity="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToOpaque}}"
+              IsHitTestVisible="{Binding IsChecked, ElementName=FreshContentBtn}"
               Grid.Row="2"
               Grid.Column="0">
 

@@ -45,7 +45,6 @@
 								<VisualState x:Name="Normal" />
                                 <VisualState x:Name="PointerOver" />
                                 <VisualState x:Name="Pressed" />
-
                             </VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
@@ -69,7 +68,7 @@
 		<Setter Property="ItemContainerStyle">
 			<Setter.Value>
 				<Style TargetType="GridViewItem"
-					   xamarin:BasedOn="{StaticResource LeanGridViewItemExpanded}">
+					   BasedOn="{StaticResource LeanGridViewItemExpanded}">
 					<Setter Property="VerticalContentAlignment"
 							Value="Stretch" />
 					<Setter Property="HorizontalContentAlignment"
