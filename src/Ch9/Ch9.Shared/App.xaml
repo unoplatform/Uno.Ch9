@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///Styles/Application/_Application.xaml" />
                 <ResourceDictionary Source="ms-appx:///Styles/Controls/_Controls.xaml" />
+                <ResourceDictionary Source="ms-appx:///Styles/Templates/EpisodeItemTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

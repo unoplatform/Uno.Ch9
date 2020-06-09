@@ -4,7 +4,7 @@
 	
 	<!-- Category Item Template -->
 	<DataTemplate x:Key="CategoryItemTemplate">
-		<Grid Background="{ThemeResource Color05Brush}"
+		<Grid Background="{StaticResource Color05Brush}"
 			  CornerRadius="16"
 			  Height="30">
 

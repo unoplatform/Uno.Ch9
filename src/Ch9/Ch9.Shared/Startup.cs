@@ -10,7 +10,7 @@ namespace Ch9
 		public void Initialize(ISimpleIoc serviceProvider)
 		{
 			InitializeNavigationService(serviceProvider);
-			InitializePostsService(serviceProvider);
+            InitializeBusinessServices(serviceProvider);
 		}
 
 		private void InitializeNavigationService(ISimpleIoc serviceProvider)
@@ -21,17 +21,15 @@ namespace Ch9
 
 				navigationService.Configure(nameof(MainPage), typeof(MainPage));
 				navigationService.Configure(nameof(AboutPage), typeof(AboutPage));
+                navigationService.Configure(nameof(ShowPage), typeof(ShowPage));
 
 				return new StackNavigationService(navigationService);
 			});
 		}
 
-		private void InitializePostsService(ISimpleIoc serviceProvider)
+		private void InitializeBusinessServices(ISimpleIoc serviceProvider)
 		{
-			serviceProvider.Register<IPostsService>(() => new PostsService(
-				new SourceFeed("https://s.ch9.ms/feeds/rss"),
-				new SourceFeed("https://s.ch9.ms/Shows/Visual-Studio-Toolbox/feed", "Visual Studio Toolbox")
-			));
+            serviceProvider.Register<IShowService>(() => new ShowService());
 		}
 	}
 }

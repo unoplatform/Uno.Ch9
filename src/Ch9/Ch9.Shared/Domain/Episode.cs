@@ -5,7 +5,7 @@ using System.Text;
 namespace Ch9
 {
 	[Windows.UI.Xaml.Data.Bindable]
-	public class Post
+	public class Episode 
 	{
 		public string Title { get; set; }
 
@@ -21,7 +21,7 @@ namespace Ch9
 
 		public Uri ImageUri { get; set; }
 
-		public Uri PostUri { get; set; }
+		public Uri EpisodeUri { get; set; }
 
 		public Uri VideoUri { get; set; }
 

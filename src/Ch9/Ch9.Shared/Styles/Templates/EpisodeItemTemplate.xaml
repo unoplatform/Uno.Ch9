@@ -1,0 +1,66 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls">
+
+    <DataTemplate x:Key="EpisodeItemTemplate">
+        <StackPanel>
+            <Grid Background="{StaticResource Color07Brush}"
+                  CornerRadius="8,8,0,0"
+                  Height="200">
+
+                <!-- Image -->
+                <Image Source="{Binding Episode.ImageUri}"
+                       Stretch="UniformToFill" />
+
+                <!-- Formatted Duration -->
+                <Border Background="{StaticResource Color01_75_OpacityBrush}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        CornerRadius="2"
+                        Margin="12">
+
+                    <!-- Value -->
+                    <TextBlock Text="{Binding Episode.FormattedDuration}"
+                               Style="{StaticResource Typo04}"
+                               Margin="12,7" />
+                </Border>
+            </Grid>
+
+            <!-- Post Info -->
+            <StackPanel Margin="16,0">
+
+                <!-- Show + Release Date -->
+                <TextBlock Style="{StaticResource Typo03}"
+                           Margin="0,8,0,0">
+						
+                    <!-- Show -->
+                    <Run Text="{Binding Episode.Show}" />
+						
+                    <!-- Separator -->
+                    <Run Text="•" />
+						
+                    <!-- Release Date -->
+                    <Run Text="{Binding Episode.FormattedDate}" />
+                </TextBlock>
+
+                <!-- Title -->
+                <TextBlock Text="{Binding Episode.Title}"
+                           Style="{StaticResource Typo02}"
+                           Margin="0,6,0,0" />
+
+                <!-- Category List -->
+                <ItemsControl ItemsSource="{Binding Episode.Categories}"
+                              ItemTemplate="{StaticResource CategoryItemTemplate}"
+                              Margin="0,12,0,24">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <controls:WrapPanel HorizontalSpacing="12"
+                                                VerticalSpacing="12"
+                                                Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

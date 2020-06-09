@@ -8,18 +8,18 @@ using Windows.Media.Playback;
 namespace Ch9.ViewModels
 {
 	[Windows.UI.Xaml.Data.Bindable]
-	public class PostViewModel
+	public class EpisodeViewModel
 	{
-		public PostViewModel(ViewModelBase parent, Post post)
+		public EpisodeViewModel(ViewModelBase parent, Episode episode)
 		{
 			Parent = parent;
-			Post = post;
-			VideoSource = MediaSource.CreateFromUri(post.VideoUri);
+			Episode = episode;
+			VideoSource = MediaSource.CreateFromUri(episode.VideoUri);
 		}
 
 		public ViewModelBase Parent { get; }
 
-		public Post Post { get; }
+		public Episode Episode { get; }
 		
 		public IMediaPlaybackSource VideoSource { get; }
 	}
