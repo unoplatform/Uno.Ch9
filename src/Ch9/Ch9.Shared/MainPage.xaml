@@ -218,7 +218,26 @@
 						  ItemTemplate="{StaticResource EpisodeItemTemplate}"
 						  SelectionMode="Single"
 						  SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}"
-						  ItemContainerStyle="{StaticResource EpisodeListViewItemStyle}" />
+						  ItemContainerStyle="{StaticResource EpisodeListViewItemStyle}">
+					<ListView.FooterTemplate>
+						<DataTemplate>
+							<StackPanel Margin="32,22,32,0">
+								
+								<!-- Foorter Message -->
+								<TextBlock Text="That’s all the recent shows!"
+										   x:Uid="MainPage_FooterMessage1"
+										   Style="{StaticResource Typo03}"
+										   TextAlignment="Center"/>
+								
+								<!-- Foorter Message -->
+								<TextBlock Text="For more, check out the 'Shows' tab."
+										   x:Uid="MainPage_FooterMessage2"
+										   Style="{StaticResource Typo03}"
+										   TextAlignment="Center"/>
+							</StackPanel>
+						</DataTemplate>
+					</ListView.FooterTemplate>
+				</ListView>
 
 				<!-- Empty List Message -->
 				<TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
