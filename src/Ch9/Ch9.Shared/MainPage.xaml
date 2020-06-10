@@ -275,7 +275,8 @@
 			  Grid.ColumnSpan="2">
 
 			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
-				  Background="{StaticResource Color02Brush}">
+                  toolkit:VisibleBoundsPadding.PaddingMask="Top"
+                  Background="{StaticResource Color02Brush}">
 
 				<!-- Modal background -->
 				<Border x:Name="ModalBackground"
@@ -289,7 +290,7 @@
 										  VerticalAlignment="Top" />
 				</ScrollViewer>
 
-				<Grid toolkit:VisibleBoundsPadding.PaddingMask="Top">
+				<Grid>
 
 					<!-- Dismiss button -->
 					<Button x:Name="DismissButton"
