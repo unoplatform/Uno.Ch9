@@ -4,6 +4,9 @@ using Android.Content.PM;
 using Android.Views;
 using Xamarin.Essentials;
 using Uno.UI;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace Ch9.Droid
 {
@@ -22,6 +25,10 @@ namespace Ch9.Droid
 			base.OnCreate(bundle);
 
 			Platform.Init(this, bundle);
+
+#if !DEBUG
+			AppCenter.Start("45a416ab-c847-473c-a370-3ae35ab38ac5", typeof(Analytics), typeof(Crashes));
+#endif
 		}
 	}
 }

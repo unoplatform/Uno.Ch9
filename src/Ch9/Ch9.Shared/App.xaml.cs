@@ -22,6 +22,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Ch9.ViewModels;
 using Xamarin.Essentials;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace Ch9
 {
@@ -50,6 +53,10 @@ namespace Ch9
 
 			_startup = new Startup();
 
+#if !DEBUG && WINDOWS_UWP
+			AppCenter.Start("68d4e1c1-d72c-491e-9c16-5302d9521fb1", typeof(Analytics), typeof(Crashes));
+#endif
+
 			ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 
 			this.InitializeComponent();
@@ -75,6 +82,10 @@ namespace Ch9
 			// just ensure that the window is active
 			if (_rootFrame == null)
 			{
+#if !DEBUG && __IOS__
+				AppCenter.Start("c1c95ee1-7532-486b-a542-cab21f444edb", typeof(Analytics), typeof(Crashes));
+#endif
+
 				_startup.Initialize(ServiceProvider);
 
 				ConfigureViewSize();
@@ -263,8 +274,8 @@ namespace Ch9
 			factory
 				.WithFilter(new FilterLoggerSettings
 					{
-						{ "Uno", LogLevel.Warning },
-						{ "Windows", LogLevel.Warning },
+						{ "Uno", Microsoft.Extensions.Logging.LogLevel.Warning },
+						{ "Windows", Microsoft.Extensions.Logging.LogLevel.Warning },
 
 						// Debug JS interop
 						// { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },
@@ -301,9 +312,9 @@ namespace Ch9
 					}
 				)
 #if DEBUG
-				.AddConsole(LogLevel.Debug);
+				.AddConsole(Microsoft.Extensions.Logging.LogLevel.Debug);
 #else
-				.AddConsole(LogLevel.Information);
+				.AddConsole(Microsoft.Extensions.Logging.LogLevel.Information);
 #endif
 		}
 	}
