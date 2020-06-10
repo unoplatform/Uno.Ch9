@@ -182,4 +182,10 @@ Please try again</value>
 	<data name="ShowPage_Episodes.Text" xml:space="preserve">
     <value>Episodes</value>
   </data>
+	<data name="MainPage_FooterMessage1.Text" xml:space="preserve">
+    <value>That’s all the recent shows!</value>
+  </data>
+	<data name="MainPage_FooterMessage2.Text" xml:space="preserve">
+    <value>For more, check out the “Shows” tab.</value>
+  </data>
 </root>
