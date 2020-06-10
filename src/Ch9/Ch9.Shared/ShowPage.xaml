@@ -6,6 +6,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WindowsStateTriggers"
       xmlns:toolkit="using:Uno.UI.Toolkit"
+	  xmlns:lottie="using:Microsoft.Toolkit.Uwp.UI.Lottie"
+	  xmlns:winui="using:Microsoft.UI.Xaml.Controls"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -328,12 +330,12 @@
             <StackPanel VerticalAlignment="Center"
                         HorizontalAlignment="Center">
 
-                <!-- Image -->
-				<Image Source="ms-appx:///Assets/Ch9_logo.png"
-					   Stretch="Uniform"
-					   Height="120"
-					   HorizontalAlignment="Center"
-					   Margin="0,12" />
+				<!-- Loading Animation -->
+				<winui:AnimatedVisualPlayer x:Name="player"
+											AutoPlay="true"
+											Height="120">
+                    <lottie:LottieVisualSource UriSource="ms-appx:///Lottie/loading_animation_data.json" />
+                </winui:AnimatedVisualPlayer>
 
                 <!-- Loading Message -->
                 <TextBlock Text="Loading..."

@@ -65,6 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Uno.UI" Version="2.3.0-dev.90" />
+    <PackageReference Include="Uno.UI.Lottie" Version="2.3.0-dev.90" />
+    <PackageReference Include="Com.Airbnb.Android.Lottie" Version="2.5.2.1" />
     <PackageReference Include="Uno.UI.RemoteControl" Version="2.3.0-dev.90" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
@@ -85,6 +87,7 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\winjs-symbols.ttf" />
     <AndroidEnvironment Include="Environment.conf" />
+    <AndroidAsset Include="Assets\Lottie\loading_animation_data.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
