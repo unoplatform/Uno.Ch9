@@ -80,16 +80,11 @@
 
         <!-- Content -->
         <StackPanel>
-
-            <Grid toolkit:VisibleBoundsPadding.PaddingMask="Top">
-
-                <!-- Video Player -->
-                <MediaPlayerElement x:Name="MediaPlayer"
-									Source="{Binding VideoSource}"
-									IsFullWindow="{Binding Parent.IsVideoFullWindow, Mode=TwoWay}"
-									Height="180" />
-            </Grid>
-
+            <!-- Video Player -->
+            <MediaPlayerElement x:Name="MediaPlayer"
+                                Source="{Binding VideoSource}"
+                                IsFullWindow="{Binding Parent.IsVideoFullWindow, Mode=TwoWay}"
+                                Height="180" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"
