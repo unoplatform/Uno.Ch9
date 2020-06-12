@@ -11,8 +11,7 @@
 	  xmlns:winui="using:Microsoft.UI.Xaml.Controls"
 	  xmlns:android="http://Uno.UI/android"
 	  xmlns:triggers="using:WindowsStateTriggers"
-	  mc:Ignorable="d android"
-	  x:Name="This">
+	  mc:Ignorable="d android">
 
 	<Grid Background="{ThemeResource AppBackgroundBrush}">
 
@@ -168,8 +167,8 @@
 			<GridView.ItemTemplate>
 				<DataTemplate>
 
-					<Button Command="{Binding ElementName=This, Path=DataContext.DisplayShow}"
-							CommandParameter="{Binding}"
+					<Button Command="{Binding Parent.DisplayShow}"
+							CommandParameter="{Binding Show}"
 							Style="{StaticResource HiddenButtonStyle}">
 
 						<toolkit:ElevatedView Background="{StaticResource Color02Brush}"
@@ -184,14 +183,14 @@
 									<!-- Image -->
 									<Border Background="{StaticResource Color07Brush}"
 											CornerRadius="8,8,0,0">
-										<Image Source="{Binding Image}"
+										<Image Source="{Binding Show.Image}"
 											   Stretch="UniformToFill"
 											   Height="200"
 											   Width="355" />
 									</Border>
 
 									<!-- Label -->
-									<TextBlock Text="{Binding Name}"
+                                    <TextBlock Text="{Binding Show.Name}"
 											   Style="{StaticResource Typo02}"
 											   Margin="12,8,0,16" />
 								</StackPanel>
