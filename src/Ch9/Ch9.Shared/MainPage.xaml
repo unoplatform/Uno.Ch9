@@ -58,8 +58,14 @@
 						<Setter Target="EpisodePresenter.Column"
 								Value="1" />
 						<Setter Target="EpisodePresenter.ColumnSpan"
-								Value="1" />
-						<Setter Target="ModalBackground.Visibility"
+                                Value="1" />
+                        <Setter Target="EpisodePresenter.Row"
+                                Value="2" />
+                        <Setter Target="EpisodePresenter.RowSpan"
+                                Value="1" />
+                        <Setter Target="EpisodePresenter.IsHitTestVisible"
+                                Value="True" />
+                        <Setter Target="ModalBackground.Visibility"
 								Value="Collapsed" />
 						<Setter Target="DismissButton.Visibility"
 								Value="Collapsed" />
@@ -87,7 +93,11 @@
 								Value="1" />
 						<Setter Target="EpisodePresenter.ColumnSpan"
 								Value="1" />
-						<Setter Target="ModalBackground.Visibility"
+                        <Setter Target="EpisodePresenter.Row"
+                                Value="2" />
+                        <Setter Target="EpisodePresenter.RowSpan"
+                                Value="1" />
+                        <Setter Target="ModalBackground.Visibility"
 								Value="Collapsed" />
 						<Setter Target="DismissButton.Visibility"
 								Value="Collapsed" />
@@ -104,13 +114,11 @@
 					</VisualState.StateTriggers>
 
 					<VisualState.Setters>
-						<Setter Target="CommandBar.Visibility"
-								Value="Collapsed" />
-						<Setter Target="EpisodePresenter.Row"
-								Value="0" />
-						<Setter Target="EpisodePresenter.RowSpan"
-								Value="3" />
-					</VisualState.Setters>
+                        <Setter Target="CommandBar.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="EpisodePresenter.IsHitTestVisible"
+                                Value="True" />                        
+                    </VisualState.Setters>
 				</VisualState>
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
@@ -287,42 +295,41 @@
 		<!-- Selected Episode -->
 		<Grid x:Name="EpisodePresenter"
 			  DataContext="{Binding Show}"
-			  Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}"
-			  Grid.Row="2"
+              Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}"
+              IsHitTestVisible="False"
+			  Grid.Row="0"
+              Grid.RowSpan="3"
 			  Grid.Column="0"
 			  Grid.ColumnSpan="2">
 
-			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+            <Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
                   toolkit:VisibleBoundsPadding.PaddingMask="Top"
                   Background="{StaticResource Color02Brush}">
 
 				<!-- Modal background -->
 				<Border x:Name="ModalBackground"
-						Background="{StaticResource Color02Brush}" />
+                        Background="{StaticResource Color02Brush}" />
 
 				<!-- Presenter -->
 				<ScrollViewer>
 
 					<!-- Episode -->
 					<local:EpisodeContent DataContext="{Binding SelectedEpisode}"
-										  VerticalAlignment="Top" />
+										  VerticalAlignment="Top" />                    
 				</ScrollViewer>
 
-				<Grid>
-
-					<!-- Dismiss button -->
-					<Button x:Name="DismissButton"
-							Command="{Binding DismissSelectedEpisode}"
-							Style="{StaticResource VideoPlayerButtonStyle}"
-							HorizontalAlignment="Right"
-							VerticalAlignment="Top"
-							Margin="8">
-						<Path Style="{StaticResource CloseIconPath}"
-							  Data="M21.976 2.438L23.563 4.024 14.586 13 23.563 21.976 21.976 23.563 13 14.586 4.024 23.563 2.438 21.976 11.413 13 2.438 4.024 4.024 2.438 13 11.413z"
-							  VerticalAlignment="Center" />
-					</Button>
-				</Grid>
-			</Grid>
+				<!-- Dismiss button -->
+                <Button x:Name="DismissButton"
+                        Command="{Binding DismissSelectedEpisode}"
+                        Style="{StaticResource VideoPlayerButtonStyle}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="8">
+                    <Path Style="{StaticResource CloseIconPath}"
+                          Data="M21.976 2.438L23.563 4.024 14.586 13 23.563 21.976 21.976 23.563 13 14.586 4.024 23.563 2.438 21.976 11.413 13 2.438 4.024 4.024 2.438 13 11.413z"
+                          VerticalAlignment="Center" />
+                </Button>
+            </Grid>
 		</Grid>
 
 		<!-- Error -->
