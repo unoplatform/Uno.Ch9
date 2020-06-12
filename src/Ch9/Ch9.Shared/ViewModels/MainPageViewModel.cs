@@ -21,6 +21,7 @@ namespace Ch9
             Shows = App.ServiceProvider.GetInstance<IShowService>()
                 .GetShowFeeds()
                 .OrderBy(s => s.Name)
+                .Select(s => new ShowItemViewModel(this, s))
                 .ToArray();
 
             DisplayShow = new RelayCommand<SourceFeed>(showFeed  =>
@@ -33,7 +34,7 @@ namespace Ch9
 
         public ICommand DisplayShow { get; set; }
 
-        public IEnumerable<SourceFeed> Shows { get; set; }
+        public IEnumerable<ShowItemViewModel> Shows { get; set; }
 
         private ShowViewModel _show;
         public ShowViewModel Show
@@ -48,6 +49,19 @@ namespace Ch9
             {
                 Show = new ShowViewModel();
             }
+        }
+    }
+
+    public class ShowItemViewModel
+    {
+        public ViewModelBase Parent { get; set; }
+
+        public SourceFeed Show { get; set; }
+
+        public ShowItemViewModel(ViewModelBase parent, SourceFeed show)
+        {
+            Parent = parent;
+            Show = show;
         }
     }
 }
