@@ -1,17 +1,18 @@
 ﻿<Page x:Class="Ch9.MainPage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:win="using:Uno.UI.Toolkit"
+	  xmlns:win2="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:local="using:Ch9"
 	  xmlns:toolkit="using:Uno.UI.Toolkit"
 	  xmlns:ctoolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
-	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:lottie="using:Microsoft.Toolkit.Uwp.UI.Lottie"
 	  xmlns:winui="using:Microsoft.UI.Xaml.Controls"
 	  xmlns:android="http://Uno.UI/android"
+	  xmlns:xamarin="http://Uno.UI/xamarin"
 	  xmlns:triggers="using:WindowsStateTriggers"
-	  mc:Ignorable="d android">
+	  mc:Ignorable="android xamarin">
 
 	<Grid Background="{ThemeResource AppBackgroundBrush}">
 
@@ -58,14 +59,14 @@
 						<Setter Target="EpisodePresenter.Column"
 								Value="1" />
 						<Setter Target="EpisodePresenter.ColumnSpan"
-                                Value="1" />
-                        <Setter Target="EpisodePresenter.Row"
-                                Value="2" />
-                        <Setter Target="EpisodePresenter.RowSpan"
-                                Value="1" />
-                        <Setter Target="EpisodePresenter.IsHitTestVisible"
-                                Value="True" />
-                        <Setter Target="ModalBackground.Visibility"
+								Value="1" />
+						<Setter Target="EpisodePresenter.Row"
+								Value="2" />
+						<Setter Target="EpisodePresenter.RowSpan"
+								Value="1" />
+						<Setter Target="EpisodePresenter.IsHitTestVisible"
+								Value="True" />
+						<Setter Target="ModalBackground.Visibility"
 								Value="Collapsed" />
 						<Setter Target="DismissButton.Visibility"
 								Value="Collapsed" />
@@ -93,11 +94,11 @@
 								Value="1" />
 						<Setter Target="EpisodePresenter.ColumnSpan"
 								Value="1" />
-                        <Setter Target="EpisodePresenter.Row"
-                                Value="2" />
-                        <Setter Target="EpisodePresenter.RowSpan"
-                                Value="1" />
-                        <Setter Target="ModalBackground.Visibility"
+						<Setter Target="EpisodePresenter.Row"
+								Value="2" />
+						<Setter Target="EpisodePresenter.RowSpan"
+								Value="1" />
+						<Setter Target="ModalBackground.Visibility"
 								Value="Collapsed" />
 						<Setter Target="DismissButton.Visibility"
 								Value="Collapsed" />
@@ -114,11 +115,11 @@
 					</VisualState.StateTriggers>
 
 					<VisualState.Setters>
-                        <Setter Target="CommandBar.Visibility"
-                                Value="Collapsed" />
-                        <Setter Target="EpisodePresenter.IsHitTestVisible"
-                                Value="True" />                        
-                    </VisualState.Setters>
+						<Setter Target="CommandBar.Visibility"
+								Value="Collapsed" />
+						<Setter Target="EpisodePresenter.IsHitTestVisible"
+								Value="True" />
+					</VisualState.Setters>
 				</VisualState>
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
@@ -198,7 +199,7 @@
 									</Border>
 
 									<!-- Label -->
-                                    <TextBlock Text="{Binding Show.Name}"
+									<TextBlock Text="{Binding Show.Name}"
 											   Style="{StaticResource Typo02}"
 											   Margin="12,8,0,16" />
 								</StackPanel>
@@ -211,10 +212,10 @@
 
 		<!-- Episodes list -->
 		<Grid DataContext="{Binding Show}"
-              Opacity="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToOpaque}}"
-              IsHitTestVisible="{Binding IsChecked, ElementName=FreshContentBtn}"
-              Grid.Row="2"
-              Grid.Column="0">
+			  Opacity="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToOpaque}}"
+			  IsHitTestVisible="{Binding IsChecked, ElementName=FreshContentBtn}"
+			  Grid.Row="2"
+			  Grid.Column="0">
 
 			<!-- Content -->
 			<Grid Visibility="{Binding Show.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
@@ -229,18 +230,18 @@
 					<ListView.FooterTemplate>
 						<DataTemplate>
 							<StackPanel Margin="32,22,32,0">
-								
+
 								<!-- Foorter Message -->
-								<TextBlock Text="That’s all the recent shows!"
+								<TextBlock Text="That's all the recent shows!"
 										   x:Uid="MainPage_FooterMessage1"
 										   Style="{StaticResource Typo03}"
-										   TextAlignment="Center"/>
-								
+										   TextAlignment="Center" />
+
 								<!-- Foorter Message -->
 								<TextBlock Text="For more, check out the 'Shows' tab."
 										   x:Uid="MainPage_FooterMessage2"
 										   Style="{StaticResource Typo03}"
-										   TextAlignment="Center"/>
+										   TextAlignment="Center" />
 							</StackPanel>
 						</DataTemplate>
 					</ListView.FooterTemplate>
@@ -295,41 +296,41 @@
 		<!-- Selected Episode -->
 		<Grid x:Name="EpisodePresenter"
 			  DataContext="{Binding Show}"
-              Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}"
-              IsHitTestVisible="False"
+			  Visibility="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToVisible}}"
+			  IsHitTestVisible="False"
 			  Grid.Row="0"
-              Grid.RowSpan="3"
+			  Grid.RowSpan="3"
 			  Grid.Column="0"
 			  Grid.ColumnSpan="2">
 
-            <Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
-                  toolkit:VisibleBoundsPadding.PaddingMask="Top"
-                  Background="{StaticResource Color02Brush}">
+			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+				  toolkit:VisibleBoundsPadding.PaddingMask="Top"
+				  Background="{StaticResource Color02Brush}">
 
 				<!-- Modal background -->
 				<Border x:Name="ModalBackground"
-                        Background="{StaticResource Color02Brush}" />
+						Background="{StaticResource Color02Brush}" />
 
 				<!-- Presenter -->
 				<ScrollViewer>
 
 					<!-- Episode -->
 					<local:EpisodeContent DataContext="{Binding SelectedEpisode}"
-										  VerticalAlignment="Top" />                    
+										  VerticalAlignment="Top" />
 				</ScrollViewer>
 
 				<!-- Dismiss button -->
-                <Button x:Name="DismissButton"
-                        Command="{Binding DismissSelectedEpisode}"
-                        Style="{StaticResource VideoPlayerButtonStyle}"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        Margin="8">
-                    <Path Style="{StaticResource CloseIconPath}"
-                          Data="M21.976 2.438L23.563 4.024 14.586 13 23.563 21.976 21.976 23.563 13 14.586 4.024 23.563 2.438 21.976 11.413 13 2.438 4.024 4.024 2.438 13 11.413z"
-                          VerticalAlignment="Center" />
-                </Button>
-            </Grid>
+				<Button x:Name="DismissButton"
+						Command="{Binding DismissSelectedEpisode}"
+						Style="{StaticResource VideoPlayerButtonStyle}"
+						HorizontalAlignment="Right"
+						VerticalAlignment="Top"
+						Margin="8">
+					<Path Style="{StaticResource CloseIconPath}"
+						  Data="M21.976 2.438L23.563 4.024 14.586 13 23.563 21.976 21.976 23.563 13 14.586 4.024 23.563 2.438 21.976 11.413 13 2.438 4.024 4.024 2.438 13 11.413z"
+						  VerticalAlignment="Center" />
+				</Button>
+			</Grid>
 		</Grid>
 
 		<!-- Error -->
@@ -382,12 +383,19 @@
 						HorizontalAlignment="Center">
 
 				<!-- Loading Animation -->
-				<winui:AnimatedVisualPlayer x:Name="player"
-											AutoPlay="true"
-											Height="120">
-					<lottie:LottieVisualSource UriSource="ms-appx:///Lottie/loading_animation_data.json" />
-				</winui:AnimatedVisualPlayer>
+				<xamarin:Grid>
+					<winui:AnimatedVisualPlayer x:Name="player"
+												AutoPlay="true"
+												Height="120">
+						<lottie:LottieVisualSource UriSource="ms-appx:///Lottie/loading_animation_data.json" />
+					</winui:AnimatedVisualPlayer>
+				</xamarin:Grid>
 
+				<win2:Image Source="ms-appx:///Assets/NoVideoSelectedIllustration.png"
+						   Stretch="Uniform"
+						   Height="120"
+						   HorizontalAlignment="Center" />
+				
 				<!-- Loading Message -->
 				<TextBlock Text="Loading..."
 						   x:Uid="MainPage_Loading"
