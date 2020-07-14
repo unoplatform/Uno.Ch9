@@ -201,9 +201,9 @@
 		<Setter Property="Fill"
 				Value="{StaticResource MediaPlayerControlColorBrush}" />
 		<Setter Property="Width"
-				Value="24" />
+				Value="21" />
 		<Setter Property="Height"
-				Value="24" />
+				Value="21" />
 		
 		<Setter Property="Data"
 				Value="M5.4,4l9.6,9.6L13.6,15L4,5.4V15H2V4V2h2h11v2H5.4z M28,17v9.6L18.4,17L17,18.4l9.6,9.6H17v2h11h2v-2V17H28z" />
