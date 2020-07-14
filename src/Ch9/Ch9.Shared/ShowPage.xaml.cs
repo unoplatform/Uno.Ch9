@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -16,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 using Ch9.Domain;
 using Ch9.ViewModels;
 using Windows.UI.Core;
+using Xamarin.Essentials;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -66,6 +68,12 @@ namespace Ch9
 			if (ViewModel != null)
 			{
 				ViewModel.IsNarrowAndSelected = e.NewState?.Name == "NarrowAndSelected";
+
+				//Allow screen rotation for this particular state
+				if (ViewModel.IsNarrowAndSelected && DeviceInfo.Idiom == DeviceIdiom.Phone)
+				{
+					DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
+				}
 			}
         }
 	}

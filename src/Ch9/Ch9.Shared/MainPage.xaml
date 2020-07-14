@@ -40,7 +40,7 @@
 		</Grid.ColumnDefinitions>
 
 		<VisualStateManager.VisualStateGroups>
-			<VisualStateGroup>
+			<VisualStateGroup CurrentStateChanged="VisualStateGroupCurrentStateChanged">
 				<VisualState x:Name="WideAndSelected">
 					<VisualState.StateTriggers>
 						<triggers:CompositeStateTrigger Operator="And">

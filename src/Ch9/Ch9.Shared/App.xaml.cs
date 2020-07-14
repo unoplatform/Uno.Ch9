@@ -179,6 +179,42 @@ namespace Ch9
 			{
 				DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
 			}
+
+			void OnOrientationChanged(DisplayInformation displayInformation, object args)
+			{
+
+				if ((_rootFrame.Content as FrameworkElement)?.DataContext is ShowPageViewModel showPage)
+				{
+					ToVideoFullWindow(showPage.Show, displayInformation);
+				}
+				else if ((_rootFrame.Content as FrameworkElement)?.DataContext is MainPageViewModel mainPage)
+				{
+					ToVideoFullWindow(mainPage.Show, displayInformation);
+				}
+
+				
+			}
+
+			DisplayInformation.GetForCurrentView().OrientationChanged += OnOrientationChanged;
+		}
+
+		/// <summary>
+		/// Sets the video to fullWindow depending on screen orientation
+		/// </summary>
+		/// <param name="showVm">The show vm for which we will change its property IsVideoFullWindow</param>
+		/// <param name="displayInformation">The displayInformation for the current view</param>
+		private void ToVideoFullWindow(ShowViewModel showVm, DisplayInformation displayInformation)
+		{
+			if (displayInformation.CurrentOrientation == DisplayOrientations.Landscape || 
+			    displayInformation.CurrentOrientation == DisplayOrientations.LandscapeFlipped 
+			    && showVm != null)
+			{
+				showVm.IsVideoFullWindow = true;
+			}
+			else
+			{
+				showVm.IsVideoFullWindow = false;
+			}
 		}
 
 		/// <summary>
