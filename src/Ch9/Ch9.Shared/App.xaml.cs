@@ -31,268 +31,293 @@ using Uno.Logging;
 
 namespace Ch9
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
-    sealed partial class App : Application
-    {
-        public static App Instance { get; private set; }
+	/// <summary>
+	/// Provides application-specific behavior to supplement the default Application class.
+	/// </summary>
+	sealed partial class App : Application
+	{
+		public static App Instance { get; private set; }
 
-        private readonly Startup _startup;
-        private Frame _rootFrame;
+		private readonly Startup _startup;
+		private Frame _rootFrame;
 
-        public static SimpleIoc ServiceProvider { get; } = SimpleIoc.Default;
+		public static SimpleIoc ServiceProvider { get; } = SimpleIoc.Default;
 
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
-        public App()
-        {
-            Instance = this;
+		/// <summary>
+		/// Initializes the singleton application object.  This is the first line of authored code
+		/// executed, and as such is the logical equivalent of main() or WinMain().
+		/// </summary>
+		public App()
+		{
+			Instance = this;
 
-            // Uncomment this if you want to set a default theme.
-            // this.RequestedTheme = ApplicationTheme.Dark;
+			// Uncomment this if you want to set a default theme.
+			// this.RequestedTheme = ApplicationTheme.Dark;
 
-            _startup = new Startup();
+			_startup = new Startup();
 
 #if !DEBUG && WINDOWS_UWP
 			AppCenter.Start("68d4e1c1-d72c-491e-9c16-5302d9521fb1", typeof(Analytics), typeof(Crashes));
 #endif
 
-            ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
+			ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
-        }
+			this.InitializeComponent();
+			this.Suspending += OnSuspending;
+		}
 
-        /// <summary>
-        /// Invoked when the application is launched normally by the end user.  Other entry points
-        /// will be used such as when the application is launched to open a specific file.
-        /// </summary>
-        /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
-        {
+		/// <summary>
+		/// Invoked when the application is launched normally by the end user.  Other entry points
+		/// will be used such as when the application is launched to open a specific file.
+		/// </summary>
+		/// <param name="e">Details about the launch request and process.</param>
+		protected override void OnLaunched(LaunchActivatedEventArgs e)
+		{
 #if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                // this.DebugSettings.EnableFrameRateCounter = true;
-            }
+			if (System.Diagnostics.Debugger.IsAttached)
+			{
+				// this.DebugSettings.EnableFrameRateCounter = true;
+			}
 #endif
-            _rootFrame = Windows.UI.Xaml.Window.Current.Content as Frame;
+			_rootFrame = Windows.UI.Xaml.Window.Current.Content as Frame;
 
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
-            if (_rootFrame == null)
-            {
+			// Do not repeat app initialization when the Window already has content,
+			// just ensure that the window is active
+			if (_rootFrame == null)
+			{
 #if !DEBUG && __IOS__
 				AppCenter.Start("c1c95ee1-7532-486b-a542-cab21f444edb", typeof(Analytics), typeof(Crashes));
 #endif
 
-                _startup.Initialize(ServiceProvider);
+				_startup.Initialize(ServiceProvider);
 
-                ConfigureViewSize();
-                ConfigureStatusBar();
+				ConfigureViewSize();
+				ConfigureStatusBar();
 
-                // Create a Frame to act as the navigation context and navigate to the first page
-                _rootFrame = new Frame();
+				// Create a Frame to act as the navigation context and navigate to the first page
+				_rootFrame = new Frame();
 
-                _rootFrame.NavigationFailed += OnNavigationFailed;
+				_rootFrame.NavigationFailed += OnNavigationFailed;
 
-                // Place the frame in the current Window
-                Windows.UI.Xaml.Window.Current.Content = _rootFrame;
-            }
+				// Place the frame in the current Window
+				Windows.UI.Xaml.Window.Current.Content = _rootFrame;
+			}
 
-            if (e.PrelaunchActivated == false)
-            {
-                if (_rootFrame.Content == null)
-                {
-                    // When the navigation stack isn't restored navigate to the first page,
-                    // configuring the new page by passing required information as a navigation
-                    // parameter
-                    ConfigureSystemBackVisibility();
-                    ConfigureBackRequests();
-                    ConfigureOrientation();
+			if (e.PrelaunchActivated == false)
+			{
+				if (_rootFrame.Content == null)
+				{
+					// When the navigation stack isn't restored navigate to the first page,
+					// configuring the new page by passing required information as a navigation
+					// parameter
+					ConfigureSystemBackVisibility();
+					ConfigureBackRequests();
+					ConfigureOrientation();
+					ConfigureKeyHookUwp();
 
-                    ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(MainPage));
-                }
+					ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(MainPage));
+				}
 
-                // Ensure the current window is active
-                Windows.UI.Xaml.Window.Current.Activate();
-            }
-        }
+				// Ensure the current window is active
+				Windows.UI.Xaml.Window.Current.Activate();
+			}
+		}
 
-        /// <summary>
-        /// Invoked when Navigation to a certain page fails
-        /// </summary>
-        /// <param name="sender">The Frame which failed navigation</param>
-        /// <param name="e">Details about the navigation failure</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
-        {
-            throw new Exception($"Failed to load {e.SourcePageType.FullName}: {e.Exception}");
-        }
+		/// <summary>
+		/// Invoked when Navigation to a certain page fails
+		/// </summary>
+		/// <param name="sender">The Frame which failed navigation</param>
+		/// <param name="e">Details about the navigation failure</param>
+		void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+		{
+			throw new Exception($"Failed to load {e.SourcePageType.FullName}: {e.Exception}");
+		}
 
-        /// <summary>
-        /// Invoked when application execution is being suspended.  Application state is saved
-        /// without knowing whether the application will be terminated or resumed with the contents
-        /// of memory still intact.
-        /// </summary>
-        /// <param name="sender">The source of the suspend request.</param>
-        /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
-        {
-            var deferral = e.SuspendingOperation.GetDeferral();
+		/// <summary>
+		/// Invoked when application execution is being suspended.  Application state is saved
+		/// without knowing whether the application will be terminated or resumed with the contents
+		/// of memory still intact.
+		/// </summary>
+		/// <param name="sender">The source of the suspend request.</param>
+		/// <param name="e">Details about the suspend request.</param>
+		private void OnSuspending(object sender, SuspendingEventArgs e)
+		{
+			var deferral = e.SuspendingOperation.GetDeferral();
 
-            deferral.Complete();
-        }
+			deferral.Complete();
+		}
 
-        private void ConfigureViewSize()
-        {
+		private void ConfigureViewSize()
+		{
 #if WINDOWS_UWP
-			ApplicationView.PreferredLaunchViewSize = new Size(1024, 768);
-			ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-			ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 480));
+            ApplicationView.PreferredLaunchViewSize = new Size(1024, 768);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 480));
 #endif
-        }
+		}
 
-        private void ConfigureStatusBar()
-        {
-            var resources = Windows.UI.Xaml.Application.Current.Resources;
-
+		private void ConfigureKeyHookUwp()
+		{
 #if WINDOWS_UWP
-			var hasStatusBar = false;
-#else
-            var hasStatusBar = true;
+            Window.Current.CoreWindow.CharacterReceived += CoreWindowCharacterReceived;
 
-            StatusBar.GetForCurrentView().ForegroundColor = this.RequestedTheme == ApplicationTheme.Dark
-                ? Windows.UI.Colors.White
-                : Windows.UI.Colors.Black;
-#endif
-
-            var statusBarHeight = hasStatusBar ? Windows.UI.ViewManagement.StatusBar.GetForCurrentView().OccludedRect.Height : 0;
-
-            resources.Add("StatusBarDouble", (double)statusBarHeight);
-            resources.Add("StatusBarThickness", new Thickness(0, statusBarHeight, 0, 0));
-            resources.Add("StatusBarGridLength", new GridLength(statusBarHeight, GridUnitType.Pixel));
-        }
-
-        private void ConfigureOrientation()
-        {
-            if (DeviceInfo.Idiom == DeviceIdiom.Phone)
+            void CoreWindowCharacterReceived(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.CharacterReceivedEventArgs args)
             {
-                DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
-            }
-
-            var simpleOrientationSensor = SimpleOrientationSensor.GetDefault();
-
-            if (simpleOrientationSensor != null)
-            {
-                simpleOrientationSensor.OrientationChanged += OrientationChanged;
-            }
-
-            void OrientationChanged(SimpleOrientationSensor sender, SimpleOrientationSensorOrientationChangedEventArgs args)
-            {
-                try
+                if (args.KeyCode == 27) //Escape
                 {
-                    var isLandscape = args.Orientation.IsOneOf(
-                        SimpleOrientation.Rotated270DegreesCounterclockwise,
-                        SimpleOrientation.Rotated90DegreesCounterclockwise
-                    );
-
                     if ((_rootFrame.Content as FrameworkElement)?.DataContext is ShowPageViewModel showPage &&
-                        showPage.Show.SelectedEpisode != null)
+                        showPage.Show.IsVideoFullWindow)
                     {
-                        ToVideoFullWindow(showPage.Show, isLandscape);
+                        showPage.Show.IsVideoFullWindow = false;
                     }
                     else if ((_rootFrame.Content as FrameworkElement)?.DataContext is MainPageViewModel mainPage &&
-                             mainPage.Show.SelectedEpisode != null)
+                             mainPage.Show.IsVideoFullWindow)
                     {
-                        ToVideoFullWindow(mainPage.Show, isLandscape);
+                        mainPage.Show.IsVideoFullWindow = false;
                     }
                 }
-                catch (Exception ex)
-                {
-                    this.Log().ErrorIfEnabled(() => $"Error in OrientationChanged subscription: {ex.ToString()}");
-                }
             }
-        }
+#endif
+		}
 
-        /// <summary>
-        /// Sets the video to fullWindow depending on screen orientation
-        /// </summary>
-        /// <param name="showVm">The show vm for which we will change its property IsVideoFullWindow</param>
-        /// <param name="isLandscape">Determine if the device is oriented in landscape</param>
-        private void ToVideoFullWindow(ShowViewModel showVm, bool isLandscape)
-        {
-            if (showVm == null)
-                return;
+		private void ConfigureStatusBar()
+		{
+			var resources = Windows.UI.Xaml.Application.Current.Resources;
 
-            //Set display orientation to none, thus screen can handle LandscapeFlipped
-            DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
-            showVm.IsVideoFullWindow = isLandscape;
-        }
+#if WINDOWS_UWP
+            var hasStatusBar = false;
+#else
+			var hasStatusBar = true;
 
-        /// <summary>
-        /// Sets the visibility of the system UI's back button based on the navigation service.
-        /// </summary>
-        private void ConfigureSystemBackVisibility()
-        {
-            var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
+			StatusBar.GetForCurrentView().ForegroundColor = this.RequestedTheme == ApplicationTheme.Dark
+				? Windows.UI.Colors.White
+				: Windows.UI.Colors.Black;
+#endif
 
-            void OnNavigated(IStackNavigationService sender, OnNavigatedEventArgs args)
-            {
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = sender.CanGoBack
-                    ? AppViewBackButtonVisibility.Visible
-                    : AppViewBackButtonVisibility.Collapsed;
-            }
+			var statusBarHeight = hasStatusBar ? Windows.UI.ViewManagement.StatusBar.GetForCurrentView().OccludedRect.Height : 0;
 
-            navigationService.OnNavigated += OnNavigated;
-        }
+			resources.Add("StatusBarDouble", (double)statusBarHeight);
+			resources.Add("StatusBarThickness", new Thickness(0, statusBarHeight, 0, 0));
+			resources.Add("StatusBarGridLength", new GridLength(statusBarHeight, GridUnitType.Pixel));
+		}
 
-        /// <summary>
-        /// Hooks the system back button with the navigation service.
-        /// </summary>
-        private void ConfigureBackRequests()
-        {
-            void OnBackRequested(object sender, BackRequestedEventArgs e)
-            {
-                // ShowPage hook back request
-                if ((_rootFrame.Content as FrameworkElement)?.DataContext is ShowPageViewModel showPage &&
-                    showPage.Show.SelectedEpisode != null && showPage.IsNarrowAndSelected)
-                {
-                    showPage.Show.DismissSelectedEpisode.Execute(null);
-                    e.Handled = true;
-                    //don't navigate back as NarrowAndSelected
-                    return;
-                }
+		private void ConfigureOrientation()
+		{
+			if (DeviceInfo.Idiom == DeviceIdiom.Phone)
+			{
+				DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
+			}
 
-                var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
+			var simpleOrientationSensor = SimpleOrientationSensor.GetDefault();
 
-                if (navigationService.CanGoBack)
-                {
-                    e.Handled = true;
+			if (simpleOrientationSensor != null)
+			{
+				simpleOrientationSensor.OrientationChanged += OrientationChanged;
+			}
 
-                    navigationService.GoBack();
+			void OrientationChanged(SimpleOrientationSensor sender, SimpleOrientationSensorOrientationChangedEventArgs args)
+			{
+				try
+				{
+					var isLandscape = args.Orientation.IsOneOf(
+						SimpleOrientation.Rotated270DegreesCounterclockwise,
+						SimpleOrientation.Rotated90DegreesCounterclockwise
+					);
 
-                    return;
-                }
+					if ((_rootFrame.Content as FrameworkElement)?.DataContext is ShowPageViewModel showPage &&
+						showPage.Show.SelectedEpisode != null)
+					{
+						ToVideoFullWindow(showPage.Show, isLandscape);
+					}
+					else if ((_rootFrame.Content as FrameworkElement)?.DataContext is MainPageViewModel mainPage &&
+							 mainPage.Show.SelectedEpisode != null)
+					{
+						ToVideoFullWindow(mainPage.Show, isLandscape);
+					}
+				}
+				catch (Exception ex)
+				{
+					this.Log().ErrorIfEnabled(() => $"Error in OrientationChanged subscription: {ex.ToString()}");
+				}
+			}
+		}
 
-                // MainPage hook back request
-                if ((_rootFrame.Content as FrameworkElement)?.DataContext is MainPageViewModel mainPage &&
-                    mainPage.Show.SelectedEpisode != null)
-                {
-                    mainPage.Show.DismissSelectedEpisode.Execute(null);
-                    e.Handled = true;
-                }
-            }
+		/// <summary>
+		/// Sets the video to fullWindow depending on screen orientation
+		/// </summary>
+		/// <param name="showVm">The show vm for which we will change its property IsVideoFullWindow</param>
+		/// <param name="isLandscape">Determine if the device is oriented in landscape</param>
+		private void ToVideoFullWindow(ShowViewModel showVm, bool isLandscape)
+		{
+			if (showVm == null)
+				return;
 
-            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
-        }
+			//Set display orientation to none, thus screen can handle LandscapeFlipped
+			DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
+			showVm.IsVideoFullWindow = isLandscape;
+		}
 
-        private static bool _isActivityBackgroundCleared;
-        private static DisplayOrientations _previousOrientation;
-        public static void OnFullscreenChanged(bool isFullscreen)
-        {
+		/// <summary>
+		/// Sets the visibility of the system UI's back button based on the navigation service.
+		/// </summary>
+		private void ConfigureSystemBackVisibility()
+		{
+			var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
+
+			void OnNavigated(IStackNavigationService sender, OnNavigatedEventArgs args)
+			{
+				SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = sender.CanGoBack
+					? AppViewBackButtonVisibility.Visible
+					: AppViewBackButtonVisibility.Collapsed;
+			}
+
+			navigationService.OnNavigated += OnNavigated;
+		}
+
+		/// <summary>
+		/// Hooks the system back button with the navigation service.
+		/// </summary>
+		private void ConfigureBackRequests()
+		{
+			void OnBackRequested(object sender, BackRequestedEventArgs e)
+			{
+				// ShowPage hook back request
+				if ((_rootFrame.Content as FrameworkElement)?.DataContext is ShowPageViewModel showPage &&
+					showPage.Show.SelectedEpisode != null && showPage.IsNarrowAndSelected)
+				{
+					showPage.Show.DismissSelectedEpisode.Execute(null);
+					e.Handled = true;
+					//don't navigate back as NarrowAndSelected
+					return;
+				}
+
+				var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
+
+				if (navigationService.CanGoBack)
+				{
+					e.Handled = true;
+
+					navigationService.GoBack();
+
+					return;
+				}
+
+				// MainPage hook back request
+				if ((_rootFrame.Content as FrameworkElement)?.DataContext is MainPageViewModel mainPage &&
+					mainPage.Show.SelectedEpisode != null)
+				{
+					mainPage.Show.DismissSelectedEpisode.Execute(null);
+					e.Handled = true;
+				}
+			}
+
+			SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+		}
+
+		private static bool _isActivityBackgroundCleared;
+		private static DisplayOrientations _previousOrientation;
+		public static void OnFullscreenChanged(bool isFullscreen)
+		{
 #if __ANDROID__
 			// This will reset the window background from the splashscreen to a black background.
 			if (isFullscreen && !_isActivityBackgroundCleared)
@@ -302,32 +327,32 @@ namespace Ch9
 			}
 #endif
 
-            if (DeviceInfo.Idiom == DeviceIdiom.Phone)
-            {
-                if (isFullscreen)
-                {
-                    if (DisplayInformation.AutoRotationPreferences == DisplayOrientations.None) return;
+			if (DeviceInfo.Idiom == DeviceIdiom.Phone)
+			{
+				if (isFullscreen)
+				{
+					if (DisplayInformation.AutoRotationPreferences == DisplayOrientations.None) return;
 
-                    DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
-                }
-                else
-                {
-                    DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
-                }
-            }
-        }
+					DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
+				}
+				else
+				{
+					DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
+				}
+			}
+		}
 
-        /// <summary>
-        /// Configures global logging
-        /// </summary>
-        /// <param name="factory"></param>
-        static void ConfigureFilters(ILoggerFactory factory)
-        {
-            factory
-                .WithFilter(new FilterLoggerSettings
-                    {
-                        { "Uno", Microsoft.Extensions.Logging.LogLevel.Warning },
-                        { "Windows", Microsoft.Extensions.Logging.LogLevel.Warning },
+		/// <summary>
+		/// Configures global logging
+		/// </summary>
+		/// <param name="factory"></param>
+		static void ConfigureFilters(ILoggerFactory factory)
+		{
+			factory
+				.WithFilter(new FilterLoggerSettings
+					{
+						{ "Uno", Microsoft.Extensions.Logging.LogLevel.Warning },
+						{ "Windows", Microsoft.Extensions.Logging.LogLevel.Warning },
 
 						// Debug JS interop
 						// { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },
@@ -362,12 +387,12 @@ namespace Ch9
 						// { "Windows.UI.Xaml.Controls.BufferViewCache", LogLevel.Debug }, //Android
 						// { "Windows.UI.Xaml.Controls.VirtualizingPanelGenerator", LogLevel.Debug }, //WASM
 					}
-                )
+				)
 #if DEBUG
-                .AddConsole(Microsoft.Extensions.Logging.LogLevel.Debug);
+				.AddConsole(Microsoft.Extensions.Logging.LogLevel.Debug);
 #else
 				.AddConsole(Microsoft.Extensions.Logging.LogLevel.Information);
 #endif
-        }
-    }
+		}
+	}
 }
