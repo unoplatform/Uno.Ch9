@@ -66,7 +66,7 @@ namespace Ch9
 			if (ViewModel != null)
 			{
 				ViewModel.IsNarrowAndSelected = e.NewState?.Name == "NarrowAndSelected";
-			}
+            }
         }
 	}
 }
