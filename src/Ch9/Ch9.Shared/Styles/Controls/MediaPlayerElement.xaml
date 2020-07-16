@@ -383,27 +383,7 @@
 							<!-- FullWindow states -->
 							<VisualStateGroup x:Name="FullWindowStates">
 								<VisualState x:Name="NonFullWindowState" />
-								<VisualState x:Name="FullWindowState">
-									<Storyboard>
-										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullScreenPanel"
-																	   Storyboard.TargetProperty="VerticalAlignment">
-											<DiscreteObjectKeyFrame KeyTime="0"
-																	Value="Top" />
-										</ObjectAnimationUsingKeyFrames>
-
-										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullWindowSymbol"
-																	   Storyboard.TargetProperty="Style">
-											<DiscreteObjectKeyFrame KeyTime="0"
-																	Value="{StaticResource BackToScreenIconPath}" />
-										</ObjectAnimationUsingKeyFrames>
-										
-										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="FullWindowSymbol"
-																	   Storyboard.TargetProperty="Data">
-											<DiscreteObjectKeyFrame KeyTime="0"
-																	Value="M18,16.6l7.5,7.5l-1.8,1.8l-7.5-7.5l-7.5,7.5l-1.8-1.8l7.5-7.5L6.8,9l1.8-1.8l7.7,7.7l7.7-7.7L25.6,9L18,16.6z" />
-										</ObjectAnimationUsingKeyFrames>
-									</Storyboard>
-								</VisualState>
+								<VisualState x:Name="FullWindowState" />
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 

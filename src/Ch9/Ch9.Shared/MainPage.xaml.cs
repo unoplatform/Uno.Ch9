@@ -8,7 +8,6 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.Graphics.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -16,7 +15,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Xamarin.Essentials;
 
 namespace Ch9
 {
@@ -54,14 +52,5 @@ namespace Ch9
 				listView.SelectedIndex = 0;
 			}
 		}
-
-		private void VisualStateGroupCurrentStateChanged(object sender, VisualStateChangedEventArgs e)
-		{
-			//Allow screen rotation for this particular state
-			if (e.NewState?.Name == "NarrowAndSelected" && DeviceInfo.Idiom == DeviceIdiom.Phone)
-			{
-				DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
-			}
-		}
-	}
+    }
 }
