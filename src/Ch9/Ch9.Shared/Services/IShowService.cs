@@ -9,15 +9,21 @@ namespace Ch9
 	public interface IShowService
 	{
 		/// <summary>
-		/// Gets a collection of shows.
+		/// Gets a collection of hardcoded show sourcefeeds.
 		/// </summary>
-		/// <returns>Collection of shows.</returns>
-		IEnumerable<SourceFeed> GetShowFeeds();
+		/// <returns>Collection of sourceFeed</returns>
+		IEnumerable<SourceFeed> GetFallbackShowFeeds();
 
 		/// <summary>
 		/// Gets a show.
 		/// </summary>
 		/// <returns>Show</returns>
 		Task<Show> GetShow(SourceFeed sourceFeed = null);
-    }
+
+		/// <summary>
+		/// Gets a collection of show sourcefeeds.
+		/// </summary>
+		/// <returns>Collection of sourceFeed</returns>
+		Task<IEnumerable<SourceFeed>> GetShowFeeds();
+	}
 }

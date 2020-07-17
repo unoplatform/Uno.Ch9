@@ -190,7 +190,7 @@
 									<!-- Image -->
 									<Border Background="{StaticResource Color07Brush}"
 											CornerRadius="8,8,0,0">
-										<Image Source="{Binding Show.Image}"
+										<Image Source="{Binding Show.ThumbnailUrl}"
 											   Stretch="UniformToFill"
 											   Height="200"
 											   Width="355" />
