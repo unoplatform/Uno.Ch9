@@ -383,12 +383,40 @@
 							<!-- FullWindow states -->
 							<VisualStateGroup x:Name="FullWindowStates">
 								<VisualState x:Name="NonFullWindowState" />
-								<VisualState x:Name="FullWindowState" />
+								<VisualState x:Name="FullWindowState">
+									<win:Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+																	   Storyboard.TargetName="FullScreenHelperText">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="Visible" />
+										</ObjectAnimationUsingKeyFrames>
+										
+										<DoubleAnimation Storyboard.TargetProperty="Opacity"
+														 Storyboard.TargetName="FullScreenHelperText"
+														 From="1"
+														 To="0"
+														 BeginTime="0:0:2.0"
+														 Duration="0:0:0.5" />
+									</win:Storyboard>
+								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
 						<Grid x:Name="PlayPausePanel"
 							  toolkit:VisibleBoundsPadding.PaddingMask="Bottom">
+
+							<win:Grid x:Name="FullScreenHelperText"
+								  Background="{StaticResource Color01_75_OpacityBrush}"
+								  HorizontalAlignment="Center"
+								  Visibility="Collapsed"
+				                  VerticalAlignment="Top"
+								  Margin="0,20,0,0"
+								  Padding="10">
+								
+								<TextBlock Foreground="White" 
+										   FontWeight="Bold"
+										   Text="Press ESC to exit full screen"/>
+							</win:Grid>
 
 							<!-- Play / Pause Button -->
 							<Button x:Name="PlayPauseButton"
