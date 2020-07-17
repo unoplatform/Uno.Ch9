@@ -2,18 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Ch9.Client;
+using System.Net.Http;
 
 namespace Ch9
 {
 	public class Startup
 	{
-		public void Initialize(ISimpleIoc serviceProvider)
+		public void Initialize(SimpleIoc serviceProvider)
 		{
 			InitializeNavigationService(serviceProvider);
-            InitializeBusinessServices(serviceProvider);
+			InitializeHttpClient(serviceProvider);
+			InitializeBusinessServices(serviceProvider);
 		}
 
-		private void InitializeNavigationService(ISimpleIoc serviceProvider)
+		private void InitializeNavigationService(SimpleIoc serviceProvider)
 		{
 			serviceProvider.Register<IStackNavigationService>(() =>
 			{
@@ -27,9 +30,17 @@ namespace Ch9
 			});
 		}
 
-		private void InitializeBusinessServices(ISimpleIoc serviceProvider)
+		private void InitializeBusinessServices(SimpleIoc serviceProvider)
 		{
-            serviceProvider.Register<IShowService>(() => new ShowService());
+			serviceProvider.Register<IShowService>(() => new ShowService());
+		}
+
+		private void InitializeHttpClient(SimpleIoc serviceProvider)
+		{
+			serviceProvider.Register(() => new HttpClient(new HttpClientHandler(), false)
+			{
+				BaseAddress = new Uri(ClientConstants.BaseApiUrl)
+			});
 		}
 	}
 }
