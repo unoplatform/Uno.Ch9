@@ -32,7 +32,7 @@ namespace Ch9
 
 		private void InitializeBusinessServices(SimpleIoc serviceProvider)
 		{
-			serviceProvider.Register<IShowService>(() => new ShowService());
+			serviceProvider.Register<IShowService>(() => new ShowService(serviceProvider.GetInstance<HttpClient>()));
 		}
 
 		private void InitializeHttpClient(SimpleIoc serviceProvider)
