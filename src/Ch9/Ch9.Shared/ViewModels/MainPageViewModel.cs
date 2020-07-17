@@ -5,63 +5,84 @@ using GalaSoft.MvvmLight.Command;
 using System.Linq;
 using System.Windows.Input;
 using Ch9.Domain;
+using System.Threading.Tasks;
 
 namespace Ch9
 {
-    [Windows.UI.Xaml.Data.Bindable]
-    public class MainPageViewModel : ViewModelBase
-    {
-        public MainPageViewModel()
-        {
-            ToAboutPage = new RelayCommand(() =>
-            {
-                App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(AboutPage));
-            });
+	[Windows.UI.Xaml.Data.Bindable]
+	public class MainPageViewModel : ViewModelBase
+	{
+		public MainPageViewModel()
+		{
+			ToAboutPage = new RelayCommand(() =>
+			{
+				App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(AboutPage));
+			});
 
-            Shows = App.ServiceProvider.GetInstance<IShowService>()
-                .GetShowFeeds()
-                .OrderBy(s => s.Name)
-                .Select(s => new ShowItemViewModel(this, s))
-                .ToArray();
+			DisplayShow = new RelayCommand<SourceFeed>(showFeed =>
+			{
+				App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(ShowPage), showFeed);
+			});
 
-            DisplayShow = new RelayCommand<SourceFeed>(showFeed  =>
-            {
-                App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(ShowPage), showFeed);
-            });
-        }
+			LoadShowFeeds();
+		}
 
-        public ICommand ToAboutPage { get; }
+		public ICommand ToAboutPage { get; }
 
-        public ICommand DisplayShow { get; set; }
+		public ICommand DisplayShow { get; set; }
 
-        public IEnumerable<ShowItemViewModel> Shows { get; set; }
+		public IEnumerable<ShowItemViewModel> _shows;
+		public IEnumerable<ShowItemViewModel> Shows
+		{
+			get => _shows;
+			set => Set(() => Shows, ref _shows, value);
+		}
 
-        private ShowViewModel _show;
-        public ShowViewModel Show
-        {
-            get => _show;
-            set => Set(() => Show, ref _show, value);
-        }
+		private ShowViewModel _show;
+		public ShowViewModel Show
+		{
+			get => _show;
+			set => Set(() => Show, ref _show, value);
+		}
 
-        public void OnNavigatedTo()
-        {
-            if (Show == null)
-            {
-                Show = new ShowViewModel();
-            }
-        }
-    }
+		public void OnNavigatedTo()
+		{
+			if (Show == null)
+			{
+				Show = new ShowViewModel();
+			}
+		}
 
-    public class ShowItemViewModel
-    {
-        public ViewModelBase Parent { get; set; }
+		private async void LoadShowFeeds()
+		{
+			async Task<IEnumerable<SourceFeed>> GetShowFeeds()
+			{
+				var showFeeds = await Task.Run(async () =>
+				{
+					return await App.ServiceProvider.GetInstance<IShowService>().GetShowFeeds();
+				});
 
-        public SourceFeed Show { get; set; }
+				return showFeeds;
+			}
 
-        public ShowItemViewModel(ViewModelBase parent, SourceFeed show)
-        {
-            Parent = parent;
-            Show = show;
-        }
-    }
+			var result = await GetShowFeeds();
+
+			Shows = result.OrderBy(s => s.Name)
+						  .Select(s => new ShowItemViewModel(this, s))
+						  .ToArray();
+		}
+	}
+
+	public class ShowItemViewModel
+	{
+		public ViewModelBase Parent { get; set; }
+
+		public SourceFeed Show { get; set; }
+
+		public ShowItemViewModel(ViewModelBase parent, SourceFeed show)
+		{
+			Parent = parent;
+			Show = show;
+		}
+	}
 }
