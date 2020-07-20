@@ -24,15 +24,19 @@ namespace Ch9
 				App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(ShowPage), showFeed);
 			});
 
+			ReloadShowsList = new RelayCommand(LoadShowFeeds);
+
 			LoadShowFeeds();
 		}
 
 		public ICommand ToAboutPage { get; }
 
+		public ICommand ReloadShowsList { get; }
+
 		public ICommand DisplayShow { get; set; }
 
-		public IEnumerable<ShowItemViewModel> _shows;
-		public IEnumerable<ShowItemViewModel> Shows
+		public TaskNotifier<IEnumerable<ShowItemViewModel>> _shows;
+		public TaskNotifier<IEnumerable<ShowItemViewModel>> Shows
 		{
 			get => _shows;
 			set => Set(() => Shows, ref _shows, value);
@@ -53,23 +57,22 @@ namespace Ch9
 			}
 		}
 
-		private async void LoadShowFeeds()
+		private void LoadShowFeeds()
 		{
-			async Task<IEnumerable<SourceFeed>> GetShowFeeds()
+			async Task<IEnumerable<ShowItemViewModel>> GetShowFeeds()
 			{
 				var showFeeds = await Task.Run(async () =>
 				{
 					return await App.ServiceProvider.GetInstance<IShowService>().GetShowFeeds();
 				});
 
-				return showFeeds;
+				return showFeeds.OrderBy(s => s.Name)
+					.Select(s => new ShowItemViewModel(this, s));
 			}
 
-			var result = await GetShowFeeds();
+			var result = new TaskNotifier<IEnumerable<ShowItemViewModel>>(GetShowFeeds());
 
-			Shows = result.OrderBy(s => s.Name)
-						  .Select(s => new ShowItemViewModel(this, s))
-						  .ToArray();
+			Shows = result;
 		}
 	}
 

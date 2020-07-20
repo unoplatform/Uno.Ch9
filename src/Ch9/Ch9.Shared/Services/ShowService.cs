@@ -30,7 +30,7 @@ namespace Ch9
 		}
 
         /// <inheritdoc/>
-		public IEnumerable<SourceFeed> GetFallbackShowFeeds()
+		private IEnumerable<SourceFeed> GetFallbackShowFeeds()
         {
             return new List<SourceFeed>
             {
@@ -56,7 +56,15 @@ namespace Ch9
 
         public async Task<IEnumerable<SourceFeed>> GetShowFeeds()
         {
-	        return await _showFeedEndpoint.GetFeed();
+			//If any exception occurs, fallback to the list of hardcoded shows
+	        try
+	        {
+		        return await _showFeedEndpoint.GetFeeds();
+	        }
+	        catch (Exception e)
+	        {
+		        return GetFallbackShowFeeds();
+	        }
         } 
 
         /// <inheritdoc/>
