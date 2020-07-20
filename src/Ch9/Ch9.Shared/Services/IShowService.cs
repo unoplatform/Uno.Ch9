@@ -9,12 +9,6 @@ namespace Ch9
 	public interface IShowService
 	{
 		/// <summary>
-		/// Gets a collection of hardcoded show sourcefeeds.
-		/// </summary>
-		/// <returns>Collection of sourceFeed</returns>
-		IEnumerable<SourceFeed> GetFallbackShowFeeds();
-
-		/// <summary>
 		/// Gets a show.
 		/// </summary>
 		/// <returns>Show</returns>
