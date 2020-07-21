@@ -275,9 +275,17 @@ namespace Ch9
 				if ((_rootFrame.Content as FrameworkElement)?.DataContext is ShowPageViewModel showPage &&
 					showPage.Show.SelectedEpisode != null && showPage.IsNarrowAndSelected)
 				{
-					showPage.Show.DismissSelectedEpisode.Execute(null);
 					e.Handled = true;
-					//don't navigate back as NarrowAndSelected
+
+					//Dismiss episode only if we are not in full screen
+					if (!showPage.Show.IsVideoFullWindow)
+					{
+						showPage.Show.DismissSelectedEpisode.Execute(null);
+						//don't navigate back as NarrowAndSelected
+						return;
+					}
+
+					showPage.Show.IsVideoFullWindow = false;
 					return;
 				}
 
@@ -296,7 +304,15 @@ namespace Ch9
 				if ((_rootFrame.Content as FrameworkElement)?.DataContext is MainPageViewModel mainPage &&
 					mainPage.Show.SelectedEpisode != null)
 				{
-					mainPage.Show.DismissSelectedEpisode.Execute(null);
+					if (!mainPage.Show.IsVideoFullWindow)
+					{
+						mainPage.Show.DismissSelectedEpisode.Execute(null);
+					}
+					else
+					{
+						mainPage.Show.IsVideoFullWindow = false;
+					}
+
 					e.Handled = true;
 				}
 			}
