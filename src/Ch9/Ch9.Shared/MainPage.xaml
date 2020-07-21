@@ -168,7 +168,7 @@
 				  Opacity="{Binding IsChecked, ElementName=ShowContentBtn, Converter={StaticResource TrueToOpaque}}"
 				  Style="{StaticResource DefaultGridViewStyle}"
 				  HorizontalAlignment="Center"
-				  
+				  Visibility="{Binding Shows.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}"
 				  Grid.Row="2"
 				  Grid.Column="0"
 				  Grid.ColumnSpan="2">

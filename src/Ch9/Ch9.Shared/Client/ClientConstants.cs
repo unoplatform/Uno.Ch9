@@ -6,6 +6,6 @@ namespace Ch9.Client
 {
 	public static class ClientConstants
 	{
-		public const string BaseApiUrl = "https://channel9-functionapp.azurewebsites.net/api";
+		public const string BaseApiUrl = "https://ch9-app.azurewebsites.net/api";
 	}
 }
