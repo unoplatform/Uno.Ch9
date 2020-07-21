@@ -163,11 +163,12 @@
 						 Grid.Column="1" />
 		</Grid>
 
-		<!-- Shows list view -->
-		<GridView ItemsSource="{Binding Shows}"
+		<!-- Shows grid view -->
+		<GridView ItemsSource="{Binding Shows.Result}"
 				  Opacity="{Binding IsChecked, ElementName=ShowContentBtn, Converter={StaticResource TrueToOpaque}}"
 				  Style="{StaticResource DefaultGridViewStyle}"
 				  HorizontalAlignment="Center"
+				  Visibility="{Binding Shows.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}"
 				  Grid.Row="2"
 				  Grid.Column="0"
 				  Grid.ColumnSpan="2">
@@ -190,7 +191,7 @@
 									<!-- Image -->
 									<Border Background="{StaticResource Color07Brush}"
 											CornerRadius="8,8,0,0">
-										<Image Source="{Binding Show.Image}"
+										<Image Source="{Binding Show.ThumbnailUrl}"
 											   Stretch="UniformToFill"
 											   Height="200"
 											   Width="355" />
@@ -207,6 +208,68 @@
 				</DataTemplate>
 			</GridView.ItemTemplate>
 		</GridView>
+
+		<!-- Error list of shows -->
+		<Grid Opacity="{Binding IsChecked, ElementName=ShowContentBtn, Converter={StaticResource TrueToOpaque}}"
+		      Visibility="{Binding Shows.IsFaulted}"
+		      Background="{StaticResource Color08Brush}"
+		      Grid.Row="2"
+		      Grid.Column="0"
+		      Grid.ColumnSpan="2">
+
+			<StackPanel VerticalAlignment="Center">
+
+				<!-- Image -->
+				<Image Source="{Binding Shows.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImage}}"
+				       Stretch="None"
+				       HorizontalAlignment="Center"
+				       Margin="{Binding Shows.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImageMargin}}" />
+
+				<!-- Title -->
+				<TextBlock Text="{Binding Shows.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorTitle}}"
+				           Style="{StaticResource Typo02}"
+				           TextAlignment="Center"
+				           Margin="40,12,40,0" />
+
+				<!-- Message -->
+				<TextBlock Text="{Binding Shows.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorMessage}}"
+				           Style="{StaticResource Typo03}"
+				           TextAlignment="Center"
+				           Margin="40,8,40,0" />
+
+				<!-- Reload button -->
+				<Button Content="Try Again"
+				        x:Uid="MainPage_ErrorStateButtonLabel"
+				        Command="{Binding ReloadShowsList}"
+				        Style="{StaticResource ErrorStateButtonStyle}"
+				        Margin="40,40,40,0" />
+			</StackPanel>
+		</Grid>
+
+
+		<!-- Loading list of shows -->
+		<Grid Visibility="{Binding Shows.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+		      Background="{ThemeResource AppBackgroundBrush}"
+		      HorizontalAlignment="Center"
+		      Grid.Row="2"
+		      Grid.Column="0"
+		      Grid.ColumnSpan="2">
+			<StackPanel VerticalAlignment="Center"
+			            HorizontalAlignment="Center">
+
+				<!-- Loading Animation -->
+				<winui:AnimatedVisualPlayer AutoPlay="true"
+				                            Height="120">
+					<lottie:LottieVisualSource UriSource="ms-appx:///Lottie/loading_animation_data.json" />
+				</winui:AnimatedVisualPlayer>
+
+				<!-- Loading Message -->
+				<TextBlock Text="Loading..."
+				           x:Uid="MainPage_Loading"
+				           Style="{StaticResource Typo01}"
+				           TextAlignment="Center" />
+			</StackPanel>
+		</Grid>
 
 		<!-- Episodes list -->
 		<Grid DataContext="{Binding Show}"

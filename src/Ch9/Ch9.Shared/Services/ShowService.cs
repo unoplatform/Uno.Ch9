@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.ServiceModel.Syndication;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using Ch9.Client;
 using Ch9.Domain;
+using Refit;
 
 namespace Ch9
 {
@@ -18,8 +22,15 @@ namespace Ch9
 
         private readonly IDictionary<string, Show> _cache = new Dictionary<string, Show>();
 
+        private readonly IShowFeedEndpoint _showFeedEndpoint;
+
+        public ShowService(HttpClient httpClient)
+        {
+	        _showFeedEndpoint = RestService.For<IShowFeedEndpoint>(httpClient);
+		}
+
         /// <inheritdoc/>
-        public IEnumerable<SourceFeed> GetShowFeeds()
+		private IEnumerable<SourceFeed> GetFallbackShowFeeds()
         {
             return new List<SourceFeed>
             {
@@ -43,10 +54,23 @@ namespace Ch9
             };
         }
 
+        public async Task<IEnumerable<SourceFeed>> GetShowFeeds()
+        {
+			//If any exception occurs, fallback to the list of hardcoded shows
+	        try
+	        {
+		        return await _showFeedEndpoint.GetFeeds();
+	        }
+	        catch (Exception e)
+	        {
+		        return GetFallbackShowFeeds();
+	        }
+        } 
+
         /// <inheritdoc/>
         public Task<Show> GetShow(SourceFeed sourceFeed = null)
         {
-            var url = sourceFeed != null ? sourceFeed.Url : _channel9Feed.Url;
+	        var url = sourceFeed != null ? sourceFeed.FeedUrl : _channel9Feed.FeedUrl;
 
             if (_cache.TryGetValue(url, out var cachedShow))
             {
@@ -58,7 +82,7 @@ namespace Ch9
             var show = new Show()
             {
                 Description = rssFeed.Description.Text,
-                Image = sourceFeed?.Image,
+                Image = sourceFeed?.ThumbnailUrl,
                 Name = sourceFeed?.Name
             };
 
