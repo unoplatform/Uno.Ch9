@@ -11,7 +11,7 @@ namespace Ch9.Domain
         {
             FeedUrl = feedUrl;
             Name = name;
-            ThumbnailUrl = image != null ? image : new Uri("https://channel9.msdn.com/assets/images/nineguy-512-bw.png");
+            ThumbnailUrl = image ?? new Uri("https://channel9.msdn.com/assets/images/nineguy-512-bw.png");
         }
 
         public string FeedUrl { get; set; }
