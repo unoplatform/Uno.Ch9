@@ -61,13 +61,12 @@ namespace Ch9
 		{
 			async Task<IEnumerable<ShowItemViewModel>> GetShowFeeds()
 			{
-				var showFeeds = await Task.Run(async () =>
-				{
-					return await App.ServiceProvider.GetInstance<IShowService>().GetShowFeeds();
-				});
+				var showFeeds = await Task.Run(async () => await App.ServiceProvider.GetInstance<IShowService>().GetShowFeeds());
 
-				return showFeeds.OrderBy(s => s.Name)
-					.Select(s => new ShowItemViewModel(this, s));
+				return showFeeds
+					.OrderBy(s => s.Name)
+					.Select(s => new ShowItemViewModel(this, s))
+					.ToArray();
 			}
 
 			var result = new TaskNotifier<IEnumerable<ShowItemViewModel>>(GetShowFeeds());
