@@ -244,6 +244,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="MediaTransportControls">
 					<Grid x:Name="RootGrid"
+					      toolkit:VisibleBoundsPadding.PaddingMask="All"
 						  Background="{TemplateBinding Background}">
 
 						<VisualStateManager.VisualStateGroups>
@@ -457,7 +458,6 @@
 						<Grid x:Name="FullScreenPanel"
 							  HorizontalAlignment="Right"
 							  VerticalAlignment="Bottom"
-							  toolkit:VisibleBoundsPadding.PaddingMask="All"
 							  Margin="0,8,8,32">
 
 							<!-- Full Window Button -->
