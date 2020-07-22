@@ -205,7 +205,7 @@
 		</Setter>
 	</Style>
 
-	<!-- Error State Button Style -->
+	<!-- TODO Remove - Error State Button Style -->
 	<!-- Stye for the "Try Again" button displayed during errors -->
 	<Style x:Key="ErrorStateButtonStyle"
 		   TargetType="Button">

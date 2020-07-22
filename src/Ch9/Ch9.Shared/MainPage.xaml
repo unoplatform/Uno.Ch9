@@ -241,7 +241,7 @@
 				<Button Content="Try Again"
 				        x:Uid="MainPage_ErrorStateButtonLabel"
 				        Command="{Binding ReloadShowsList}"
-				        Style="{StaticResource ErrorStateButtonStyle}"
+						Style="{StaticResource MaterialContainedButtonStyle}"
 				        Margin="40,40,40,0" />
 			</StackPanel>
 		</Grid>
@@ -427,7 +427,7 @@
 				<Button Content="Try Again"
 						x:Uid="MainPage_ErrorStateButtonLabel"
 						Command="{Binding ReloadPage}"
-						Style="{StaticResource ErrorStateButtonStyle}"
+						Style="{StaticResource MaterialContainedButtonStyle}"
 						Margin="40,40,40,0" />
 			</StackPanel>
 		</Grid>
