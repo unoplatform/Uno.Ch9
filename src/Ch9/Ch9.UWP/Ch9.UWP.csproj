@@ -119,9 +119,9 @@
     <PackageReference Include="Microsoft.UI.Xaml" Version="2.4.2" />
     <PackageReference Include="refit" Version="4.8.14" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
-    <PackageReference Include="Uno.UI" Version="2.3.0-dev.90" />
-    <PackageReference Include="Uno.GalaSoft.MvvmLight.Platform" Version="5.4.0-uno.134" />
-    <PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.119" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.899" />
+    <PackageReference Include="MvvmLight" Version="5.4.1.1" />
+    <PackageReference Include="WindowsStateTriggers" Version="1.1.0" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI" Version="6.0.0" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="6.0.0" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
