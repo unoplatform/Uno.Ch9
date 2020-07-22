@@ -7,11 +7,28 @@
 					mc:Ignorable="d xamarin">
 
 	<ResourceDictionary.ThemeDictionaries>
-
+		
 		<!-- Light Theme -->
 		<ResourceDictionary x:Key="Light">
 
-			<!-- Raw colors -->
+			<!-- Material colors -->
+			<Color x:Key="PrimaryColor">#5B4CF5</Color>
+			<Color x:Key="PrimaryVariantDarkColor">#353FE5</Color>
+			<Color x:Key="PrimaryVariantLightColor">#B6A8FB</Color>
+			<Color x:Key="SecondaryColor">#67E5AD</Color>
+			<Color x:Key="SecondaryVariantDarkColor">#2BB27E</Color>
+			<Color x:Key="SecondaryVariantLightColor">#9CFFDF</Color>
+			<Color x:Key="BackgroundColor">#FFFFFF</Color>
+			<Color x:Key="SurfaceColor">#FFFFFF</Color>
+			<Color x:Key="ErrorColor">#F85977</Color>
+			<Color x:Key="OnPrimaryColor">#FFFFFF</Color>
+			<Color x:Key="OnSecondaryColor">#000000</Color>
+			<Color x:Key="OnBackgroundColor">#000000</Color>
+			<Color x:Key="OnSurfaceColor">#000000</Color>
+			<Color x:Key="OnErrorColor">#000000</Color>
+			<Color x:Key="OverlayColor">#51000000</Color>
+
+			<!-- TODO Remove - Raw colors -->
 			<Color x:Key="Color01">#FF000000</Color>
 			<Color x:Key="Color01_75_Opacity">#BF000000</Color>
 			<Color x:Key="Color02">#FFFFFFFF</Color>
@@ -46,7 +63,24 @@
 		<!-- Dark Theme -->
 		<ResourceDictionary x:Key="Dark">
 
-			<!-- Raw colors -->
+			<!-- Material colors -->
+			<Color x:Key="PrimaryColor">#B6A8FB</Color>
+			<Color x:Key="PrimaryVariantDarkColor">#353FE5</Color>
+			<Color x:Key="PrimaryVariantLightColor">#D4CBFC</Color>
+			<Color x:Key="SecondaryColor">#67E5AD</Color>
+			<Color x:Key="SecondaryVariantDarkColor">#2BB27E</Color>
+			<Color x:Key="SecondaryVariantLightColor">#9CFFDF</Color>
+			<Color x:Key="BackgroundColor">#121212</Color>
+			<Color x:Key="SurfaceColor">#121212</Color>
+			<Color x:Key="ErrorColor">#CF6679</Color>
+			<Color x:Key="OnPrimaryColor">#000000</Color>
+			<Color x:Key="OnSecondaryColor">#000000</Color>
+			<Color x:Key="OnBackgroundColor">#FFFFFF</Color>
+			<Color x:Key="OnSurfaceColor">#DEFFFFFF</Color>
+			<Color x:Key="OnErrorColor">#000000</Color>
+			<Color x:Key="OverlayColor">#51FFFFFF</Color>
+
+			<!-- TODO Remove - Raw colors -->
 			<Color x:Key="Color01">#FF131415</Color>
 			<Color x:Key="Color01_75_Opacity">#BF131415</Color>
 			<Color x:Key="Color02">#FF1F1F20</Color>
@@ -81,7 +115,7 @@
 		</ResourceDictionary>
 	</ResourceDictionary.ThemeDictionaries>
 
-	<!-- Color brushes -->
+	<!-- TODO Remove - Color brushes -->
 	<SolidColorBrush x:Key="Color01Brush"
 					 Color="{ThemeResource Color01}" />
 	<SolidColorBrush x:Key="Color01_75_OpacityBrush"
