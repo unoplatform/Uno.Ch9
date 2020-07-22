@@ -287,7 +287,7 @@
 						</VisualStateManager.VisualStateGroups>
 
 						<!-- Elevated View -->
-						<toolkit:ElevatedView Background="{StaticResource Color02Brush}"
+						<toolkit:ElevatedView Background="{StaticResource MaterialBackgroundBrush}"
 											  win:BorderBrush="{StaticResource ShadowBrush}"
 											  win:BorderThickness="1"
 											  CornerRadius="9"
@@ -304,7 +304,7 @@
 						
 						<!-- Content Presenter -->
 						<Grid x:Name="SelectionBorder"
-							  BorderBrush="{StaticResource Color03Brush}"
+							  BorderBrush="{StaticResource MaterialPrimaryBrush}"
 							  BorderThickness="0"
 							  CornerRadius="8"
 							  Margin="16,16,16,0" />
@@ -312,7 +312,7 @@
 						<!-- Selected State -->
 						<Grid x:Name="SelectedStateOverlay"
 							  Visibility="Collapsed"
-							  Background="{StaticResource Color01_75_OpacityBrush}"
+							  Background="{StaticResource MediaPlayerOverlayColorBrush}"
 							  CornerRadius="2"
 							  VerticalAlignment="Top"
 							  HorizontalAlignment="Left"

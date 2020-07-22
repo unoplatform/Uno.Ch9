@@ -17,11 +17,11 @@
 		   xamarin:BasedOn="{StaticResource NativeDefaultCommandBar}">
 
 		<Setter Property="toolkit:CommandBarExtensions.BackButtonForeground"
-                Value="{StaticResource CommandBarForegroundBrush}" />
+				Value="{StaticResource MaterialSurfaceBrush}" />
 		<Setter Property="Background"
-                Value="{StaticResource CommandBarBackgroundBrush}" />
+				Value="{StaticResource MaterialOnPrimaryBrush}" />
 		<Setter Property="Foreground"
-                Value="{StaticResource CommandBarForegroundBrush}" />
+				Value="{StaticResource MaterialSurfaceBrush}" />
 		<Setter Property="Padding"
 				Value="{StaticResource StatusBarThickness}" />
 		<Setter Property="Content"
