@@ -12,49 +12,37 @@
 		<ResourceDictionary x:Key="Light">
 
 			<!-- Material colors -->
-			<Color x:Key="PrimaryColor">#5B4CF5</Color>
-			<Color x:Key="PrimaryVariantDarkColor">#353FE5</Color>
-			<Color x:Key="PrimaryVariantLightColor">#B6A8FB</Color>
-			<Color x:Key="SecondaryColor">#67E5AD</Color>
-			<Color x:Key="SecondaryVariantDarkColor">#2BB27E</Color>
-			<Color x:Key="SecondaryVariantLightColor">#9CFFDF</Color>
-			<Color x:Key="BackgroundColor">#FFFFFF</Color>
-			<Color x:Key="SurfaceColor">#FFFFFF</Color>
-			<Color x:Key="ErrorColor">#F85977</Color>
-			<Color x:Key="OnPrimaryColor">#FFFFFF</Color>
-			<Color x:Key="OnSecondaryColor">#000000</Color>
-			<Color x:Key="OnBackgroundColor">#000000</Color>
-			<Color x:Key="OnSurfaceColor">#000000</Color>
-			<Color x:Key="OnErrorColor">#000000</Color>
-			<Color x:Key="OverlayColor">#51000000</Color>
-
-			<!-- TODO Remove - Raw colors -->
-			<Color x:Key="Color01">#FF000000</Color>
-			<Color x:Key="Color01_75_Opacity">#BF000000</Color>
-			<Color x:Key="Color02">#FFFFFFFF</Color>
-			<Color x:Key="Color03">#FFFFB20B</Color>
-			<Color x:Key="Color04">#FFD2730E</Color>
-			<Color x:Key="Color05">#FFFEE8B6</Color>
-			<Color x:Key="Color06">#FF151515</Color>
-			<Color x:Key="Color07">#FF4e4e4f</Color>
-			<Color x:Key="Color08">#FFFFFFFF</Color>
+			<Color x:Key="MaterialPrimaryColor">#FFFFB20B</Color> <!-- Color03 -->
+			<Color x:Key="MaterialPrimaryVariantDarkColor">#FFD2730E</Color> <!-- TODO Maybe Color04 -->
+			<Color x:Key="MaterialPrimaryVariantLightColor">#FFFEE8B6</Color> <!-- TODO Maybe Color05 -->
+			<Color x:Key="MaterialSecondaryColor">#FFD2730E</Color> <!-- TODO -->
+			<Color x:Key="MaterialSecondaryVariantDarkColor">#2BB27E</Color> <!-- TODO -->
+			<Color x:Key="MaterialSecondaryVariantLightColor">#9CFFDF</Color> <!-- TODO -->
+			<Color x:Key="MaterialBackgroundColor">#FFFFFFFF</Color> <!-- Color01 -->
+			<Color x:Key="MaterialSurfaceColor">#FF000000</Color> <!-- Color01 -->
+			<Color x:Key="MaterialErrorColor">#F85977</Color> <!-- TODO -->
+			<Color x:Key="MaterialOnPrimaryColor">#FFFFFF</Color>
+			<Color x:Key="MaterialOnSecondaryColor">#FFFFFF</Color>
+			<Color x:Key="MaterialOnBackgroundColor">#FF151515</Color> <!-- Color06 -->
+			<Color x:Key="MaterialOnSurfaceColor">#FF151515</Color> <!-- Color06 -->
+			<Color x:Key="MaterialOnErrorColor">#000000</Color>
+			<Color x:Key="MaterialOverlayColor">#51000000</Color> <!-- TODO -->
 
 			<Color x:Key="Shadow">#38000000</Color>
 			<Color x:Key="MediaPlayerControlColor">#FFFFFFFF</Color>
 			<Color x:Key="MediaPlayerBackgroundColor">#FF000000</Color>
-			<Color x:Key="CommandBarForegroundColor">#FF000000</Color>
+			<Color x:Key="MediaPlayerOverlayColor">#BF000000</Color>
 
 			<!-- Misc Brushes -->
 			<win:AcrylicBrush x:Key="AppBackgroundBrush"
 							  BackgroundSource="HostBackdrop"
-							  TintColor="{StaticResource Color08}"
+							  TintColor="{StaticResource MaterialBackgroundColor}"
 							  TintOpacity="0.8"
-							  FallbackColor="{StaticResource Color08}" />
+							  FallbackColor="{StaticResource MaterialBackgroundColor}" />
 
 			<xamarin:SolidColorBrush x:Key="AppBackgroundBrush"
-									 Color="{StaticResource Color08}" />
+									 Color="{StaticResource MaterialBackgroundColor}" />
 
-			<!-- Not a color but we needed 2 different images for light and dark theme -->
 			<ImageBrush x:Key="UnoWinUI_ImageBrush"
 						ImageSource="ms-appx:///Assets/UnoWinUiLogos.png"
 						Stretch="Uniform" />
@@ -64,91 +52,64 @@
 		<ResourceDictionary x:Key="Dark">
 
 			<!-- Material colors -->
-			<Color x:Key="PrimaryColor">#B6A8FB</Color>
-			<Color x:Key="PrimaryVariantDarkColor">#353FE5</Color>
-			<Color x:Key="PrimaryVariantLightColor">#D4CBFC</Color>
-			<Color x:Key="SecondaryColor">#67E5AD</Color>
-			<Color x:Key="SecondaryVariantDarkColor">#2BB27E</Color>
-			<Color x:Key="SecondaryVariantLightColor">#9CFFDF</Color>
-			<Color x:Key="BackgroundColor">#121212</Color>
-			<Color x:Key="SurfaceColor">#121212</Color>
-			<Color x:Key="ErrorColor">#CF6679</Color>
-			<Color x:Key="OnPrimaryColor">#000000</Color>
-			<Color x:Key="OnSecondaryColor">#000000</Color>
-			<Color x:Key="OnBackgroundColor">#FFFFFF</Color>
-			<Color x:Key="OnSurfaceColor">#DEFFFFFF</Color>
-			<Color x:Key="OnErrorColor">#000000</Color>
-			<Color x:Key="OverlayColor">#51FFFFFF</Color>
-
-			<!-- TODO Remove - Raw colors -->
-			<Color x:Key="Color01">#FF131415</Color>
-			<Color x:Key="Color01_75_Opacity">#BF131415</Color>
-			<Color x:Key="Color02">#FF1F1F20</Color>
-			<Color x:Key="Color03">#FFFFDF83</Color>
-			<Color x:Key="Color04">#FFEECC85</Color>
-			<Color x:Key="Color05">#FF342F25</Color>
-			<Color x:Key="Color06">#FFF3F3F3</Color>
-			<Color x:Key="Color07">#FF9E9E9E</Color>
-			<Color x:Key="Color08">#FF131415</Color>
+			<Color x:Key="MaterialPrimaryColor">#FFFFDF83</Color> <!-- Color03 -->
+			<Color x:Key="MaterialPrimaryVariantDarkColor">#FFEECC85</Color> <!-- TODO Maybe Color04 -->
+			<Color x:Key="MaterialPrimaryVariantLightColor">#FF342F25</Color> <!-- TODO Maybe Color05 -->
+			<Color x:Key="MaterialSecondaryColor">#FFEECC85</Color> <!-- TODO -->
+			<Color x:Key="MaterialSecondaryVariantDarkColor">#2BB27E</Color> <!-- TODO -->
+			<Color x:Key="MaterialSecondaryVariantLightColor">#9CFFDF</Color> <!-- TODO -->
+			<Color x:Key="MaterialBackgroundColor">#FF131415</Color> <!-- Color01 -->
+			<Color x:Key="MaterialSurfaceColor">#FF131415</Color> <!-- Color01 -->
+			<Color x:Key="MaterialErrorColor">#F85977</Color> <!-- TODO -->
+			<Color x:Key="MaterialOnPrimaryColor">#FF1F1F20</Color> <!-- Color01 -->
+			<Color x:Key="MaterialOnSecondaryColor">#FF1F1F20</Color> <!-- Color01 -->
+			<Color x:Key="MaterialOnBackgroundColor">#FFF3F3F3</Color> <!-- Color06 -->
+			<Color x:Key="MaterialOnSurfaceColor">#FFF3F3F3</Color> <!-- Color06 -->
+			<Color x:Key="MaterialOnErrorColor">#000000</Color>
+			<Color x:Key="MaterialOverlayColor">#51000000</Color> <!-- TODO -->
 
 			<Color x:Key="Shadow">#60000000</Color>
 			<Color x:Key="MediaPlayerControlColor">#FFFFFFFF</Color>
 			<Color x:Key="MediaPlayerBackgroundColor">#FF000000</Color>
-			<Color x:Key="CommandBarForegroundColor">#FFFFFFFF</Color>
-
-
+			<Color x:Key="MediaPlayerOverlayColor">#BF131415</Color>
 
 			<!-- Misc Brushes -->
 			<win:AcrylicBrush x:Key="AppBackgroundBrush"
 							  BackgroundSource="HostBackdrop"
-							  TintColor="{StaticResource Color08}"
+							  TintColor="{StaticResource MaterialBackgroundColor}"
 							  TintOpacity="0.85"
-							  FallbackColor="{StaticResource Color08}" />
+							  FallbackColor="{StaticResource MaterialBackgroundColor}" />
 
 			<xamarin:SolidColorBrush x:Key="AppBackgroundBrush"
-									 Color="{StaticResource Color08}" />
+									 Color="{StaticResource MaterialBackgroundColor}" />
 
-			<!-- Not a color but we needed 2 different images for light and dark theme -->
 			<ImageBrush x:Key="UnoWinUI_ImageBrush"
 						ImageSource="ms-appx:///Assets/UnoWinUiLogosDark.png"
 						Stretch="Uniform" />
 		</ResourceDictionary>
 	</ResourceDictionary.ThemeDictionaries>
 
-	<!-- TODO Remove - Color brushes -->
-	<SolidColorBrush x:Key="Color01Brush"
-					 Color="{ThemeResource Color01}" />
-	<SolidColorBrush x:Key="Color01_75_OpacityBrush"
-					 Color="{ThemeResource Color01_75_Opacity}" />
-	<SolidColorBrush x:Key="Color02Brush"
-					 Color="{ThemeResource Color02}" />
-	<SolidColorBrush x:Key="Color03Brush"
-					 Color="{ThemeResource Color03}" />
-	<SolidColorBrush x:Key="Color04Brush"
-					 Color="{ThemeResource Color04}" />
-	<SolidColorBrush x:Key="Color05Brush"
-					 Color="{ThemeResource Color05}" />
-	<SolidColorBrush x:Key="Color06Brush"
-					 Color="{ThemeResource Color06}" />
-	<SolidColorBrush x:Key="Color07Brush"
-					 Color="{ThemeResource Color07}" />
-	<SolidColorBrush x:Key="Color08Brush"
-					 Color="{ThemeResource Color08}" />
+	<!-- TODO Remove - This shouldn't be required -->
+	<SolidColorBrush x:Key="MaterialPrimaryBrush"
+					 Color="{ThemeResource MaterialPrimaryColor}" />
+	<SolidColorBrush x:Key="MaterialPrimaryVariantDarkBrush"
+					 Color="{ThemeResource MaterialPrimaryVariantDarkColor}" />
+	<SolidColorBrush x:Key="MaterialPrimaryVariantLightBrush"
+					 Color="{ThemeResource MaterialPrimaryVariantLightColor}" />
+	<SolidColorBrush x:Key="MaterialBackgroundBrush"
+					 Color="{ThemeResource MaterialBackgroundColor}" />
+	<SolidColorBrush x:Key="MaterialSurfaceBrush"
+					 Color="{ThemeResource MaterialSurfaceColor}" />
 
-	<SolidColorBrush x:Key="PrimaryForegroundColorBrush"
-					 Color="{ThemeResource PrimaryForegroundColor}" />
 	<SolidColorBrush x:Key="TransparentColorBrush"
 					 Color="Transparent" />
-
-	<SolidColorBrush x:Key="CommandBarBackgroundBrush"
-					 Color="{ThemeResource Color02}" />
-	<SolidColorBrush x:Key="CommandBarForegroundBrush"
-					 Color="{ThemeResource CommandBarForegroundColor}" />
 
 	<SolidColorBrush x:Key="ShadowBrush"
 					 Color="{ThemeResource Shadow}" />
 	<SolidColorBrush x:Key="MediaPlayerControlColorBrush"
 					 Color="{ThemeResource MediaPlayerControlColor}" />
+	<SolidColorBrush x:Key="MediaPlayerOverlayColorBrush"
+					 Color="{ThemeResource MediaPlayerOverlayColor}" />
 	<SolidColorBrush x:Key="VideoPlayerBottomBrush"
 					 Color="{ThemeResource MediaPlayerBackgroundColor}" />
 </ResourceDictionary>

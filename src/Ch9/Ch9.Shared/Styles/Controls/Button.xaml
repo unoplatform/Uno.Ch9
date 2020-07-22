@@ -163,7 +163,7 @@
 		<Setter Property="HorizontalContentAlignment"
 				Value="Stretch" />
 		<Setter Property="Background"
-				Value="{StaticResource Color01_75_OpacityBrush}" />
+				Value="{StaticResource MediaPlayerOverlayColorBrush}" />
 		<Setter Property="Margin"
 				Value="8" />
 

@@ -25,7 +25,7 @@
 		<Setter Property="TextWrapping"
 				Value="Wrap" />
 		<Setter Property="Foreground"
-				Value="{StaticResource Color01Brush}" />
+				Value="{StaticResource MaterialSurfaceBrush}" />
 	</Style>
 
 	<!--
