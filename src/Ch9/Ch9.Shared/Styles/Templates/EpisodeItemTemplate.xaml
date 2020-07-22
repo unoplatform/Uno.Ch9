@@ -30,7 +30,7 @@
             <StackPanel Margin="16,0">
 
                 <!-- Show + Release Date -->
-                <TextBlock Style="{StaticResource Typo03}"
+				<TextBlock Style="{StaticResource MaterialBody1}"
                            Margin="0,8,0,0">
 						
                     <!-- Show -->
@@ -45,7 +45,7 @@
 
                 <!-- Title -->
                 <TextBlock Text="{Binding Episode.Title}"
-                           Style="{StaticResource Typo02}"
+                           Style="{StaticResource MaterialHeadline6}"
                            Margin="0,6,0,0" />
 
                 <!-- Category List -->

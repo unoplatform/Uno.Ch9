@@ -10,7 +10,8 @@
 
 			<!-- Category Name -->
 			<TextBlock Text="{Binding}"
-					   Style="{StaticResource Typo05}"
+					   Foreground="{StaticResource Color04Brush}"
+					   Style="{StaticResource MaterialCaption}"
 					   VerticalAlignment="Center"
 					   Margin="12,0" />
 		</Grid>
