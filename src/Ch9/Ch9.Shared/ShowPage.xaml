@@ -7,9 +7,7 @@
 	  xmlns:triggers="using:WindowsStateTriggers"
 	  xmlns:toolkit="using:Uno.UI.Toolkit"
 	  xmlns:lottie="using:Microsoft.Toolkit.Uwp.UI.Lottie"
-	  xmlns:winui="using:Microsoft.UI.Xaml.Controls"		
-	  xmlns:xamarin="http://Uno.UI/xamarin"
-	  mc:Ignorable="xamarin">
+	  xmlns:winui="using:Microsoft.UI.Xaml.Controls">
 
 	<Page.Resources>
 		<DataTemplate x:Key="ShowDetailsTemplate">
@@ -333,18 +331,11 @@
 						HorizontalAlignment="Center">
 
 				<!-- Loading Animation -->
-				<xamarin:Grid>
-					<winui:AnimatedVisualPlayer x:Name="player"
-												AutoPlay="true"
-												Height="120">
-						<lottie:LottieVisualSource UriSource="ms-appx:///Lottie/loading_animation_data.json" />
-					</winui:AnimatedVisualPlayer>
-				</xamarin:Grid>
-
-				<win:Image Source="ms-appx:///Assets/NoVideoSelectedIllustration.png"
-						   Stretch="Uniform"
-						   Height="120"
-						   HorizontalAlignment="Center" />
+				<winui:AnimatedVisualPlayer x:Name="player"
+											AutoPlay="true"
+											Height="120">
+					<lottie:LottieVisualSource UriSource="ms-appx:///Lottie/loading_animation_data.json" />
+				</winui:AnimatedVisualPlayer>
 
 				<!-- Loading Message -->
 				<TextBlock Text="Loading..."
