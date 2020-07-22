@@ -9,7 +9,7 @@
         <Setter Property="Background"
 				Value="Transparent" />
         <Setter Property="Foreground"
-				Value="{StaticResource Color05Brush}" />
+				Value="{StaticResource MaterialOnSurfaceBrush}" />
         <Setter Property="Padding"
 				Value="0" />
         <Setter Property="HorizontalAlignment"
@@ -40,7 +40,7 @@
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
                                         <Setter Target="ContentPresenter.Foreground"
-												Value="{StaticResource Color07Brush}" />
+												Value="{StaticResource MaterialOnSurfaceDisabledBrush}" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -69,7 +69,7 @@
 
 						<TextBlock x:Name="ContentPresenter"
 								   Text="{TemplateBinding Content}"
-								   Style="{StaticResource Typo07}"
+								   Style="{StaticResource MaterialSubtitle1}"
 								   HorizontalAlignment="Center"
 								   VerticalAlignment="Center"
 								   Opacity="0.5"

@@ -34,11 +34,11 @@
 
 						<!-- Name -->
 						<TextBlock Text="{Binding Name}"
-								   Style="{StaticResource Typo01}"
+								   Style="{StaticResource MaterialHeadline5}"
 								   Margin="16,2,16,0" />
 
 						<!-- Episodes count -->
-						<TextBlock Style="{StaticResource Typo09}"
+						<TextBlock Style="{StaticResource MaterialSubtitle1}"
 								   Margin="16,4,16,0">
 												
                             <!-- Episodes Count --> 
@@ -53,7 +53,7 @@
 
 				<!--Show description-->
 				<TextBlock Text="{Binding Description}"
-						   Style="{StaticResource Typo03}"
+						   Style="{StaticResource MaterialBody1}"
 						   Margin="0,15,16,0"
 						   Grid.Row="2" />
 			</StackPanel>
@@ -208,7 +208,7 @@
 			<TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
 					   Text="Nothing to show"
 					   x:Uid="MainPage_EmptyListMessage"
-					   Style="{StaticResource Typo02}"
+					   Style="{StaticResource MaterialHeadline6}"
 					   TextAlignment="Center"
 					   VerticalAlignment="Center"
 					   Margin="16,0" />
@@ -232,14 +232,14 @@
 				<!-- Title -->
 				<TextBlock Text="No video selected"
 						   x:Uid="MainPage_NoSelectionTitle"
-						   Style="{StaticResource Typo02}"
+						   Style="{StaticResource MaterialHeadline6}"
 						   TextAlignment="Center"
 						   Margin="32,16,32,0" />
 
 				<!-- Message -->
 				<TextBlock Text="Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!"
 						   x:Uid="MainPage_NoSelectionMessage"
-						   Style="{StaticResource Typo03}"
+						   Style="{StaticResource MaterialBody1}"
 						   TextAlignment="Center"
 						   MaxWidth="380"
 						   Margin="32,8,32,0" />
@@ -302,13 +302,13 @@
 
 				<!-- Title -->
 				<TextBlock Text="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorTitle}}"
-						   Style="{StaticResource Typo02}"
+						   Style="{StaticResource MaterialHeadline6}"
 						   TextAlignment="Center"
 						   Margin="40,12,40,0" />
 
 				<!-- Message -->
 				<TextBlock Text="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorMessage}}"
-						   Style="{StaticResource Typo03}"
+						   Style="{StaticResource MaterialBody1}"
 						   TextAlignment="Center"
 						   Margin="40,8,40,0" />
 
@@ -349,7 +349,7 @@
 				<!-- Loading Message -->
 				<TextBlock Text="Loading..."
 						   x:Uid="MainPage_Loading"
-						   Style="{StaticResource Typo01}"
+						   Style="{StaticResource MaterialHeadline5}"
 						   TextAlignment="Center" />
 			</StackPanel>
 		</Grid>

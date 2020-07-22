@@ -120,7 +120,7 @@
                         </Button>
 
                         <!-- Show + Date -->
-                        <TextBlock Style="{StaticResource Typo03}"
+						<TextBlock Style="{StaticResource MaterialBody1}"
 								   VerticalAlignment="Top"
 								   Margin="0,10,0,0"
 								   Grid.Column="1">
@@ -138,12 +138,12 @@
 
                     <!-- Title -->
                     <TextBlock Text="{Binding Episode.Title}"
-							   Style="{StaticResource Typo01}"
+							   Style="{StaticResource MaterialHeadline5}"
 							   Margin="0,2,0,0" />
 
                     <!-- Summary -->
                     <TextBlock Text="{Binding Episode.Summary}"
-							   Style="{StaticResource Typo03}"
+							   Style="{StaticResource MaterialBody1}"
 							   Margin="0,16,0,0" />
 
                     <!-- Category List -->
