@@ -1,13 +1,14 @@
 ﻿<Page x:Class="Ch9.ShowPage"
-	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	  xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:local="using:Ch9"
-	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	  xmlns:triggers="using:WindowsStateTriggers"
-	  xmlns:toolkit="using:Uno.UI.Toolkit"
-	  xmlns:lottie="using:Microsoft.Toolkit.Uwp.UI.Lottie"
-	  xmlns:winui="using:Microsoft.UI.Xaml.Controls">
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:win="using:Uno.UI.Toolkit"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:Ch9"
+      xmlns:toolkit="using:Uno.UI.Toolkit"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:lottie="using:Microsoft.Toolkit.Uwp.UI.Lottie"
+      xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+      xmlns:triggers="using:WindowsStateTriggers"
+      mc:Ignorable="">
 
 	<Page.Resources>
 		<DataTemplate x:Key="ShowDetailsTemplate">
