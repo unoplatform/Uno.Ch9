@@ -9,8 +9,26 @@
 	  xmlns:lottie="using:Microsoft.Toolkit.Uwp.UI.Lottie"
 	  xmlns:winui="using:Microsoft.UI.Xaml.Controls"
 	  xmlns:android="http://Uno.UI/android"
-      xmlns:triggers="using:WindowsStateTriggers"
+	  xmlns:material="using:Uno.Material.Controls"
+	  xmlns:triggers="using:WindowsStateTriggers"
 	  mc:Ignorable="android">
+
+	<Page.Resources>
+
+		<DataTemplate x:Key="HeaderTemplate">
+			<TextBlock Text="{Binding}"
+			           Margin="12,8,0,16"
+					   Style="{ThemeResource MaterialHeadline6}" />
+		</DataTemplate>
+
+		<DataTemplate x:Key="SampleImageTemplate">
+			<Image Source="{Binding}"
+				   Stretch="UniformToFill"
+				   Height="200"
+				   Width="355"/>
+		</DataTemplate>
+
+	</Page.Resources>
 
 	<Grid Background="{ThemeResource AppBackgroundBrush}">
 
@@ -179,31 +197,12 @@
 							CommandParameter="{Binding Show}"
 							Style="{StaticResource HiddenButtonStyle}">
 
-						<toolkit:ElevatedView Background="{StaticResource MaterialBackgroundColor}"
-											  win:BorderBrush="{StaticResource Shadow}"
-											  win:BorderThickness="1"
-											  CornerRadius="9"
-											  Elevation="8"
-											  Margin="16,16,12,8">
-							<Grid Background="{StaticResource MaterialBackgroundColor}">
-								<StackPanel>
-
-									<!-- Image -->
-									<Border Background="{StaticResource MaterialOnSurfaceMediumBrush}"
-											CornerRadius="8,8,0,0">
-										<Image Source="{Binding Show.ThumbnailUrl}"
-											   Stretch="UniformToFill"
-											   Height="200"
-											   Width="355" />
-									</Border>
-
-									<!-- Label -->
-									<TextBlock Text="{Binding Show.Name}"
-											   Style="{StaticResource MaterialHeadline6}"
-											   Margin="12,8,0,16" />
-								</StackPanel>
-							</Grid>
-						</toolkit:ElevatedView>
+						<material:Card HeaderContent="{Binding Show.Name}"
+						               HeaderContentTemplate="{StaticResource HeaderTemplate}"
+						               MediaContent="{Binding Show.ThumbnailUrl}"
+						               Background="{StaticResource MaterialBackgroundBrush}"
+						               MediaContentTemplate="{StaticResource SampleImageTemplate}"
+						               Style="{StaticResource CustomMaterialCard}" />
 					</Button>
 				</DataTemplate>
 			</GridView.ItemTemplate>

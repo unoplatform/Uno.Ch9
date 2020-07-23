@@ -1,0 +1,304 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:material="using:Uno.Material.Controls"
+    xmlns:toolkit="using:Uno.UI.Toolkit">
+
+	<!-- Other Card Variables -->
+	<CornerRadius x:Key="CardsBorderRadius">4</CornerRadius>
+	<Thickness x:Key="CardsStrokeWidth">1</Thickness>
+	<x:Double x:Key="CardsElevation">6</x:Double>
+	<Thickness x:Key="CardsElevationMargin">0,0,6,6</Thickness>
+	<Color x:Key="CardElevationShadowColor">#60000000</Color>
+
+	<Style x:Key="CustomMaterialCard"
+		   TargetType="material:Card">
+
+		<Setter Property="MinHeight"
+				Value="72" />
+		<Setter Property="MaxWidth"
+				Value="344" />
+		<Setter Property="Margin"
+				Value="{StaticResource CardsElevationMargin}" />
+		<Setter Property="Padding"
+				Value="16,14" />
+		<Setter Property="Background"
+				Value="{StaticResource CardsBackgroundColorBrush}" />
+		<Setter Property="BorderBrush"
+				Value="{ThemeResource MaterialOnSurfaceMediumBrush}" />
+		<Setter Property="BorderThickness"
+				Value="{StaticResource CardsStrokeWidth}" />
+		<Setter Property="CornerRadius"
+				Value="{StaticResource CardsBorderRadius}" />
+		<Setter Property="HorizontalAlignment"
+				Value="Stretch" />
+		<Setter Property="HorizontalContentAlignment"
+				Value="Stretch" />
+		<Setter Property="VerticalAlignment"
+				Value="Stretch" />
+		<Setter Property="VerticalContentAlignment"
+				Value="Stretch" />
+		<Setter Property="Elevation"
+				Value="{StaticResource CardsElevation}" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="material:Card">
+					<!-- Elevated View -->
+					<toolkit:ElevatedView x:Name="ElevatedRoot"
+										  MinWidth="{TemplateBinding MinWidth}"
+										  MinHeight="{TemplateBinding MinHeight}"
+										  MaxWidth="{TemplateBinding MaxWidth}"
+										  MaxHeight="{TemplateBinding MaxHeight}"
+										  Margin="{TemplateBinding Margin}"
+										  Background="{TemplateBinding Background}"
+										  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+										  VerticalAlignment="{TemplateBinding VerticalAlignment}"
+										  CornerRadius="{TemplateBinding CornerRadius}"
+										  Elevation="{TemplateBinding Elevation}"
+										  ShadowColor="{StaticResource CardElevationShadowColor}">
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal">
+									<VisualState.Setters>
+										<Setter Target="HoverOverlay.Opacity"
+												Value="0" />
+										<Setter Target="FocusedOverlay.Opacity"
+												Value="0" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="PointerOver">
+									<Storyboard>
+										<DoubleAnimation Storyboard.TargetName="HoverOverlay"
+														 Storyboard.TargetProperty="Opacity"
+														 Duration="0:0:0.25"
+														 From="0"
+														 To="1">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<VisualState.Setters>
+										<Setter Target="HoverOverlay.Opacity"
+												Value="0" />
+										<Setter Target="FocusedOverlay.Opacity"
+												Value="0" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<VisualState.Setters>
+										<Setter Target="HoverOverlay.Opacity"
+												Value="0" />
+										<Setter Target="FocusedOverlay.Opacity"
+												Value="0" />
+										<Setter Target="GridRoot.Opacity"
+												Value="0.38" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="OpenStates">
+								<VisualState x:Name="Closed">
+									<Storyboard>
+										<DoubleAnimation x:Name="CloseAnimation"
+														 Storyboard.TargetName="ExpanderPresenter"
+														 Storyboard.TargetProperty="Height"
+														 Duration="00:00:00"
+														 To="0"
+														 EnableDependentAnimation="True">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseOut" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Opened">
+									<Storyboard>
+										<DoubleAnimation x:Name="OpeningAnimation"
+														 Storyboard.TargetName="ExpanderPresenter"
+														 Storyboard.TargetProperty="Height"
+														 Duration="00:00:00"
+														 To="{Binding PresenterHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+														 EnableDependentAnimation="True">
+											<DoubleAnimation.EasingFunction>
+												<CubicEase EasingMode="EaseOut" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</VisualState>
+								<VisualStateGroup.Transitions>
+									<VisualTransition From="Opened"
+													  To="Closed">
+										<Storyboard>
+											<DoubleAnimation Storyboard.TargetName="ExpanderPresenter"
+															 Storyboard.TargetProperty="Height"
+															 Duration="00:00:00"
+															 To="0"
+															 EnableDependentAnimation="True">
+												<DoubleAnimation.EasingFunction>
+													<CubicEase EasingMode="EaseOut" />
+												</DoubleAnimation.EasingFunction>
+											</DoubleAnimation>
+										</Storyboard>
+									</VisualTransition>
+									<VisualTransition From="Closed"
+													  To="Opened">
+										<Storyboard>
+											<DoubleAnimation Storyboard.TargetName="ExpanderPresenter"
+															 Storyboard.TargetProperty="Height"
+															 Duration="00:00:00"
+															 To="{Binding PresenterHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+															 EnableDependentAnimation="True">
+												<DoubleAnimation.EasingFunction>
+													<CubicEase EasingMode="EaseOut" />
+												</DoubleAnimation.EasingFunction>
+											</DoubleAnimation>
+										</Storyboard>
+									</VisualTransition>
+								</VisualStateGroup.Transitions>
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="FocusStates">
+								<VisualState x:Name="Focused">
+									<VisualState.Setters>
+										<Setter Target="FocusedOverlay.Opacity"
+												Value="1" />
+									</VisualState.Setters>
+								</VisualState>
+								<VisualState x:Name="PointerFocused" />
+								<VisualState x:Name="Unfocused">
+									<VisualState.Setters>
+										<Setter Target="FocusedOverlay.Opacity"
+												Value="0" />
+									</VisualState.Setters>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+
+						<Grid x:Name="GridRoot"
+							  BorderBrush="{TemplateBinding BorderBrush}"
+							  BorderThickness="{TemplateBinding BorderThickness}"
+							  CornerRadius="{TemplateBinding CornerRadius}">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<!-- Border for PointerOver State-->
+							<Border Grid.RowSpan="6"
+									x:Name="HoverOverlay"
+									Background="{StaticResource MaterialOnSurfaceHoverBrush}"
+									Opacity="0" />
+
+							<!-- Border for Focused State-->
+							<Border Grid.RowSpan="6"
+									x:Name="FocusedOverlay"
+									Background="{StaticResource MaterialOnSurfaceFocusedBrush}"
+									Opacity="0" />
+
+							<!-- Border for Dragged/Selected State-->
+							<!-- Todo: Add ElevatedView on Dragged/Selected state of button -->
+							<Border Grid.RowSpan="6"
+									x:Name="SelectedOverlay"
+									Background="{StaticResource MaterialOnSurfaceFocusedBrush}"
+									Opacity="0" />
+
+							<!-- Media content part -->
+							<ContentPresenter x:Name="MediaContentPresenter"
+											  Content="{TemplateBinding MediaContent}"
+											  ContentTemplate="{TemplateBinding MediaContentTemplate}"
+											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+											  AutomationProperties.AccessibilityView="Raw"
+											  IsHitTestVisible="False" />
+
+							<!-- Header part-->
+							<ContentPresenter Grid.Row="1"
+											  x:Name="HeaderContentPresenter"
+											  Content="{TemplateBinding HeaderContent}"
+											  ContentTemplate="{TemplateBinding HeaderContentTemplate}"
+											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+											  AutomationProperties.AccessibilityView="Raw"
+											  Visibility="{Binding HeaderContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsed}}" />
+
+							<!-- SubHeader part-->
+							<ContentPresenter Grid.Row="2"
+											  x:Name="SubHeaderContentPresenter"
+											  Content="{TemplateBinding SubHeaderContent}"
+											  ContentTemplate="{TemplateBinding SubHeaderContentTemplate}"
+											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+											  AutomationProperties.AccessibilityView="Raw"
+											  Visibility="{Binding SubHeaderContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsed}}" />
+
+							<!-- Ripple effect -->
+							<material:Ripple Grid.RowSpan="4"
+											 Feedback="{StaticResource MaterialOnSurfaceFocusedBrush}"
+											 RippleSizeMultiplier="0.85"
+											 BorderBrush="{TemplateBinding BorderBrush}"
+											 BorderThickness="{TemplateBinding BorderThickness}"
+											 CornerRadius="{StaticResource CardsBorderRadius}"
+											 Padding="{TemplateBinding Padding}"
+											 AutomationProperties.AccessibilityView="Raw" />
+
+							<!-- Supporting Content part-->
+							<ContentPresenter Grid.Row="3"
+											  x:Name="SupportingContentPresenter"
+											  Content="{TemplateBinding SupportingContent}"
+											  ContentTemplate="{TemplateBinding SupportingContentTemplate}"
+											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+											  AutomationProperties.AccessibilityView="Raw"
+											  Visibility="{Binding SupportingContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsed}}" />
+
+							<!-- Icons section part -->
+							<ContentPresenter Grid.Row="3"
+											  x:Name="IconsContentPresenter"
+											  Content="{TemplateBinding IconsContent}"
+											  ContentTemplate="{TemplateBinding IconsContentTemplate}"
+											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+											  AutomationProperties.AccessibilityView="Raw"
+											  Visibility="{Binding IconsContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NullToCollapsed}}" />
+
+							<!-- Expender part -->
+							<StackPanel Grid.Row="4"
+										Visibility="{Binding ExpanderHeaderContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyToCollapsed}}">
+								<Rectangle x:Name="ExpanderSeparator"
+										   Height="1"
+										   Margin="0,12,0,0"
+										   HorizontalAlignment="Stretch"
+										   Fill="{StaticResource MaterialOnSurfaceFocusedBrush}" />
+
+								<ContentPresenter x:Name="ExpanderPresenter"
+												  Content="{TemplateBinding ExpanderContent}"
+												  ContentTemplate="{TemplateBinding ExpanderContentTemplate}"
+												  Height="0" />
+
+								<ToggleButton IsChecked="{Binding IsOpened, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+											  HorizontalAlignment="Left"
+											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  Content="{TemplateBinding ExpanderHeaderContent}"
+											  ContentTemplate="{TemplateBinding ExpanderHeaderContentTemplate}"
+											  Style="{StaticResource MaterialTextToggleButtonStyle}"
+											  Margin="6"
+											  Padding="10,2" />
+							</StackPanel>
+						</Grid>
+					</toolkit:ElevatedView>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+</ResourceDictionary>

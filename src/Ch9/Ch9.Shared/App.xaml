@@ -9,6 +9,7 @@
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="ms-appx:///Styles/Application/Converters.xaml" />
 				<ResourceDictionary Source="ms-appx:///Styles/Controls/AppBarButton.xaml" />
+				<ResourceDictionary Source="ms-appx:///Styles/Controls/Cards.xaml" />
 				<ResourceDictionary Source="ms-appx:///Styles/Controls/Button.xaml" />
 				<ResourceDictionary Source="ms-appx:///Styles/Controls/CommandBar.xaml" />
 				<ResourceDictionary Source="ms-appx:///Styles/Controls/Frame.xaml" />

@@ -21,11 +21,11 @@
 		</Setter>
 	</xamarin:Style>
 
-    <DataTemplate x:Key="EmptyListViewHeaderTemplate">
-        <Grid />
-    </DataTemplate>
+	<DataTemplate x:Key="EmptyListViewHeaderTemplate">
+		<Grid />
+	</DataTemplate>
 
-    <Style TargetType="ListView"
+	<Style TargetType="ListView"
 		   x:Key="DefaultListViewStyle">
 
 		<Setter Property="IsTabStop"
@@ -137,7 +137,7 @@
 						  BorderBrush="{TemplateBinding BorderBrush}"
 						  BorderThickness="{TemplateBinding BorderThickness}"
 						  MaxWidth="395">
-						
+
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -190,7 +190,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 	<Style x:Key="EpisodeListViewItemStyle"
 		   TargetType="ListViewItem">
 
@@ -286,28 +286,20 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
-						<!-- Elevated View -->
-						<toolkit:ElevatedView Background="{StaticResource MaterialBackgroundColor}"
-											  win:BorderBrush="{StaticResource Shadow}"
-											  win:BorderThickness="1"
-											  CornerRadius="9"
-											  Elevation="8"
-											  Margin="16,16,16,0">
+						<ContentPresenter x:Name="ContentPresenter"
+										  Margin="16,16,16,0"
+						                  ContentTransitions="{TemplateBinding ContentTransitions}"
+						                  ContentTemplate="{TemplateBinding ContentTemplate}"
+						                  Content="{TemplateBinding Content}"
+						                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+						                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
 
-							<ContentPresenter x:Name="ContentPresenter"
-											  ContentTransitions="{TemplateBinding ContentTransitions}"
-											  ContentTemplate="{TemplateBinding ContentTemplate}"
-											  Content="{TemplateBinding Content}"
-											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-						</toolkit:ElevatedView>
-						
 						<!-- Content Presenter -->
 						<Grid x:Name="SelectionBorder"
 							  BorderBrush="{StaticResource MaterialPrimaryColor}"
 							  BorderThickness="0"
 							  CornerRadius="8"
-							  Margin="16,16,16,0" />
+							  Margin="15,16,27,12" />
 
 						<!-- Selected State -->
 						<Grid x:Name="SelectedStateOverlay"
@@ -321,7 +313,7 @@
 							<!-- Title -->
 							<TextBlock Text="Currently Playing"
 									   x:Uid="MainPage_CurrentlyPlaying"
-									   Style="{StaticResource Typo04}"
+									   Style="{StaticResource MaterialBody2}"
 									   VerticalAlignment="Center"
 									   HorizontalAlignment="Center"
 									   Margin="12,7" />
