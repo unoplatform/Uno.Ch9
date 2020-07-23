@@ -67,4 +67,6 @@
 
     <converters:FromEnumerableToItemsCountConverter x:Key="EnumerableItemsCount" />
 
+	<converters:DebugConverter x:Key="debug" />
+
 </ResourceDictionary>
