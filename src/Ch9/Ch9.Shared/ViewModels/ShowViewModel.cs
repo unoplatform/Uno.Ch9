@@ -69,7 +69,23 @@ namespace Ch9.ViewModels
         public EpisodeViewModel SelectedEpisode
         {
             get => _selectedEpisode;
-            set => Set(() => SelectedEpisode, ref _selectedEpisode, value);
+            set
+            {
+	            Set(() => SelectedEpisode, ref _selectedEpisode, value);
+#if __IOS__
+				var rootController = (UIKit.UINavigationController)UIKit.UIApplication.SharedApplication.KeyWindow.RootViewController;
+
+				if (SelectedEpisode == null)
+				{
+					//TODO investigate why This is not working 
+					rootController.InteractivePopGestureRecognizer.Enabled = true;
+				}
+				else
+				{
+					rootController.InteractivePopGestureRecognizer.Enabled = false;
+				}
+#endif
+			}
         }
 
         private bool _isVideoFullWindow;
