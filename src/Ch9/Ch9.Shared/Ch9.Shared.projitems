@@ -15,6 +15,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\DebugConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
