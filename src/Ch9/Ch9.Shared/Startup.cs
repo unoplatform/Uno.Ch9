@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Ch9.Client;
 using System.Net.Http;
 
 namespace Ch9
@@ -39,8 +38,13 @@ namespace Ch9
 		{
 			serviceProvider.Register(() => new HttpClient(new HttpClientHandler(), false)
 			{
-				BaseAddress = new Uri(ClientConstants.BaseApiUrl)
+				BaseAddress = new Uri("https://ch9-app.azurewebsites.net/api")
 			});
+		}
+
+		public void ExecuteInitialNavigation()
+		{
+			App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(MainPage));
 		}
 	}
 }

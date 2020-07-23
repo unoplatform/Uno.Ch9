@@ -11,7 +11,8 @@ using Xamarin.Essentials;
 
 namespace Ch9.ViewModels
 {
-    public class ShowViewModel : ViewModelBase
+	[Windows.UI.Xaml.Data.Bindable]
+	public class ShowViewModel : ViewModelBase
     {
         private SourceFeed _sourceFeed;
 
@@ -81,7 +82,7 @@ namespace Ch9.ViewModels
             {
                 Set(() => IsVideoFullWindow, ref _isVideoFullWindow, value);
 
-                App.OnFullscreenChanged(value);
+                App.Instance.OnFullscreenChanged(value);
             }
         }
 
@@ -89,10 +90,7 @@ namespace Ch9.ViewModels
         {
             async Task<Show> GetShow()
             {
-                var show = await Task.Run(async () =>
-                {
-                    return await App.ServiceProvider.GetInstance<IShowService>().GetShow(_sourceFeed);
-                });
+                var show = await Task.Run(() => App.ServiceProvider.GetInstance<IShowService>().GetShow(_sourceFeed));
 
                 Episodes = show.Episodes.Select(p => new EpisodeViewModel(this, p)).ToArray();
 

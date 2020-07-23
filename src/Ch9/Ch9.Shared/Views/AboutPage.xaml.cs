@@ -20,6 +20,7 @@ namespace Ch9
 		public AboutPage()
 		{
 			this.InitializeComponent();
+
 			DataContext = new AboutPageViewModel();
 		}
 	}

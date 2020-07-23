@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Ch9.Domain;
 using Refit;
 
-namespace Ch9.Client
+namespace Ch9
 {
 	public interface IShowFeedEndpoint
 	{

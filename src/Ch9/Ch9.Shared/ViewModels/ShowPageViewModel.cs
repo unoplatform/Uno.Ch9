@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Ch9.Domain;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 
 namespace Ch9.ViewModels
 {
-    public class ShowPageViewModel : ViewModelBase
+	[Windows.UI.Xaml.Data.Bindable]
+	public class ShowPageViewModel : ViewModelBase
     {
         public SourceFeed SourceFeed { get; set; }
 

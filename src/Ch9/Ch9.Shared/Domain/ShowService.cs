@@ -8,7 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
-using Ch9.Client;
 using Ch9.Domain;
 using Refit;
 

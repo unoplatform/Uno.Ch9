@@ -15,11 +15,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AboutPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Client\ClientConstants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Client\IShowFeedEndpoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\IShowFeedEndpoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEnumerableHasAnyToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEnumerableToItemsCountConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableBoolToCustomValueConverter.cs" />
@@ -27,24 +26,24 @@
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Episode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\Show.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Domain\SourceFeed.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EpisodeContent.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\EpisodeContent.xaml.cs">
       <DependentUpon>EpisodeContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\ITaskNotifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\ITaskNotifier.Generic.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\TaskNotifier\TaskNotifier.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\IShowService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\ShowService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\IShowService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\ShowService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\IStackNavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\StackNavigationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ShowPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ShowPage.xaml.cs">
       <DependentUpon>ShowPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShowPageViewModel.cs" />
@@ -55,19 +54,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EpisodeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)AboutPage.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)EpisodeContent.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\EpisodeContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)ShowPage.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\ShowPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,7 +151,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\ErrorIllustration.scale-200.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\ErrorIllustration.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\ErrorIllustration.scale-400.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Lottie\loading_animation_data.json" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\loading_animation_data.json" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\NoVideoSelectedIllustration.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\NoVideoSelectedIllustration.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\NoVideoSelectedIllustration.scale-200.png" />
@@ -182,6 +181,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Framework\Navigation\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Lottie\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
   </ItemGroup>
 </Project>
