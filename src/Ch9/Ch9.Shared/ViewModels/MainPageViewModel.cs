@@ -61,7 +61,7 @@ namespace Ch9
 		{
 			async Task<IEnumerable<ShowItemViewModel>> GetShowFeeds()
 			{
-				var showFeeds = await Task.Run(async () => await App.ServiceProvider.GetInstance<IShowService>().GetShowFeeds());
+				var showFeeds = await Task.Run(() => App.ServiceProvider.GetInstance<IShowService>().GetShowFeeds());
 
 				return showFeeds
 					.OrderBy(s => s.Name)
@@ -69,9 +69,7 @@ namespace Ch9
 					.ToArray();
 			}
 
-			var result = new TaskNotifier<IEnumerable<ShowItemViewModel>>(GetShowFeeds());
-
-			Shows = result;
+			Shows = new TaskNotifier<IEnumerable<ShowItemViewModel>>(GetShowFeeds());
 		}
 	}
 

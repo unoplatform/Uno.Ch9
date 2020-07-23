@@ -39,14 +39,12 @@ namespace Ch9
 		public static App Instance { get; private set; }
 
 		private readonly Startup _startup;
+
 		private Frame _rootFrame;
+		private bool _isActivityBackgroundCleared;
 
 		public static SimpleIoc ServiceProvider { get; } = SimpleIoc.Default;
 
-		/// <summary>
-		/// Initializes the singleton application object.  This is the first line of authored code
-		/// executed, and as such is the logical equivalent of main() or WinMain().
-		/// </summary>
 		public App()
 		{
 			Instance = this;
@@ -63,14 +61,10 @@ namespace Ch9
 			ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 
 			this.InitializeComponent();
-			this.Suspending += OnSuspending;
+
+			ConfigureSuspension();
 		}
 
-		/// <summary>
-		/// Invoked when the application is launched normally by the end user.  Other entry points
-		/// will be used such as when the application is launched to open a specific file.
-		/// </summary>
-		/// <param name="e">Details about the launch request and process.</param>
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
 		{
 #if DEBUG
@@ -97,7 +91,7 @@ namespace Ch9
 				// Create a Frame to act as the navigation context and navigate to the first page
 				_rootFrame = new Frame();
 
-				_rootFrame.NavigationFailed += OnNavigationFailed;
+				ConfigureNavigationFailed();
 
 				// Place the frame in the current Window
 				Windows.UI.Xaml.Window.Current.Content = _rootFrame;
@@ -113,9 +107,9 @@ namespace Ch9
 					ConfigureSystemBackVisibility();
 					ConfigureBackRequests();
 					ConfigureOrientation();
-					ConfigureKeyHookUwp();
+					ConfigureEscapeKey();
 
-					ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(MainPage));
+					_startup.ExecuteInitialNavigation();
 				}
 
 				// Ensure the current window is active
@@ -123,28 +117,27 @@ namespace Ch9
 			}
 		}
 
-		/// <summary>
-		/// Invoked when Navigation to a certain page fails
-		/// </summary>
-		/// <param name="sender">The Frame which failed navigation</param>
-		/// <param name="e">Details about the navigation failure</param>
-		void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+		#region Application configuration
+		private void ConfigureNavigationFailed()
 		{
-			throw new Exception($"Failed to load {e.SourcePageType.FullName}: {e.Exception}");
+			_rootFrame.NavigationFailed += OnNavigationFailed;
+
+			void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+			{
+				throw new Exception($"Failed to load {e.SourcePageType.FullName}: {e.Exception}");
+			}
 		}
 
-		/// <summary>
-		/// Invoked when application execution is being suspended.  Application state is saved
-		/// without knowing whether the application will be terminated or resumed with the contents
-		/// of memory still intact.
-		/// </summary>
-		/// <param name="sender">The source of the suspend request.</param>
-		/// <param name="e">Details about the suspend request.</param>
-		private void OnSuspending(object sender, SuspendingEventArgs e)
+		private void ConfigureSuspension()
 		{
-			var deferral = e.SuspendingOperation.GetDeferral();
+			this.Suspending += OnSuspending;
 
-			deferral.Complete();
+			void OnSuspending(object sender, SuspendingEventArgs e)
+			{
+				var deferral = e.SuspendingOperation.GetDeferral();
+
+				deferral.Complete();
+			}
 		}
 
 		private void ConfigureViewSize()
@@ -156,22 +149,20 @@ namespace Ch9
 #endif
 		}
 
-		private void ConfigureKeyHookUwp()
+		private void ConfigureEscapeKey()
 		{
 #if WINDOWS_UWP
             Window.Current.CoreWindow.CharacterReceived += CoreWindowCharacterReceived;
 
             void CoreWindowCharacterReceived(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.CharacterReceivedEventArgs args)
             {
-                if (args.KeyCode == 27) //Escape
+                if (args.KeyCode == 27) // Escape key
                 {
-                    if ((_rootFrame.Content as FrameworkElement)?.DataContext is ShowPageViewModel showPage &&
-                        showPage.Show.IsVideoFullWindow)
+                    if (TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.IsVideoFullWindow)
                     {
                         showPage.Show.IsVideoFullWindow = false;
                     }
-                    else if ((_rootFrame.Content as FrameworkElement)?.DataContext is MainPageViewModel mainPage &&
-                             mainPage.Show.IsVideoFullWindow)
+                    else if (TryGetActiveViewModel<MainPageViewModel>(out var mainPage) && mainPage.Show.IsVideoFullWindow)
                     {
                         mainPage.Show.IsVideoFullWindow = false;
                     }
@@ -224,42 +215,22 @@ namespace Ch9
 						SimpleOrientation.Rotated90DegreesCounterclockwise
 					);
 
-					if ((_rootFrame.Content as FrameworkElement)?.DataContext is ShowPageViewModel showPage &&
-						showPage.Show.SelectedEpisode != null)
+					if (TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.SelectedEpisode != null)
 					{
 						ToVideoFullWindow(showPage.Show, isLandscape);
 					}
-					else if ((_rootFrame.Content as FrameworkElement)?.DataContext is MainPageViewModel mainPage &&
-							 mainPage.Show.SelectedEpisode != null)
+					else if (TryGetActiveViewModel<MainPageViewModel>(out var mainPage) && mainPage.Show.SelectedEpisode != null)
 					{
 						ToVideoFullWindow(mainPage.Show, isLandscape);
 					}
 				}
 				catch (Exception ex)
 				{
-					this.Log().ErrorIfEnabled(() => $"Error in OrientationChanged subscription: {ex.ToString()}");
+					this.Log().ErrorIfEnabled(() => $"Error in OrientationChanged subscription: {ex}");
 				}
 			}
 		}
 
-		/// <summary>
-		/// Sets the video to fullWindow depending on screen orientation
-		/// </summary>
-		/// <param name="showVm">The show vm for which we will change its property IsVideoFullWindow</param>
-		/// <param name="isLandscape">Determine if the device is oriented in landscape</param>
-		private void ToVideoFullWindow(ShowViewModel showVm, bool isLandscape)
-		{
-			if (showVm == null)
-				return;
-
-			//Set display orientation to none, thus screen can handle LandscapeFlipped
-			DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
-			showVm.IsVideoFullWindow = isLandscape;
-		}
-
-		/// <summary>
-		/// Sets the visibility of the system UI's back button based on the navigation service.
-		/// </summary>
 		private void ConfigureSystemBackVisibility()
 		{
 			var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
@@ -274,9 +245,6 @@ namespace Ch9
 			navigationService.OnNavigated += OnNavigated;
 		}
 
-		/// <summary>
-		/// Hooks the system back button with the navigation service.
-		/// </summary>
 		private void ConfigureBackRequests()
 		{
 			void OnBackRequested(object sender, BackRequestedEventArgs e)
@@ -330,39 +298,7 @@ namespace Ch9
 			SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 		}
 
-		private static bool _isActivityBackgroundCleared;
-		private static DisplayOrientations _previousOrientation;
-		public static void OnFullscreenChanged(bool isFullscreen)
-		{
-#if __ANDROID__
-			// This will reset the window background from the splashscreen to a black background.
-			if (isFullscreen && !_isActivityBackgroundCleared)
-			{
-				(ContextHelper.Current as Android.App.Activity).Window.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable(Android.Graphics.Color.Black));
-				_isActivityBackgroundCleared = true;
-			}
-#endif
-
-			if (DeviceInfo.Idiom == DeviceIdiom.Phone)
-			{
-				if (isFullscreen)
-				{
-					if (DisplayInformation.AutoRotationPreferences == DisplayOrientations.None) return;
-
-					DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
-				}
-				else
-				{
-					DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Configures global logging
-		/// </summary>
-		/// <param name="factory"></param>
-		static void ConfigureFilters(ILoggerFactory factory)
+		private void ConfigureFilters(ILoggerFactory factory)
 		{
 			factory
 				.WithFilter(new FilterLoggerSettings
@@ -409,6 +345,62 @@ namespace Ch9
 #else
 				.AddConsole(Microsoft.Extensions.Logging.LogLevel.Information);
 #endif
+		}
+		#endregion
+
+		public void OnFullscreenChanged(bool isFullscreen)
+		{
+#if __ANDROID__
+			// This will reset the window background from the splashscreen to a black background.
+			if (isFullscreen && !_isActivityBackgroundCleared)
+			{
+				(ContextHelper.Current as Android.App.Activity).Window.SetBackgroundDrawable(new Android.Graphics.Drawables.ColorDrawable(Android.Graphics.Color.Black));
+				_isActivityBackgroundCleared = true;
+			}
+#endif
+
+			if (DeviceInfo.Idiom == DeviceIdiom.Phone)
+			{
+				if (isFullscreen)
+				{
+					if (DisplayInformation.AutoRotationPreferences == DisplayOrientations.None)
+					{
+						return;
+					}
+
+					DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
+				}
+				else
+				{
+					DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
+				}
+			}
+		}		
+
+		private bool TryGetActiveViewModel<TViewModel>(out TViewModel viewModel)
+		{
+			var dataContext = (_rootFrame.Content as FrameworkElement)?.DataContext;
+
+			if (dataContext is TViewModel model)
+			{
+				viewModel = model;
+
+				return true;
+			}
+
+			viewModel = default(TViewModel);
+
+			return false;
+		}
+
+		private void ToVideoFullWindow(ShowViewModel viewModel, bool isLandscape)
+		{
+			if (viewModel != null)
+			{
+				// Set display orientation to none, thus screen can handle LandscapeFlipped
+				DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
+				viewModel.IsVideoFullWindow = isLandscape;
+			}
 		}
 	}
 }
