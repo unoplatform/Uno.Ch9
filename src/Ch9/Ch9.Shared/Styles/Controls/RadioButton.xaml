@@ -49,7 +49,7 @@
                                 <VisualState x:Name="Checked">
                                     <VisualState.Setters>
 										<Setter Target="BorderElement.Fill"
-												Value="{StaticResource MaterialPrimaryBrush}" />
+												Value="{StaticResource MaterialPrimaryColor}" />
 										<Setter Target="ContentPresenter.FontWeight"
 												Value="Bold" />
                                         <Setter Target="ContentPresenter.Opacity"
@@ -164,7 +164,7 @@
 								   HorizontalAlignment="Left"
 								   VerticalAlignment="Stretch"
 								   Width="4"
-								   Fill="{StaticResource MaterialPrimaryVariantDarkBrush}"
+								   Fill="{StaticResource MaterialPrimaryVariantDarkColor}"
 								   Visibility="Collapsed"
 								   IsHitTestVisible="False" />
                     </Grid>

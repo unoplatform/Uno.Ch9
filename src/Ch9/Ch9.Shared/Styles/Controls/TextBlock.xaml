@@ -25,7 +25,7 @@
 		<Setter Property="TextWrapping"
 				Value="Wrap" />
 		<Setter Property="Foreground"
-				Value="{StaticResource MaterialSurfaceBrush}" />
+				Value="{StaticResource MaterialSurfaceColor}" />
 	</Style>
 
 	<!--
@@ -40,7 +40,7 @@
 		   BasedOn="{StaticResource DefaultTypo}">
 
 		<Setter Property="Foreground"
-				Value="{StaticResource MediaPlayerControlColorBrush}" />
+				Value="{StaticResource MediaPlayerControlColor}" />
 		<Setter Property="FontSize"
 				Value="15" />
 	</Style>
@@ -51,7 +51,7 @@
 		   BasedOn="{StaticResource DefaultTypo}">
 		
 		<Setter Property="Foreground"
-				Value="{StaticResource MediaPlayerControlColorBrush}" />
+				Value="{StaticResource MediaPlayerControlColor}" />
 		<Setter Property="FontSize"
 				Value="11" />
 	</Style>

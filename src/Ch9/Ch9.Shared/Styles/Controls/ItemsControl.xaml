@@ -4,13 +4,13 @@
 	
 	<!-- Category Item Template -->
 	<DataTemplate x:Key="CategoryItemTemplate">
-		<Grid Background="{StaticResource MaterialPrimaryVariantLightBrush}"
+		<Grid Background="{StaticResource MaterialPrimaryVariantLightColor}"
 			  CornerRadius="16"
 			  Height="30">
 
 			<!-- Category Name -->
 			<TextBlock Text="{Binding}"
-					   Foreground="{StaticResource MaterialPrimaryVariantDarkBrush}"
+					   Foreground="{StaticResource MaterialPrimaryVariantDarkColor}"
 					   Style="{StaticResource MaterialCaption}"
 					   VerticalAlignment="Center"
 					   Margin="12,0" />
