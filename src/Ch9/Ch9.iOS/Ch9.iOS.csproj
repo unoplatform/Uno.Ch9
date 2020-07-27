@@ -131,7 +131,7 @@
 		<PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.119" />
 		<PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.71.g38c59ea2a0" />
 		<PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
-		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.2" />
+		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.4.0" />
 		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.2" />
 		<PackageReference Include="refit" Version="4.8.14" />
 	</ItemGroup>
