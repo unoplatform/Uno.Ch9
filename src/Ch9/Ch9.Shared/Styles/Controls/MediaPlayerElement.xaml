@@ -421,13 +421,12 @@
 
 							<!-- Play / Pause Button -->
 							<Button x:Name="PlayPauseButton"
-									Style="{StaticResource PlayPauseButtonStyle}"
-									HorizontalAlignment="Stretch"
-									VerticalAlignment="Stretch">
-								<Grid Background="{StaticResource MediaPlayerOverlayColor}"
-									  CornerRadius="2"
-									  Height="62"
-									  Width="62">
+									Style="{StaticResource VideoPlayerButtonStyle}"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center">
+								<Grid CornerRadius="2"
+								      Height="62"
+								      Width="62">
 
 									<!-- Icon -->
 									<Path x:Name="PlayPauseSymbol"
