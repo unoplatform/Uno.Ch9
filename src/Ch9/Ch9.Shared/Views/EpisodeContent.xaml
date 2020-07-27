@@ -8,7 +8,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 mc:Ignorable="d">
 
-	<Grid Background="{StaticResource MaterialBackgroundBrush}">
+	<Grid Background="{StaticResource MaterialBackgroundColor}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Narrow">
@@ -138,7 +138,7 @@
 
                     <!-- Title -->
                     <TextBlock Text="{Binding Episode.Title}"
-							   Style="{StaticResource MaterialHeadline5}"
+							   Style="{StaticResource MaterialHeadline6}"
 							   Margin="0,2,0,0" />
 
                     <!-- Summary -->

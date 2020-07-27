@@ -13,7 +13,7 @@
                        Stretch="UniformToFill" />
 
                 <!-- Formatted Duration -->
-				<Border Background="{StaticResource MediaPlayerOverlayColorBrush}"
+				<Border Background="{StaticResource MediaPlayerOverlayColor}"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         CornerRadius="2"

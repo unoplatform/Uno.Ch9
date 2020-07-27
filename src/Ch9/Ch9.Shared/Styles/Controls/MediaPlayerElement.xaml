@@ -73,7 +73,7 @@
 		<Setter Property="BorderThickness"
 				Value="0" />
 		<Setter Property="Background"
-				Value="{StaticResource TransparentColorBrush}" />
+				Value="Transparent" />
 	</Style>
 
 	<!-- MTC_SliderThumbStyle -->
@@ -81,7 +81,7 @@
 		   TargetType="Thumb">
 
 		<Setter Property="Background"
-				Value="{StaticResource MaterialPrimaryBrush}" />
+				Value="{StaticResource MaterialPrimaryColor}" />
 		<Setter Property="Height"
 				Value="12" />
 		<Setter Property="Width"
@@ -109,11 +109,11 @@
 				Value="100" />
 
 		<Setter Property="Foreground"
-				Value="{StaticResource TransparentColorBrush}" />
+				Value="Transparent" />
 		<Setter Property="Background"
-				Value="{StaticResource TransparentColorBrush}" />
+				Value="Transparent" />
 		<Setter Property="BorderBrush"
-				Value="{StaticResource TransparentColorBrush}" />
+				Value="Transparent" />
 		<Setter Property="BorderThickness"
 				Value="0" />
 	</Style>
@@ -123,7 +123,7 @@
 		   TargetType="Slider">
 
 		<Setter Property="Background"
-				Value="{StaticResource MaterialBackgroundBrush}" />
+				Value="{StaticResource MaterialBackgroundColor}" />
 		<Setter Property="BorderThickness"
 				Value="0" />
 		<Setter Property="MinWidth"
@@ -183,7 +183,7 @@
 
 						<!-- Slider -->
 						<Grid x:Name="SliderContainer"
-							  Background="{StaticResource TransparentColorBrush}"
+							  Background="Transparent"
 							  Control.IsTemplateFocusTarget="True">
 
 							<Grid x:Name="HorizontalTemplate">
@@ -208,7 +208,7 @@
 
 								<!-- Horizontal Decrease Rect -->
 								<Rectangle x:Name="HorizontalDecreaseRect"
-										   Fill="{StaticResource MaterialPrimaryBrush}"
+										   Fill="{StaticResource MaterialPrimaryColor}"
 										   Height="{ThemeResource SliderTrackThemeHeight}" />
 
 								<!-- Thumb -->
@@ -232,7 +232,7 @@
 		<Setter Property="IsTabStop"
 				Value="False" />
 		<Setter Property="Background"
-				Value="{StaticResource TransparentColorBrush}" />
+				Value="Transparent" />
 		<Setter Property="FlowDirection"
 				Value="LeftToRight" />
 		<Setter Property="UseSystemFocusVisuals"
@@ -406,7 +406,7 @@
 							  toolkit:VisibleBoundsPadding.PaddingMask="Bottom">
 
 							<win:Grid x:Name="FullScreenHelperText"
-									  Background="{StaticResource MediaPlayerOverlayColorBrush}"
+									  Background="{StaticResource MediaPlayerOverlayColor}"
 								  HorizontalAlignment="Center"
 								  Visibility="Collapsed"
 				                  VerticalAlignment="Top"
@@ -423,7 +423,7 @@
 									Style="{StaticResource PlayPauseButtonStyle}"
 									HorizontalAlignment="Stretch"
 									VerticalAlignment="Stretch">
-								<Grid Background="{StaticResource MediaPlayerOverlayColorBrush}"
+								<Grid Background="{StaticResource MediaPlayerOverlayColor}"
 									  CornerRadius="2"
 									  Height="62"
 									  Width="62">
@@ -475,7 +475,7 @@
 
 						<!-- Bottom Control Panel -->
 						<Grid x:Name="BottomControlPanel"
-							  Background="{StaticResource VideoPlayerBottomBrush}"
+							  Background="{StaticResource MediaPlayerBackgroundColor}"
 							  VerticalAlignment="Bottom"
 							  toolkit:VisibleBoundsPadding.PaddingMask="Bottom">
 

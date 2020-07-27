@@ -132,14 +132,14 @@
 				<AppBarButton Command="{Binding ToAboutPage}"
 							  android:Margin="0,0,16,0">
 					<Path Style="{StaticResource InfoIconPath}"
-						  Fill="{StaticResource MaterialSurfaceBrush}"
+						  Fill="{StaticResource MaterialSurfaceColor}"
 						  VerticalAlignment="Center" />
 				</AppBarButton>
 			</CommandBar.PrimaryCommands>
 		</CommandBar>
 
 		<Grid x:Name="NavigationTabsContainer"
-			  Background="{StaticResource MaterialBackgroundBrush}"
+			  Background="{StaticResource MaterialBackgroundColor}"
 			  Grid.Row="1"
 			  Grid.ColumnSpan="2">
 			<Grid.ColumnDefinitions>
@@ -179,13 +179,13 @@
 							CommandParameter="{Binding Show}"
 							Style="{StaticResource HiddenButtonStyle}">
 
-						<toolkit:ElevatedView Background="{StaticResource MaterialBackgroundBrush}"
-											  win:BorderBrush="{StaticResource ShadowBrush}"
+						<toolkit:ElevatedView Background="{StaticResource MaterialBackgroundColor}"
+											  win:BorderBrush="{StaticResource Shadow}"
 											  win:BorderThickness="1"
 											  CornerRadius="9"
 											  Elevation="8"
 											  Margin="16,16,12,8">
-							<Grid Background="{StaticResource MaterialBackgroundBrush}">
+							<Grid Background="{StaticResource MaterialBackgroundColor}">
 								<StackPanel>
 
 									<!-- Image -->
@@ -212,7 +212,7 @@
 		<!-- Error list of shows -->
 		<Grid Opacity="{Binding IsChecked, ElementName=ShowContentBtn, Converter={StaticResource TrueToOpaque}}"
 		      Visibility="{Binding Shows.IsFaulted}"
-			  Background="{StaticResource MaterialBackgroundBrush}"
+			  Background="{StaticResource MaterialBackgroundColor}"
 		      Grid.Row="2"
 		      Grid.Column="0"
 		      Grid.ColumnSpan="2">
@@ -328,7 +328,7 @@
 			  Grid.Column="1">
 
 			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToVisible}}"
-				  Background="{StaticResource MaterialBackgroundBrush}">
+				  Background="{StaticResource MaterialBackgroundColor}">
 
 				<StackPanel VerticalAlignment="Center">
 
@@ -368,11 +368,11 @@
 
 			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 				  toolkit:VisibleBoundsPadding.PaddingMask="Top"
-				  Background="{StaticResource MaterialBackgroundBrush}">
+				  Background="{StaticResource MaterialBackgroundColor}">
 
 				<!-- Modal background -->
 				<Border x:Name="ModalBackground"
-						Background="{StaticResource MaterialBackgroundBrush}" />
+						Background="{StaticResource MaterialBackgroundColor}" />
 
 				<!-- Presenter -->
 				<ScrollViewer>
@@ -399,7 +399,7 @@
 		<!-- Error -->
 		<Grid DataContext="{Binding Show}"
 			  Visibility="{Binding Show.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-			  Background="{StaticResource MaterialBackgroundBrush}"
+			  Background="{StaticResource MaterialBackgroundColor}"
 			  Grid.Row="1"
 			  Grid.RowSpan="2"
 			  Grid.Column="0"
