@@ -56,6 +56,7 @@
 
 			<!-- Value -->
 			<TextBlock Text="{Binding FormattedDuration}"
+			           Foreground="{StaticResource MaterialSurfaceColor}"
 			           Style="{StaticResource MaterialBody2}"
 			           Margin="12,7" />
 		</Border>
