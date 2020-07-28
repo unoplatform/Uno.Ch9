@@ -254,13 +254,14 @@
 		      Grid.Row="2"
 		      Grid.Column="0"
 		      Grid.ColumnSpan="2">
+			
 			<StackPanel VerticalAlignment="Center"
 			            HorizontalAlignment="Center">
 
 				<!-- Loading Animation -->
 				<winui:AnimatedVisualPlayer AutoPlay="true"
-				                            Height="120">
-					<lottie:LottieVisualSource UriSource="ms-appx:///Assets/loading_animation_data.json" />
+											Height="120">
+					<lottie:LottieVisualSource UriSource="ms-appx:///Assets/Animations/loading_animation_data.json" />
 				</winui:AnimatedVisualPlayer>
 
 				<!-- Loading Message -->
@@ -450,7 +451,7 @@
 				<winui:AnimatedVisualPlayer x:Name="player"
 												AutoPlay="true"
 												Height="120">
-					<lottie:LottieVisualSource UriSource="ms-appx:///Assets/loading_animation_data.json" />
+					<lottie:LottieVisualSource UriSource="ms-appx:///Assets/Animations/loading_animation_data.json" />
 				</winui:AnimatedVisualPlayer>
 
 				<!-- Loading Message -->
