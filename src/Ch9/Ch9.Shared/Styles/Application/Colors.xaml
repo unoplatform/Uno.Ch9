@@ -15,22 +15,14 @@
 			<Color x:Key="MaterialPrimaryColor">#FFB20B</Color>
 			<Color x:Key="MaterialPrimaryVariantDarkColor">#D2730E</Color>
 			<Color x:Key="MaterialPrimaryVariantLightColor">#FFDF83</Color>
-			<Color x:Key="MaterialBackgroundColor">#FFFFFF</Color> <!-- TBVerified -->
-			<Color x:Key="MaterialSurfaceColor">#FFFFFF</Color> <!-- Same as background color ?? -->
-			<Color x:Key="MaterialErrorColor">#F85977</Color> <!-- Note used ? -->
+			<Color x:Key="MaterialBackgroundColor">#FFFFFF</Color> 
+			<Color x:Key="MaterialSurfaceColor">#FFFFFF</Color> 
+			<Color x:Key="MaterialErrorColor">#F85977</Color> 
 			<Color x:Key="MaterialOnPrimaryColor">#FFFFFF</Color>
-			<Color x:Key="MaterialOnBackgroundColor">#000000</Color> <!-- Color06 -->
-			<Color x:Key="MaterialOnSurfaceColor">#000000</Color> <!-- Color06 -->
-			<Color x:Key="MaterialOnErrorColor">#FFFFFF</Color> <!-- Not used ? Only errors are displayed through lottie -->
-			<Color x:Key="MaterialOverlayColor">#51000000</Color> <!-- TODO , what is it for ? -->
-
-			<!--<Color x:Key="MaterialSecondaryColor">#D2730E</Color>-->
-			<!-- TODO No secondary on zeplin ? -->
-			<!--<Color x:Key="MaterialSecondaryVariantDarkColor">#2BB27E</Color>-->
-			<!-- TODO -->
-			<!--<Color x:Key="MaterialSecondaryVariantLightColor">#9CFFDF</Color>-->
-			<!-- TODO -->
-			<!--<Color x:Key="MaterialOnSecondaryColor">#000000</Color>-->
+			<Color x:Key="MaterialOnBackgroundColor">#000000</Color> 
+			<Color x:Key="MaterialOnSurfaceColor">#000000</Color> 
+			<Color x:Key="MaterialOnErrorColor">#FFFFFF</Color> 
+			<Color x:Key="MaterialOverlayColor">#51000000</Color> 
 
 			<Color x:Key="Shadow">#38000000</Color>
 			<Color x:Key="MediaPlayerControlColor">#FFFFFFFF</Color>
