@@ -15,14 +15,14 @@
 			<Color x:Key="MaterialPrimaryColor">#FFB20B</Color>
 			<Color x:Key="MaterialPrimaryVariantDarkColor">#D2730E</Color>
 			<Color x:Key="MaterialPrimaryVariantLightColor">#FFDF83</Color>
-			<Color x:Key="MaterialBackgroundColor">#FFFFFF</Color> 
-			<Color x:Key="MaterialSurfaceColor">#FFFFFF</Color> 
-			<Color x:Key="MaterialErrorColor">#F85977</Color> 
+			<Color x:Key="MaterialBackgroundColor">#FFFFFF</Color>
+			<Color x:Key="MaterialSurfaceColor">#FFFFFF</Color>
+			<Color x:Key="MaterialErrorColor">#F85977</Color>
 			<Color x:Key="MaterialOnPrimaryColor">#FFFFFF</Color>
-			<Color x:Key="MaterialOnBackgroundColor">#000000</Color> 
-			<Color x:Key="MaterialOnSurfaceColor">#000000</Color> 
-			<Color x:Key="MaterialOnErrorColor">#FFFFFF</Color> 
-			<Color x:Key="MaterialOverlayColor">#51000000</Color> 
+			<Color x:Key="MaterialOnBackgroundColor">#000000</Color>
+			<Color x:Key="MaterialOnSurfaceColor">#000000</Color>
+			<Color x:Key="MaterialOnErrorColor">#FFFFFF</Color>
+			<Color x:Key="MaterialOverlayColor">#51000000</Color>
 
 			<Color x:Key="Shadow">#38000000</Color>
 			<Color x:Key="MediaPlayerControlColor">#FFFFFFFF</Color>
@@ -48,21 +48,35 @@
 		<ResourceDictionary x:Key="Dark">
 
 			<!-- Material colors -->
-			<Color x:Key="MaterialPrimaryColor">#FFFFDF83</Color> <!-- Color03 -->
-			<Color x:Key="MaterialPrimaryVariantDarkColor">#FFEECC85</Color> <!-- TODO Maybe Color04 -->
-			<Color x:Key="MaterialPrimaryVariantLightColor">#FF342F25</Color> <!-- TODO Maybe Color05 -->
-			<Color x:Key="MaterialSecondaryColor">#FFEECC85</Color> <!-- TODO -->
-			<Color x:Key="MaterialSecondaryVariantDarkColor">#2BB27E</Color> <!-- TODO -->
-			<Color x:Key="MaterialSecondaryVariantLightColor">#9CFFDF</Color> <!-- TODO -->
-			<Color x:Key="MaterialBackgroundColor">#FF131415</Color> <!-- Color01 -->
-			<Color x:Key="MaterialSurfaceColor">#FF131415</Color> <!-- Color01 -->
-			<Color x:Key="MaterialErrorColor">#F85977</Color> <!-- TODO -->
-			<Color x:Key="MaterialOnPrimaryColor">#FF1F1F20</Color> <!-- Color01 -->
-			<Color x:Key="MaterialOnSecondaryColor">#FF1F1F20</Color> <!-- Color01 -->
-			<Color x:Key="MaterialOnBackgroundColor">#FFF3F3F3</Color> <!-- Color06 -->
-			<Color x:Key="MaterialOnSurfaceColor">#FFF3F3F3</Color> <!-- Color06 -->
+			<Color x:Key="MaterialPrimaryColor">#FFFFDF83</Color>
+			<!-- Color03 -->
+			<Color x:Key="MaterialPrimaryVariantDarkColor">#FFEECC85</Color>
+			<!-- TODO Maybe Color04 -->
+			<Color x:Key="MaterialPrimaryVariantLightColor">#FF342F25</Color>
+			<!-- TODO Maybe Color05 -->
+			<Color x:Key="MaterialSecondaryColor">#FFEECC85</Color>
+			<!-- TODO -->
+			<Color x:Key="MaterialSecondaryVariantDarkColor">#2BB27E</Color>
+			<!-- TODO -->
+			<Color x:Key="MaterialSecondaryVariantLightColor">#9CFFDF</Color>
+			<!-- TODO -->
+			<Color x:Key="MaterialBackgroundColor">#FF131415</Color>
+			<!-- Color01 -->
+			<Color x:Key="MaterialSurfaceColor">#FF131415</Color>
+			<!-- Color01 -->
+			<Color x:Key="MaterialErrorColor">#F85977</Color>
+			<!-- TODO -->
+			<Color x:Key="MaterialOnPrimaryColor">#FF1F1F20</Color>
+			<!-- Color01 -->
+			<Color x:Key="MaterialOnSecondaryColor">#FF1F1F20</Color>
+			<!-- Color01 -->
+			<Color x:Key="MaterialOnBackgroundColor">#FFF3F3F3</Color>
+			<!-- Color06 -->
+			<Color x:Key="MaterialOnSurfaceColor">#FFF3F3F3</Color>
+			<!-- Color06 -->
 			<Color x:Key="MaterialOnErrorColor">#000000</Color>
-			<Color x:Key="MaterialOverlayColor">#51000000</Color> <!-- TODO -->
+			<Color x:Key="MaterialOverlayColor">#51000000</Color>
+			<!-- TODO -->
 
 			<Color x:Key="Shadow">#60000000</Color>
 			<Color x:Key="MediaPlayerControlColor">#FFFFFFFF</Color>

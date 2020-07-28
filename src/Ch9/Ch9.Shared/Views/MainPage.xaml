@@ -132,7 +132,7 @@
 				<AppBarButton Command="{Binding ToAboutPage}"
 							  android:Margin="0,0,16,0">
 					<Path Style="{StaticResource InfoIconPath}"
-						  Fill="{StaticResource MaterialSurfaceColor}"
+						  Fill="{StaticResource MaterialOnSurfaceColor}"
 						  VerticalAlignment="Center" />
 				</AppBarButton>
 			</CommandBar.PrimaryCommands>
@@ -242,6 +242,7 @@
 				        x:Uid="MainPage_ErrorStateButtonLabel"
 				        Command="{Binding ReloadShowsList}"
 						Style="{StaticResource MaterialContainedButtonStyle}"
+						HorizontalAlignment="Center"
 				        Margin="40,40,40,0" />
 			</StackPanel>
 		</Grid>
@@ -430,6 +431,7 @@
 						x:Uid="MainPage_ErrorStateButtonLabel"
 						Command="{Binding ReloadPage}"
 						Style="{StaticResource MaterialContainedButtonStyle}"
+						HorizontalAlignment="Center"
 						Margin="40,40,40,0" />
 			</StackPanel>
 		</Grid>

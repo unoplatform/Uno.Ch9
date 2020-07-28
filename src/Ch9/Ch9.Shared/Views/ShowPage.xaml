@@ -317,6 +317,7 @@
 						x:Uid="MainPage_ErrorStateButtonLabel"
 						Command="{Binding ReloadPage}"
 						Style="{StaticResource MaterialContainedButtonStyle}"
+						HorizontalAlignment="Center"
 						Margin="40,40,40,0" />
 			</StackPanel>
 		</Grid>
