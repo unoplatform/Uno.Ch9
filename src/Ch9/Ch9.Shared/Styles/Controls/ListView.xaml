@@ -313,6 +313,7 @@
 							<!-- Title -->
 							<TextBlock Text="Currently Playing"
 									   x:Uid="MainPage_CurrentlyPlaying"
+									   Foreground="{StaticResource MaterialSurfaceColor}"
 									   Style="{StaticResource MaterialBody2}"
 									   VerticalAlignment="Center"
 									   HorizontalAlignment="Center"
