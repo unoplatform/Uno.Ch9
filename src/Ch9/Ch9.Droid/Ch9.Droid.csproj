@@ -18,7 +18,7 @@
     <AndroidUseAapt2>false</AndroidUseAapt2>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <ResourcesDirectory>..\Ch9.Shared\Strings</ResourcesDirectory>
@@ -64,20 +64,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Uno.UI" Version="2.3.0-dev.90" />
-    <PackageReference Include="Uno.UI.Lottie" Version="2.3.0-dev.90" />
-    <PackageReference Include="Com.Airbnb.Android.Lottie" Version="2.5.2.1" />
+    <PackageReference Include="Uno.Material" Version="1.0.0-dev.380" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.1004" />
+    <PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1004" />
+    <PackageReference Include="Com.Airbnb.Android.Lottie" Version="3.4.2" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
     <PackageReference Include="Uno.GalaSoft.MvvmLight.Platform" Version="5.4.0-uno.134" />
-    <PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.119" />
-    <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.71.g38c59ea2a0" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
+    <PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.132" />
+    <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.186.g928c99f74d" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.2" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.2" />
     <PackageReference Include="refit" Version="4.8.14" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.1.0" />
+    <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.0.0" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.1.0" />
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4" Version="1.0.0" />
+    <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.1.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -87,7 +93,7 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\winjs-symbols.ttf" />
     <AndroidEnvironment Include="Environment.conf" />
-    <AndroidAsset Include="Assets\Lottie\loading_animation_data.json" />
+    <AndroidAsset Include="Assets\Assets\Animations\loading_animation_data.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
@@ -170,6 +176,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values-night\colors.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\Ch9.Shared\Ch9.Shared.projitems" Label="Shared" Condition="Exists('..\Ch9.Shared\Ch9.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- This will force the generation of the APK when not building inside visual studio -->
