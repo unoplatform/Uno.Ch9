@@ -1,173 +1,179 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<ProductVersion>8.0.30703</ProductVersion>
-		<SchemaVersion>2.0</SchemaVersion>
-		<ProjectGuid>{73D90DF8-601A-43A6-B2A2-E4ED06BF0C71}</ProjectGuid>
-		<ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-		<OutputType>Library</OutputType>
-		<AppDesignerFolder>Properties</AppDesignerFolder>
-		<RootNamespace>Ch9.Droid</RootNamespace>
-		<AssemblyName>Ch9.Droid</AssemblyName>
-		<FileAlignment>512</FileAlignment>
-		<AndroidApplication>true</AndroidApplication>
-		<AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
-		<!-- AndroidUseAapt2 is disabled until https://github.com/unoplatform/uno/issues/1382 is resolved -->
-		<AndroidUseAapt2>false</AndroidUseAapt2>
-		<GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-		<AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-		<TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
-		<AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-		<AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
-		<ResourcesDirectory>..\Ch9.Shared\Strings</ResourcesDirectory>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>portable</DebugType>
-		<Optimize>false</Optimize>
-		<OutputPath>bin\Debug\</OutputPath>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-		<AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
-		<AndroidLinkMode>Full</AndroidLinkMode>
-		<AndroidLinkSkip>$(AssemblyName)</AndroidLinkSkip>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<DebugType>portable</DebugType>
-		<DebugSymbols>true</DebugSymbols>
-		<AndroidManagedSymbols>true</AndroidManagedSymbols>
-		<Optimize>true</Optimize>
-		<OutputPath>bin\Release\</OutputPath>
-		<DefineConstants>TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-		<AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-		<AndroidLinkMode>Full</AndroidLinkMode>
-		<AndroidLinkSkip>$(AssemblyName)</AndroidLinkSkip>
-		<AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
-		<EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-		<AotAssemblies>true</AotAssemblies>
-		<AndroidAotAdditionalArguments>nodebug,no-write-symbols</AndroidAotAdditionalArguments>
-		<EnableLLVM>true</EnableLLVM>
-		<AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="Mono.Android" />
-		<Reference Include="Mono.Android.Export" />
-		<Reference Include="mscorlib" />
-		<Reference Include="System" />
-		<Reference Include="System.Core" />
-		<Reference Include="System.Xml.Linq" />
-		<Reference Include="System.Xml" />
-	</ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="Uno.UI" Version="2.3.0-dev.90" />
-		<PackageReference Include="Uno.UI.Lottie" Version="2.3.0-dev.90" />
-		<PackageReference Include="Com.Airbnb.Android.Lottie" Version="2.5.2.1" />
-		<PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
-		<PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
-		<PackageReference Include="Uno.GalaSoft.MvvmLight.Platform" Version="5.4.0-uno.134" />
-		<PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.119" />
-		<PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.71.g38c59ea2a0" />
-		<PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
-		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.2" />
-		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.2" />
-		<PackageReference Include="refit" Version="4.8.14" />
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="MainActivity.cs" />
-		<Compile Include="Properties\AssemblyInfo.cs" />
-		<Compile Include="Main.cs" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidAsset Include="Assets\Fonts\winjs-symbols.ttf" />
-		<AndroidEnvironment Include="Environment.conf" />
-		<AndroidAsset Include="Assets\Lottie\loading_animation_data.json" />
-		<None Include="Resources\AboutResources.txt" />
-		<None Include="Assets\AboutAssets.txt" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\values\Strings.xml" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable\Icon.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="Properties\AndroidManifest.xml" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\values\Styles.xml" />
-	</ItemGroup>
-	<ItemGroup>
-		<LinkDescription Include="LinkerExclusions.xml" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\mipmap-v26\ic_launcher.xml" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\mipmap-hdpi\ic_foreground.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\mipmap-mdpi\ic_foreground.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\mipmap-xhdpi\ic_foreground.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\mipmap-xxhdpi\ic_foreground.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\mipmap-xxxhdpi\ic_foreground.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\values\ic_background.xml">
-			<SubType>Designer</SubType>
-		</AndroidResource>
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable\Splash.xml">
-			<SubType>Designer</SubType>
-		</AndroidResource>
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable-xxxhdpi\launchscreen.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable-xxhdpi\launchscreen.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable-xhdpi\launchscreen.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable-mdpi\launchscreen.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidResource Include="Resources\drawable-hdpi\launchscreen.png" />
-	</ItemGroup>
-	<Import Project="..\Ch9.Shared\Ch9.Shared.projitems" Label="Shared" Condition="Exists('..\Ch9.Shared\Ch9.Shared.projitems')" />
-	<Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-	<!-- This will force the generation of the APK when not building inside visual studio -->
-	<Target Name="GenerateBuild" DependsOnTargets="SignAndroidPackage" AfterTargets="Build" Condition="'$(BuildingInsideVisualStudio)'==''" />
-	<Import Project="..\..\Versioning.targets" />
-	<Import Project="..\..\Packaging.targets" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{73D90DF8-601A-43A6-B2A2-E4ED06BF0C71}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ch9.Droid</RootNamespace>
+    <AssemblyName>Ch9.Droid</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidApplication>true</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <!-- AndroidUseAapt2 is disabled until https://github.com/unoplatform/uno/issues/1382 is resolved -->
+    <AndroidUseAapt2>false</AndroidUseAapt2>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <ResourcesDirectory>..\Ch9.Shared\Strings</ResourcesDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AndroidLinkSkip>$(AssemblyName)</AndroidLinkSkip>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <AndroidManagedSymbols>true</AndroidManagedSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AndroidLinkSkip>$(AssemblyName)</AndroidLinkSkip>
+    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AotAssemblies>true</AotAssemblies>
+    <AndroidAotAdditionalArguments>nodebug,no-write-symbols</AndroidAotAdditionalArguments>
+    <EnableLLVM>true</EnableLLVM>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="Mono.Android.Export" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Uno.UI" Version="2.3.0-dev.90" />
+    <PackageReference Include="Uno.UI.Lottie" Version="2.3.0-dev.90" />
+    <PackageReference Include="Com.Airbnb.Android.Lottie" Version="2.5.2.1" />
+    <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
+    <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
+    <PackageReference Include="Uno.GalaSoft.MvvmLight.Platform" Version="5.4.0-uno.134" />
+    <PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.119" />
+    <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.71.g38c59ea2a0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.2" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.2" />
+    <PackageReference Include="refit" Version="4.8.14" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Main.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Fonts\winjs-symbols.ttf" />
+    <AndroidEnvironment Include="Environment.conf" />
+    <AndroidAsset Include="Assets\Lottie\loading_animation_data.json" />
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <LinkDescription Include="LinkerExclusions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-v26\ic_launcher.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_foreground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_foreground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_foreground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_foreground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_foreground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\ic_background.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Splash.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\launchscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\launchscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\launchscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-mdpi\launchscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\launchscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\colors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values-night\colors.xml" />
+  </ItemGroup>
+  <Import Project="..\Ch9.Shared\Ch9.Shared.projitems" Label="Shared" Condition="Exists('..\Ch9.Shared\Ch9.Shared.projitems')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <!-- This will force the generation of the APK when not building inside visual studio -->
+  <Target Name="GenerateBuild" DependsOnTargets="SignAndroidPackage" AfterTargets="Build" Condition="'$(BuildingInsideVisualStudio)'==''" />
+  <Import Project="..\..\Versioning.targets" />
+  <Import Project="..\..\Packaging.targets" />
 </Project>
