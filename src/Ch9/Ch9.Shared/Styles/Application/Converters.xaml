@@ -69,6 +69,7 @@
 
 	<converters:DebugConverter x:Key="debug" />
 
-	<converters:FromEmptyStringOrNullObjectToValueConverter x:Key="Material_EmptyOrNullToCollapsed" />
-
+	<converters:FromEmptyStringOrNullObjectToValueConverter x:Key="Material_EmptyOrNullToCollapsed"
+	                                                        NotEmptyOrNullValue="Visible"
+	                                                        EmptyOrNullValue="Collapsed" />
 </ResourceDictionary>
