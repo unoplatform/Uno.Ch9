@@ -36,6 +36,10 @@
 		<win:Setter Property="Height"
 					Value="40" />
 
+
+		<ios:Setter Property="Height"
+		            Value="88" />
+
 		<ios:Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="CommandBar">
