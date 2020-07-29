@@ -1,38 +1,27 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:ios="http://Uno.UI/ios"
-                    xmlns:android="http://Uno.UI/android"
-                    mc:Ignorable="d android ios">
-    
-    <ios:Style x:Key="NativeDefaultAppBarButton"
-               TargetType="AppBarButton">
-        <Setter Property="Background"
-                Value="Transparent" />
-        <ios:Setter Property="Foreground"
-                    Value="{x:Null}" />
-    </ios:Style>
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:ios="http://Uno.UI/ios"
+					xmlns:android="http://Uno.UI/android"
+					xmlns:xamarin="http://Uno.UI/xamarin"
+					mc:Ignorable="d android ios xamarin">
 
-    <android:Style x:Key="NativeDefaultAppBarButton"
-                   TargetType="AppBarButton">
-        <Setter Property="Background"
-                Value="Transparent" />
-    </android:Style>
-
-    <win:Style x:Key="NativeDefaultAppBarButton"
-               TargetType="AppBarButton">
+	<Style x:Key="DefaultAppBarButtonStyle"
+		   TargetType="AppBarButton">
         
 		<Setter Property="Background"
                 Value="Transparent" />
-        <Setter Property="Foreground"
-                Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
-        <Setter Property="HorizontalAlignment"
+		<win:Setter Property="Foreground"
+					Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
+		<xamarin:Setter Property="Foreground"
+						Value="{StaticResource MaterialOnBackgroundColor}" />
+		<Setter Property="HorizontalAlignment"
                 Value="Left" />
         <Setter Property="VerticalAlignment"
                 Value="Top" />
-        <Setter Property="FontFamily"
+        <win:Setter Property="FontFamily"
                 Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontWeight"
                 Value="Normal" />
@@ -103,41 +92,30 @@
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
-                                                                       Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightListLowBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content"
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content"
+																	   Storyboard.TargetProperty="Opacity">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="0.6" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextLabel"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextLabel"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OverflowTextLabel"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <!--<PointerUpThemeAnimation Storyboard.TargetName="OverflowTextLabel" />-->
-                                    </Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="OverflowTextLabel"
+																	   Storyboard.TargetProperty="Foreground">
+											<DiscreteObjectKeyFrame KeyTime="0"
+																	Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
-                                                                       Storyboard.TargetProperty="Background">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content"
+                                                                       Storyboard.TargetProperty="Opacity">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightListMediumBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content"
-                                                                       Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                                                    Value="0.6" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TextLabel"
                                                                        Storyboard.TargetProperty="Foreground">
@@ -222,9 +200,9 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </win:Style>
+    </Style>
 
     <Style TargetType="AppBarButton"
-           BasedOn="{StaticResource NativeDefaultAppBarButton}" />
+		   BasedOn="{StaticResource DefaultAppBarButtonStyle}" />
 
 </ResourceDictionary>
