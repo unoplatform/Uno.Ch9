@@ -1,16 +1,16 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:local="using:Ch9.Styles.Controls">
-	
+
 	<!-- Category Item Template -->
 	<DataTemplate x:Key="CategoryItemTemplate">
-		<Grid Background="{StaticResource MaterialPrimaryVariantLightColor}"
+		<Grid Background="{StaticResource MaterialPrimaryVariantLightBrush}"
 			  CornerRadius="16"
 			  Height="30">
 
 			<!-- Category Name -->
 			<TextBlock Text="{Binding}"
-					   Foreground="{StaticResource MaterialPrimaryVariantDarkColor}"
+					   Foreground="{StaticResource MaterialPrimaryVariantDarkBrush}"
 					   Style="{StaticResource MaterialCaption}"
 					   VerticalAlignment="Center"
 					   Margin="12,0" />

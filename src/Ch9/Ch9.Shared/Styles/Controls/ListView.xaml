@@ -288,15 +288,15 @@
 
 						<ContentPresenter x:Name="ContentPresenter"
 										  Margin="16,16,16,0"
-						                  ContentTransitions="{TemplateBinding ContentTransitions}"
-						                  ContentTemplate="{TemplateBinding ContentTemplate}"
-						                  Content="{TemplateBinding Content}"
-						                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-						                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+										  ContentTransitions="{TemplateBinding ContentTransitions}"
+										  ContentTemplate="{TemplateBinding ContentTemplate}"
+										  Content="{TemplateBinding Content}"
+										  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
 
 						<!-- Content Presenter -->
 						<Grid x:Name="SelectionBorder"
-							  BorderBrush="{StaticResource MaterialPrimaryColor}"
+							  BorderBrush="{StaticResource MaterialPrimaryBrush}"
 							  BorderThickness="0"
 							  CornerRadius="8"
 							  Margin="15,16,27,12" />
@@ -304,7 +304,7 @@
 						<!-- Selected State -->
 						<Grid x:Name="SelectedStateOverlay"
 							  Visibility="Collapsed"
-							  Background="{StaticResource MediaPlayerOverlayColor}"
+							  Background="{StaticResource MediaPlayerOverlayColorBrush}"
 							  CornerRadius="2"
 							  VerticalAlignment="Top"
 							  HorizontalAlignment="Left"
@@ -313,7 +313,7 @@
 							<!-- Title -->
 							<TextBlock Text="Currently Playing"
 									   x:Uid="MainPage_CurrentlyPlaying"
-									   Foreground="{StaticResource MaterialSurfaceColor}"
+									   Foreground="{StaticResource MediaPlayerControlColorBrush}"
 									   Style="{StaticResource MaterialBody2}"
 									   VerticalAlignment="Center"
 									   HorizontalAlignment="Center"

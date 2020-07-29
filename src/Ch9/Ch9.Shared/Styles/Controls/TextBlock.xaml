@@ -2,9 +2,9 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:local="using:Ch9.Shared.Styles.Controls">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
-    </ResourceDictionary.MergedDictionaries>
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
+	</ResourceDictionary.MergedDictionaries>
 
 	<!--
 	******************************************************************
@@ -25,7 +25,7 @@
 		<Setter Property="TextWrapping"
 				Value="Wrap" />
 		<Setter Property="Foreground"
-				Value="{StaticResource MaterialSurfaceColor}" />
+				Value="{StaticResource MaterialSurfaceBrush}" />
 	</Style>
 
 	<!--
@@ -33,14 +33,14 @@
 		TODO Remove - STYLE GUIDE TEXTBLOCKS STYLES
 	******************************************************************
 	-->
-		
+
 	<!-- TODO We can't remove this because it's the same dark vs light Typo04 -->
 	<Style x:Key="Typo04"
 		   TargetType="TextBlock"
 		   BasedOn="{StaticResource DefaultTypo}">
 
 		<Setter Property="Foreground"
-				Value="{StaticResource MediaPlayerControlColor}" />
+				Value="{StaticResource MediaPlayerControlColorBrush}" />
 		<Setter Property="FontSize"
 				Value="15" />
 	</Style>
@@ -49,13 +49,13 @@
 	<Style x:Key="MediaPlayerTypo"
 		   TargetType="TextBlock"
 		   BasedOn="{StaticResource DefaultTypo}">
-		
+
 		<Setter Property="Foreground"
-				Value="{StaticResource MediaPlayerControlColor}" />
+				Value="{StaticResource MediaPlayerControlColorBrush}" />
 		<Setter Property="FontSize"
 				Value="11" />
 	</Style>
-	
+
 	<!-- Default -->
 	<Style BasedOn="{StaticResource DefaultTypo}"
 		   TargetType="TextBlock" />

@@ -1,7 +1,7 @@
 ﻿<Page x:Class="Ch9.MainPage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:win="using:Uno.UI.Toolkit"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:local="using:Ch9"
 	  xmlns:toolkit="using:Uno.UI.Toolkit"
 	  xmlns:ctoolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
@@ -17,7 +17,7 @@
 
 		<DataTemplate x:Key="HeaderTemplate">
 			<TextBlock Text="{Binding}"
-			           Margin="12,8,0,16"
+					   Margin="12,8,0,16"
 					   Style="{ThemeResource MaterialHeadline6}" />
 		</DataTemplate>
 
@@ -25,7 +25,7 @@
 			<Image Source="{Binding}"
 				   Stretch="UniformToFill"
 				   Height="200"
-				   Width="355"/>
+				   Width="355" />
 		</DataTemplate>
 
 	</Page.Resources>
@@ -150,14 +150,14 @@
 				<AppBarButton Command="{Binding ToAboutPage}"
 							  android:Margin="0,0,16,0">
 					<Path Style="{StaticResource InfoIconPath}"
-						  Fill="{StaticResource MaterialOnSurfaceColor}"
+						  Fill="{StaticResource MaterialSurfaceBrush}"
 						  VerticalAlignment="Center" />
 				</AppBarButton>
 			</CommandBar.PrimaryCommands>
 		</CommandBar>
 
 		<Grid x:Name="NavigationTabsContainer"
-			  Background="{StaticResource MaterialBackgroundColor}"
+			  Background="{StaticResource MaterialBackgroundBrush}"
 			  Grid.Row="1"
 			  Grid.ColumnSpan="2">
 			<Grid.ColumnDefinitions>
@@ -198,11 +198,11 @@
 							Style="{StaticResource HiddenButtonStyle}">
 
 						<material:Card HeaderContent="{Binding Show.Name}"
-						               HeaderContentTemplate="{StaticResource HeaderTemplate}"
-						               MediaContent="{Binding Show.ThumbnailUrl}"
-						               Background="{StaticResource MaterialBackgroundBrush}"
-						               MediaContentTemplate="{StaticResource SampleImageTemplate}"
-						               Style="{StaticResource CustomMaterialCard}" />
+									   HeaderContentTemplate="{StaticResource HeaderTemplate}"
+									   MediaContent="{Binding Show.ThumbnailUrl}"
+									   Background="{StaticResource MaterialBackgroundBrush}"
+									   MediaContentTemplate="{StaticResource SampleImageTemplate}"
+									   Style="{StaticResource CustomMaterialCard}" />
 					</Button>
 				</DataTemplate>
 			</GridView.ItemTemplate>
@@ -210,53 +210,53 @@
 
 		<!-- Error list of shows -->
 		<Grid Opacity="{Binding IsChecked, ElementName=ShowContentBtn, Converter={StaticResource TrueToOpaque}}"
-		      Visibility="{Binding Shows.IsFaulted}"
-			  Background="{StaticResource MaterialBackgroundColor}"
-		      Grid.Row="2"
-		      Grid.Column="0"
-		      Grid.ColumnSpan="2">
+			  Visibility="{Binding Shows.IsFaulted}"
+			  Background="{StaticResource MaterialBackgroundBrush}"
+			  Grid.Row="2"
+			  Grid.Column="0"
+			  Grid.ColumnSpan="2">
 
 			<StackPanel VerticalAlignment="Center">
 
 				<!-- Image -->
 				<Image Source="{Binding Shows.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImage}}"
-				       Stretch="None"
-				       HorizontalAlignment="Center"
-				       Margin="{Binding Shows.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImageMargin}}" />
+					   Stretch="None"
+					   HorizontalAlignment="Center"
+					   Margin="{Binding Shows.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImageMargin}}" />
 
 				<!-- Title -->
 				<TextBlock Text="{Binding Shows.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorTitle}}"
 						   Style="{StaticResource MaterialHeadline6}"
-				           TextAlignment="Center"
-				           Margin="40,12,40,0" />
+						   TextAlignment="Center"
+						   Margin="40,12,40,0" />
 
 				<!-- Message -->
 				<TextBlock Text="{Binding Shows.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorMessage}}"
 						   Style="{StaticResource MaterialBody1}"
-				           TextAlignment="Center"
-				           Margin="40,8,40,0" />
+						   TextAlignment="Center"
+						   Margin="40,8,40,0" />
 
 				<!-- Reload button -->
 				<Button Content="Try Again"
-				        x:Uid="MainPage_ErrorStateButtonLabel"
-				        Command="{Binding ReloadShowsList}"
+						x:Uid="MainPage_ErrorStateButtonLabel"
+						Command="{Binding ReloadShowsList}"
 						Style="{StaticResource MaterialContainedButtonStyle}"
 						HorizontalAlignment="Center"
-				        Margin="40,40,40,0" />
+						Margin="40,40,40,0" />
 			</StackPanel>
 		</Grid>
 
 
 		<!-- Loading list of shows -->
 		<Grid Visibility="{Binding Shows.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-		      Background="{ThemeResource AppBackgroundBrush}"
-		      HorizontalAlignment="Center"
-		      Grid.Row="2"
-		      Grid.Column="0"
-		      Grid.ColumnSpan="2">
+			  Background="{ThemeResource AppBackgroundBrush}"
+			  HorizontalAlignment="Center"
+			  Grid.Row="2"
+			  Grid.Column="0"
+			  Grid.ColumnSpan="2">
 			
 			<StackPanel VerticalAlignment="Center"
-			            HorizontalAlignment="Center">
+						HorizontalAlignment="Center">
 
 				<!-- Loading Animation -->
 				<winui:AnimatedVisualPlayer AutoPlay="true"
@@ -266,9 +266,9 @@
 
 				<!-- Loading Message -->
 				<TextBlock Text="Loading..."
-				           x:Uid="MainPage_Loading"
+						   x:Uid="MainPage_Loading"
 						   Style="{StaticResource MaterialHeadline5}"
-				           TextAlignment="Center" />
+						   TextAlignment="Center" />
 			</StackPanel>
 		</Grid>
 
@@ -329,7 +329,7 @@
 			  Grid.Column="1">
 
 			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToVisible}}"
-				  Background="{StaticResource MaterialBackgroundColor}">
+				  Background="{StaticResource MaterialBackgroundBrush}">
 
 				<StackPanel VerticalAlignment="Center">
 
@@ -369,11 +369,11 @@
 
 			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
 				  toolkit:VisibleBoundsPadding.PaddingMask="Top"
-				  Background="{StaticResource MaterialBackgroundColor}">
+				  Background="{StaticResource MaterialBackgroundBrush}">
 
 				<!-- Modal background -->
 				<Border x:Name="ModalBackground"
-						Background="{StaticResource MaterialBackgroundColor}" />
+						Background="{StaticResource MaterialBackgroundBrush}" />
 
 				<!-- Presenter -->
 				<ScrollViewer>
@@ -400,7 +400,7 @@
 		<!-- Error -->
 		<Grid DataContext="{Binding Show}"
 			  Visibility="{Binding Show.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-			  Background="{StaticResource MaterialBackgroundColor}"
+			  Background="{StaticResource MaterialBackgroundBrush}"
 			  Grid.Row="1"
 			  Grid.RowSpan="2"
 			  Grid.Column="0"
@@ -449,8 +449,8 @@
 
 				<!-- Loading Animation -->
 				<winui:AnimatedVisualPlayer x:Name="player"
-												AutoPlay="true"
-												Height="120">
+											AutoPlay="true"
+											Height="120">
 					<lottie:LottieVisualSource UriSource="ms-appx:///Assets/Animations/loading_animation_data.json" />
 				</winui:AnimatedVisualPlayer>
 

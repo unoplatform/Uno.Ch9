@@ -98,4 +98,18 @@
 						Stretch="Uniform" />
 		</ResourceDictionary>
 	</ResourceDictionary.ThemeDictionaries>
+
+	<SolidColorBrush x:Key="TransparentColorBrush"
+					 Color="Transparent" />
+	
+	<SolidColorBrush x:Key="ShadowBrush"
+					 Color="{ThemeResource Shadow}" />
+	
+	<SolidColorBrush x:Key="MediaPlayerControlColorBrush"
+					 Color="{ThemeResource MediaPlayerControlColor}" />	
+	<SolidColorBrush x:Key="MediaPlayerOverlayColorBrush"
+					 Color="{ThemeResource MediaPlayerOverlayColor}" />
+	<SolidColorBrush x:Key="MediaPlayerBackgroundColorBrush"
+					 Color="{ThemeResource MediaPlayerBackgroundColor}" />
+	
 </ResourceDictionary>
