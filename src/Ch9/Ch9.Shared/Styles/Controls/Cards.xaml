@@ -164,14 +164,6 @@
 											  AutomationProperties.AccessibilityView="Raw"
 											  Visibility="{Binding SubHeaderContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Material_EmptyOrNullToCollapsed}}" />
 
-							<!-- Ripple effect -->
-							<material:Ripple Grid.RowSpan="4"
-											 Feedback="{StaticResource MaterialOnSurfaceFocusedBrush}"
-											 RippleSizeMultiplier="0.85"
-											 CornerRadius="{StaticResource CardsBorderRadius}"
-											 Padding="{TemplateBinding Padding}"
-											 AutomationProperties.AccessibilityView="Raw" />
-
 							<!-- Supporting Content part-->
 							<ContentPresenter Grid.Row="3"
 											  x:Name="SupportingContentPresenter"
