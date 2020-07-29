@@ -195,6 +195,7 @@
 
 					<Button Command="{Binding Parent.DisplayShow}"
 							CommandParameter="{Binding Show}"
+							Margin="16,16,16,0"
 							Style="{StaticResource HiddenButtonStyle}">
 
 						<material:Card HeaderContent="{Binding Show.Name}"
