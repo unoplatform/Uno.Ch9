@@ -8,20 +8,20 @@
 					xmlns:toolkit="using:Uno.UI.Toolkit"
 					mc:Ignorable="xamarin android ios">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
-    </ResourceDictionary.MergedDictionaries>
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
+	</ResourceDictionary.MergedDictionaries>
 
 	<Style x:Key="DefaultCommandBarStyle"
 		   TargetType="CommandBar"
 		   xamarin:BasedOn="{StaticResource NativeDefaultCommandBar}">
 
 		<Setter Property="toolkit:CommandBarExtensions.BackButtonForeground"
-				Value="{StaticResource MaterialSurfaceColor}" />
+				Value="{StaticResource MaterialOnBackgroundBrush}" />
 		<Setter Property="Background"
-				Value="{StaticResource MaterialOnPrimaryBrush}" />
+				Value="{StaticResource MaterialBackgroundBrush}" />
 		<Setter Property="Foreground"
-				Value="{StaticResource MaterialSurfaceColor}" />
+				Value="{StaticResource MaterialOnBackgroundBrush}" />
 		<Setter Property="Padding"
 				Value="{StaticResource StatusBarThickness}" />
 		<Setter Property="Content"
@@ -43,7 +43,7 @@
 					<Border BorderBrush="{TemplateBinding Background}"
 							BorderThickness="{TemplateBinding Padding}"
 							Background="{TemplateBinding Background}">
-						
+
 						<!--Native CommandBar Presenter  -->
 						<NativeCommandBarPresenter Height="100" />
 					</Border>
@@ -102,8 +102,8 @@
 											VerticalAlignment="Stretch"
 											IsTabStop="False"
 											Grid.Column="0"
-											Grid.ColumnSpan="3"/>
-							
+											Grid.ColumnSpan="3" />
+
 							<!-- Primary ItemsControl -->
 							<ItemsControl x:Name="PrimaryItemsControl"
 										  MinHeight="{ThemeResource AppBarThemeMinHeight}"
@@ -116,7 +116,7 @@
 									</ItemsPanelTemplate>
 								</ItemsControl.ItemsPanel>
 							</ItemsControl>
-							
+
 							<!-- High Contrast Border -->
 							<Rectangle x:Name="HighContrastBorder"
 									   Stroke="{ThemeResource SystemControlForegroundTransparentBrush}"
@@ -133,36 +133,36 @@
 	</Style>
 
 	<Style x:Key="ImageCommandBarStyle"
-			TargetType="CommandBar"
-			BasedOn="{StaticResource DefaultCommandBarStyle}">
-		
+		   TargetType="CommandBar"
+		   BasedOn="{StaticResource DefaultCommandBarStyle}">
+
 		<xamarin:Setter Property="Content">
 			<Setter.Value>
-				
+
 				<!-- Image -->
 				<Image Source="ms-appx:///Assets/Ch9LogoNavBar.png"
-						Stretch="None"
-						VerticalAlignment="Center"
-						HorizontalAlignment="Center"/>
+					   Stretch="None"
+					   VerticalAlignment="Center"
+					   HorizontalAlignment="Center" />
 			</Setter.Value>
 		</xamarin:Setter>
-		
+
 		<win:Setter Property="ContentTemplate">
 			<Setter.Value>
 				<DataTemplate>
 					<Grid>
-						
+
 						<!-- Image -->
 						<Image Source="ms-appx:///Assets/Ch9LogoNavBar.png"
-								Stretch="None"
-								VerticalAlignment="Center"
-								HorizontalAlignment="Center"/>
+							   Stretch="None"
+							   VerticalAlignment="Center"
+							   HorizontalAlignment="Center" />
 					</Grid>
 				</DataTemplate>
 			</Setter.Value>
 		</win:Setter>
 	</Style>
-		
+
 	<Style TargetType="CommandBar"
 		   BasedOn="{StaticResource DefaultCommandBarStyle}" />
 

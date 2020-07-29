@@ -1,14 +1,14 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-                    xmlns:material="using:Uno.Material.Controls">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+					xmlns:material="using:Uno.Material.Controls">
 
 	<DataTemplate x:Key="HeaderTemplate">
 		<StackPanel Margin="16,0">
 
 			<!-- Show + Release Date -->
 			<TextBlock Style="{StaticResource MaterialBody1}"
-			           Margin="0,8,0,0">
+					   Margin="0,8,0,0">
 						
 				<!-- Show -->
 				<Run Text="{Binding Show}" />
@@ -24,20 +24,20 @@
 
 	<DataTemplate x:Key="SubHeaderTemplate">
 		<TextBlock Text="{Binding }"
-		           Margin="16,8,16,16"
-		           Style="{ThemeResource MaterialHeadline6}" />
+				   Margin="16,8,16,16"
+				   Style="{ThemeResource MaterialHeadline6}" />
 	</DataTemplate>
 
 	<DataTemplate x:Key="SupportingTemplate">
 		<!-- Category List -->
 		<ItemsControl ItemsSource="{Binding Categories}"
-		              ItemTemplate="{StaticResource CategoryItemTemplate}"
-		              Margin="16,12,16,24">
+					  ItemTemplate="{StaticResource CategoryItemTemplate}"
+					  Margin="16,12,16,24">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
 					<controls:WrapPanel HorizontalSpacing="12"
-					                    VerticalSpacing="12"
-					                    Orientation="Horizontal" />
+										VerticalSpacing="12"
+										Orientation="Horizontal" />
 				</ItemsPanelTemplate>
 			</ItemsControl.ItemsPanel>
 		</ItemsControl>
@@ -45,36 +45,36 @@
 
 	<DataTemplate x:Key="SampleImageTemplate">
 		<Grid Height="200">
-		<Image Source="{Binding ImageUri}"
-		       Stretch="UniformToFill" />
+			<Image Source="{Binding ImageUri}"
+				   Stretch="UniformToFill" />
 
-			<Border Background="{StaticResource MediaPlayerOverlayColor}"
-		        HorizontalAlignment="Right"
-		        VerticalAlignment="Bottom"
-		        CornerRadius="2"
-		        Margin="12">
+			<Border Background="{StaticResource MediaPlayerOverlayColorBrush}"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Bottom"
+					CornerRadius="2"
+					Margin="12">
 
-			<!-- Value -->
-			<TextBlock Text="{Binding FormattedDuration}"
-			           Foreground="{StaticResource MaterialSurfaceColor}"
-			           Style="{StaticResource MaterialBody2}"
-			           Margin="12,7" />
-		</Border>
+				<!-- Value -->
+				<TextBlock Text="{Binding FormattedDuration}"
+						   Foreground="{StaticResource MediaPlayerControlColorBrush}"
+						   Style="{StaticResource MaterialBody2}"
+						   Margin="12,7" />
+			</Border>
 		</Grid>
 	</DataTemplate>
 
 	<DataTemplate x:Key="EpisodeItemTemplate">
 		<material:Card HeaderContent="{Binding Episode}"
-		               HeaderContentTemplate="{StaticResource HeaderTemplate}"
-		               MediaContent="{Binding Episode}"
-		               CornerRadius="8"
-		               Background="{StaticResource MaterialBackgroundBrush}"
-		               MediaContentTemplate="{StaticResource SampleImageTemplate}"
-		               SupportingContent="{Binding Episode}"
-		               SupportingContentTemplate="{StaticResource SupportingTemplate}"
-		               SubHeaderContent="{Binding Episode.Title}"
-		               SubHeaderContentTemplate="{StaticResource SubHeaderTemplate}"
-		               Style="{StaticResource CustomMaterialCard}" />
-	
-    </DataTemplate>
+					   HeaderContentTemplate="{StaticResource HeaderTemplate}"
+					   MediaContent="{Binding Episode}"
+					   CornerRadius="8"
+					   Background="{StaticResource MaterialBackgroundBrush}"
+					   MediaContentTemplate="{StaticResource SampleImageTemplate}"
+					   SupportingContent="{Binding Episode}"
+					   SupportingContentTemplate="{StaticResource SupportingTemplate}"
+					   SubHeaderContent="{Binding Episode.Title}"
+					   SubHeaderContentTemplate="{StaticResource SubHeaderTemplate}"
+					   Style="{StaticResource CustomMaterialCard}" />
+
+	</DataTemplate>
 </ResourceDictionary>

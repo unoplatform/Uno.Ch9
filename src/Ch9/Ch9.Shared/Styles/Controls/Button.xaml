@@ -13,9 +13,9 @@
 		   TargetType="Button">
 
 		<Setter Property="Background"
-				Value="Transparent" />
+				Value="{StaticResource TransparentColorBrush}" />
 		<Setter Property="BorderBrush"
-				Value="Transparent" />
+				Value="{StaticResource TransparentColorBrush}" />
 		<Setter Property="BorderThickness"
 				Value="0" />
 		<Setter Property="MinHeight"
@@ -87,7 +87,7 @@
 		   BasedOn="{StaticResource MaterialTextButtonStyle}">
 
 		<Setter Property="Background"
-				Value="{StaticResource MediaPlayerOverlayColor}" />
+				Value="{StaticResource MediaPlayerOverlayColorBrush}" />
 
 		<Setter Property="Margin"
 				Value="8" />
