@@ -9,9 +9,10 @@
 	  xmlns:lottie="using:Microsoft.Toolkit.Uwp.UI.Lottie"
 	  xmlns:winui="using:Microsoft.UI.Xaml.Controls"
 	  xmlns:android="http://Uno.UI/android"
+	  xmlns:ios="http:/uno.ui/ios"
 	  xmlns:material="using:Uno.Material.Controls"
 	  xmlns:triggers="using:WindowsStateTriggers"
-	  mc:Ignorable="android">
+	  mc:Ignorable="android ios">
 
 	<Page.Resources>
 
@@ -194,13 +195,15 @@
 				<DataTemplate>
 
 					<Button Command="{Binding Parent.DisplayShow}"
-							CommandParameter="{Binding Show}"
-							Margin="16,16,16,0"
-							Style="{StaticResource HiddenButtonStyle}">
+					        CommandParameter="{Binding Show}"
+					        Margin="16,16,16,0"
+					        Style="{StaticResource HiddenButtonStyle}">
 
 						<material:Card HeaderContent="{Binding Show.Name}"
-									   HeaderContentTemplate="{StaticResource HeaderTemplate}"
+						               HeaderContentTemplate="{StaticResource HeaderTemplate}"
 									   MediaContent="{Binding Show.ThumbnailUrl}"
+									   ios:Width="400"
+									   ios:Height="250"
 									   Background="{StaticResource MaterialBackgroundBrush}"
 									   MediaContentTemplate="{StaticResource SampleImageTemplate}"
 									   Style="{StaticResource CustomMaterialCard}" />
