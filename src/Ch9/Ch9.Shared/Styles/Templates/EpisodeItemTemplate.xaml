@@ -31,6 +31,7 @@
 	<DataTemplate x:Key="SupportingTemplate">
 		<!-- Category List -->
 		<ItemsControl ItemsSource="{Binding Categories}"
+					  Visibility="{Binding Categories, Converter={StaticResource EnumerableHasAnyToVisible}}"
 					  ItemTemplate="{StaticResource CategoryItemTemplate}"
 					  Margin="16,12,16,24">
 			<ItemsControl.ItemsPanel>
