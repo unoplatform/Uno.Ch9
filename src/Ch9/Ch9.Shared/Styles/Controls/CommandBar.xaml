@@ -38,7 +38,7 @@
 
 
 		<ios:Setter Property="Height"
-		            Value="88" />
+		            Value="{StaticResource CommandBarHeight}" />
 
 		<ios:Setter Property="Template">
 			<Setter.Value>
