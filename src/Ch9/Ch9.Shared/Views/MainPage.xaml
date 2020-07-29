@@ -148,7 +148,8 @@
 					Grid.ColumnSpan="2">
 
 			<CommandBar.PrimaryCommands>
-				<AppBarButton Command="{Binding ToAboutPage}"
+				<AppBarButton x:Name="AboutButton"
+							  Command="{Binding ToAboutPage}"
 							  android:Margin="0,0,16,0">
 					<Path Style="{StaticResource InfoIconPath}"
 						  Fill="{StaticResource MaterialOnBackgroundBrush}"
