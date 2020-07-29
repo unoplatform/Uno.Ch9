@@ -194,6 +194,13 @@ namespace Ch9
 			resources.Add("StatusBarDouble", (double)statusBarHeight);
 			resources.Add("StatusBarThickness", new Thickness(0, statusBarHeight, 0, 0));
 			resources.Add("StatusBarGridLength", new GridLength(statusBarHeight, GridUnitType.Pixel));
+
+#if __IOS__
+		
+			var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+			//40 is the default height given to command bar on UWP
+			resources.Add("CommandBarHeight", (double)bounds.Top + 40);
+#endif
 		}
 
 		private void ConfigureOrientation()
@@ -334,7 +341,7 @@ namespace Ch9
 				.AddConsole(Microsoft.Extensions.Logging.LogLevel.Information);
 #endif
 		}
-		#endregion
+#endregion
 
 		public void OnFullscreenChanged(bool isFullscreen)
 		{
