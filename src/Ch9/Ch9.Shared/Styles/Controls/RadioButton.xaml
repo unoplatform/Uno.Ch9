@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:local="using:Ch9.Styles.Controls">
+					xmlns:material="using:Uno.Material.Controls">
 
 	<!--
 	******************************************************************
@@ -81,98 +81,16 @@
 								   Opacity="0.5"
 								   Margin="0,16,0,16" />
 
+						<material:Ripple Feedback="{StaticResource MaterialOnSurfaceFocusedBrush}"
+						                 RippleSizeMultiplier="8"
+						                 Padding="{TemplateBinding Padding}"
+						                 AutomationProperties.AccessibilityView="Raw" />
+
 						<Rectangle x:Name="BorderElement"
 								   HorizontalAlignment="Stretch"
 								   VerticalAlignment="Bottom"
 								   Height="3"
 								   Fill="Transparent" />
-					</Grid>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
-	</Style>
-
-	<Style x:Key="NavigationRadioButtonStyle"
-		   TargetType="RadioButton">
-
-		<Setter Property="Background"
-				Value="Transparent" />
-		<Setter Property="TabNavigation"
-				Value="Local" />
-		<Setter Property="IsHoldingEnabled"
-				Value="True" />
-		<Setter Property="HorizontalAlignment"
-				Value="Stretch" />
-		<Setter Property="HorizontalContentAlignment"
-				Value="Stretch" />
-		<Setter Property="VerticalContentAlignment"
-				Value="Center" />
-		<Setter Property="Height"
-				Value="44" />
-		<Setter Property="UseSystemFocusVisuals"
-				Value="True" />
-		<Setter Property="Padding"
-				Value="35,0, 14,0" />
-		<Setter Property="Margin"
-				Value="0" />
-		<Setter Property="FontWeight"
-				Value="Normal" />
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="RadioButton">
-					<Grid x:Name="RootBorder"
-						  Height="{TemplateBinding Height}"
-						  Background="{TemplateBinding Background}"
-						  BorderBrush="{TemplateBinding BorderBrush}"
-						  BorderThickness="{TemplateBinding BorderThickness}">
-						<VisualStateManager.VisualStateGroups>
-							<VisualStateGroup x:Name="CommonStates">
-								<VisualState x:Name="Normal" />
-								<VisualState x:Name="PointerOver" />
-								<VisualState x:Name="Pressed">
-									<VisualState.Setters>
-										<Setter Target="RootBorder.Opacity"
-												Value="0.7" />
-									</VisualState.Setters>
-								</VisualState>
-								<VisualState x:Name="Disabled" />
-							</VisualStateGroup>
-
-							<VisualStateGroup x:Name="CheckStates">
-								<VisualState x:Name="Checked">
-									<VisualState.Setters>
-										<Setter Target="Border.Visibility"
-												Value="Visible" />
-										<Setter Target="ContentPresenter.FontWeight"
-												Value="Bold" />
-									</VisualState.Setters>
-								</VisualState>
-								<VisualState x:Name="Unchecked" />
-								<VisualState x:Name="Indeterminate" />
-							</VisualStateGroup>
-
-							<VisualStateGroup x:Name="FocusStates">
-								<VisualState x:Name="Focused" />
-								<VisualState x:Name="Unfocused" />
-								<VisualState x:Name="PointerFocused" />
-							</VisualStateGroup>
-						</VisualStateManager.VisualStateGroups>
-
-						<ContentPresenter x:Name="ContentPresenter"
-										  ContentTemplate="{TemplateBinding ContentTemplate}"
-										  ContentTransitions="{TemplateBinding ContentTransitions}"
-										  Content="{TemplateBinding Content}"
-										  Margin="{TemplateBinding Padding}"
-										  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-
-						<Rectangle x:Name="Border"
-								   HorizontalAlignment="Left"
-								   VerticalAlignment="Stretch"
-								   Width="4"
-								   Fill="{StaticResource MaterialPrimaryVariantDarkBrush}"
-								   Visibility="Collapsed"
-								   IsHitTestVisible="False" />
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
