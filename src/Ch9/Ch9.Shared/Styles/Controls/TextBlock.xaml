@@ -28,24 +28,6 @@
 				Value="{StaticResource MaterialSurfaceBrush}" />
 	</Style>
 
-	<!--
-	******************************************************************
-		TODO Remove - STYLE GUIDE TEXTBLOCKS STYLES
-	******************************************************************
-	-->
-
-	<!-- TODO We can't remove this because it's the same dark vs light Typo04 -->
-	<Style x:Key="Typo04"
-		   TargetType="TextBlock"
-		   BasedOn="{StaticResource DefaultTypo}">
-
-		<Setter Property="Foreground"
-				Value="{StaticResource MediaPlayerControlColorBrush}" />
-		<Setter Property="FontSize"
-				Value="15" />
-	</Style>
-
-	<!-- TODO We can't remove this because it's the same dark vs light MediaPlayerTypo -->
 	<Style x:Key="MediaPlayerTypo"
 		   TargetType="TextBlock"
 		   BasedOn="{StaticResource DefaultTypo}">

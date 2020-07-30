@@ -204,7 +204,7 @@
 						               HeaderContentTemplate="{StaticResource HeaderTemplate}"
 									   MediaContent="{Binding Show.ThumbnailUrl}"
 									   ios:Width="400"
-									   ios:Height="250"
+									   ios:Height="254"
 									   Background="{StaticResource MaterialBackgroundBrush}"
 									   MediaContentTemplate="{StaticResource SampleImageTemplate}"
 									   Style="{StaticResource CustomMaterialCard}" />
