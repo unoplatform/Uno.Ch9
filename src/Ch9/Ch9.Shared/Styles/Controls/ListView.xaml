@@ -287,7 +287,7 @@
 						</VisualStateManager.VisualStateGroups>
 
 						<ContentPresenter x:Name="ContentPresenter"
-										  Margin="16,16,16,0"
+										  Margin="16,16,10,0"
 										  ContentTransitions="{TemplateBinding ContentTransitions}"
 										  ContentTemplate="{TemplateBinding ContentTemplate}"
 										  Content="{TemplateBinding Content}"
@@ -299,7 +299,7 @@
 							  BorderBrush="{StaticResource MaterialPrimaryBrush}"
 							  BorderThickness="0"
 							  CornerRadius="8"
-							  Margin="15,16,27,12" />
+							  Margin="15,16,21,12" />
 
 						<!-- Selected State -->
 						<Grid x:Name="SelectedStateOverlay"

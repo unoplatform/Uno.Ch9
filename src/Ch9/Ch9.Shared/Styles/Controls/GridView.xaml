@@ -25,7 +25,7 @@
 		<Setter Property="VerticalContentAlignment"
 				Value="Center" />
 		<Setter Property="Margin"
-				Value="0,0,4,4" />
+				Value="0,0,0,4" />
 		<Setter Property="MinWidth"
 				Value="{ThemeResource GridViewItemMinWidth}" />
 		<Setter Property="MinHeight"
