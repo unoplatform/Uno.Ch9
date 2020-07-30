@@ -19,7 +19,7 @@
 		<Setter Property="toolkit:CommandBarExtensions.BackButtonForeground"
 				Value="{StaticResource MaterialOnBackgroundBrush}" />
 		<Setter Property="Background"
-				Value="{StaticResource MaterialBackgroundBrush}" />
+				Value="{StaticResource MaterialSurfaceBrush}" />
 		<Setter Property="Foreground"
 				Value="{StaticResource MaterialOnBackgroundBrush}" />
 		<Setter Property="Padding"

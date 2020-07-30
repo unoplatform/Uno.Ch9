@@ -56,7 +56,7 @@
 			<Color x:Key="MaterialSecondaryVariantDarkColor">#2BB27E</Color>
 			<Color x:Key="MaterialSecondaryVariantLightColor">#9CFFDF</Color>
 			<Color x:Key="MaterialBackgroundColor">#FF131415</Color>
-			<Color x:Key="MaterialSurfaceColor">#FF131415</Color>
+			<Color x:Key="MaterialSurfaceColor">#FF1F1F20</Color>
 			<Color x:Key="MaterialErrorColor">#F85977</Color>
 			<Color x:Key="MaterialOnPrimaryColor">#FF1F1F20</Color>
 			<Color x:Key="MaterialOnSecondaryColor">#FF1F1F20</Color>
