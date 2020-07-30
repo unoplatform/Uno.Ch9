@@ -13,6 +13,7 @@
 					   Foreground="{StaticResource MaterialPrimaryVariantDarkBrush}"
 					   Style="{StaticResource MaterialCaption}"
 					   VerticalAlignment="Center"
+					   FontWeight="Medium"
 					   Margin="12,0" />
 		</Grid>
 	</DataTemplate>
