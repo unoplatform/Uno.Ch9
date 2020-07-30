@@ -150,8 +150,7 @@
 
 			<CommandBar.PrimaryCommands>
 				<AppBarButton x:Name="AboutButton"
-							  Command="{Binding ToAboutPage}"
-							  android:Margin="0,0,16,0">
+							  Command="{Binding ToAboutPage}">
 					<Path Style="{StaticResource InfoIconPath}"
 						  Fill="{StaticResource MaterialOnBackgroundBrush}"
 						  VerticalAlignment="Center" />
