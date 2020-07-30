@@ -196,10 +196,16 @@ namespace Ch9
 			resources.Add("StatusBarGridLength", new GridLength(statusBarHeight, GridUnitType.Pixel));
 
 #if __IOS__
-		
+			// This is the actual height of the CommandBar on iOS: https://platform.uno/docs/articles/controls/CommandBar.html
+			var commandBarHeight = 44;
+
+			// This is just below the status bar.
 			var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
-			//40 is the default height given to command bar on UWP
-			resources.Add("CommandBarHeight", (double)bounds.Top + 40);
+
+			// We've seen cases where the Top is reported as 0 when it's actually 20.
+			var top = Math.Max((double)bounds.Top, 20);
+
+			resources.Add("CommandBarHeight", top + commandBarHeight);
 #endif
 		}
 

@@ -28,6 +28,7 @@
 			<Color x:Key="MediaPlayerControlColor">#FFFFFFFF</Color>
 			<Color x:Key="MediaPlayerBackgroundColor">#FF000000</Color>
 			<Color x:Key="MediaPlayerOverlayColor">#BF000000</Color>
+			<Color x:Key="RippleOnSurfaceColor">#FFAAAAAA</Color>
 
 			<!-- Misc Brushes -->
 			<win:AcrylicBrush x:Key="AppBackgroundBrush"
@@ -68,6 +69,7 @@
 			<Color x:Key="MediaPlayerControlColor">#FFFFFFFF</Color>
 			<Color x:Key="MediaPlayerBackgroundColor">#FF000000</Color>
 			<Color x:Key="MediaPlayerOverlayColor">#BF131415</Color>
+			<Color x:Key="RippleOnSurfaceColor">#FFF3F3F3</Color>
 
 			<!-- Misc Brushes -->
 			<win:AcrylicBrush x:Key="AppBackgroundBrush"
@@ -97,5 +99,7 @@
 					 Color="{ThemeResource MediaPlayerOverlayColor}" />
 	<SolidColorBrush x:Key="MediaPlayerBackgroundColorBrush"
 					 Color="{ThemeResource MediaPlayerBackgroundColor}" />
+	<SolidColorBrush x:Key="RippleOnSurfaceColorBrush"
+					 Color="{ThemeResource RippleOnSurfaceColor}" />
 	
 </ResourceDictionary>

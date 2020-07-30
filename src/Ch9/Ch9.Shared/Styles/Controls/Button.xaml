@@ -7,7 +7,6 @@
 		<ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
-	<!-- Hidden Button Style -->
 	<!-- All purpose button for custom content with transparent background -->
 	<Style x:Key="HiddenButtonStyle"
 		   TargetType="Button">
@@ -81,17 +80,14 @@
 		</Setter>
 	</Style>
 
-	<!-- Video Player Button Style -->
-	<Style x:Key="VideoPlayerButtonStyle"
+	<Style x:Key="MediaPlayerButtonStyle"
 		   TargetType="Button"
 		   BasedOn="{StaticResource MaterialTextButtonStyle}">
-
+		
 		<Setter Property="Background"
 				Value="{StaticResource MediaPlayerOverlayColorBrush}" />
-
 		<Setter Property="Margin"
 				Value="8" />
-
 	</Style>
 
 </ResourceDictionary>

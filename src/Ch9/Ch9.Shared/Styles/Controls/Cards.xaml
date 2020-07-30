@@ -51,7 +51,7 @@
 										  VerticalAlignment="{TemplateBinding VerticalAlignment}"
 										  CornerRadius="{TemplateBinding CornerRadius}"
 										  Elevation="{TemplateBinding Elevation}"
-										  ShadowColor="{ThemeResource CardElevationShadowColorBrush}">
+										  ShadowColor="{ThemeResource CardElevationShadowColor}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal">

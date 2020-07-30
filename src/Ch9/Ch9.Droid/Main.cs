@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +32,7 @@ namespace Ch9.Droid
 		private void ConfigureUniversalImageLoader()
 		{
 			// Create global configuration and initialize ImageLoader with this config
-			ImageLoaderConfiguration config = new ImageLoaderConfiguration
+			var config = new ImageLoaderConfiguration
 				.Builder(Context)
 				.Build();
 
