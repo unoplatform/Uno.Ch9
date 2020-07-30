@@ -19,6 +19,7 @@
 		<DataTemplate x:Key="HeaderTemplate">
 			<TextBlock Text="{Binding}"
 					   Margin="12,8,0,16"
+					   FontWeight="Bold"
 					   Style="{ThemeResource MaterialHeadline6}" />
 		</DataTemplate>
 
