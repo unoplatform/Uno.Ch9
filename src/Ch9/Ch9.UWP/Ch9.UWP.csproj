@@ -119,7 +119,7 @@
     <PackageReference Include="Microsoft.UI.Xaml" Version="2.4.2" />
     <PackageReference Include="refit" Version="4.8.14" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
-    <PackageReference Include="Uno.Material" Version="1.0.0-dev.380" />
+    <PackageReference Include="Uno.Material" Version="1.0.0-dev.413" />
     <PackageReference Include="Uno.UI" Version="3.0.0-dev.1004" />
     <PackageReference Include="MvvmLight" Version="5.4.1.1" />
     <PackageReference Include="WindowsStateTriggers" Version="1.1.0" />
