@@ -24,7 +24,7 @@
 
 	<DataTemplate x:Key="SubHeaderTemplate">
 		<TextBlock Text="{Binding }"
-				   Margin="16,6,16,0"
+				   Margin="16,6,16,12"
 				   Style="{ThemeResource MaterialHeadline6}" />
 	</DataTemplate>
 
@@ -33,7 +33,7 @@
 		<ItemsControl ItemsSource="{Binding Categories}"
 					  Visibility="{Binding Categories, Converter={StaticResource EnumerableHasAnyToVisible}}"
 					  ItemTemplate="{StaticResource CategoryItemTemplate}"
-					  Margin="16,12,16,24">
+					  Margin="16,0,16,12">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
 					<controls:WrapPanel HorizontalSpacing="12"
