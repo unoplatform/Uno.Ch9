@@ -70,6 +70,7 @@ namespace Ch9
 			this.Resources.MergedDictionaries.Add(new Uno.Material.MaterialColorPalette());
 			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Styles/Application/Colors.xaml") });
 			this.Resources.MergedDictionaries.Add(new Uno.Material.MaterialLibraryResources());
+			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Styles/Styles.xaml") });
 
 #if DEBUG
 			if (System.Diagnostics.Debugger.IsAttached)

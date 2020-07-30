@@ -56,7 +56,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EpisodeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\Cards.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\Card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
