@@ -272,7 +272,7 @@
 				<!-- Dismiss button -->
 				<Button x:Name="DismissButton"
 						Command="{Binding DismissSelectedEpisode}"
-						Style="{StaticResource VideoPlayerButtonStyle}"
+						Style="{StaticResource MediaPlayerButtonStyle}"
 						HorizontalAlignment="Right"
 						VerticalAlignment="Top"
 						Margin="8,8,16,8">

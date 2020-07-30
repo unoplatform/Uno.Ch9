@@ -14,7 +14,7 @@ namespace Ch9.ViewModels
 	[Windows.UI.Xaml.Data.Bindable]
 	public class ShowViewModel : ViewModelBase
     {
-        private SourceFeed _sourceFeed;
+        private readonly SourceFeed _sourceFeed;
 
         public ShowViewModel(SourceFeed sourceFeed = null)
         {

@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using Ch9.Domain;
+using Microsoft.Extensions.Logging;
 using Refit;
+using Uno.Extensions;
+using Uno.Logging;
 
 namespace Ch9
 {
@@ -55,13 +58,15 @@ namespace Ch9
 
         public async Task<IEnumerable<SourceFeed>> GetShowFeeds()
         {
-			//If any exception occurs, fallback to the list of hardcoded shows
+			// If any exception occurs, fallback to the list of hardcoded shows
 	        try
 	        {
 		        return await _showFeedEndpoint.GetFeeds();
 	        }
 	        catch (Exception e)
 	        {
+				this.Log().Warn("Couldn't load the shows. Fallbacking on the default shows.", e);
+
 		        return GetFallbackShowFeeds();
 	        }
         } 

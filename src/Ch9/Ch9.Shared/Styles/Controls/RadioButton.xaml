@@ -2,7 +2,6 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:material="using:Uno.Material.Controls">
 
-	<!-- DEFAULT RADIO BUTTON STYLE -->
 	<Style x:Key="DefaultRadioButtonStyle"
 		   TargetType="RadioButton">
 
@@ -75,7 +74,8 @@
 								   Opacity="0.5"
 								   Margin="0,16,0,16" />
 
-						<material:Ripple Feedback="{StaticResource MaterialOnSurfaceFocusedBrush}"
+						<material:Ripple Feedback="{StaticResource RippleOnSurfaceColorBrush}"
+										 FeedbackOpacity="{StaticResource MaterialPressedOpacity}"
 						                 RippleSizeMultiplier="8"
 						                 Padding="{TemplateBinding Padding}"
 						                 AutomationProperties.AccessibilityView="Raw" />

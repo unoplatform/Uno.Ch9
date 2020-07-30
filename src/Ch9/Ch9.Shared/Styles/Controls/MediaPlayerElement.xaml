@@ -421,7 +421,7 @@
 
 							<!-- Play / Pause Button -->
 							<Button x:Name="PlayPauseButton"
-									Style="{StaticResource VideoPlayerButtonStyle}"
+									Style="{StaticResource MediaPlayerButtonStyle}"
 									HorizontalAlignment="Center"
 									VerticalAlignment="Center">
 								<Grid CornerRadius="2"
@@ -444,7 +444,7 @@
 
 							<!-- Subtitles Button -->
 							<Button x:Name="SubtitlesButton"
-									Style="{StaticResource VideoPlayerButtonStyle}"
+									Style="{StaticResource MediaPlayerButtonStyle}"
 									HorizontalAlignment="Right"
 									Visibility="Collapsed">
 
@@ -462,7 +462,7 @@
 
 							<!-- Full Window Button -->
 							<Button x:Name="FullWindowButton"
-									Style="{StaticResource VideoPlayerButtonStyle}">
+									Style="{StaticResource MediaPlayerButtonStyle}">
 
 								<!-- Icon -->
 								<Path x:Name="FullWindowSymbol"
