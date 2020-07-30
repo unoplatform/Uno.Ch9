@@ -296,7 +296,7 @@
 
 						<!-- Content Presenter -->
 						<Grid x:Name="SelectionBorder"
-							  BorderBrush="{StaticResource MaterialPrimaryBrush}"
+							  BorderBrush="{StaticResource MaterialPrimaryVariantLightBrush}"
 							  BorderThickness="0"
 							  CornerRadius="8"
 							  Margin="15,16,21,12" />

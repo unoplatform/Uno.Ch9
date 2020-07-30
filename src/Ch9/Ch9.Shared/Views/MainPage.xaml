@@ -158,7 +158,7 @@
 		</CommandBar>
 
 		<Grid x:Name="NavigationTabsContainer"
-			  Background="{StaticResource MaterialBackgroundBrush}"
+			  Background="{StaticResource MaterialSurfaceBrush}"
 			  Grid.Row="1"
 			  Grid.ColumnSpan="2">
 			<Grid.ColumnDefinitions>
@@ -204,7 +204,7 @@
 									   MediaContent="{Binding Show.ThumbnailUrl}"
 									   ios:Width="400"
 						               ios:Height="254"
-									   Background="{StaticResource MaterialBackgroundBrush}"
+									   Background="{StaticResource MaterialSurfaceBrush}"
 									   MediaContentTemplate="{StaticResource SampleImageTemplate}"
 									   Style="{StaticResource CustomMaterialCard}" />
 					</Button>

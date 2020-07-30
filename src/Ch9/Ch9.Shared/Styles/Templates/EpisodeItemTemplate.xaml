@@ -69,7 +69,7 @@
 					   HeaderContentTemplate="{StaticResource HeaderTemplate}"
 					   MediaContent="{Binding Episode}"
 					   CornerRadius="8"
-					   Background="{StaticResource MaterialBackgroundBrush}"
+					   Background="{StaticResource MaterialSurfaceBrush}"
 					   MediaContentTemplate="{StaticResource SampleImageTemplate}"
 					   SupportingContent="{Binding Episode}"
 					   SupportingContentTemplate="{StaticResource SupportingTemplate}"
