@@ -197,14 +197,14 @@
 
 					<Button Command="{Binding Parent.DisplayShow}"
 					        CommandParameter="{Binding Show}"
-					        Margin="16,16,16,0"
+					        Margin="16,16,10,0"
 					        Style="{StaticResource HiddenButtonStyle}">
 
 						<material:Card HeaderContent="{Binding Show.Name}"
 						               HeaderContentTemplate="{StaticResource HeaderTemplate}"
 									   MediaContent="{Binding Show.ThumbnailUrl}"
 									   ios:Width="400"
-									   ios:Height="254"
+						               ios:Height="254"
 									   Background="{StaticResource MaterialBackgroundBrush}"
 									   MediaContentTemplate="{StaticResource SampleImageTemplate}"
 									   Style="{StaticResource CustomMaterialCard}" />
