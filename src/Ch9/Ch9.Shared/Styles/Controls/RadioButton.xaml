@@ -2,12 +2,6 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:material="using:Uno.Material.Controls">
 
-	<!--
-	******************************************************************
-		TODO Remove - Once BottomNavigationBar implemented
-	******************************************************************
-	-->
-
 	<!-- DEFAULT RADIO BUTTON STYLE -->
 	<Style x:Key="DefaultRadioButtonStyle"
 		   TargetType="RadioButton">
