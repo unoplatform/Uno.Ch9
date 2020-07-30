@@ -76,8 +76,7 @@
 
 						<material:Ripple Feedback="{StaticResource RippleOnSurfaceColorBrush}"
 										 FeedbackOpacity="{StaticResource MaterialPressedOpacity}"
-						                 RippleSizeMultiplier="8"
-						                 Padding="{TemplateBinding Padding}"
+										 Padding="{TemplateBinding Padding}"
 						                 AutomationProperties.AccessibilityView="Raw" />
 
 						<Rectangle x:Name="BorderElement"
