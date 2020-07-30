@@ -184,7 +184,7 @@
 											  win:BorderThickness="1"
 											  CornerRadius="9"
 											  Elevation="8"
-											  Margin="16,16,12,8">
+											  Margin="16,16,12,10">
 							<Grid Background="{StaticResource Color02Brush}">
 								<StackPanel>
 

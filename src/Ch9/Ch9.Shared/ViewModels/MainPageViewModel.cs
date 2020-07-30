@@ -35,7 +35,7 @@ namespace Ch9
 
 		public ICommand DisplayShow { get; set; }
 
-		public TaskNotifier<IEnumerable<ShowItemViewModel>> _shows;
+		private TaskNotifier<IEnumerable<ShowItemViewModel>> _shows;
 		public TaskNotifier<IEnumerable<ShowItemViewModel>> Shows
 		{
 			get => _shows;
