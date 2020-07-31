@@ -2,6 +2,7 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:xamarin="http://uno.ui/xamarin"
+					xmlns:not_wasm="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					mc:Ignorable="xamarin">
 
 	<!-- Styles -->
@@ -77,13 +78,13 @@
 			</Setter.Value>
 		</Setter>
 
-		<Setter Property="ItemsPanel">
+		<not_wasm:Setter Property="ItemsPanel">
 			<Setter.Value>
 				<ItemsPanelTemplate>
 					<ItemsWrapGrid Orientation="Horizontal" />
 				</ItemsPanelTemplate>
 			</Setter.Value>
-		</Setter>
+		</not_wasm:Setter>
 
         <Setter Property="Template">
             <Setter.Value>
