@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml;
-using Uno.UI.Wasm;
 
 namespace Ch9.Client
 {
@@ -13,7 +12,7 @@ namespace Ch9.Client
         static HttpUtility()
         {
 #if __WASM__
-            _httpClient = new HttpClient(new WasmHttpHandler());
+            _httpClient = new HttpClient(new Uno.UI.Wasm.WasmHttpHandler());
 #else
             _httpClient = new HttpClient();
 #endif
