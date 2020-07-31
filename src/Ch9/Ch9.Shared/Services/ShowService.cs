@@ -68,16 +68,16 @@ namespace Ch9
         } 
 
         /// <inheritdoc/>
-        public Task<Show> GetShow(SourceFeed sourceFeed = null)
+        public async Task<Show> GetShow(SourceFeed sourceFeed = null)
         {
 	        var url = sourceFeed != null ? sourceFeed.FeedUrl : _channel9Feed.FeedUrl;
 
             if (_cache.TryGetValue(url, out var cachedShow))
             {
-                return Task.FromResult(cachedShow);
+                return cachedShow;
             }
 
-            var rssFeed = GetRssFeed(url);
+            var rssFeed = await GetRssFeed(url);
 
             var show = new Show()
             {
@@ -90,7 +90,7 @@ namespace Ch9
 
             _cache.Add(url, show);
 
-            return Task.FromResult(show);
+            return show;
         }
 
         private IEnumerable<Episode> GetEpisodes(SourceFeed sourceFeed, SyndicationFeed rssFeed)
@@ -112,9 +112,9 @@ namespace Ch9
                 .ToArray();
         }
 
-        private SyndicationFeed GetRssFeed(string url)
+        private async Task<SyndicationFeed> GetRssFeed(string url)
         {
-            using (var reader = XmlReader.Create(url))
+			using (var reader = await HttpUtility.GetXmlReader(url))
             {
                return SyndicationFeed.Load(reader);
             }
@@ -138,7 +138,7 @@ namespace Ch9
 
         private string GetTitle(SyndicationItem item)
         {
-            var title = item.Title.Text.Split("|").FirstOrDefault();
+            var title = item.Title.Text.Split(new string[] {"|"}, StringSplitOptions.None).FirstOrDefault();
 
             return title?.Trim();
         }
@@ -150,7 +150,7 @@ namespace Ch9
                 return sourceFeed.Name;
             }
 
-            var show = item.Title.Text.Split("|").ElementAt(1);
+            var show = item.Title.Text.Split(new string[] { "|" }, StringSplitOptions.None).ElementAt(1);
 
             return show?.Trim();
         }

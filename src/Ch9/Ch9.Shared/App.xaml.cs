@@ -22,7 +22,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Ch9.ViewModels;
-using Xamarin.Essentials;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -184,7 +183,7 @@ namespace Ch9
 		{
 			var resources = Windows.UI.Xaml.Application.Current.Resources;
 
-#if WINDOWS_UWP
+#if WINDOWS_UWP || __WASM__
             var hasStatusBar = false;
 #else
 			var hasStatusBar = true;
@@ -203,10 +202,12 @@ namespace Ch9
 
 		private void ConfigureOrientation()
 		{
-			if (DeviceInfo.Idiom == DeviceIdiom.Phone)
+#if !__WASM__
+			if (Xamarin.Essentials.DeviceInfo.Idiom == Xamarin.Essentials.DeviceIdiom.Phone)
 			{
 				DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
 			}
+#endif
 
 			var simpleOrientationSensor = SimpleOrientationSensor.GetDefault();
 
@@ -343,7 +344,10 @@ namespace Ch9
 			}
 #endif
 
-			if (DeviceInfo.Idiom == DeviceIdiom.Phone)
+#if __WASM__
+			DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
+#else
+			if (Xamarin.Essentials.DeviceInfo.Idiom == Xamarin.Essentials.DeviceIdiom.Phone)
 			{
 				if (isFullscreen)
 				{
@@ -356,6 +360,7 @@ namespace Ch9
 					DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
 				}
 			}
+#endif
 		}
 
 		/// <summary>

@@ -19,6 +19,7 @@
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Client\ClientConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\HttpUtility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Client\IShowFeedEndpoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEnumerableHasAnyToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEnumerableToItemsCountConverter.cs" />

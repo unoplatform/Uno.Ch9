@@ -7,7 +7,6 @@ using System.Windows.Input;
 using Ch9.Domain;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Xamarin.Essentials;
 
 namespace Ch9.ViewModels
 {
@@ -31,14 +30,16 @@ namespace Ch9.ViewModels
 
             DismissSelectedEpisode = new RelayCommand(() => SelectedEpisode = null);
 
-            ShareEpisode = new RelayCommand<EpisodeViewModel>(async episode =>
+#if !__WASM__
+			ShareEpisode = new RelayCommand<EpisodeViewModel>(async episode =>
             {
-                await Share.RequestAsync(new ShareTextRequest
+                await Xamarin.Essentials.Share.RequestAsync(new Xamarin.Essentials.ShareTextRequest
                 {
                     Uri = episode.Episode.EpisodeUri.ToString(),
                     Title = episode.Episode.Title
                 });
             });
+#endif
 
             LoadShow();
         }
