@@ -51,7 +51,8 @@
 		<PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
 		<PackageReference Include="Uno.GalaSoft.MvvmLight.Platform" Version="5.4.0-uno.134" />
     <PackageReference Include="Uno.Material" Version="1.0.0-dev.413" />
-		<PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.906" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.1253" />
+    <PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1253" />
 		<PackageReference Include="Uno.UI.WebAssembly" Version="3.0.0-dev.1253" />
 		<PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1253" Condition="'$(Configuration)'=='Debug'" />
 		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.4.0-dev.14" />
