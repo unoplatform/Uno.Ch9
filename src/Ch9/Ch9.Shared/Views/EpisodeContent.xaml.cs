@@ -27,7 +27,9 @@ namespace Ch9
 
         private void OnAppSuspended(object sender, SuspendingEventArgs e)
         {
-            this.MediaPlayer.MediaPlayer?.Pause();
-        }
+#if !__WASM__
+			this.MediaPlayer.MediaPlayer?.Pause();
+#endif
+		}
     }
 }
