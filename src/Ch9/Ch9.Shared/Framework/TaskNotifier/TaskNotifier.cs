@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 
 namespace Ch9
 {
@@ -29,10 +28,12 @@ namespace Ch9
 			{
 				RunTask(task);
 			}
-			else if (task.IsFaulted && Connectivity.NetworkAccess != NetworkAccess.Internet)
+#if !__WASM__
+			else if (task.IsFaulted && Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
 			{
 				IsInternetFaulted = true;
 			}
+#endif
 		}
 
 		/// <inheritdoc />
@@ -93,11 +94,13 @@ namespace Ch9
 
 					if (task.IsFaulted)
 					{
-						if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+#if !__WASM__
+						if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
 						{
 							IsInternetFaulted = true;
 							PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsInternetFaulted)));
 						}
+#endif
 
 						Console.Error.WriteLine(task.Exception);
 						_onFaulted?.Invoke(task.Exception);

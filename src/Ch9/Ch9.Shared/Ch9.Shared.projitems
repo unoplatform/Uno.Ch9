@@ -17,6 +17,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DebugConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEmptyStringOrNullObjectToValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\HttpUtility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>

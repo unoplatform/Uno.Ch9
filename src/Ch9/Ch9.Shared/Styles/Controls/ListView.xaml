@@ -5,9 +5,11 @@
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:xamarin="http://Uno.UI/xamarin"
 					xmlns:toolkit="using:Uno.UI.Toolkit"
+					xmlns:ios="http:/uno.ui/ios"
+					xmlns:android="http:/uno.ui/android"
 					mc:Ignorable="xamarin">
 
-	<xamarin:Style TargetType="ScrollViewer"
+	<!--<ios:Style TargetType="ScrollViewer"
 				   x:Key="ListViewBaseScrollViewerStyle">
 		<Setter Property="Template">
 			<Setter.Value>
@@ -19,7 +21,20 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
-	</xamarin:Style>
+	</ios:Style>
+	<android:Style TargetType="ScrollViewer"
+			   x:Key="ListViewBaseScrollViewerStyle">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ScrollViewer">
+					<ListViewBaseScrollContentPresenter x:Name="ScrollContentPresenter"
+														Content="{TemplateBinding Content}"
+														ContentTemplate="{TemplateBinding ContentTemplate}"
+														ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</android:Style>-->
 
 	<DataTemplate x:Key="EmptyListViewHeaderTemplate">
 		<Grid />
