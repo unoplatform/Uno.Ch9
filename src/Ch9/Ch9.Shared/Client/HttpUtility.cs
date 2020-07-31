@@ -7,21 +7,21 @@ namespace Ch9.Client
 {
     internal static class HttpUtility
     {
-        private static HttpClient _httpClient;
+	    internal static HttpClient HttpClient { get; } = CreateHttpClient();
 
-        static HttpUtility()
+        internal static HttpClient CreateHttpClient()
         {
 #if __WASM__
-            _httpClient = new HttpClient(new Uno.UI.Wasm.WasmHttpHandler());
+            return new HttpClient(new Uno.UI.Wasm.WasmHttpHandler());
 #else
-            _httpClient = new HttpClient();
+            return new HttpClient();
 #endif
 
-        }
+		}
 
-        internal static async Task<XmlReader> GetXmlReader(string url)
+		internal static async Task<XmlReader> GetXmlReader(string url)
         {
-            using (var response = await _httpClient.GetAsync(url))
+            using (var response = await HttpClient.GetAsync(url))
             {
                 response.EnsureSuccessStatusCode();
                 var bytes = await response.Content.ReadAsByteArrayAsync();

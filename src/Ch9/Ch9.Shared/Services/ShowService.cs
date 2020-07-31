@@ -18,7 +18,7 @@ namespace Ch9
     {
         private const string YahooNamespace = "http://search.yahoo.com/mrss/";
         private const string ITunesNamespace = "http://www.itunes.com/dtds/podcast-1.0.dtd";
-        private static readonly SourceFeed _channel9Feed = new SourceFeed("https://s.ch9.ms/feeds/rss", "Channel 9");
+        private static readonly SourceFeed _channel9Feed = new SourceFeed("https://cors-anywhere.herokuapp.com/https://s.ch9.ms/feeds/rss", "Channel 9");
 
         private readonly IDictionary<string, Show> _cache = new Dictionary<string, Show>();
 

@@ -6,7 +6,10 @@
 			 xmlns:ctoolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 mc:Ignorable="d">
+			 xmlns:wasm="http:/uno.ui/wasm"
+			 xmlns:not_wasm="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:wasm1="using:Ch9.Wasm"
+			 mc:Ignorable="d wasm">
 
     <Grid Background="{StaticResource Color02Brush}">
         <VisualStateManager.VisualStateGroups>
@@ -81,10 +84,14 @@
         <!-- Content -->
         <StackPanel>
             <!-- Video Player -->
-            <MediaPlayerElement x:Name="MediaPlayer"
+            <not_wasm:MediaPlayerElement x:Name="MediaPlayer"
                                 Source="{Binding VideoSource}"
                                 IsFullWindow="{Binding Parent.IsVideoFullWindow, Mode=TwoWay}"
                                 Height="180" />
+			<wasm:Border>
+				<wasm1:HtmlMediaPlayer Height="180" Source="{Binding VideoUri}" />
+			</wasm:Border>
+			
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"

@@ -37,9 +37,11 @@ namespace Ch9
 
 		private void InitializeHttpClient(SimpleIoc serviceProvider)
 		{
-			serviceProvider.Register(() => new HttpClient(new HttpClientHandler(), false)
+			serviceProvider.Register(() =>
 			{
-				BaseAddress = new Uri(ClientConstants.BaseApiUrl)
+				var client = HttpUtility.CreateHttpClient();
+				client.BaseAddress = new Uri(ClientConstants.BaseApiUrl);
+				return client;
 			});
 		}
 	}

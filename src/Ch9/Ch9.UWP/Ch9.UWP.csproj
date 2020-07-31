@@ -185,6 +185,12 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Ch9.Wasm\Ch9.Wasm.csproj">
+      <Project>{E7D3FF30-245D-454A-AE48-F4ED50160F40}</Project>
+      <Name>Ch9.Wasm</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\Ch9.Shared\Ch9.Shared.projitems" Label="Shared" Condition="Exists('..\Ch9.Shared\Ch9.Shared.projitems')" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
