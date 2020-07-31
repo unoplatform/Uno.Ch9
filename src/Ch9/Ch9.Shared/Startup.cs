@@ -36,9 +36,11 @@ namespace Ch9
 
 		private void InitializeHttpClient(SimpleIoc serviceProvider)
 		{
-			serviceProvider.Register(() => new HttpClient(new HttpClientHandler(), false)
+			serviceProvider.Register(() =>
 			{
-				BaseAddress = new Uri("https://ch9-app.azurewebsites.net/api")
+				var client = HttpUtility.CreateHttpClient();
+				client.BaseAddress = new Uri("https://ch9-app.azurewebsites.net/api");
+				return client;
 			});
 		}
 
