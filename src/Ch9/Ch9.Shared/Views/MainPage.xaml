@@ -143,9 +143,12 @@
 		</VisualStateManager.VisualStateGroups>
 
 		<!-- Command Bar -->
+		<!-- Hide elevation for android and border for iOS -->
 		<CommandBar x:Name="CommandBar"
 					Style="{StaticResource ImageCommandBarStyle}"
 					Grid.Row="0"
+					ios:Background="Transparent"
+					toolkit:UIElementExtensions.Elevation="0"
 					Grid.ColumnSpan="2">
 
 			<CommandBar.PrimaryCommands>
