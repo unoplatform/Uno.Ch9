@@ -19,7 +19,8 @@
 		</Grid.RowDefinitions>
 
 		<!-- Command Bar -->
-        <CommandBar win:Visibility="Collapsed" />
+        <CommandBar win:Visibility="Collapsed"
+					wasm:Visibility="Collapsed" />
 
 		<ScrollViewer Grid.Row="1">
 			<Grid toolkit:VisibleBoundsPadding.PaddingMask="Bottom">
