@@ -1,8 +1,3 @@
-resources:
-   containers:
-     - container: windows
-       image: nventive/build-agent:vs16.4.0
-
 variables:
 - group: ch9-variables
 - name: NUGET_VERSION
@@ -39,12 +34,12 @@ jobs:
         Environment: Staging
 
   pool:
-    name: Container
+    name: 'windows 1809'
 
   workspace:
     clean: all
 
-  container: windows
+  container: nventive/build-agent:vs16.6.0
 
   steps:
   - template: steps.yml
@@ -61,7 +56,7 @@ jobs:
   pool:
     name: Default
     demands:
-    - Xamarin.iOS -equals 13.8
+    - Xamarin.iOS -equals 13.16
 
   workspace:
     clean: all
