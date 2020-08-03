@@ -10,6 +10,7 @@
 	  xmlns:winui="using:Microsoft.UI.Xaml.Controls"
 	  xmlns:android="http://Uno.UI/android"
 	  xmlns:ios="http:/uno.ui/ios"
+	  xmlns:not_ios="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:material="using:Uno.Material.Controls"
 	  xmlns:triggers="using:WindowsStateTriggers"
 	  mc:Ignorable="android ios">
@@ -148,12 +149,19 @@
 					Grid.ColumnSpan="2">
 
 			<CommandBar.PrimaryCommands>
-				<AppBarButton x:Name="AboutButton"
-							  Command="{Binding ToAboutPage}">
+				<not_ios:AppBarButton x:Name="AboutButton"
+				                      Command="{Binding ToAboutPage}">
 					<Path Style="{StaticResource InfoIconPath}"
 						  Fill="{StaticResource MaterialOnBackgroundBrush}"
 						  VerticalAlignment="Center" />
-				</AppBarButton>
+				</not_ios:AppBarButton>
+				<!-- A bug causes the app to be unresponsive when using path inside appbar button for ios -->
+				<ios:AppBarButton x:Name="AboutButton"
+				                  Command="{Binding ToAboutPage}">
+					<AppBarButton.Icon>
+						<BitmapIcon UriSource="ms-appx:///Assets/AboutIcon.png" />
+					</AppBarButton.Icon>
+				</ios:AppBarButton>
 			</CommandBar.PrimaryCommands>
 		</CommandBar>
 
