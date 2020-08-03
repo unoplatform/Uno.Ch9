@@ -4,6 +4,7 @@ resources:
        image: nventive/build-agent:vs16.4.0
 
 variables:
+- group: ch9-variables
 - name: NUGET_VERSION
   value: 5.1.0
 - name: ApplicationOutputPath
