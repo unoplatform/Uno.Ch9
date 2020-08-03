@@ -9,7 +9,8 @@
 	  xmlns:lottie="using:Microsoft.Toolkit.Uwp.UI.Lottie"
 	  xmlns:winui="using:Microsoft.UI.Xaml.Controls"
 	  xmlns:xamarin="http://Uno.UI/xamarin"
-	  mc:Ignorable="xamarin">
+	  xmlns:wasm="http://Uno.UI/wasm"
+	  mc:Ignorable="xamarin wasm">
 
 	<Page.Resources>
 		<DataTemplate x:Key="ShowDetailsTemplate">
@@ -171,6 +172,7 @@
 		<CommandBar x:Name="CommandBar"
 					Style="{StaticResource ImageCommandBarStyle}"
 					Content="{Binding SourceFeed.Name}"
+					wasm:Visibility="Collapsed"
 					Grid.Row="0"
 					Grid.Column="0"
 					Grid.ColumnSpan="2" />
