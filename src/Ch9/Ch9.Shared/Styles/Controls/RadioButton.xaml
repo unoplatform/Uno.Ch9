@@ -49,6 +49,10 @@
 									<VisualState.Setters>
 										<Setter Target="BorderElement.Fill"
 												Value="{StaticResource MaterialPrimaryBrush}" />
+										<Setter Target="BorderElement.Height"
+										        Value="3" />
+										<Setter Target="BorderElement.Opacity"
+										        Value="1" />
 										<Setter Target="ContentPresenter.FontWeight"
 												Value="Bold" />
 										<Setter Target="ContentPresenter.Opacity"
@@ -82,8 +86,9 @@
 						<Rectangle x:Name="BorderElement"
 								   HorizontalAlignment="Stretch"
 								   VerticalAlignment="Bottom"
-								   Height="3"
-								   Fill="Transparent" />
+								   Height="0.5"
+								   Opacity="0.5"
+								   Fill="{StaticResource MaterialOnSurfaceBrush}" />
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
