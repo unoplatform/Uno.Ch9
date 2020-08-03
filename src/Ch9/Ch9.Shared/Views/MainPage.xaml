@@ -155,6 +155,7 @@
 						  Fill="{StaticResource MaterialOnBackgroundBrush}"
 						  VerticalAlignment="Center" />
 				</not_ios:AppBarButton>
+
 				<!-- A bug causes the app to be unresponsive when using path inside appbar button for ios -->
 				<ios:AppBarButton x:Name="AboutButton"
 				                  Command="{Binding ToAboutPage}">
