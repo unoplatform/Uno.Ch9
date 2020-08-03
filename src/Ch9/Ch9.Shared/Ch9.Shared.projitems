@@ -139,6 +139,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AboutIcon.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AboutIcon.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AboutIcon.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AboutIcon.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\AboutIcon.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9LogoNavBar.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9LogoNavBar.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9LogoNavBar.scale-200.png" />

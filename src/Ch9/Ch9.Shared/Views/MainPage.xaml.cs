@@ -28,10 +28,6 @@ namespace Ch9
 
 			DataContext = new MainPageViewModel();
 
-#if __IOS__
-			// There is a regression on iOS where the AppBarButton doesn't inherit the DataContext.
-			AboutButton.DataContext = DataContext;
-#endif
 
 			EpisodeList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
 		}
