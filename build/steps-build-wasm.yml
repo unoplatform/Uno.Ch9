@@ -21,17 +21,17 @@
        source ~/emsdk/emsdk_env.sh
        msbuild /r /p:Configuration=Release /p:ApplicationVersion=$(USEGITVERSION.GITVERSION.MAJORMINORPATCH) $(build.sourcesdirectory)/src/Ch9/Ch9.Wasm/Ch9.Wasm.csproj
 
-  # - task: CopyFiles@2
-  #   displayName: 'Copy version information'
-  #   inputs:
-  #     Contents: $(build.sourcesdirectory)/src/samples/Uno.Material.Samples/Uno.Material.Samples.Wasm/Version.txt
-  #     TargetFolder: $(build.artifactstagingdirectory)
-  #     flattenFolders: true
-    
+  - task: CopyFiles@2
+    displayName: 'Copy version information'
+    inputs:
+      Contents: $(build.sourcesdirectory)/src/Ch9/Ch9.Wasm/Version.txt
+      TargetFolder: $(build.artifactstagingdirectory)
+      flattenFolders: true
+
   - task: PublishBuildArtifacts@1
     # https://developercommunity.visualstudio.com/content/problem/284991/public-vsts-previouw-cant-set-build-number-of-pr-b.html
     condition: eq(variables['System.PullRequest.IsFork'], 'False')
     inputs:
       PathtoPublish: $(build.artifactstagingdirectory)
-      ArtifactName: $(ApplicationConfiguration)
+      ArtifactName: Release_WASM
       ArtifactType: Container
