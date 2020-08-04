@@ -17,12 +17,14 @@ jobs:
 
   - task: InstallAppleCertificate@2
     displayName: 'Install an Apple certificate'
+    name: Certificate
     inputs:
       certSecureFile: nventive.p12
       certPwd: '$(AppleCertificatePassword)'
 
   - task: InstallAppleProvisioningProfile@1
     displayName: 'Install an Apple provisioning profile'
+    name: Profile
     inputs:
       provProfileSecureFile: Ch9.mobileprovision
 
