@@ -12,11 +12,15 @@ namespace Ch9
         internal static HttpClient CreateHttpClient()
         {
 #if __WASM__
-            return new HttpClient(new Uno.UI.Wasm.WasmHttpHandler());
+            var httpClient = new HttpClient(new Uno.UI.Wasm.WasmHttpHandler());
 #else
-            return new HttpClient();
+			var httpClient = new HttpClient();
 #endif
 
+			// TODO Find proper origin value
+			httpClient.DefaultRequestHeaders.Add("origin", "");
+
+			return httpClient;
 		}
 
 		internal static async Task<XmlReader> GetXmlReader(string url)
