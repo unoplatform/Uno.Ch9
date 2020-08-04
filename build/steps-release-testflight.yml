@@ -1,0 +1,47 @@
+jobs:
+- job: Release_TestFlight
+
+  pool:
+    name: $(macOSPoolName)
+    demands:
+      - Xamarin.iOS -equals 13.16
+
+  steps:
+  - checkout: none
+
+  - task: DownloadBuildArtifacts@0
+    inputs:
+      buildType: current
+      downloadType: single
+      artifactName: Release_iOS
+
+  - task: InstallAppleCertificate@2
+    displayName: 'Install an Apple certificate'
+    inputs:
+      certSecureFile: nventive.p12
+      certPwd: '$(AppleCertificatePassword)'
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install an Apple provisioning profile'
+    inputs:
+      provProfileSecureFile: Ch9.mobileprovision
+
+  - task: ms-vsclient.app-store.ipa-resign.IpaResign@1
+    displayName: 'Resign ipa file'
+    inputs:
+      ipaPath: '$(System.ArtifactsDirectory)/Release_iOS/Ch9.ipa'
+      signMethod: id
+      signIdIdentity: '$(Certificate.signingIdentity)'
+      provisionMethod: id
+      provIdProfileUuid: '$(Profile.provisioningProfileUuid)'
+      sighResignArgs: '--new_bundle_id $(iOSBundleId)'
+
+  - task: ms-vsclient.app-store.app-store-release.AppStoreRelease@1
+    displayName: 'Publish to the App Store TestFlight track'
+    inputs:
+      serviceEndpoint: 'stores@nventive.com'
+      appIdentifier: '$(iOSBundleId)'
+      ipaPath: '$(System.ArtifactsDirectory)/Release_iOS/Ch9.ipa'
+      shouldSkipWaitingForProcessing: true
+      teamId: 118287917
+      teamName: 'nventive inc.'
