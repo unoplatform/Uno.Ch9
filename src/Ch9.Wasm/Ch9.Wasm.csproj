@@ -74,6 +74,6 @@
 		<PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.132" />
 	</ItemGroup>
 
-	<Import Project="..\Ch9\Ch9.Shared\Ch9.Shared.projitems" Label="Shared" />
+	<Import Project="..\Ch9.Shared\Ch9.Shared.projitems" Label="Shared" />
 
 </Project>
