@@ -214,8 +214,8 @@
 						<material:Card HeaderContent="{Binding Show.Name}"
 						               HeaderContentTemplate="{StaticResource HeaderTemplate}"
 									   MediaContent="{Binding Show.ThumbnailUrl}"
-									   Width="400"
-						               Height="254"
+									   ios:Width="400"
+						               ios:Height="254"
 									   Background="{StaticResource MaterialSurfaceBrush}"
 									   MediaContentTemplate="{StaticResource SampleImageTemplate}"
 									   Style="{StaticResource CustomMaterialCard}" />
