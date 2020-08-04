@@ -22,12 +22,14 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Ch9.ViewModels;
+#if !__MACOS__
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+#endif
 using Uno.Extensions;
 using Uno.Logging;
-#if !__WASM__
+#if !__WASM__ && !__MACOS__
 using Xamarin.Essentials;
 #endif
 
@@ -124,7 +126,7 @@ namespace Ch9
 			}
 		}
 
-		#region Application configuration
+#region Application configuration
 		private void ConfigureNavigationFailed()
 		{
 			_rootFrame.NavigationFailed += OnNavigationFailed;
@@ -182,7 +184,7 @@ namespace Ch9
 		{
 			var resources = Windows.UI.Xaml.Application.Current.Resources;
 
-#if WINDOWS_UWP || __WASM__
+#if WINDOWS_UWP || __WASM__ || __MACOS__
 			var hasStatusBar = false;
 #else
 			var hasStatusBar = true;
@@ -214,7 +216,7 @@ namespace Ch9
 
 		private void ConfigureOrientation()
 		{
-#if !__WASM__
+#if !__WASM__ && !__MACOS__
 			if (DeviceInfo.Idiom == DeviceIdiom.Phone)
 			{
 				DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
@@ -381,7 +383,7 @@ namespace Ch9
 			}
 #endif
 
-#if !__WASM__
+#if !__WASM__ && !__MACOS__
 			if (DeviceInfo.Idiom == DeviceIdiom.Phone)
 			{
 				if (isFullscreen)
@@ -399,7 +401,7 @@ namespace Ch9
 				}
 			}
 #endif
-		}		
+		}
 
 		private bool TryGetActiveViewModel<TViewModel>(out TViewModel viewModel)
 		{

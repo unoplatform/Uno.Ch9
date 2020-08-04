@@ -31,7 +31,7 @@ namespace Ch9.ViewModels
 
             DismissSelectedEpisode = new RelayCommand(() => SelectedEpisode = null);
 
-#if !__WASM__
+#if !__WASM__ && !__MACOS__
 			ShareEpisode = new RelayCommand<EpisodeViewModel>(async episode =>
             {
                 await Xamarin.Essentials.Share.RequestAsync(new Xamarin.Essentials.ShareTextRequest
