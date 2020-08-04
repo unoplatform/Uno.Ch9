@@ -61,7 +61,11 @@ namespace Ch9
 			// If any exception occurs, fallback to the list of hardcoded shows
 	        try
 	        {
-		        return await _showFeedEndpoint.GetFeeds();
+				var x = await _showFeedEndpoint.GetFeeds();
+
+				var y = x.ToArray();
+
+				return y;
 	        }
 	        catch (Exception e)
 	        {
