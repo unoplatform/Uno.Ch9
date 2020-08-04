@@ -5,7 +5,7 @@ jobs:
     name: $(macOSPoolName)
     demands:
       - Xamarin.iOS -equals 13.16
-
+      
   steps:
   - checkout: none
 
