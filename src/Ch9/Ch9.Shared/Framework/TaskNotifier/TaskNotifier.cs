@@ -28,7 +28,7 @@ namespace Ch9
 			{
 				RunTask(task);
 			}
-#if !__WASM__
+#if !__WASM__ && !__MACOS__
 			else if (task.IsFaulted && Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
 			{
 				IsInternetFaulted = true;
@@ -94,7 +94,7 @@ namespace Ch9
 
 					if (task.IsFaulted)
 					{
-#if !__WASM__
+#if !__WASM__ && !__MACOS__
 						if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
 						{
 							IsInternetFaulted = true;
