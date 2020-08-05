@@ -13,20 +13,18 @@ namespace Ch9
         {
 #if __WASM__
             var httpClient = new HttpClient(new Uno.UI.Wasm.WasmHttpHandler());
+
+			httpClient.DefaultRequestHeaders.Add("origin", "");
 #else
 			var httpClient = new HttpClient();
 #endif
-
-			// TODO Find proper origin value
-			httpClient.DefaultRequestHeaders.Add("origin", "");
-
-			return httpClient;
+	        return httpClient;
 		}
 
 		internal static async Task<XmlReader> GetXmlReader(string url)
         {
 #if __WASM__
-			url = "https://cors-anywhere.herokuapp.com/" + url;
+			url = "https://ch9-app.azurewebsites.net/api/proxy?url=" + url;
 #endif
 			using (var response = await HttpClient.GetAsync(url))
             {
