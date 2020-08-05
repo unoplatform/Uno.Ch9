@@ -266,6 +266,7 @@
 		<!-- Loading list of shows -->
 		<Grid Visibility="{Binding Shows.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 			  Background="{ThemeResource AppBackgroundBrush}"
+			  Opacity="{Binding IsChecked, ElementName=ShowContentBtn, Converter={StaticResource TrueToOpaque}}"
 			  HorizontalAlignment="Center"
 			  Grid.Row="2"
 			  Grid.Column="0"
@@ -455,6 +456,7 @@
 		<!-- Loading -->
 		<Grid Visibility="{Binding Show.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 			  Background="{ThemeResource AppBackgroundBrush}"
+			  Opacity="{Binding IsChecked, ElementName=FreshContentBtn, Converter={StaticResource TrueToOpaque}}"
 			  DataContext="{Binding Show}"
 			  Grid.Row="1"
 			  Grid.RowSpan="2"
