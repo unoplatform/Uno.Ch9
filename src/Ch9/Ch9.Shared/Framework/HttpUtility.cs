@@ -25,7 +25,10 @@ namespace Ch9
 
 		internal static async Task<XmlReader> GetXmlReader(string url)
         {
-            using (var response = await HttpClient.GetAsync(url))
+#if __WASM__
+			url = "https://cors-anywhere.herokuapp.com/" + url;
+#endif
+			using (var response = await HttpClient.GetAsync(url))
             {
                 response.EnsureSuccessStatusCode();
                 var bytes = await response.Content.ReadAsByteArrayAsync();
