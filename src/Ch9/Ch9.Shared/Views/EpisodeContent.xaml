@@ -7,9 +7,10 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:wasm="http:/uno.ui/wasm"
+			 xmlns:macos="http:/uno.ui/macos"
 			 xmlns:not_wasm="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:localwasm="using:Ch9.Wasm"
-			 mc:Ignorable="d wasm">
+			 mc:Ignorable="d wasm macos">
 
 	<Grid Background="{StaticResource MaterialBackgroundBrush}">
 		<VisualStateManager.VisualStateGroups>
@@ -114,6 +115,7 @@
 								CommandParameter="{Binding}"
 								Style="{StaticResource HiddenButtonStyle}"
 								wasm:Visibility="Collapsed"
+								macos:Visibility="Collapsed"
 								HorizontalAlignment="Left"
 								VerticalAlignment="Top"
 								MinWidth="0"
