@@ -8,8 +8,9 @@
 	  xmlns:toolkit="using:Uno.UI.Toolkit"
 	  xmlns:android="http://Uno.UI/android"
 	  xmlns:ios="http://Uno.UI/ios"
+	  xmlns:macos="http://Uno.UI/macos"
 	  xmlns:wasm="http://Uno.UI/wasm"
-	  mc:Ignorable="d android ios wasm">
+	  mc:Ignorable="d android ios wasm macos">
 
 	<Grid Background="{ThemeResource AppBackgroundBrush}">
 
@@ -35,22 +36,26 @@
 					<TextBlock Text="About"
 							   x:Uid="AboutPage_Title"
 							   Style="{StaticResource MaterialHeadline5}"
+							   Foreground="{StaticResource MaterialOnBackgroundBrush}"
 							   Margin="0,8,0,0" />
 
 					<!-- Content -->
 					<!-- iOS text must not mention "Android" nor "Demo" or it gets rejected from the store. -->
 					<!-- For simplicity the Text isn't localized -->
 					<TextBlock ios:Text="Ch9 is an app for consuming videos from Channel 9 RSS feed."
+							   macos:Text="Ch9 is an app for consuming videos from Channel 9 RSS feed."
 							   android:Text="Ch9 is a demo app which showcases the power of using WinUI and Uno Platform for developing single-codebase, cross-platform applications for Windows, iOS, Android and WebAssembly. It uses the publicly-available video feed from Microsoft's Channel 9 for content."
 							   win:Text="Ch9 is a demo app which showcases the power of using WinUI and Uno Platform for developing single-codebase, cross-platform applications for Windows, iOS, Android and WebAssembly. It uses the publicly-available video feed from Microsoft's Channel 9 for content."
 							   wasm:Text="Ch9 is a demo app which showcases the power of using WinUI and Uno Platform for developing single-codebase, cross-platform applications for Windows, iOS, Android and WebAssembly. It uses the publicly-available video feed from Microsoft's Channel 9 for content."
 							   Style="{StaticResource MaterialBody1}"
+							   Foreground="{StaticResource MaterialOnBackgroundBrush}"
 							   Margin="0,16,0,0" />
 
 					<!-- Source Code Message -->
 					<TextBlock Text="App Source Code available at:"
 							   x:Uid="AboutPage_SourceCode"
 							   Style="{StaticResource MaterialSubtitle2}"
+							   Foreground="{StaticResource MaterialOnBackgroundBrush}"
 							   Margin="0,20,0,0" />
 
 					<!-- Link GitHub -->
@@ -70,7 +75,8 @@
 					<!-- Or -->
 					<TextBlock Text="Or"
 							   x:Uid="AboutPage_Or"
-							   Style="{StaticResource MaterialSubtitle2}" />
+							   Style="{StaticResource MaterialSubtitle2}"
+							   Foreground="{StaticResource MaterialOnBackgroundBrush}" />
 
 					<!-- Link Uno -->
 					<Button Style="{StaticResource HiddenButtonStyle}"
@@ -94,6 +100,7 @@
 					<TextBlock Text="BUILT WITH"
 							   x:Uid="AboutPage_BuiltWith"
 							   Style="{StaticResource MaterialBody1}"
+							   Foreground="{StaticResource MaterialOnBackgroundBrush}"
 							   TextAlignment="Center"
 							   Margin="0,40,0,0" />
 
