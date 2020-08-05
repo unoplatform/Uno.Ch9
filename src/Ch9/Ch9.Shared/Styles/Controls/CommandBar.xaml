@@ -6,8 +6,9 @@
 					xmlns:ios="http://Uno.UI/ios"
 					xmlns:android="http://Uno.UI/android"
 					xmlns:wasm="http://Uno.UI/wasm"
+					xmlns:macos="http://Uno.UI/macos"
 					xmlns:toolkit="using:Uno.UI.Toolkit"
-					mc:Ignorable="xamarin android ios wasm">
+					mc:Ignorable="xamarin android ios wasm macos">
 
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
@@ -201,6 +202,72 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</wasm:Setter>
+
+		<macos:Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="CommandBar">
+
+					<Grid x:Name="LayoutRoot"
+						  Background="{TemplateBinding Background}"
+						  Height="{TemplateBinding Height}">
+
+						<Grid x:Name="ContentRoot"
+							  Background="{TemplateBinding Background}"
+							  Height="{TemplateBinding Height}"
+							  Opacity="{TemplateBinding Opacity}"
+							  Margin="{TemplateBinding Padding}">
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<!-- Navigation Command -->
+							<ContentControl x:Name="NavigationCommand"
+											Foreground="{TemplateBinding Foreground}"
+											IsTabStop="False"
+											Grid.Column="0" />
+
+							<!-- Content Control -->
+							<ContentControl x:Name="ContentControl"
+											Content="{TemplateBinding Content}"
+											ContentTemplate="{TemplateBinding ContentTemplate}"
+											Foreground="{TemplateBinding Foreground}"
+											HorizontalContentAlignment="Stretch"
+											VerticalContentAlignment="Stretch"
+											HorizontalAlignment="Stretch"
+											VerticalAlignment="Stretch"
+											IsTabStop="False"
+											Grid.Column="0"
+											Grid.ColumnSpan="3" />
+
+							<!-- Primary ItemsControl -->
+							<ItemsControl x:Name="PrimaryItemsControl"
+										  MinHeight="{ThemeResource AppBarThemeMinHeight}"
+										  HorizontalAlignment="Right"
+										  IsTabStop="False"
+										  Grid.Column="2">
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<StackPanel Orientation="Horizontal" />
+									</ItemsPanelTemplate>
+								</ItemsControl.ItemsPanel>
+							</ItemsControl>
+
+							<!-- High Contrast Border -->
+							<Rectangle x:Name="HighContrastBorder"
+									   Stroke="{ThemeResource SystemControlForegroundTransparentBrush}"
+									   StrokeThickness="1"
+									   VerticalAlignment="Stretch"
+									   Visibility="Collapsed"
+									   x:DeferLoadStrategy="Lazy"
+									   Grid.ColumnSpan="3" />
+						</Grid>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</macos:Setter>
 	</Style>
 
 	<Style x:Key="ImageCommandBarStyle"
