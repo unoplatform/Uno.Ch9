@@ -4,6 +4,7 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<NoWarn>NU1701</NoWarn>
+		<WasmHead>True</WasmHead>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
@@ -75,5 +76,7 @@
 	</ItemGroup>
 
 	<Import Project="..\Ch9.Shared\Ch9.Shared.projitems" Label="Shared" />
+	<Import Project="..\..\Versioning.targets" />
+	<Import Project="..\..\Packaging.targets" />
 
 </Project>
