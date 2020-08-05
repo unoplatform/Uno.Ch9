@@ -75,15 +75,15 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-		<PackageReference Include="Uno.Material" Version="1.0.0-dev.413" />
-		<PackageReference Include="Uno.UI" Version="3.0.0-dev.1253" />
-		<PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1253" />
+    <PackageReference Include="Uno.Material" Version="1.0.0-dev.413" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.1253" />
+    <PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1253" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
-		<PackageReference Include="Uno.GalaSoft.MvvmLight.Platform" Version="5.4.0-uno.134" />
-		<PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.132" />
-		<PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.186.g928c99f74d" />
+    <PackageReference Include="Uno.GalaSoft.MvvmLight.Platform" Version="5.4.0-uno.134" />
+    <PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.132" />
+    <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.186.g928c99f74d" />
     <PackageReference Include="refit" Version="4.8.14" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +122,16 @@
   </ItemGroup>
   <ItemGroup>
     <LinkDescription Include="LinkerExclusions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Assets\Ch9LogoNavBar.png" />
+    <Content Include="Resources\Assets\Ch9_logo.png" />
+    <Content Include="Resources\Assets\ErrorIllustration.png" />
+    <Content Include="Resources\Assets\NoVideoSelectedIllustration.png" />
+    <Content Include="Resources\Assets\NoWifiIllustration.png" />
+    <Content Include="Resources\Assets\SplashScreen.png" />
+    <Content Include="Resources\Assets\UnoWinUiLogos.png" />
+    <Content Include="Resources\Assets\UnoWinUiLogosDark.png" />
   </ItemGroup>
   <Import Project="..\Ch9.Shared\Ch9.Shared.projitems" Label="Shared" Condition="Exists('..\Ch9.Shared\Ch9.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
