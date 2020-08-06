@@ -44,7 +44,7 @@ namespace Ch9
 
 		private readonly Startup _startup;
 
-		private Frame _rootFrame;
+		private Shell _shell;
 		private bool _isActivityBackgroundCleared;
 
 		public static SimpleIoc ServiceProvider { get; } = SimpleIoc.Default;
@@ -69,6 +69,8 @@ namespace Ch9
 			ConfigureSuspension();
 		}
 
+		private Frame RootFrame => _shell.Frame;
+
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
 		{
 			this.Resources.MergedDictionaries.Add(new Uno.Material.MaterialColorPalette());
@@ -82,11 +84,11 @@ namespace Ch9
 				// this.DebugSettings.EnableFrameRateCounter = true;
 			}
 #endif
-			_rootFrame = Windows.UI.Xaml.Window.Current.Content as Frame;
+			_shell = Windows.UI.Xaml.Window.Current.Content as Shell;
 
 			// Do not repeat app initialization when the Window already has content,
 			// just ensure that the window is active
-			if (_rootFrame == null)
+			if (_shell == null)
 			{
 #if !DEBUG && __IOS__
 				AppCenter.Start("c1c95ee1-7532-486b-a542-cab21f444edb", typeof(Analytics), typeof(Crashes));
@@ -97,18 +99,17 @@ namespace Ch9
 				ConfigureViewSize();
 				ConfigureStatusBar();
 
-				// Create a Frame to act as the navigation context and navigate to the first page
-				_rootFrame = new Frame();
+				_shell = new Shell();
 
 				ConfigureNavigationFailed();
 
 				// Place the frame in the current Window
-				Windows.UI.Xaml.Window.Current.Content = _rootFrame;
+				Windows.UI.Xaml.Window.Current.Content = _shell;
 			}
 
 			if (e.PrelaunchActivated == false)
 			{
-				if (_rootFrame.Content == null)
+				if (_shell.Frame.Content == null)
 				{
 					// When the navigation stack isn't restored navigate to the first page,
 					// configuring the new page by passing required information as a navigation
@@ -129,7 +130,7 @@ namespace Ch9
 #region Application configuration
 		private void ConfigureNavigationFailed()
 		{
-			_rootFrame.NavigationFailed += OnNavigationFailed;
+			RootFrame.NavigationFailed += OnNavigationFailed;
 
 			void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
 			{
@@ -152,9 +153,9 @@ namespace Ch9
 		private void ConfigureViewSize()
 		{
 #if WINDOWS_UWP
-            ApplicationView.PreferredLaunchViewSize = new Size(1024, 768);
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 480));
+			ApplicationView.PreferredLaunchViewSize = new Size(1024, 768);
+			ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+			ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 480));
 #endif
 		}
 
@@ -171,10 +172,11 @@ namespace Ch9
                     {
                         showPage.Show.IsVideoFullWindow = false;
                     }
-                    else if (TryGetActiveViewModel<MainPageViewModel>(out var mainPage) && mainPage.Show.IsVideoFullWindow)
-                    {
-                        mainPage.Show.IsVideoFullWindow = false;
-                    }
+					// TODO Uncomment
+                    //else if (TryGetActiveViewModel<MainPageViewModel>(out var mainPage) && mainPage.Show.IsVideoFullWindow)
+                    //{
+                    //    mainPage.Show.IsVideoFullWindow = false;
+                    //}
                 }
             }
 #endif
@@ -243,10 +245,11 @@ namespace Ch9
 					{
 						ToVideoFullWindow(showPage.Show, isLandscape);
 					}
-					else if (TryGetActiveViewModel<MainPageViewModel>(out var mainPage) && mainPage.Show.SelectedEpisode != null)
-					{
-						ToVideoFullWindow(mainPage.Show, isLandscape);
-					}
+					// TODO Uncomment
+					//else if (TryGetActiveViewModel<MainPageViewModel>(out var mainPage) && mainPage.Show.SelectedEpisode != null)
+					//{
+					//	ToVideoFullWindow(mainPage.Show, isLandscape);
+					//}
 				}
 				catch (Exception ex)
 				{
@@ -261,9 +264,9 @@ namespace Ch9
 
 			void OnNavigated(IStackNavigationService sender, OnNavigatedEventArgs args)
 			{
-				SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = sender.CanGoBack
-					? AppViewBackButtonVisibility.Visible
-					: AppViewBackButtonVisibility.Collapsed;
+				_shell.NavigationView.IsBackButtonVisible = sender.CanGoBack
+					? NavigationViewBackButtonVisible.Visible
+					: NavigationViewBackButtonVisible.Collapsed;
 			}
 
 			navigationService.OnNavigated += OnNavigated;
@@ -274,8 +277,7 @@ namespace Ch9
 			void OnBackRequested(object sender, BackRequestedEventArgs e)
 			{
 				// ShowPage hook back request
-				if ((_rootFrame.Content as FrameworkElement)?.DataContext is ShowPageViewModel showPage &&
-					showPage.Show.SelectedEpisode != null && showPage.IsNarrowAndSelected)
+				if (TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.SelectedEpisode != null && showPage.IsNarrowAndSelected)
 				{
 					e.Handled = true;
 
@@ -303,20 +305,20 @@ namespace Ch9
 				}
 
 				// MainPage hook back request
-				if ((_rootFrame.Content as FrameworkElement)?.DataContext is MainPageViewModel mainPage &&
-					mainPage.Show.SelectedEpisode != null)
-				{
-					if (!mainPage.Show.IsVideoFullWindow)
-					{
-						mainPage.Show.DismissSelectedEpisode.Execute(null);
-					}
-					else
-					{
-						mainPage.Show.IsVideoFullWindow = false;
-					}
+				// TODO Uncomment
+				//if (TryGetActiveViewModel<MainPageViewModel>(out var mainPage) && mainPage.Show.SelectedEpisode != null)
+				//{
+				//	if (!mainPage.Show.IsVideoFullWindow)
+				//	{
+				//		mainPage.Show.DismissSelectedEpisode.Execute(null);
+				//	}
+				//	else
+				//	{
+				//		mainPage.Show.IsVideoFullWindow = false;
+				//	}
 
-					e.Handled = true;
-				}
+				//	e.Handled = true;
+				//}
 			}
 
 			SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
@@ -405,7 +407,7 @@ namespace Ch9
 
 		private bool TryGetActiveViewModel<TViewModel>(out TViewModel viewModel)
 		{
-			var dataContext = (_rootFrame.Content as FrameworkElement)?.DataContext;
+			var dataContext = (RootFrame.Content as FrameworkElement)?.DataContext;
 
 			if (dataContext is TViewModel model)
 			{

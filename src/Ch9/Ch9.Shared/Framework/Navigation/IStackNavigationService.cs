@@ -25,6 +25,8 @@ namespace Ch9
 		/// Gets the navigation back stack.
 		/// </summary>
 		IList<PageStackEntry> BackStack { get; }
+
+		void NavigateToAndClearStack(string pageKey, object parameter = null);
 	}
 
 	public delegate void OnNavigatedEventHandler(IStackNavigationService sender, OnNavigatedEventArgs args);

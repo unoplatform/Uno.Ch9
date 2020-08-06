@@ -44,6 +44,16 @@ namespace Ch9
 			OnNavigated?.Invoke(this, new OnNavigatedEventArgs(pageKey));
 		}
 
+		public void NavigateToAndClearStack(string pageKey, object parameter = null)
+		{
+			_innerNavigationService.NavigateTo(pageKey, parameter);
+
+			_innerNavigationService.CurrentFrame.BackStack.Clear();
+			_innerNavigationService.CurrentFrame.ForwardStack.Clear();
+
+			OnNavigated?.Invoke(this, new OnNavigatedEventArgs(pageKey));
+		}
+
 		public IList<PageStackEntry> BackStack => _innerNavigationService.CurrentFrame.BackStack;
 	}
 }

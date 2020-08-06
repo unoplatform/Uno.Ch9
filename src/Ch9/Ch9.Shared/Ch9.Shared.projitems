@@ -18,6 +18,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DebugConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEmptyStringOrNullObjectToValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\HttpUtility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RecentEpisodesPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShowsPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -43,8 +48,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\IStackNavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\StackNavigationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RecentEpisodesPage.xaml.cs">
+      <DependentUpon>RecentEpisodesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\ShowPage.xaml.cs">
       <DependentUpon>ShowPage.xaml</DependentUpon>
@@ -52,12 +57,34 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShowPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShowViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Startup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EpisodeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ShowsPage.xaml.cs">
+      <DependentUpon>ShowsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Shell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\Card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\NavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\NavigationViewItemSeparator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\NavigationView_PaneToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\NavigationView_SplitView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -73,7 +100,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\RecentEpisodesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,6 +164,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ShowsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\AboutIcon.scale-100.png" />
@@ -190,6 +221,5 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Assets\Animations\" />
     <Folder Include="$(MSBuildThisFileDirectory)Framework\Navigation\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
   </ItemGroup>
 </Project>

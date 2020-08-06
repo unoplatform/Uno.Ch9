@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Ch9.EpisodeContent"
+﻿<UserControl x:Class="Ch9.Views.EpisodeContent"
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:local="using:Ch9"

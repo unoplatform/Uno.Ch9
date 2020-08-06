@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Http;
+using Ch9.Views;
 
 namespace Ch9
 {
@@ -19,11 +20,15 @@ namespace Ch9
 		{
 			serviceProvider.Register<IStackNavigationService>(() =>
 			{
-				var navigationService = new NavigationService();
+				var navigationService = new NavigationService()
+				{
+					CurrentFrame = Shell.Instance.Frame
+				};
 
-				navigationService.Configure(nameof(MainPage), typeof(MainPage));
+				navigationService.Configure(nameof(RecentEpisodesPage), typeof(RecentEpisodesPage));
+				navigationService.Configure(nameof(ShowsPage), typeof(ShowsPage));
+				navigationService.Configure(nameof(ShowPage), typeof(ShowPage));
 				navigationService.Configure(nameof(AboutPage), typeof(AboutPage));
-                navigationService.Configure(nameof(ShowPage), typeof(ShowPage));
 
 				return new StackNavigationService(navigationService);
 			});
@@ -46,7 +51,7 @@ namespace Ch9
 
 		public void ExecuteInitialNavigation()
 		{
-			App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(MainPage));
+			App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(RecentEpisodesPage));
 		}
 	}
 }
