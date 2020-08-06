@@ -105,19 +105,19 @@ stages:
   jobs:
   - template: build/steps-release-appcenter.yml
 
-- stage: Release_TestFlight
-  condition: succeeded()
-  dependsOn: Build
+# - stage: Release_TestFlight
+#   condition: succeeded()
+#   dependsOn: Build
 
-  jobs:
-  - template: build/steps-release-testflight.yml
+#   jobs:
+#   - template: build/steps-release-testflight.yml
 
-- stage: Release_PlayStore
-  condition: succeeded()
-  dependsOn: Build
+# - stage: Release_PlayStore
+#   condition: succeeded()
+#   dependsOn: Build
 
-  jobs:
-  - template: build/steps-release-playstore.yml
+#   jobs:
+#   - template: build/steps-release-playstore.yml
 
 - stage: Release_WASM
   condition: succeeded()
