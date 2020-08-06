@@ -227,7 +227,7 @@
 			<StackPanel VerticalAlignment="Center">
 
 				<!-- Image -->
-				<Image Source="ms-appx:///Assets/NoVideoSelectedIllustration.png"
+				<Image Source="ms-appx:///Assets/Ch9Emoji.png"
 					   Stretch="Uniform"
 					   Width="280"
 					   HorizontalAlignment="Center" />
@@ -345,7 +345,7 @@
 					</winui:AnimatedVisualPlayer>
 				</xamarin:Grid>
 
-				<win:Image Source="ms-appx:///Assets/NoVideoSelectedIllustration.png"
+				<win:Image Source="ms-appx:///Assets/Ch9Emoji.png"
 						   Stretch="Uniform"
 						   Height="120"
 						   HorizontalAlignment="Center" />
