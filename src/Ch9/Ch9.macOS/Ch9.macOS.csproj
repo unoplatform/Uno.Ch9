@@ -47,9 +47,10 @@
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EnableCodeSigning>true</EnableCodeSigning>
-    <CreatePackage>true</CreatePackage>
-    <EnablePackageSigning>true</EnablePackageSigning>
+		<EnableCodeSigning>false</EnableCodeSigning>
+		<CodeSigningKey>Mac Developer</CodeSigningKey>
+		<CreatePackage>false</CreatePackage>
+		<EnablePackageSigning>false</EnablePackageSigning>
     <IncludeMonoRuntime>true</IncludeMonoRuntime>
     <UseSGen>true</UseSGen>
     <UseRefCounting>true</UseRefCounting>
@@ -60,7 +61,6 @@
     <XamMacArch>
     </XamMacArch>
     <NoWarn>Uno0001</NoWarn>
-    <CodeSigningKey>Apple Distribution: nventive inc. (4PZ69335CF)</CodeSigningKey>
     <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
     <AOTMode>None</AOTMode>
   </PropertyGroup>

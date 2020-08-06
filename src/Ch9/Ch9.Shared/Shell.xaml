@@ -4,6 +4,7 @@
 			 xmlns:local="using:Ch9"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:triggers="using:WindowsStateTriggers"
 			 mc:Ignorable="d"
 			 d:DesignHeight="300"
 			 d:DesignWidth="400">
@@ -15,6 +16,25 @@
 						   Height="0" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
+
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup>
+				<VisualState x:Name="WideAndPaneClosed">
+					<VisualState.StateTriggers>
+						<triggers:CompositeStateTrigger Operator="And">
+							<triggers:AdaptiveTrigger MinWindowWidth="800" />
+							<StateTrigger IsActive="{x:Bind RootNavigationView.IsPaneOpen, Converter={StaticResource ReverseBool}, Mode=OneWay}" />
+						</triggers:CompositeStateTrigger>
+					</VisualState.StateTriggers>
+
+					<VisualState.Setters>
+						<Setter Target="RootFrame.Margin"
+								Value="48,0,0,0" />
+					</VisualState.Setters>
+				</VisualState>
+
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
 
 		<NavigationView x:Name="RootNavigationView"
 						Style="{StaticResource MaterialNoCompactMenuNavigationViewStyle2}"
@@ -43,7 +63,8 @@
 			</NavigationView.MenuItems>
 
 			<!-- NavigationView Items -->
-			<Frame x:Name="RootFrame">
+			<Frame x:Name="RootFrame"
+				   Margin="0,0,0,0">
 				<Frame.ContentTransitions>
 					<TransitionCollection>
 						<NavigationThemeTransition>

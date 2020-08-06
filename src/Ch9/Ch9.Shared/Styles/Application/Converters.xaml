@@ -64,7 +64,9 @@
 														  VisibilityOnEnumerableHasAny="Collapsed"
 														  VisibilityOnEnumerableNull="Collapsed" />
 
-    <converters:FromEnumerableToItemsCountConverter x:Key="EnumerableItemsCount" />
+	<converters:FromEnumerableToItemsCountConverter x:Key="EnumerableItemsCount" />
+	
+	<converters:FromNullableBoolToReverseBoolConverter x:Key="ReverseBool" />
 
 	<converters:DebugConverter x:Key="debug" />
 

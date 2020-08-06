@@ -478,6 +478,7 @@
 								<Button x:Name="NavigationViewBackButton"
 										Style="{StaticResource NavigationBackButtonNormalStyle}"
 										VerticalAlignment="Top"
+										Background="Transparent"
 										Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.BackButtonVisibility}"
 										IsEnabled="{TemplateBinding IsBackEnabled}" />
 
@@ -885,11 +886,6 @@
 
 								<SplitView.Content>
 									<Grid x:Name="ContentGrid">
-										<Grid.RowDefinitions>
-											<RowDefinition Height="Auto" />
-											<RowDefinition Height="Auto" />
-											<RowDefinition Height="*" />
-										</Grid.RowDefinitions>
 
 										<!--Padding to compensate for the fact that there is no side panel in ListSizeCompact for this style, so we must
 										ensure that the content is not placed behind the ToggleButton-->
@@ -909,7 +905,8 @@
 														Grid.Row="1" />
 
 										<ContentPresenter AutomationProperties.LandmarkType="Main"
-														  Grid.Row="2"
+														  Grid.Row="0"
+														  Grid.RowSpan="3"
 														  Padding="0"
 														  Content="{TemplateBinding Content}" />
 									</Grid>
@@ -944,14 +941,16 @@
 
 								<Button x:Name="NavigationViewBackButton"
 										Style="{StaticResource MaterialPaneBackArrowToggleButtonStyle}"
-										VerticalAlignment="Top"
 										Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.BackButtonVisibility}"
-										IsEnabled="{TemplateBinding IsBackEnabled}" />
+										IsEnabled="{TemplateBinding IsBackEnabled}"
+										Background="Transparent"
+										VerticalAlignment="Top" />
 
 								<Button x:Name="TogglePaneButton"
-										Style="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPaneOpen, Converter={StaticResource OpenToPaneButtonStyle}}"
+										Style="{StaticResource MaterialPaneToggleButtonStyle}"
 										AutomationProperties.LandmarkType="Navigation"
 										Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.PaneToggleButtonVisibility}"
+										Margin="0"
 										Background="Transparent"
 										VerticalAlignment="Top" />
 							</Grid>
