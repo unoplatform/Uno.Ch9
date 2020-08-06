@@ -38,12 +38,15 @@ namespace Ch9
 
 		public NavigationView NavigationView => this.RootNavigationView;
 
+		private NavigationViewItem _previousSelectedItem;
+
 		private void OnLoaded(object sender, RoutedEventArgs e)
 		{
 			NavigationView.ItemInvoked += OnNavigationViewItemInvoked;
 			NavigationView.BackRequested += OnNavigationViewBackRequested;
 
 			NavigationView.SelectedItem = NavigationView.MenuItems.First();
+			_previousSelectedItem = (NavigationViewItem) NavigationView.MenuItems.First();
 		}
 
 		private void OnNavigationViewBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
@@ -62,7 +65,10 @@ namespace Ch9
 		{
 			if (args.InvokedItemContainer is NavigationViewItem item)
 			{
-				switch (item.Content.ToString())
+				var itemContent = item.Content.ToString();
+				if (_previousSelectedItem?.Content.ToString() == itemContent) return;
+
+				switch (itemContent)
 				{
 					case "Recent":
 						App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateToAndClearStack(nameof(RecentEpisodesPage));
@@ -76,6 +82,8 @@ namespace Ch9
 						App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateToAndClearStack(nameof(AboutPage));
 						break;
 				}
+
+				_previousSelectedItem = item;
 			}
 		}
 
