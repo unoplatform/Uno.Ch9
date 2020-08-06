@@ -16,13 +16,15 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Ch9.Views
 {
-	public sealed partial class AboutPage : Page
+	public sealed partial class ShowsPage : Page
 	{
-		public AboutPage()
+		public ShowsPage()
 		{
 			this.InitializeComponent();
 
-			DataContext = new AboutPageViewModel();
+			DataContext = new ShowsPageViewModel();
 		}
+
+		public ShowsPageViewModel ViewModel => DataContext as ShowsPageViewModel;
 	}
 }

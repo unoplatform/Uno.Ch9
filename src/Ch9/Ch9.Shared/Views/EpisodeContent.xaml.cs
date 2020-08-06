@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace Ch9
+namespace Ch9.Views
 {
     public sealed partial class EpisodeContent : UserControl
     {

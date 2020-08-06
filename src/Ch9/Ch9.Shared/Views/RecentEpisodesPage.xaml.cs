@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
+using Ch9.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -16,23 +15,20 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace Ch9
+namespace Ch9.Views
 {
-	public sealed partial class MainPage : Page
+	public sealed partial class RecentEpisodesPage : Page
 	{
-		public MainPage()
+		public RecentEpisodesPage()
 		{
 			this.InitializeComponent();
 
-			this.NavigationCacheMode = NavigationCacheMode.Required;
-
-			DataContext = new MainPageViewModel();
-
+			DataContext = new RecentEpisodesPageViewModel();
 
 			EpisodeList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
 		}
 
-		public MainPageViewModel ViewModel => DataContext as MainPageViewModel;
+		public RecentEpisodesPageViewModel ViewModel => DataContext as RecentEpisodesPageViewModel;
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
@@ -47,11 +43,10 @@ namespace Ch9
 			var listView = sender as ListView;
 			var items = listView?.ItemsSource as ICollection;
 
-			if (items?.Count > 0 &&
-				Windows.UI.Xaml.Window.Current.Bounds.Width >= 800)
+			if (items?.Count > 0 && Windows.UI.Xaml.Window.Current.Bounds.Width >= 800)
 			{
 				listView.SelectedIndex = 0;
 			}
 		}
-    }
+	}
 }

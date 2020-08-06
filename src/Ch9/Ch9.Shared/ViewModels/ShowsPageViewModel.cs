@@ -1,24 +1,21 @@
-﻿using System.Collections.Generic;
-using Ch9.ViewModels;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Ch9.Domain;
-using System.Threading.Tasks;
+using Ch9.Views;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
-namespace Ch9
+namespace Ch9.ViewModels
 {
 	[Windows.UI.Xaml.Data.Bindable]
-	public class MainPageViewModel : ViewModelBase
+	public class ShowsPageViewModel : ViewModelBase
 	{
-		public MainPageViewModel()
+		public ShowsPageViewModel()
 		{
-			ToAboutPage = new RelayCommand(() =>
-			{
-				App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(AboutPage));
-			});
-
 			DisplayShow = new RelayCommand<SourceFeed>(showFeed =>
 			{
 				App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(ShowPage), showFeed);
@@ -29,8 +26,6 @@ namespace Ch9
 			LoadShowFeeds();
 		}
 
-		public ICommand ToAboutPage { get; }
-
 		public ICommand ReloadShowsList { get; }
 
 		public ICommand DisplayShow { get; set; }
@@ -40,21 +35,6 @@ namespace Ch9
 		{
 			get => _shows;
 			set => Set(() => Shows, ref _shows, value);
-		}
-
-		private ShowViewModel _show;
-		public ShowViewModel Show
-		{
-			get => _show;
-			set => Set(() => Show, ref _show, value);
-		}
-
-		public void OnNavigatedTo()
-		{
-			if (Show == null)
-			{
-				Show = new ShowViewModel();
-			}
 		}
 
 		private void LoadShowFeeds()
