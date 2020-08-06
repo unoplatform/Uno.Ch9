@@ -94,15 +94,5 @@ namespace Ch9
 				TopPaddingRow.Height = new GridLength(topPadding);
 			}
 		}
-
-		private void NavView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
-		{
-			var navigationService = App.ServiceProvider.GetInstance<IStackNavigationService>();
-			if (navigationService.CanGoBack)
-			{
-				navigationService.GoBack();
-			}
-		}
-
 	}
 }

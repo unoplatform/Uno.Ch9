@@ -18,9 +18,6 @@
 		<ResourceDictionary Source="../Application/Colors.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
-	<x:String x:Key="BackArrowIOSPathData">M24.2,0.5 L27.7,4 L7.5,24.2 L27.7,44.4 L24.2,47.9 L0.5,24.2 z</x:String>
-	<x:String x:Key="BackArrowPathData">M8,0 L9.4,1.4 L3.8,7 L16,7 L16,9 L3.8,9 L9.4,14.6 L8,16 L0,8 z</x:String>
-
 	<!-- PaneToggleButton Style-->
 	<Style x:Key="MaterialPaneToggleButtonStyle"
 		   TargetType="Button">
@@ -167,7 +164,7 @@
 		<Setter Property="VerticalContentAlignment"
 				Value="Center" />
 		<Setter Property="Background"
-				Value="{StaticResource NavDrawersBackgroundBrush}" />
+				Value="Transparent" />
 		<Setter Property="Foreground"
 				Value="{StaticResource NavDrawersTextBrush}" />
 		<Setter Property="Template">
@@ -235,35 +232,17 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
-						<Grid Width="{TemplateBinding MinWidth}"
-							  HorizontalAlignment="Left">
-							<Viewbox x:Name="IconHost"
-									 Width="16"
-									 Height="16"
-									 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-									 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-									 AutomationProperties.AccessibilityView="Raw">
+						<Grid Width="16"
+							  Height="16"
+							  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+							  VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
 
-								<Grid>
-
-									<!--
-										work around for wasm: using not showing up
-									-->
-									<ios:Path Data="{StaticResource BackArrowIOSPathData}"
-											  Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
-											  Stretch="Fill"
-											  UseLayoutRounding="False" />
-									<!--
-										macOS only works with a stretch Uniform and a height or width set
-									-->
-									<Path Data="{StaticResource BackArrowPathData}"
-										  Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
-										  Stretch="Uniform"
-										  Height="16"
-										  UseLayoutRounding="False"
-										  ios:Visibility="Collapsed" />
-								</Grid>
-							</Viewbox>
+							<Path Data="M8,0 L9.4,1.4 L3.8,7 L16,7 L16,9 L3.8,9 L9.4,14.6 L8,16 L0,8 z"
+								  Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"
+								  Width="16"
+								  Height="16"
+								  Stretch="Fill"
+								  UseLayoutRounding="False" />
 						</Grid>
 
 						<Border x:Name="HoverOverlay"
