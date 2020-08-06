@@ -48,7 +48,7 @@
 			<NavigationView.PaneHeader>
 				<StackPanel Orientation="Horizontal"
 							Padding="16">
-					<Image Source="ms-appx:///Assets/NoVideoSelectedIllustration.png"
+					<Image Source="ms-appx:///Assets/Ch9Emoji.png"
 						   Width="180"
 						   Height="93"
 						   HorizontalAlignment="Center"

@@ -15,10 +15,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Assets\Ch9Emoji.png" />
 		<None Remove="Assets\Ch9LogoNavBar.png" />
 		<None Remove="Assets\Ch9_logo.png" />
 		<None Remove="Assets\ErrorIllustration.png" />
-		<None Remove="Assets\NoVideoSelectedIllustration.png" />
 		<None Remove="Assets\NoWifiIllustration.png" />
 		<None Remove="Assets\SplashScreen.png" />
 		<None Remove="Assets\UnoWinUiLogos.png" />
@@ -29,7 +29,7 @@
 		<Content Include="Assets\Ch9LogoNavBar.png" />
 		<Content Include="Assets\Ch9_logo.png" />
 		<Content Include="Assets\ErrorIllustration.png" />
-		<Content Include="Assets\NoVideoSelectedIllustration.png" />
+		<Content Include="Assets\Ch9Emoji.png" />
 		<Content Include="Assets\NoWifiIllustration.png" />
 		<Content Include="Assets\SplashScreen.png" />
 		<Content Include="Assets\UnoWinUiLogos.png" />
