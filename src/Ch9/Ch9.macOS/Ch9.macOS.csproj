@@ -35,8 +35,6 @@
     <XamMacArch>
     </XamMacArch>
     <NoWarn>Uno0001</NoWarn>
-    <AOTMode>None</AOTMode>
-    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugSymbols>false</DebugSymbols>
@@ -47,22 +45,19 @@
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EnableCodeSigning>true</EnableCodeSigning>
+    <EnableCodeSigning>false</EnableCodeSigning>
     <CreatePackage>true</CreatePackage>
-    <EnablePackageSigning>true</EnablePackageSigning>
+    <EnablePackageSigning>false</EnablePackageSigning>
     <IncludeMonoRuntime>true</IncludeMonoRuntime>
     <UseSGen>true</UseSGen>
     <UseRefCounting>true</UseRefCounting>
-    <LinkMode>SdkOnly</LinkMode>
-    <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
+		<!-- The LinkerExclusions file doesn't seem to be used; we'll link later. -->
+    <LinkMode>None</LinkMode>
     <HttpClientHandler>
     </HttpClientHandler>
     <XamMacArch>
     </XamMacArch>
     <NoWarn>Uno0001</NoWarn>
-    <CodeSigningKey>Apple Distribution: nventive inc. (4PZ69335CF)</CodeSigningKey>
-    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
-    <AOTMode>None</AOTMode>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -127,7 +122,7 @@
     <Content Include="Resources\Assets\Ch9LogoNavBar.png" />
     <Content Include="Resources\Assets\Ch9_logo.png" />
     <Content Include="Resources\Assets\ErrorIllustration.png" />
-    <Content Include="Resources\Assets\NoVideoSelectedIllustration.png" />
+    <Content Include="Resources\Assets\Ch9Emoji.png" />
     <Content Include="Resources\Assets\NoWifiIllustration.png" />
     <Content Include="Resources\Assets\SplashScreen.png" />
     <Content Include="Resources\Assets\UnoWinUiLogos.png" />
@@ -143,13 +138,21 @@
 				is properly adding the local System.Memory to the Reference item group.
 		-->
     <ItemGroup>
+      <_ReferenceToRemove Include="@(Reference)" Condition="'%(Reference.Identity)'=='System.Memory'" />
       <Reference Remove="@(_ReferenceToRemove)" />
       <Reference Include="System.Memory" />
     </ItemGroup>
   </Target>
   <Target Name="VS16_RemoveSystemMemory" BeforeTargets="FindReferenceAssembliesForReferences">
     <ItemGroup>
+      <_ReferencePathToRemove Include="@(ReferencePath)" Condition="'%(ReferencePath.NuGetPackageId)'=='System.Memory'" />
       <ReferencePath Remove="@(_ReferencePathToRemove)" />
     </ItemGroup>
+  </Target>
+  <Target Name="_PackageCopyToOutput" BeforeTargets="Build">
+    <ItemGroup>
+      <_packages Include="$(TargetDir)\*.pkg" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_packages)" DestinationFolder="$(PackageOutputPath)\" />
   </Target>
 </Project>

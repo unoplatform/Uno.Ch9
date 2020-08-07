@@ -61,12 +61,16 @@ stages:
 
   - job: macOS
     strategy:
-      maxParallel: 1
+      maxParallel: 2
       matrix:
         Release_iOS:
           ApplicationConfiguration: Release_iOS
           ApplicationPlatform: Any CPU
           Environment: Staging
+        Release_macOS:
+          ApplicationConfiguration: Release_MACOS
+          ApplicationPlatform: Any CPU
+          Environment: Staging    
 
     pool:
       name: $(macOSPoolName)
@@ -105,19 +109,19 @@ stages:
   jobs:
   - template: build/steps-release-appcenter.yml
 
-- stage: Release_TestFlight
-  condition: succeeded()
-  dependsOn: Build
+# - stage: Release_TestFlight
+#   condition: succeeded()
+#   dependsOn: Build
 
-  jobs:
-  - template: build/steps-release-testflight.yml
+#   jobs:
+#   - template: build/steps-release-testflight.yml
 
-- stage: Release_PlayStore
-  condition: succeeded()
-  dependsOn: Build
+# - stage: Release_PlayStore
+#   condition: succeeded()
+#   dependsOn: Build
 
-  jobs:
-  - template: build/steps-release-playstore.yml
+#   jobs:
+#   - template: build/steps-release-playstore.yml
 
 - stage: Release_WASM
   condition: succeeded()

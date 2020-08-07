@@ -17,13 +17,8 @@ using Ch9.Domain;
 using Ch9.ViewModels;
 using Windows.UI.Core;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
-namespace Ch9
+namespace Ch9.Views
 {
-	/// <summary>
-	/// An empty page that can be used on its own or navigated to within a Frame.
-	/// </summary>
 	public sealed partial class ShowPage : Page
 	{
 		public ShowPage()
@@ -44,7 +39,7 @@ namespace Ch9
 			ViewModel.OnNavigatedTo(e.Parameter as SourceFeed);
 		}
 
-        private void OnItemsSourceChanged(DependencyObject sender, DependencyProperty dp)
+		private void OnItemsSourceChanged(DependencyObject sender, DependencyProperty dp)
 		{
 			// Auto select the first element if the items change and the window is wide.
 			var listView = sender as ListView;

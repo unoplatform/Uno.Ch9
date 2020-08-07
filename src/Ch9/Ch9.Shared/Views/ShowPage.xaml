@@ -1,8 +1,8 @@
-﻿<Page x:Class="Ch9.ShowPage"
+﻿<Page x:Class="Ch9.Views.ShowPage"
 	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	  xmlns:local="using:Ch9"
+	  xmlns:local="using:Ch9.Views"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  xmlns:triggers="using:WindowsStateTriggers"
 	  xmlns:toolkit="using:Uno.UI.Toolkit"
@@ -117,6 +117,8 @@
 								Value="12,0" />
 						<Setter Target="EpisodeList.HeaderTemplate"
 								Value="{StaticResource EmptyListViewHeaderTemplate}" />
+						<Setter Target="CommandBar.Visibility"
+								Value="Collapsed" />
 					</VisualState.Setters>
 				</VisualState>
 
@@ -147,6 +149,8 @@
 								Value="12,0" />
 						<Setter Target="EpisodeList.HeaderTemplate"
 								Value="{StaticResource EmptyListViewHeaderTemplate}" />
+						<Setter Target="CommandBar.Visibility"
+								Value="Collapsed" />
 					</VisualState.Setters>
 				</VisualState>
 
@@ -158,8 +162,6 @@
 					</VisualState.StateTriggers>
 
 					<VisualState.Setters>
-						<Setter Target="CommandBar.Visibility"
-								Value="Collapsed" />
 						<Setter Target="EpisodePresenter.Row"
 								Value="0" />
 						<Setter Target="EpisodePresenter.RowSpan"
@@ -169,13 +171,11 @@
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
 
-		<CommandBar x:Name="CommandBar"
-					Style="{StaticResource ImageCommandBarStyle}"
-					Content="{Binding SourceFeed.Name}"
-					wasm:Visibility="Collapsed"
-					Grid.Row="0"
-					Grid.Column="0"
-					Grid.ColumnSpan="2" />
+		<Grid Height="48"
+			  x:Name="CommandBar"
+			  Padding="48,0,0,0"
+			  Grid.ColumnSpan="2">
+		</Grid>
 
 		<!-- Show details -->
 		<Grid DataContext="{Binding Show}"
@@ -226,7 +226,7 @@
 			<StackPanel VerticalAlignment="Center">
 
 				<!-- Image -->
-				<Image Source="ms-appx:///Assets/NoVideoSelectedIllustration.png"
+				<Image Source="ms-appx:///Assets/Ch9Emoji.png"
 					   Stretch="Uniform"
 					   Width="280"
 					   HorizontalAlignment="Center" />
@@ -289,7 +289,7 @@
 		<Grid DataContext="{Binding Show}"
 			  Visibility="{Binding Show.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
 			  Background="{StaticResource MaterialBackgroundBrush}"
-			  Grid.Row="1"
+			  Grid.Row="2"
 			  Grid.RowSpan="2"
 			  Grid.Column="0"
 			  Grid.ColumnSpan="2">
@@ -344,7 +344,7 @@
 					</winui:AnimatedVisualPlayer>
 				</xamarin:Grid>
 
-				<win:Image Source="ms-appx:///Assets/NoVideoSelectedIllustration.png"
+				<win:Image Source="ms-appx:///Assets/Ch9Emoji.png"
 						   Stretch="Uniform"
 						   Height="120"
 						   HorizontalAlignment="Center" />

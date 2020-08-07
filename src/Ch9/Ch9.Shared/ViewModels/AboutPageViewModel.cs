@@ -4,7 +4,7 @@ using System;
 using System.Windows.Input;
 using Windows.System;
 
-namespace Ch9
+namespace Ch9.ViewModels
 {
 	[Windows.UI.Xaml.Data.Bindable]
 	public class AboutPageViewModel : ViewModelBase

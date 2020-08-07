@@ -17,7 +17,14 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DebugConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEmptyStringOrNullObjectToValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromNullableBoolToReverseBoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\HttpUtility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RecentEpisodesPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShellViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShowsPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -40,11 +47,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\IStackNavigationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\NavigationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\StackNavigationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\RecentEpisodesPage.xaml.cs">
+      <DependentUpon>RecentEpisodesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\ShowPage.xaml.cs">
       <DependentUpon>ShowPage.xaml</DependentUpon>
@@ -52,12 +56,34 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShowPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShowViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Startup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\EpisodeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ShowsPage.xaml.cs">
+      <DependentUpon>ShowsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Shell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\Card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\NavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\NavigationViewItemSeparator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\NavigationView_PaneToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Styles\Controls\NavigationView_SplitView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -73,7 +99,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\RecentEpisodesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,6 +163,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\ShowsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\AboutIcon.scale-100.png" />
@@ -160,11 +190,11 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\ErrorIllustration.scale-300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\ErrorIllustration.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Animations\loading_animation_data.json" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\NoVideoSelectedIllustration.scale-100.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\NoVideoSelectedIllustration.scale-150.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\NoVideoSelectedIllustration.scale-200.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\NoVideoSelectedIllustration.scale-300.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\NoVideoSelectedIllustration.scale-400.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9Emoji.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9Emoji.scale-150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9Emoji.scale-200.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9Emoji.scale-300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Ch9Emoji.scale-400.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\NoWifiIllustration.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\NoWifiIllustration.scale-150.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\NoWifiIllustration.scale-200.png" />
@@ -189,7 +219,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Assets\Animations\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Framework\Navigation\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
   </ItemGroup>
 </Project>

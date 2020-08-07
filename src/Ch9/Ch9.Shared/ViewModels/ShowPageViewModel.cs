@@ -34,5 +34,5 @@ namespace Ch9.ViewModels
                 Show = new ShowViewModel(SourceFeed);
             }
         }
-    }
+	}
 }

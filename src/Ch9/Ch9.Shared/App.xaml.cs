@@ -44,7 +44,7 @@ namespace Ch9
 
 		private readonly Startup _startup;
 
-		private Frame _rootFrame;
+		private Shell _shell;
 		private bool _isActivityBackgroundCleared;
 
 		public static SimpleIoc ServiceProvider { get; } = SimpleIoc.Default;
@@ -82,11 +82,11 @@ namespace Ch9
 				// this.DebugSettings.EnableFrameRateCounter = true;
 			}
 #endif
-			_rootFrame = Windows.UI.Xaml.Window.Current.Content as Frame;
+			_shell = Windows.UI.Xaml.Window.Current.Content as Shell;
 
 			// Do not repeat app initialization when the Window already has content,
 			// just ensure that the window is active
-			if (_rootFrame == null)
+			if (_shell == null)
 			{
 #if !DEBUG && __IOS__
 				AppCenter.Start("c1c95ee1-7532-486b-a542-cab21f444edb", typeof(Analytics), typeof(Crashes));
@@ -97,46 +97,24 @@ namespace Ch9
 				ConfigureViewSize();
 				ConfigureStatusBar();
 
-				// Create a Frame to act as the navigation context and navigate to the first page
-				_rootFrame = new Frame();
+				_shell = new Shell();
 
-				ConfigureNavigationFailed();
+				ConfigureBackRequests();
+				ConfigureOrientation();
+				ConfigureEscapeKey();
 
 				// Place the frame in the current Window
-				Windows.UI.Xaml.Window.Current.Content = _rootFrame;
+				Windows.UI.Xaml.Window.Current.Content = _shell;
 			}
 
 			if (e.PrelaunchActivated == false)
 			{
-				if (_rootFrame.Content == null)
-				{
-					// When the navigation stack isn't restored navigate to the first page,
-					// configuring the new page by passing required information as a navigation
-					// parameter
-					ConfigureSystemBackVisibility();
-					ConfigureBackRequests();
-					ConfigureOrientation();
-					ConfigureEscapeKey();
-
-					_startup.ExecuteInitialNavigation();
-				}
-
 				// Ensure the current window is active
 				Windows.UI.Xaml.Window.Current.Activate();
 			}
 		}
 
 #region Application configuration
-		private void ConfigureNavigationFailed()
-		{
-			_rootFrame.NavigationFailed += OnNavigationFailed;
-
-			void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
-			{
-				throw new Exception($"Failed to load {e.SourcePageType.FullName}: {e.Exception}");
-			}
-		}
-
 		private void ConfigureSuspension()
 		{
 			this.Suspending += OnSuspending;
@@ -152,9 +130,9 @@ namespace Ch9
 		private void ConfigureViewSize()
 		{
 #if WINDOWS_UWP
-            ApplicationView.PreferredLaunchViewSize = new Size(1024, 768);
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 480));
+			ApplicationView.PreferredLaunchViewSize = new Size(1330, 768);
+			ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+			ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 480));
 #endif
 		}
 
@@ -167,13 +145,13 @@ namespace Ch9
             {
                 if (args.KeyCode == 27) // Escape key
                 {
-                    if (TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.IsVideoFullWindow)
+                    if (_shell.TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.IsVideoFullWindow)
                     {
                         showPage.Show.IsVideoFullWindow = false;
                     }
-                    else if (TryGetActiveViewModel<MainPageViewModel>(out var mainPage) && mainPage.Show.IsVideoFullWindow)
+                    else if (_shell.TryGetActiveViewModel<RecentEpisodesPageViewModel>(out var recentEpisodesPage) && recentEpisodesPage.Show.IsVideoFullWindow)
                     {
-                        mainPage.Show.IsVideoFullWindow = false;
+                        recentEpisodesPage.Show.IsVideoFullWindow = false;
                     }
                 }
             }
@@ -239,13 +217,13 @@ namespace Ch9
 						SimpleOrientation.Rotated90DegreesCounterclockwise
 					);
 
-					if (TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.SelectedEpisode != null)
+					if (_shell.TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.SelectedEpisode != null)
 					{
 						ToVideoFullWindow(showPage.Show, isLandscape);
 					}
-					else if (TryGetActiveViewModel<MainPageViewModel>(out var mainPage) && mainPage.Show.SelectedEpisode != null)
+					else if (_shell.TryGetActiveViewModel<RecentEpisodesPageViewModel>(out var recentEpisodesPage) && recentEpisodesPage.Show.SelectedEpisode != null)
 					{
-						ToVideoFullWindow(mainPage.Show, isLandscape);
+						ToVideoFullWindow(recentEpisodesPage.Show, isLandscape);
 					}
 				}
 				catch (Exception ex)
@@ -255,27 +233,12 @@ namespace Ch9
 			}
 		}
 
-		private void ConfigureSystemBackVisibility()
-		{
-			var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
-
-			void OnNavigated(IStackNavigationService sender, OnNavigatedEventArgs args)
-			{
-				SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = sender.CanGoBack
-					? AppViewBackButtonVisibility.Visible
-					: AppViewBackButtonVisibility.Collapsed;
-			}
-
-			navigationService.OnNavigated += OnNavigated;
-		}
-
 		private void ConfigureBackRequests()
 		{
 			void OnBackRequested(object sender, BackRequestedEventArgs e)
 			{
 				// ShowPage hook back request
-				if ((_rootFrame.Content as FrameworkElement)?.DataContext is ShowPageViewModel showPage &&
-					showPage.Show.SelectedEpisode != null && showPage.IsNarrowAndSelected)
+				if (_shell.TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.SelectedEpisode != null && showPage.IsNarrowAndSelected)
 				{
 					e.Handled = true;
 
@@ -291,28 +254,27 @@ namespace Ch9
 					return;
 				}
 
-				var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
+				//var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
 
-				if (navigationService.CanGoBack)
-				{
-					e.Handled = true;
+				//if (navigationService.CanGoBack)
+				//{
+				//	e.Handled = true;
 
-					navigationService.GoBack();
+				//	navigationService.GoBack();
 
-					return;
-				}
+				//	return;
+				//}
 
 				// MainPage hook back request
-				if ((_rootFrame.Content as FrameworkElement)?.DataContext is MainPageViewModel mainPage &&
-					mainPage.Show.SelectedEpisode != null)
+				if (_shell.TryGetActiveViewModel<RecentEpisodesPageViewModel>(out var recentEpisodesPage) && recentEpisodesPage.Show.SelectedEpisode != null)
 				{
-					if (!mainPage.Show.IsVideoFullWindow)
+					if (!recentEpisodesPage.Show.IsVideoFullWindow)
 					{
-						mainPage.Show.DismissSelectedEpisode.Execute(null);
+						recentEpisodesPage.Show.DismissSelectedEpisode.Execute(null);
 					}
 					else
 					{
-						mainPage.Show.IsVideoFullWindow = false;
+						recentEpisodesPage.Show.IsVideoFullWindow = false;
 					}
 
 					e.Handled = true;
@@ -401,22 +363,6 @@ namespace Ch9
 				}
 			}
 #endif
-		}
-
-		private bool TryGetActiveViewModel<TViewModel>(out TViewModel viewModel)
-		{
-			var dataContext = (_rootFrame.Content as FrameworkElement)?.DataContext;
-
-			if (dataContext is TViewModel model)
-			{
-				viewModel = model;
-
-				return true;
-			}
-
-			viewModel = default(TViewModel);
-
-			return false;
 		}
 
 		private void ToVideoFullWindow(ShowViewModel viewModel, bool isLandscape)
