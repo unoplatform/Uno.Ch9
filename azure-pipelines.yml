@@ -61,12 +61,16 @@ stages:
 
   - job: macOS
     strategy:
-      maxParallel: 1
+      maxParallel: 2
       matrix:
         Release_iOS:
           ApplicationConfiguration: Release_iOS
           ApplicationPlatform: Any CPU
           Environment: Staging
+        Release_macOS:
+          ApplicationConfiguration: Release_MACOS
+          ApplicationPlatform: Any CPU
+          Environment: Staging    
 
     pool:
       name: $(macOSPoolName)
