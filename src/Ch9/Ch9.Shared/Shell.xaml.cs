@@ -99,20 +99,20 @@ namespace Ch9
 
 		private void InitializeTabs()
 		{
-			foreach (var tab in _tabs)
+			if (NavigationView.MenuItems.Count == 0)
 			{
-				NavigationView.MenuItems.Add(new NavigationViewItem()
+				foreach (var tab in _tabs)
 				{
-					Content = tab.Key,
-					Tag = tab.Key
-				});
+					NavigationView.MenuItems.Add(new NavigationViewItem() { Content = tab.Key, Tag = tab.Key });
+				}
+
+
+				NavigationView.ItemInvoked += OnNavigationViewItemInvoked;
+				NavigationView.BackRequested += OnNavigationViewBackRequested;
+
+				var initialSelection = (NavigationViewItem)NavigationView.MenuItems.First();
+				NavigateTo(initialSelection);
 			}
-
-			NavigationView.ItemInvoked += OnNavigationViewItemInvoked;
-			NavigationView.BackRequested += OnNavigationViewBackRequested;
-
-			var initialSelection = (NavigationViewItem)NavigationView.MenuItems.First();
-			NavigateTo(initialSelection);
 		}
 
 		private void NavigateTo(NavigationViewItem item, Type pageType = null, object parameter = null)
