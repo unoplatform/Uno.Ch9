@@ -19,13 +19,20 @@ namespace Ch9
 {
 	public sealed partial class Shell : UserControl
 	{
-		private readonly Dictionary<string, Frame> _frames = new Dictionary<string, Frame>();
-
-		private readonly Dictionary<string, Type> _tabs = new Dictionary<string, Type>
+		private enum TabType
 		{
-			{ "Recent", typeof(RecentEpisodesPage) },
-			{ "Shows", typeof(ShowsPage) },
-			{ "About", typeof(AboutPage) },
+			Recent,
+			Shows,
+			About
+		}
+
+		private readonly Dictionary<TabType, Frame> _frames = new Dictionary<TabType, Frame>();
+
+		private readonly Dictionary<TabType, Type> _tabs = new Dictionary<TabType, Type>
+		{
+			{ TabType.Recent, typeof(RecentEpisodesPage) },
+			{ TabType.Shows, typeof(ShowsPage) },
+			{ TabType.About, typeof(AboutPage) },
 		};
 
 		private NavigationViewItem _activeTab;
@@ -103,9 +110,8 @@ namespace Ch9
 			{
 				foreach (var tab in _tabs)
 				{
-					NavigationView.MenuItems.Add(new NavigationViewItem() { Content = tab.Key, Tag = tab.Key });
+					NavigationView.MenuItems.Add(ConstructNavigationViewItem(tab));
 				}
-
 
 				NavigationView.ItemInvoked += OnNavigationViewItemInvoked;
 				NavigationView.BackRequested += OnNavigationViewBackRequested;
@@ -115,14 +121,24 @@ namespace Ch9
 			}
 		}
 
+		private NavigationViewItem ConstructNavigationViewItem(KeyValuePair<TabType, Type> tab)
+		{
+			switch (tab.Key)
+			{
+				case TabType.Recent:
+					return new NavigationViewItem { Content = tab.Key, Tag = tab.Key, Icon = new SymbolIcon(Symbol.Video) };
+				case TabType.Shows:
+					return new NavigationViewItem { Content = tab.Key, Tag = tab.Key, Icon = new SymbolIcon(Symbol.VideoChat) };
+				case TabType.About:
+					return new NavigationViewItem { Content = tab.Key, Tag = tab.Key, Icon = new SymbolIcon(Symbol.Important) };
+				default:
+					throw new ArgumentException("This tab does not exist");
+			}
+		}
+
 		private void NavigateTo(NavigationViewItem item, Type pageType = null, object parameter = null)
 		{
-			var tabKey = item.Tag as string;
-
-			if (tabKey == null)
-			{
-				return;
-			}
+			var tabKey = item.Tag is TabType ? (TabType) item.Tag : TabType.Recent;
 
 			if (item == _activeTab && pageType == null)
 			{
