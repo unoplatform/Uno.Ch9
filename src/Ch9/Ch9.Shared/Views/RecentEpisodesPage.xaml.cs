@@ -37,6 +37,13 @@ namespace Ch9.Views
 			ViewModel.OnNavigatedTo();
 		}
 
+		protected override void OnNavigatedFrom(NavigationEventArgs e)
+		{
+			base.OnNavigatedFrom(e);
+
+			ViewModel.OnNavigatedFrom();
+		}
+
 		private void OnItemsSourceChanged(DependencyObject sender, DependencyProperty dp)
 		{
 			// Auto select the first element if the items change and the window is wide.

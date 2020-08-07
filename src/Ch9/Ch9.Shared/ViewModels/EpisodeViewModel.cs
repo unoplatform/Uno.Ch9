@@ -20,6 +20,8 @@ namespace Ch9.ViewModels
 #endif
 		}
 
+		public EpisodeViewModel() { }
+
 		public ViewModelBase Parent { get; }
 
 		public Episode Episode { get; }
