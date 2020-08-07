@@ -175,7 +175,6 @@
 			  x:Name="CommandBar"
 			  Padding="48,0,0,0"
 			  Grid.ColumnSpan="2">
-			<TextBlock Text="A" />
 		</Grid>
 
 		<!-- Show details -->
