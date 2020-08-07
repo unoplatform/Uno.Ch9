@@ -57,9 +57,9 @@
 			</NavigationView.PaneHeader>
 
 			<NavigationView.MenuItems>
-				<NavigationViewItem Content="Recent" />
-				<NavigationViewItem Content="Shows" />
-				<NavigationViewItem Content="About" />
+				<NavigationViewItem Content="Recent" Icon="Video" />
+				<NavigationViewItem Content="Shows" Icon="VideoChat" />
+				<NavigationViewItem Content="About" Icon="Help" />
 			</NavigationView.MenuItems>
 
 			<!-- NavigationView Items -->
