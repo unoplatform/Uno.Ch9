@@ -12,58 +12,52 @@
     <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <EnableCodeSigning>false</EnableCodeSigning>
-    <CodeSigningKey>Mac Developer</CodeSigningKey>
-    <CreatePackage>false</CreatePackage>
-    <EnablePackageSigning>false</EnablePackageSigning>
-    <IncludeMonoRuntime>false</IncludeMonoRuntime>
-    <UseSGen>true</UseSGen>
-    <UseRefCounting>true</UseRefCounting>
-    <Profiling>true</Profiling>
-    <HttpClientHandler>
-    </HttpClientHandler>
-    <LinkMode>
-    </LinkMode>
-    <XamMacArch>
-    </XamMacArch>
-    <NoWarn>Uno0001</NoWarn>
-    <AOTMode>None</AOTMode>
-    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\Debug</OutputPath>
+		<DefineConstants>DEBUG</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
 		<EnableCodeSigning>false</EnableCodeSigning>
 		<CodeSigningKey>Mac Developer</CodeSigningKey>
 		<CreatePackage>false</CreatePackage>
 		<EnablePackageSigning>false</EnablePackageSigning>
-    <IncludeMonoRuntime>true</IncludeMonoRuntime>
-    <UseSGen>true</UseSGen>
-    <UseRefCounting>true</UseRefCounting>
-    <LinkMode>SdkOnly</LinkMode>
-    <CodeSignEntitlements>Entitlements.plist</CodeSignEntitlements>
-    <HttpClientHandler>
-    </HttpClientHandler>
-    <XamMacArch>
-    </XamMacArch>
-    <NoWarn>Uno0001</NoWarn>
-    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
-    <AOTMode>None</AOTMode>
-  </PropertyGroup>
+		<IncludeMonoRuntime>false</IncludeMonoRuntime>
+		<UseSGen>true</UseSGen>
+		<UseRefCounting>true</UseRefCounting>
+		<Profiling>true</Profiling>
+		<HttpClientHandler>
+		</HttpClientHandler>
+		<LinkMode>
+		</LinkMode>
+		<XamMacArch>
+		</XamMacArch>
+		<NoWarn>Uno0001</NoWarn>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+		<DebugSymbols>false</DebugSymbols>
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Release</OutputPath>
+		<DefineConstants>
+		</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<EnableCodeSigning>false</EnableCodeSigning>
+		<CreatePackage>true</CreatePackage>
+		<EnablePackageSigning>false</EnablePackageSigning>
+		<IncludeMonoRuntime>true</IncludeMonoRuntime>
+		<UseSGen>true</UseSGen>
+		<UseRefCounting>true</UseRefCounting>
+		<LinkMode>SdkOnly</LinkMode>
+		<HttpClientHandler>
+		</HttpClientHandler>
+		<XamMacArch>
+		</XamMacArch>
+		<NoWarn>Uno0001</NoWarn>
+	</PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -135,21 +129,29 @@
   </ItemGroup>
   <Import Project="..\Ch9.Shared\Ch9.Shared.projitems" Label="Shared" Condition="Exists('..\Ch9.Shared\Ch9.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
-  <Target Name="VS16Mac_RemoveSystemMemory" BeforeTargets="ResolveAssemblyReferences">
-    <!--
+	<Target Name="VS16Mac_RemoveSystemMemory" BeforeTargets="ResolveAssemblyReferences">
+		<!--
 				VS4Mac seems to process System.Memory differently, and removes
 				the System.Memory local reference if the package is transitively referenced.
 				We remove the Reference added by the nuget targets so that ResolveAssemblyReferences
 				is properly adding the local System.Memory to the Reference item group.
 		-->
-    <ItemGroup>
-      <Reference Remove="@(_ReferenceToRemove)" />
-      <Reference Include="System.Memory" />
-    </ItemGroup>
-  </Target>
-  <Target Name="VS16_RemoveSystemMemory" BeforeTargets="FindReferenceAssembliesForReferences">
-    <ItemGroup>
-      <ReferencePath Remove="@(_ReferencePathToRemove)" />
-    </ItemGroup>
-  </Target>
+		<ItemGroup>
+			<_ReferenceToRemove Include="@(Reference)" Condition="'%(Reference.Identity)'=='System.Memory'" />
+			<Reference Remove="@(_ReferenceToRemove)" />
+			<Reference Include="System.Memory" />
+		</ItemGroup>
+	</Target>
+	<Target Name="VS16_RemoveSystemMemory" BeforeTargets="FindReferenceAssembliesForReferences">
+		<ItemGroup>
+			<_ReferencePathToRemove Include="@(ReferencePath)" Condition="'%(ReferencePath.NuGetPackageId)'=='System.Memory'" />
+			<ReferencePath Remove="@(_ReferencePathToRemove)" />
+		</ItemGroup>
+	</Target>
+	<Target Name="_PackageCopyToOutput" BeforeTargets="Build">
+		<ItemGroup>
+			<_packages Include="$(TargetDir)\*.pkg" />
+		</ItemGroup>
+		<Copy SourceFiles="@(_packages)" DestinationFolder="$(PackageOutputPath)\" />
+	</Target>
 </Project>
