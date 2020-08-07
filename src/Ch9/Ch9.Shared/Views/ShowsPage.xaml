@@ -49,6 +49,8 @@
 					<VisualState.Setters>
 						<Setter Target="CommandBar.Padding"
 								Value="16,0,0,0" />
+						<Setter Target="CommandBarTitle.Style"
+						        Value="{StaticResource MaterialHeadline4}" />
 					</VisualState.Setters>
 				</VisualState>
 			</VisualStateGroup>
@@ -57,8 +59,11 @@
 		<Grid Height="48"
 			  x:Name="CommandBar"
 			  Padding="48,0,0,0">
-			<TextBlock Text="Shows"
-					   Style="{StaticResource MaterialHeadline4}"
+			<TextBlock x:Name="CommandBarTitle"
+					   Text="Shows"
+					   VerticalAlignment="Center"
+					   Margin="0,0,0,5"
+					   Style="{StaticResource MaterialHeadline6}"
 					   FontWeight="Normal" />
 		</Grid>
 
