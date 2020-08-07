@@ -26,11 +26,5 @@ namespace Ch9.ViewModels
 				Show = new ShowViewModel();
 			}
 		}
-
-		public void OnNavigatedFrom()
-		{
-			//stop the video and avoid view flickering with no selected video instead of set to null
-			Show.SelectedEpisode = new EpisodeViewModel();
-		}
 	}
 }
