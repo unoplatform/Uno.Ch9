@@ -140,47 +140,43 @@
 			  Grid.Row="1"
 			  Grid.Column="0">
 
-			<!-- Content -->
-			<Grid Visibility="{Binding Show.IsSuccess, Converter={StaticResource TrueToVisible}, FallbackValue=Visible}">
+			<!-- List of episodes -->
+			<ListView x:Name="EpisodeList"
+					  ItemsSource="{Binding Episodes}"
+					  ItemTemplate="{StaticResource EpisodeItemTemplate}"
+					  SelectionMode="Single"
+					  SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}"
+					  ItemContainerStyle="{StaticResource EpisodeListViewItemStyle}">
+				<ListView.FooterTemplate>
+					<DataTemplate>
+						<StackPanel Margin="32,22,32,0">
 
-				<!-- List of episodes -->
-				<ListView x:Name="EpisodeList"
-						  ItemsSource="{Binding Episodes}"
-						  ItemTemplate="{StaticResource EpisodeItemTemplate}"
-						  SelectionMode="Single"
-						  SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}"
-						  ItemContainerStyle="{StaticResource EpisodeListViewItemStyle}">
-					<ListView.FooterTemplate>
-						<DataTemplate>
-							<StackPanel Margin="32,22,32,0">
+							<!-- Footer Message -->
+							<TextBlock Text="That's all the recent shows!"
+									   x:Uid="MainPage_FooterMessage1"
+									   Foreground="{StaticResource MaterialOnSurfaceMediumBrush}"
+									   Style="{StaticResource MaterialBody1}"
+									   TextAlignment="Center" />
 
-								<!-- Footer Message -->
-								<TextBlock Text="That's all the recent shows!"
-										   x:Uid="MainPage_FooterMessage1"
-										   Foreground="{StaticResource MaterialOnSurfaceMediumBrush}"
-										   Style="{StaticResource MaterialBody1}"
-										   TextAlignment="Center" />
+							<!-- Footer Message -->
+							<TextBlock Text="For more, check out the 'Shows' tab."
+									   x:Uid="MainPage_FooterMessage2"
+									   Foreground="{StaticResource MaterialOnSurfaceMediumBrush}"
+									   Style="{StaticResource MaterialBody1}"
+									   TextAlignment="Center" />
+						</StackPanel>
+					</DataTemplate>
+				</ListView.FooterTemplate>
+			</ListView>
 
-								<!-- Footer Message -->
-								<TextBlock Text="For more, check out the 'Shows' tab."
-										   x:Uid="MainPage_FooterMessage2"
-										   Foreground="{StaticResource MaterialOnSurfaceMediumBrush}"
-										   Style="{StaticResource MaterialBody1}"
-										   TextAlignment="Center" />
-							</StackPanel>
-						</DataTemplate>
-					</ListView.FooterTemplate>
-				</ListView>
-
-				<!-- Empty List Message -->
-				<TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
-						   Text="Nothing to show"
-						   x:Uid="MainPage_EmptyListMessage"
-						   Style="{StaticResource MaterialHeadline6}"
-						   TextAlignment="Center"
-						   VerticalAlignment="Center"
-						   Margin="16,0" />
-			</Grid>
+			<!-- Empty List Message -->
+			<TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
+					   Text="Nothing to show"
+					   x:Uid="MainPage_EmptyListMessage"
+					   Style="{StaticResource MaterialHeadline6}"
+					   TextAlignment="Center"
+					   VerticalAlignment="Center"
+					   Margin="16,0" />
 		</Grid>
 
 		<!-- No Selection -->
