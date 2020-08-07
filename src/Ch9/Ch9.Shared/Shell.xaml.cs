@@ -235,17 +235,15 @@ namespace Ch9
 				return;
 			}
 
-			var activeFrame = this.RootContent.Content as Frame;
-
-			if (activeFrame?.CanGoBack ?? false)
+			if (_activeFrame?.CanGoBack ?? false)
 			{
 				e.Handled = true;
 
-				activeFrame.GoBack();
+				_activeFrame.GoBack();
 
 				UpdateBackButtonVisibility();
 
-				Navigated?.Invoke(this, activeFrame);
+				Navigated?.Invoke(this, _activeFrame);
 			}
 		}
 
@@ -259,7 +257,7 @@ namespace Ch9
 
 #if __WASM__
 				// This is needed on WASM to intercept the system back.
-				SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = activeFrame.CanGoBack
+				SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = _activeFrame.CanGoBack
 					? AppViewBackButtonVisibility.Visible
 					: AppViewBackButtonVisibility.Collapsed;
 #endif
