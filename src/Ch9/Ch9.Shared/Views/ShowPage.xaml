@@ -163,9 +163,9 @@
 
 					<VisualState.Setters>
 						<Setter Target="EpisodePresenter.Row"
-								Value="0" />
+								Value="1" />
 						<Setter Target="EpisodePresenter.RowSpan"
-								Value="3" />
+								Value="2" />
 					</VisualState.Setters>
 				</VisualState>
 			</VisualStateGroup>

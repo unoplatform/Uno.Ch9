@@ -217,8 +217,7 @@
 		<Grid x:Name="EpisodePresenter"
 			  DataContext="{Binding Show}"
 			  IsHitTestVisible="False"
-			  Grid.Row="0"
-			  Grid.RowSpan="2"
+			  Grid.Row="1"
 			  Grid.Column="0"
 			  Grid.ColumnSpan="2">
 
