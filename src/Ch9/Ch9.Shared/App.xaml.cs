@@ -153,7 +153,7 @@ namespace Ch9
 		private void ConfigureViewSize()
 		{
 #if WINDOWS_UWP
-			ApplicationView.PreferredLaunchViewSize = new Size(1024, 768);
+			ApplicationView.PreferredLaunchViewSize = new Size(1330, 768);
 			ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 			ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 480));
 #endif
