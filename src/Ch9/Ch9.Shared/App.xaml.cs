@@ -69,8 +69,6 @@ namespace Ch9
 			ConfigureSuspension();
 		}
 
-		private Frame RootFrame => _shell.Frame;
-
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
 		{
 			this.Resources.MergedDictionaries.Add(new Uno.Material.MaterialColorPalette());
@@ -101,7 +99,9 @@ namespace Ch9
 
 				_shell = new Shell();
 
-				ConfigureNavigationFailed();
+				ConfigureBackRequests();
+				ConfigureOrientation();
+				ConfigureEscapeKey();
 
 				// Place the frame in the current Window
 				Windows.UI.Xaml.Window.Current.Content = _shell;
@@ -109,35 +109,12 @@ namespace Ch9
 
 			if (e.PrelaunchActivated == false)
 			{
-				if (_shell.Frame.Content == null)
-				{
-					// When the navigation stack isn't restored navigate to the first page,
-					// configuring the new page by passing required information as a navigation
-					// parameter
-					ConfigureSystemBackVisibility();
-					ConfigureBackRequests();
-					ConfigureOrientation();
-					ConfigureEscapeKey();
-
-					_startup.ExecuteInitialNavigation();
-				}
-
 				// Ensure the current window is active
 				Windows.UI.Xaml.Window.Current.Activate();
 			}
 		}
 
 #region Application configuration
-		private void ConfigureNavigationFailed()
-		{
-			RootFrame.NavigationFailed += OnNavigationFailed;
-
-			void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
-			{
-				throw new Exception($"Failed to load {e.SourcePageType.FullName}: {e.Exception}");
-			}
-		}
-
 		private void ConfigureSuspension()
 		{
 			this.Suspending += OnSuspending;
@@ -168,7 +145,7 @@ namespace Ch9
             {
                 if (args.KeyCode == 27) // Escape key
                 {
-                    if (TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.IsVideoFullWindow)
+                    if (_shell.TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.IsVideoFullWindow)
                     {
                         showPage.Show.IsVideoFullWindow = false;
                     }
@@ -241,7 +218,7 @@ namespace Ch9
 						SimpleOrientation.Rotated90DegreesCounterclockwise
 					);
 
-					if (TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.SelectedEpisode != null)
+					if (_shell.TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.SelectedEpisode != null)
 					{
 						ToVideoFullWindow(showPage.Show, isLandscape);
 					}
@@ -258,26 +235,12 @@ namespace Ch9
 			}
 		}
 
-		private void ConfigureSystemBackVisibility()
-		{
-			var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
-
-			void OnNavigated(IStackNavigationService sender, OnNavigatedEventArgs args)
-			{
-				_shell.NavigationView.IsBackButtonVisible = sender.CanGoBack
-					? NavigationViewBackButtonVisible.Visible
-					: NavigationViewBackButtonVisible.Collapsed;
-			}
-
-			navigationService.OnNavigated += OnNavigated;
-		}
-
 		private void ConfigureBackRequests()
 		{
 			void OnBackRequested(object sender, BackRequestedEventArgs e)
 			{
 				// ShowPage hook back request
-				if (TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.SelectedEpisode != null && showPage.IsNarrowAndSelected)
+				if (_shell.TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.SelectedEpisode != null && showPage.IsNarrowAndSelected)
 				{
 					e.Handled = true;
 
@@ -293,16 +256,16 @@ namespace Ch9
 					return;
 				}
 
-				var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
+				//var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
 
-				if (navigationService.CanGoBack)
-				{
-					e.Handled = true;
+				//if (navigationService.CanGoBack)
+				//{
+				//	e.Handled = true;
 
-					navigationService.GoBack();
+				//	navigationService.GoBack();
 
-					return;
-				}
+				//	return;
+				//}
 
 				// MainPage hook back request
 				// TODO Uncomment
@@ -403,22 +366,6 @@ namespace Ch9
 				}
 			}
 #endif
-		}
-
-		private bool TryGetActiveViewModel<TViewModel>(out TViewModel viewModel)
-		{
-			var dataContext = (RootFrame.Content as FrameworkElement)?.DataContext;
-
-			if (dataContext is TViewModel model)
-			{
-				viewModel = model;
-
-				return true;
-			}
-
-			viewModel = default(TViewModel);
-
-			return false;
 		}
 
 		private void ToVideoFullWindow(ShowViewModel viewModel, bool isLandscape)

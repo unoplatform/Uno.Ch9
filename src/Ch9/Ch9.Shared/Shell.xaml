@@ -28,7 +28,7 @@
 					</VisualState.StateTriggers>
 
 					<VisualState.Setters>
-						<Setter Target="RootFrame.Margin"
+						<Setter Target="RootContent.Margin"
 								Value="48,0,0,0" />
 					</VisualState.Setters>
 				</VisualState>
@@ -41,10 +41,11 @@
 						OpenPaneLength="220"
 						ExpandedModeThresholdWidth="800"
 						IsSettingsVisible="False"
+						IsBackButtonVisible="Collapsed"
 						IsBackEnabled="True"
 						IsTabStop="False"
 						Grid.Row="1">
-			
+
 			<NavigationView.PaneHeader>
 				<StackPanel Orientation="Horizontal"
 							Padding="16">
@@ -56,25 +57,10 @@
 				</StackPanel>
 			</NavigationView.PaneHeader>
 
-			<NavigationView.MenuItems>
-				<NavigationViewItem Content="Recent" Icon="Video" />
-				<NavigationViewItem Content="Shows" Icon="VideoChat" />
-				<NavigationViewItem Content="About" Icon="Important" />
-			</NavigationView.MenuItems>
-
-			<!-- NavigationView Items -->
-			<Frame x:Name="RootFrame"
-				   Margin="0,0,0,0">
-				<Frame.ContentTransitions>
-					<TransitionCollection>
-						<NavigationThemeTransition>
-							<NavigationThemeTransition.DefaultNavigationTransitionInfo>
-								<EntranceNavigationTransitionInfo />
-							</NavigationThemeTransition.DefaultNavigationTransitionInfo>
-						</NavigationThemeTransition>
-					</TransitionCollection>
-				</Frame.ContentTransitions>
-			</Frame>
+			<ContentControl x:Name="RootContent"
+							VerticalContentAlignment="Stretch"
+							HorizontalContentAlignment="Stretch"
+							Margin="0,0,0,0" />
 		</NavigationView>
 	</Grid>
 </UserControl>
