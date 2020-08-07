@@ -59,7 +59,7 @@
 			<NavigationView.MenuItems>
 				<NavigationViewItem Content="Recent" Icon="Video" />
 				<NavigationViewItem Content="Shows" Icon="VideoChat" />
-				<NavigationViewItem Content="About" Icon="Help" />
+				<NavigationViewItem Content="About" Icon="Important" />
 			</NavigationView.MenuItems>
 
 			<!-- NavigationView Items -->
