@@ -22,14 +22,26 @@ namespace Ch9.Views
         {
             this.InitializeComponent();
 
+			Unloaded += OnUnloaded;
+
             App.Instance.Suspending += OnAppSuspended;
         }
 
-        private void OnAppSuspended(object sender, SuspendingEventArgs e)
+		private void OnUnloaded(object sender, RoutedEventArgs e)
+		{
+			PauseMediaPlayer();
+		}
+
+		private void OnAppSuspended(object sender, SuspendingEventArgs e)
         {
+			PauseMediaPlayer();
+		}
+
+		private void PauseMediaPlayer()
+		{
 #if !__WASM__
 			this.MediaPlayer.MediaPlayer?.Pause();
 #endif
 		}
-    }
+	}
 }
