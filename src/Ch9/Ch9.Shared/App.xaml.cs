@@ -99,7 +99,6 @@ namespace Ch9
 
 				_shell = new Shell();
 
-				ConfigureBackRequests();
 				ConfigureOrientation();
 				ConfigureEscapeKey();
 
@@ -231,57 +230,6 @@ namespace Ch9
 					this.Log().ErrorIfEnabled(() => $"Error in OrientationChanged subscription: {ex}");
 				}
 			}
-		}
-
-		private void ConfigureBackRequests()
-		{
-			void OnBackRequested(object sender, BackRequestedEventArgs e)
-			{
-				// ShowPage hook back request
-				if (_shell.TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.Show.SelectedEpisode != null && showPage.IsNarrowAndSelected)
-				{
-					e.Handled = true;
-
-					//Dismiss episode only if we are not in full screen
-					if (!showPage.Show.IsVideoFullWindow)
-					{
-						showPage.Show.DismissSelectedEpisode.Execute(null);
-						//don't navigate back as NarrowAndSelected
-						return;
-					}
-
-					showPage.Show.IsVideoFullWindow = false;
-					return;
-				}
-
-				//var navigationService = ServiceProvider.GetInstance<IStackNavigationService>();
-
-				//if (navigationService.CanGoBack)
-				//{
-				//	e.Handled = true;
-
-				//	navigationService.GoBack();
-
-				//	return;
-				//}
-
-				// MainPage hook back request
-				if (_shell.TryGetActiveViewModel<RecentEpisodesPageViewModel>(out var recentEpisodesPage) && recentEpisodesPage.Show.SelectedEpisode != null)
-				{
-					if (!recentEpisodesPage.Show.IsVideoFullWindow)
-					{
-						recentEpisodesPage.Show.DismissSelectedEpisode.Execute(null);
-					}
-					else
-					{
-						recentEpisodesPage.Show.IsVideoFullWindow = false;
-					}
-
-					e.Handled = true;
-				}
-			}
-
-			SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 		}
 
 		private void ConfigureFilters(ILoggerFactory factory)

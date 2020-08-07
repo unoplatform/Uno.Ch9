@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Ch9.ViewModels;
 using Ch9.Views;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -46,6 +48,8 @@ namespace Ch9
 			InitializeSafeArea();
 
 			this.Loaded += OnLoaded;
+
+			SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 		}
 
 		public static Shell Instance { get; private set; }
@@ -208,6 +212,36 @@ namespace Ch9
 			}
 		}
 
+		private void OnBackRequested(object sender, BackRequestedEventArgs e)
+		{
+			if (TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.TryHandleBackRequested())
+			{
+				e.Handled = true;
+
+				return;
+			}
+
+			if (TryGetActiveViewModel<RecentEpisodesPageViewModel>(out var recentEpisodesPage) && recentEpisodesPage.TryHandleBackRequested())
+			{
+				e.Handled = true;
+
+				return;
+			}
+
+			var activeFrame = this.RootContent.Content as Frame;
+
+			if (activeFrame?.CanGoBack ?? false)
+			{
+				e.Handled = true;
+
+				activeFrame.GoBack();
+
+				UpdateBackButtonVisibility();
+
+				Navigated?.Invoke(this, activeFrame);
+			}
+		}
+
 		private void UpdateBackButtonVisibility()
 		{
 			var activeFrame = this.RootContent.Content as Frame;
@@ -217,6 +251,13 @@ namespace Ch9
 				NavigationView.IsBackButtonVisible = activeFrame.CanGoBack
 						   ? NavigationViewBackButtonVisible.Visible
 						   : NavigationViewBackButtonVisible.Collapsed;
+
+#if __WASM__
+				// This is needed on WASM to intercept the system back.
+				SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = activeFrame.CanGoBack
+					? AppViewBackButtonVisibility.Visible
+					: AppViewBackButtonVisibility.Collapsed;
+#endif
 			}
 		}
 	}
