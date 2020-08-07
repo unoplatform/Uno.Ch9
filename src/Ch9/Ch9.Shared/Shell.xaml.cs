@@ -38,6 +38,7 @@ namespace Ch9
 		};
 
 		private NavigationViewItem _activeTab;
+		private Frame _activeFrame;
 
 		public Shell()
 		{
@@ -75,8 +76,7 @@ namespace Ch9
 
 		public bool TryGetActiveViewModel<TViewModel>(out TViewModel viewModel)
 		{
-			var activeFrame = RootContent.Content as Frame;
-			var dataContext = (activeFrame?.Content as FrameworkElement)?.DataContext;
+			var dataContext = (_activeFrame?.Content as FrameworkElement)?.DataContext;
 
 			if (dataContext is TViewModel model)
 			{
@@ -156,6 +156,7 @@ namespace Ch9
 				if (!_frames.TryGetValue(tabKey, out var frame))
 				{
 					frame = new Frame();
+					this.RootContent.Children.Add(frame);
 					_frames.Add(tabKey, frame);
 				}
 
@@ -179,12 +180,19 @@ namespace Ch9
 					}
 				}
 
-				this.RootContent.Content = frame;
+				foreach (var f in _frames.Where(x => x.Value != frame).Select(x => x.Value))
+				{
+					f.Visibility = Visibility.Collapsed;
+				}
+
+				frame.Visibility = Visibility.Visible;
+
 				NavigationView.SelectedItem = item;
 
 				UpdateBackButtonVisibility();
 
 				_activeTab = item;
+				_activeFrame = frame;
 
 				Navigated?.Invoke(this, frame);
 			}
@@ -192,15 +200,14 @@ namespace Ch9
 
 		private void OnNavigationViewBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
 		{
-			var activeFrame = this.RootContent.Content as Frame;
 
-			if (activeFrame?.CanGoBack ?? false)
+			if (_activeFrame?.CanGoBack ?? false)
 			{
-				activeFrame.GoBack();
+				_activeFrame.GoBack();
 
 				UpdateBackButtonVisibility();
 
-				Navigated?.Invoke(this, activeFrame);
+				Navigated?.Invoke(this, _activeFrame);
 			}
 		}
 
@@ -244,11 +251,9 @@ namespace Ch9
 
 		private void UpdateBackButtonVisibility()
 		{
-			var activeFrame = this.RootContent.Content as Frame;
-
-			if (activeFrame != null)
+			if (_activeFrame != null)
 			{
-				NavigationView.IsBackButtonVisible = activeFrame.CanGoBack
+				NavigationView.IsBackButtonVisible = _activeFrame.CanGoBack
 						   ? NavigationViewBackButtonVisible.Visible
 						   : NavigationViewBackButtonVisible.Collapsed;
 

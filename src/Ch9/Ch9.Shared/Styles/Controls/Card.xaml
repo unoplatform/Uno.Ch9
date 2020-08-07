@@ -4,11 +4,16 @@
     xmlns:material="using:Uno.Material.Controls"
     xmlns:toolkit="using:Uno.UI.Toolkit">
 
+	<!-- Card ToggleButton Variables -->
+	<StaticResource x:Key="CardBackgroundColorBrush"
+	                ResourceKey="MaterialSurfaceBrush" />
+
 	<!-- Other Card Variables -->
-	<CornerRadius x:Key="CardsBorderRadius">4</CornerRadius>
-	<Thickness x:Key="CardsStrokeWidth">1</Thickness>
-	<x:Double x:Key="CardsElevation">6</x:Double>
-	<Thickness x:Key="CardsElevationMargin">0,0,6,6</Thickness>
+	<CornerRadius x:Key="CardBorderRadius">4</CornerRadius>
+	<Thickness x:Key="CardStrokeWidth">1</Thickness>
+	<x:Double x:Key="CardElevation">6</x:Double>
+	<Thickness x:Key="CardElevationMargin">6</Thickness>
+	<Color x:Key="CardElevationShadowColor">#60000000</Color>
 
 	<Style x:Key="CustomMaterialCard"
 		   TargetType="material:Card">
@@ -17,14 +22,12 @@
 				Value="72" />
 		<Setter Property="MaxWidth"
 				Value="344" />
-		<Setter Property="Margin"
-				Value="{StaticResource CardsElevationMargin}" />
 		<Setter Property="Padding"
 				Value="16,14" />
 		<Setter Property="Background"
-				Value="{StaticResource CardsBackgroundColorBrush}" />
+				Value="{StaticResource CardBackgroundColorBrush}" />
 		<Setter Property="CornerRadius"
-				Value="{StaticResource CardsBorderRadius}" />
+				Value="{StaticResource CardBorderRadius}" />
 		<Setter Property="HorizontalAlignment"
 				Value="Stretch" />
 		<Setter Property="HorizontalContentAlignment"
@@ -33,8 +36,12 @@
 				Value="Stretch" />
 		<Setter Property="VerticalContentAlignment"
 				Value="Stretch" />
+		<Setter Property="Margin"
+				Value="{StaticResource CardElevationMargin}" />
 		<Setter Property="Elevation"
-				Value="{StaticResource CardsElevation}" />
+				Value="{StaticResource CardElevation}" />
+		<Setter Property="ShadowColor"
+				Value="{StaticResource CardElevationShadowColor}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -51,7 +58,7 @@
 										  VerticalAlignment="{TemplateBinding VerticalAlignment}"
 										  CornerRadius="{TemplateBinding CornerRadius}"
 										  Elevation="{TemplateBinding Elevation}"
-										  ShadowColor="{ThemeResource CardElevationShadowColor}">
+										  ShadowColor="{TemplateBinding ShadowColor}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal">
@@ -114,7 +121,6 @@
 						<Grid x:Name="GridRoot"
 							  CornerRadius="{TemplateBinding CornerRadius}">
 							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
@@ -188,5 +194,4 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-
 </ResourceDictionary>
