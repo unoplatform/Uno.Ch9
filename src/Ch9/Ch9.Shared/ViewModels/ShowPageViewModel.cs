@@ -34,5 +34,24 @@ namespace Ch9.ViewModels
                 Show = new ShowViewModel(SourceFeed);
             }
         }
+
+		public bool TryHandleBackRequested()
+		{
+			if (Show.SelectedEpisode != null && IsNarrowAndSelected)
+			{
+				if (Show.IsVideoFullWindow)
+				{
+					Show.IsVideoFullWindow = false;
+				}
+				else
+				{
+					Show.DismissSelectedEpisode.Execute(null);
+				}
+
+				return true;
+			}
+
+			return false;
+		}
 	}
 }
