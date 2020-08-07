@@ -51,7 +51,8 @@
     <IncludeMonoRuntime>true</IncludeMonoRuntime>
     <UseSGen>true</UseSGen>
     <UseRefCounting>true</UseRefCounting>
-    <LinkMode>SdkOnly</LinkMode>
+		<!-- The LinkerExclusions file doesn't seem to be used; we'll link later. -->
+    <LinkMode>None</LinkMode>
     <HttpClientHandler>
     </HttpClientHandler>
     <XamMacArch>
