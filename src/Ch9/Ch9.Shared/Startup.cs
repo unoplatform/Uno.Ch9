@@ -24,7 +24,9 @@ namespace Ch9
 			serviceProvider.Register(() =>
 			{
 				var client = HttpUtility.CreateHttpClient();
-				client.BaseAddress = new Uri("https://ch9-app.azurewebsites.net/api");
+
+				client.BaseAddress = new Uri("https://ch9-app.azurewebsites.net/");
+
 				return client;
 			});
 		}

@@ -10,7 +10,7 @@ using System.Xml;
 using System.Xml.Linq;
 using Ch9.Domain;
 using Microsoft.Extensions.Logging;
-using Refit;
+using Newtonsoft.Json;
 using Uno.Extensions;
 using Uno.Logging;
 
@@ -24,11 +24,11 @@ namespace Ch9
 
         private readonly IDictionary<string, Show> _cache = new Dictionary<string, Show>();
 
-        private readonly IShowFeedEndpoint _showFeedEndpoint;
+		private readonly HttpClient _httpClient;
 
-        public ShowService(HttpClient httpClient)
+		public ShowService(HttpClient httpClient)
         {
-	        _showFeedEndpoint = RestService.For<IShowFeedEndpoint>(httpClient);
+			_httpClient = httpClient;
 		}
 
         /// <inheritdoc/>
@@ -61,8 +61,10 @@ namespace Ch9
 			// If any exception occurs, fallback to the list of hardcoded shows
 	        try
 	        {
-				return await _showFeedEndpoint.GetFeeds();
-	        }
+				var response = await _httpClient.GetStringAsync("api/rssfeeds");
+
+				return JsonConvert.DeserializeObject<SourceFeed[]>(response);
+			}
 	        catch (Exception e)
 	        {
 				this.Log().Warn("Couldn't load the shows. Fallbacking on the default shows.", e);
