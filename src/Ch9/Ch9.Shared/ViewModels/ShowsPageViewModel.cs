@@ -18,7 +18,7 @@ namespace Ch9.ViewModels
 		{
 			DisplayShow = new RelayCommand<SourceFeed>(showFeed =>
 			{
-				App.ServiceProvider.GetInstance<IStackNavigationService>().NavigateTo(nameof(ShowPage), showFeed);
+				Shell.Instance.NavigateTo(typeof(ShowPage), showFeed);
 			});
 
 			ReloadShowsList = new RelayCommand(LoadShowFeeds);

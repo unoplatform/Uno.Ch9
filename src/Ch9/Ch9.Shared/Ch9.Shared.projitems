@@ -47,9 +47,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\IStackNavigationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\NavigationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Framework\Navigation\StackNavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\RecentEpisodesPage.xaml.cs">
       <DependentUpon>RecentEpisodesPage.xaml</DependentUpon>
     </Compile>
@@ -222,6 +219,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Assets\Animations\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Framework\Navigation\" />
   </ItemGroup>
 </Project>
