@@ -57,10 +57,8 @@
 				</StackPanel>
 			</NavigationView.PaneHeader>
 
-			<ContentControl x:Name="RootContent"
-							VerticalContentAlignment="Stretch"
-							HorizontalContentAlignment="Stretch"
-							Margin="0,0,0,0" />
+			<Grid x:Name="RootContent"
+			      Margin="0,0,0,0" />
 		</NavigationView>
 	</Grid>
 </UserControl>

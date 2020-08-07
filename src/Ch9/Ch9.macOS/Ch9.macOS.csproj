@@ -51,7 +51,7 @@
     <IncludeMonoRuntime>true</IncludeMonoRuntime>
     <UseSGen>true</UseSGen>
     <UseRefCounting>true</UseRefCounting>
-		<!-- The LinkerExclusions file doesn't seem to be used; we'll link later. -->
+    <!-- The LinkerExclusions file doesn't seem to be used; we'll link later. -->
     <LinkMode>None</LinkMode>
     <HttpClientHandler>
     </HttpClientHandler>
@@ -70,9 +70,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Uno.Material" Version="1.0.0-dev.413" />
-    <PackageReference Include="Uno.UI" Version="3.0.0-dev.1253" />
-    <PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1253" />
+    <PackageReference Include="Uno.Material" Version="1.0.0-dev.481" />
+    <PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1493" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />

@@ -793,6 +793,7 @@
 									   DisplayMode="Inline"
 									   IsPaneOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsPaneOpen, Mode=TwoWay}"
 									   IsTabStop="False"
+									   BorderThickness="1"
 									   OpenPaneLength="{TemplateBinding OpenPaneLength}"
 									   PaneBackground="{StaticResource NavDrawersBackgroundBrush}"
 									   Grid.Row="1">
