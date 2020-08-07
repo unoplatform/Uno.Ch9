@@ -149,11 +149,10 @@ namespace Ch9
                     {
                         showPage.Show.IsVideoFullWindow = false;
                     }
-					// TODO Uncomment
-                    //else if (TryGetActiveViewModel<MainPageViewModel>(out var mainPage) && mainPage.Show.IsVideoFullWindow)
-                    //{
-                    //    mainPage.Show.IsVideoFullWindow = false;
-                    //}
+                    else if (_shell.TryGetActiveViewModel<RecentEpisodesPageViewModel>(out var recentEpisodesPage) && recentEpisodesPage.Show.IsVideoFullWindow)
+                    {
+                        recentEpisodesPage.Show.IsVideoFullWindow = false;
+                    }
                 }
             }
 #endif
@@ -222,11 +221,10 @@ namespace Ch9
 					{
 						ToVideoFullWindow(showPage.Show, isLandscape);
 					}
-					// TODO Uncomment
-					//else if (TryGetActiveViewModel<MainPageViewModel>(out var mainPage) && mainPage.Show.SelectedEpisode != null)
-					//{
-					//	ToVideoFullWindow(mainPage.Show, isLandscape);
-					//}
+					else if (_shell.TryGetActiveViewModel<RecentEpisodesPageViewModel>(out var recentEpisodesPage) && recentEpisodesPage.Show.SelectedEpisode != null)
+					{
+						ToVideoFullWindow(recentEpisodesPage.Show, isLandscape);
+					}
 				}
 				catch (Exception ex)
 				{
@@ -268,20 +266,19 @@ namespace Ch9
 				//}
 
 				// MainPage hook back request
-				// TODO Uncomment
-				//if (TryGetActiveViewModel<MainPageViewModel>(out var mainPage) && mainPage.Show.SelectedEpisode != null)
-				//{
-				//	if (!mainPage.Show.IsVideoFullWindow)
-				//	{
-				//		mainPage.Show.DismissSelectedEpisode.Execute(null);
-				//	}
-				//	else
-				//	{
-				//		mainPage.Show.IsVideoFullWindow = false;
-				//	}
+				if (_shell.TryGetActiveViewModel<RecentEpisodesPageViewModel>(out var recentEpisodesPage) && recentEpisodesPage.Show.SelectedEpisode != null)
+				{
+					if (!recentEpisodesPage.Show.IsVideoFullWindow)
+					{
+						recentEpisodesPage.Show.DismissSelectedEpisode.Execute(null);
+					}
+					else
+					{
+						recentEpisodesPage.Show.IsVideoFullWindow = false;
+					}
 
-				//	e.Handled = true;
-				//}
+					e.Handled = true;
+				}
 			}
 
 			SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
