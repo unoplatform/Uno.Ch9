@@ -61,9 +61,9 @@
 					<!-- For simplicity the Text isn't localized -->
 					<TextBlock ios:Text="Ch9 is an app for consuming videos from Channel 9 RSS feed."
 							   macos:Text="Ch9 is an app for consuming videos from Channel 9 RSS feed."
-							   android:Text="Ch9 is a demo app which showcases the power of using WinUI and Uno Platform for developing single-codebase, cross-platform applications for Windows, iOS, Android and WebAssembly. It uses the publicly-available video feed from Microsoft's Channel 9 for content."
-							   win:Text="Ch9 is a demo app which showcases the power of using WinUI and Uno Platform for developing single-codebase, cross-platform applications for Windows, iOS, Android and WebAssembly. It uses the publicly-available video feed from Microsoft's Channel 9 for content."
-							   wasm:Text="Ch9 is a demo app which showcases the power of using WinUI and Uno Platform for developing single-codebase, cross-platform applications for Windows, iOS, Android and WebAssembly. It uses the publicly-available video feed from Microsoft's Channel 9 for content."
+							   android:Text="Ch9 is a demo app which showcases the power of using WinUI and Uno Platform for developing single-codebase, cross-platform applications for Windows, iOS, Android, MacOS and WebAssembly. It uses the publicly-available video feed from Microsoft's Channel 9 for content."
+							   win:Text="Ch9 is a demo app which showcases the power of using WinUI and Uno Platform for developing single-codebase, cross-platform applications for Windows, iOS, Android, MacOS and WebAssembly. It uses the publicly-available video feed from Microsoft's Channel 9 for content."
+							   wasm:Text="Ch9 is a demo app which showcases the power of using WinUI and Uno Platform for developing single-codebase, cross-platform applications for Windows, iOS, Android, MacOS and WebAssembly. It uses the publicly-available video feed from Microsoft's Channel 9 for content."
 							   Style="{StaticResource MaterialBody1}"
 							   Foreground="{StaticResource MaterialOnBackgroundBrush}"
 							   Margin="0,16,0,0" />
