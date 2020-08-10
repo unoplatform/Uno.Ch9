@@ -25,6 +25,12 @@ namespace Ch9.Views
 			Unloaded += OnUnloaded;
 
             App.Instance.Suspending += OnAppSuspended;
+            Shell.Instance.Navigated += OnShellNavigated;
+        }
+
+        private void OnShellNavigated(object sender, Frame e)
+        {
+			PauseMediaPlayer();
         }
 
 		private void OnUnloaded(object sender, RoutedEventArgs e)
