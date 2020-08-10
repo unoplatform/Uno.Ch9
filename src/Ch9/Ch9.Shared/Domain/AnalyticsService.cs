@@ -27,7 +27,9 @@ namespace Ch9
 
 		public static void TrackView(string viewName)
 		{
+#if !__MACOS__
 			Microsoft.AppCenter.Analytics.Analytics.TrackEvent(viewName);
+#endif
 
 #if __WASM__
 			Uno.Foundation.WebAssemblyRuntime.InvokeJS($"Uno.UI.Demo.Analytics.reportPageView('{viewName}');");
