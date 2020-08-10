@@ -58,15 +58,14 @@ namespace Ch9
 
 			_startup = new Startup();
 
-#if !DEBUG && WINDOWS_UWP
-			AppCenter.Start("68d4e1c1-d72c-491e-9c16-5302d9521fb1", typeof(Analytics), typeof(Crashes));
-#endif
-
 			ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 
 			this.InitializeComponent();
-
 			ConfigureSuspension();
+
+#if !DEBUG
+			AnalyticsService.Initialize();
+#endif
 		}
 
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
@@ -88,10 +87,6 @@ namespace Ch9
 			// just ensure that the window is active
 			if (_shell == null)
 			{
-#if !DEBUG && __IOS__
-				AppCenter.Start("c1c95ee1-7532-486b-a542-cab21f444edb", typeof(Analytics), typeof(Crashes));
-#endif
-
 				_startup.Initialize(ServiceProvider);
 
 				ConfigureViewSize();

@@ -25,10 +25,6 @@ namespace Ch9.Droid
 			base.OnCreate(bundle);
 
 			Platform.Init(this, bundle);
-
-#if !DEBUG
-			AppCenter.Start("45a416ab-c847-473c-a370-3ae35ab38ac5", typeof(Analytics), typeof(Crashes));
-#endif
 		}
 	}
 }
