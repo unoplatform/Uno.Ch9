@@ -209,8 +209,11 @@ namespace Ch9
 			}
 
 			UpdateBackButtonVisibility();
-
+#if !DEBUG
+			AnalyticsService.TrackView(targetPageType.Name);
+#endif
 			Navigated?.Invoke(this, frame);
+
 		}
 
 		private void OnNavigationViewBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
