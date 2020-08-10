@@ -142,44 +142,53 @@ namespace Ch9
 
 		private void NavigateTo(NavigationViewItem item, Type pageType = null, object parameter = null)
 		{
-			var tabKey = item.Tag is TabType ? (TabType) item.Tag : TabType.Recent;
+			var tabKey = (TabType)item.Tag;
 
-			if (item == _activeTab && pageType == null)
+			if (!_tabs.TryGetValue(tabKey, out var rootPageType))
 			{
-				return;
+				// This tab doesn't exist.
+				throw new InvalidOperationException($"The tab '{tabKey}' is not registered.");
 			}
 
-			if (_tabs.TryGetValue(tabKey, out var rootPageType))
+			var targetPageType = pageType ?? rootPageType;
+
+			// Create the frame for the specified tab if it doesn't exist.
+			if (!_frames.TryGetValue(tabKey, out var frame))
 			{
-				var targetPageType = pageType ?? rootPageType;
+				frame = new Frame();
+				this.RootContent.Children.Add(frame);
+				_frames.Add(tabKey, frame);
+			}
 
-				if (!_frames.TryGetValue(tabKey, out var frame))
+			// If we're staying within the same tab, we either go back to the root or navigate forward.
+			if (_activeTab == item)
+			{
+				if (frame.Content.GetType() == targetPageType)
 				{
-					frame = new Frame();
-					this.RootContent.Children.Add(frame);
-					_frames.Add(tabKey, frame);
+					// We're trying to navigate to the same item; ignore.
+					return;
 				}
-
-				if (frame.Content == null)
+				else if (targetPageType == rootPageType)
 				{
+					// We're trying to navigate to the root of the tab; go back to it.
+					GoBackToRoot(frame);
+				}
+				else
+				{
+					// We're trying to navigate to a forward page; navigate forward.
 					frame.Navigate(targetPageType, parameter);
 				}
-				else if (frame.Content.GetType() != targetPageType)
+			}
+			// If we're switching to another tab, we will reset the state of the tab.
+			else
+			{
+				if (frame.Content == null || frame.Content.GetType() != targetPageType)
 				{
+					// The initial navigation to the item.
 					frame.Navigate(targetPageType, parameter);
-
-					if (targetPageType == rootPageType)
-					{
-						// Go back to the root page.
-						var backStack = frame.BackStackDepth;
-
-						for (var i = 0; i < backStack; i++)
-						{
-							frame.GoBack();
-						}
-					}
 				}
 
+				// Hide all other frames
 				foreach (var f in _frames.Where(x => x.Value != frame).Select(x => x.Value))
 				{
 					f.Visibility = Visibility.Collapsed;
@@ -187,15 +196,21 @@ namespace Ch9
 
 				frame.Visibility = Visibility.Visible;
 
-				NavigationView.SelectedItem = item;
+				// Reset the navigation stack of the active frame once it is collapsed.
+				if (_activeFrame != null)
+				{
+					GoBackToRoot(_activeFrame);
+				}
 
-				UpdateBackButtonVisibility();
+				NavigationView.SelectedItem = item;
 
 				_activeTab = item;
 				_activeFrame = frame;
-
-				Navigated?.Invoke(this, frame);
 			}
+
+			UpdateBackButtonVisibility();
+
+			Navigated?.Invoke(this, frame);
 		}
 
 		private void OnNavigationViewBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
@@ -261,6 +276,16 @@ namespace Ch9
 					? AppViewBackButtonVisibility.Visible
 					: AppViewBackButtonVisibility.Collapsed;
 #endif
+			}
+		}
+
+		private void GoBackToRoot(Frame frame)
+		{
+			var backStack = frame.BackStackDepth;
+
+			for (var i = 0; i < backStack; i++)
+			{
+				frame.GoBack();
 			}
 		}
 	}
