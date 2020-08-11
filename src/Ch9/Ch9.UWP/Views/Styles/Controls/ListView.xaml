@@ -323,7 +323,7 @@
 							  CornerRadius="2"
 							  VerticalAlignment="Top"
 							  HorizontalAlignment="Left"
-							  Margin="30,173,0,0">
+							  Margin="30,184,0,0">
 
 							<!-- Title -->
 							<TextBlock Text="Currently Playing"
