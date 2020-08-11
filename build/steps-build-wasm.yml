@@ -1,10 +1,10 @@
   steps:
   - bash: |
       cd ~
-      git clone --branch 1.39.11 https://github.com/emscripten-core/emsdk
+      git clone --branch 1.39.20 https://github.com/emscripten-core/emsdk
       cd emsdk
-      ./emsdk install sdk-1.39.11
-      ./emsdk activate sdk-1.39.11
+      ./emsdk install sdk-1.39.20
+      ./emsdk activate sdk-1.39.20
     displayName: 'Setup Emscripten'
 
   - task: NuGetAuthenticate@0
