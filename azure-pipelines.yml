@@ -73,7 +73,7 @@ stages:
         Release_macOS:
           ApplicationConfiguration: Release_MACOS
           ApplicationPlatform: Any CPU
-          Environment: Staging    
+          Environment: Staging
 
     pool:
       name: $(macOSPoolName)
@@ -127,7 +127,7 @@ stages:
   - template: build/steps-release-playstore.yml
 
 - stage: Release_WASM
-  condition: and(succeeded(), eq(variables['IsReleaseBranch'], 'true'))
+  condition: succeeded()
   dependsOn: Build
 
   jobs:
