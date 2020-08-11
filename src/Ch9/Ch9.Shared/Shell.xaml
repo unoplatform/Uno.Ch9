@@ -29,7 +29,7 @@
 
 					<VisualState.Setters>
 						<Setter Target="RootContent.Margin"
-								Value="48,0,0,0" />
+								Value="52,0,0,0" />
 					</VisualState.Setters>
 				</VisualState>
 
