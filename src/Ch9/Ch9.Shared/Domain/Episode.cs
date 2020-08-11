@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace Ch9
@@ -27,8 +28,8 @@ namespace Ch9
 
 		public string FormattedDate =>
 			Date.Year == DateTime.Now.Year 
-				? Date.ToString("MMMM dd") 
-				: Date.ToString("MMMM dd yyyy");
+				? Date.ToString("MMMM dd", CultureInfo.InvariantCulture) 
+				: Date.ToString("MMMM dd yyyy", CultureInfo.InvariantCulture);
 
 		public string FormattedDuration => Duration.ToString("mm':'ss");
 	}

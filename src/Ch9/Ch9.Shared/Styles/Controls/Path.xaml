@@ -10,9 +10,9 @@
 				Value="24" />
 		<Setter Property="Height"
 				Value="24" />
-		
+
 		<Setter Property="Fill"
-                Value="{StaticResource Color02Brush}" />
+				Value="{StaticResource MaterialBackgroundBrush}" />
 		<Setter Property="Stretch"
 				Value="Uniform" />
 	</Style>
@@ -142,7 +142,7 @@
 	<Style x:Key="RewindIconPath"
 		   TargetType="Path"
 		   BasedOn="{StaticResource DefaultIconPath}">
-		
+
 		<Setter Property="Fill"
 				Value="{StaticResource MediaPlayerControlColorBrush}" />
 		<Setter Property="Data"
@@ -197,14 +197,14 @@
 	<Style x:Key="FullScreenIconPath"
 		   TargetType="Path"
 		   BasedOn="{StaticResource DefaultIconPath}">
-		
+
 		<Setter Property="Fill"
 				Value="{StaticResource MediaPlayerControlColorBrush}" />
 		<Setter Property="Width"
 				Value="21" />
 		<Setter Property="Height"
 				Value="21" />
-		
+
 		<Setter Property="Data"
 				Value="M5.4,4l9.6,9.6L13.6,15L4,5.4V15H2V4V2h2h11v2H5.4z M28,17v9.6L18.4,17L17,18.4l9.6,9.6H17v2h11h2v-2V17H28z" />
 	</Style>
@@ -219,7 +219,7 @@
 		<Setter Property="Data"
 				Value="M26,6H6c-2.2,0-4,1.8-4,4v10c0,2.2,1.8,4,4,4h19v4l3.5-2.8c0.9-0.8,1.5-1.9,1.5-3.1V10C30,7.8,28.2,6,26,6z M4,11h12v1H4V11z M22,15v1H10v-1H22z M4,15h4v1H4V15z M12,20H4v-1h8V20z M28,20H14v-1h14V20z M28,16h-4v-1h4V16z M28,12H18v-1h10 V12z" />
 	</Style>
-	
+
 	<!-- Back To Screen Icon Path -->
 	<Style x:Key="BackToScreenIconPath"
 		   TargetType="Path"
@@ -230,53 +230,53 @@
 		<Setter Property="Data"
 				Value="M18,16.6l7.5,7.5l-1.8,1.8l-7.5-7.5l-7.5,7.5l-1.8-1.8l7.5-7.5L6.8,9l1.8-1.8l7.7,7.7l7.7-7.7L25.6,9L18,16.6z" />
 	</Style>
-	
+
 	<!-- Info Icon Path -->
 	<Style x:Key="InfoIconPath"
 		   TargetType="Path"
 		   BasedOn="{StaticResource DefaultIconPath}">
-		
+
 		<Setter Property="Width"
 				Value="26" />
 		<Setter Property="Height"
 				Value="26" />
-		
+
 		<Setter Property="Fill"
-                Value="{StaticResource Color01Brush}" />
+				Value="{StaticResource MaterialSurfaceBrush}" />
 		<Setter Property="Data"
 				Value="M13 0c7.18 0 13 5.82 13 13s-5.82 13-13 13S0 20.18 0 13 5.82 0 13 0zm0 2C6.925 2 2 6.925 2 13s4.925 11 11 11 11-4.925 11-11S19.075 2 13 2zm0 9.286c.891 0 1.623.637 1.706 1.452l.008.155v5.357c0 .888-.767 1.607-1.714 1.607-.891 0-1.623-.637-1.706-1.452l-.008-.155v-5.357c0-.888.767-1.607 1.714-1.607zM13.006 6c.943 0 1.708.768 1.708 1.714 0 .891-.677 1.624-1.544 1.707l-.176.008c-.943 0-1.708-.768-1.708-1.715 0-.89.677-1.623 1.544-1.706L13.006 6z" />
 	</Style>
-	
+
 	<!-- Close Icon Path -->
 	<Style x:Key="CloseIconPath"
 		   TargetType="Path"
 		   BasedOn="{StaticResource DefaultIconPath}">
-		
+
 		<Setter Property="Fill"
 				Value="{StaticResource MediaPlayerControlColorBrush}" />
 		<Setter Property="Width"
 				Value="21" />
 		<Setter Property="Height"
 				Value="21" />
-		
+
 		<Setter Property="Data"
 				Value="M21.976 2.438L23.563 4.024 14.586 13 23.563 21.976 21.976 23.563 13 14.586 4.024 23.563 2.438 21.976 11.413 13 2.438 4.024 4.024 2.438 13 11.413z" />
 	</Style>
 
-		
+
 	<!-- Share Icon Path -->
 	<Style x:Key="ShareIconPath"
 		   TargetType="Path"
 		   BasedOn="{StaticResource DefaultIconPath}">
 
-        <Setter Property="Fill"
-                Value="{StaticResource Color07Brush}" />
-        <Setter Property="Width"
-                Value="17" />
-        <Setter Property="Height"
-                Value="19" />
+		<Setter Property="Fill"
+				Value="{StaticResource MaterialOnSurfaceMediumBrush}" />
+		<Setter Property="Width"
+				Value="17" />
+		<Setter Property="Height"
+				Value="19" />
 
-        <Setter Property="Data"
+		<Setter Property="Data"
 				Value="M21 0c2.761 0 5 2.265 5 5.058 0 2.794-2.239 5.058-5 5.058-1.481 0-2.812-.651-3.728-1.687l-7.535 4.448c.17.51.263 1.055.263 1.623 0 .567-.092 1.113-.263 1.622l7.54 4.444c.915-1.032 2.244-1.682 3.723-1.682 2.761 0 5 2.264 5 5.058C26 26.735 23.761 29 21 29s-5-2.265-5-5.058c0-.57.093-1.118.265-1.63l-7.537-4.441C7.813 18.906 6.482 19.558 5 19.558c-2.761 0-5-2.264-5-5.058s2.239-5.058 5-5.058c1.482 0 2.813.652 3.729 1.688l7.534-4.448c-.17-.51-.263-1.056-.263-1.624C16 2.265 18.239 0 21 0zm0 20.907c-1.055 0-1.983.551-2.518 1.384-.015.043-.035.083-.058.123-.024.042-.05.081-.08.118-.22.42-.344.9-.344 1.41 0 1.676 1.343 3.035 3 3.035s3-1.359 3-3.035c0-1.676-1.343-3.035-3-3.035zM5 11.465c-1.657 0-3 1.359-3 3.035 0 1.676 1.343 3.035 3 3.035 1.098 0 2.058-.597 2.581-1.487l.008-.02.021-.031c.248-.442.39-.953.39-1.497 0-.543-.141-1.053-.388-1.495l-.022-.032-.011-.025C7.055 12.06 6.096 11.465 5 11.465zm16-9.442c-1.657 0-3 1.359-3 3.035 0 .542.14 1.051.387 1.492l.023.035.011.025c.524.888 1.483 1.483 2.579 1.483 1.657 0 3-1.359 3-3.035 0-1.676-1.343-3.035-3-3.035z" />
 	</Style>
 </ResourceDictionary>

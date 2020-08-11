@@ -7,13 +7,13 @@ using System.Windows.Input;
 using Ch9.Domain;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Xamarin.Essentials;
 
 namespace Ch9.ViewModels
 {
-    public class ShowViewModel : ViewModelBase
+	[Windows.UI.Xaml.Data.Bindable]
+	public class ShowViewModel : ViewModelBase
     {
-        private SourceFeed _sourceFeed;
+        private readonly SourceFeed _sourceFeed;
 
         public ShowViewModel(SourceFeed sourceFeed = null)
         {
@@ -31,14 +31,16 @@ namespace Ch9.ViewModels
 
             DismissSelectedEpisode = new RelayCommand(() => SelectedEpisode = null);
 
-            ShareEpisode = new RelayCommand<EpisodeViewModel>(async episode =>
+#if !__WASM__ && !__MACOS__
+			ShareEpisode = new RelayCommand<EpisodeViewModel>(async episode =>
             {
-                await Share.RequestAsync(new ShareTextRequest
+                await Xamarin.Essentials.Share.RequestAsync(new Xamarin.Essentials.ShareTextRequest
                 {
                     Uri = episode.Episode.EpisodeUri.ToString(),
                     Title = episode.Episode.Title
                 });
             });
+#endif
 
             LoadShow();
         }
@@ -81,7 +83,7 @@ namespace Ch9.ViewModels
             {
                 Set(() => IsVideoFullWindow, ref _isVideoFullWindow, value);
 
-                App.OnFullscreenChanged(value);
+                App.Instance.OnFullscreenChanged(value);
             }
         }
 
@@ -89,10 +91,7 @@ namespace Ch9.ViewModels
         {
             async Task<Show> GetShow()
             {
-                var show = await Task.Run(async () =>
-                {
-                    return await App.ServiceProvider.GetInstance<IShowService>().GetShow(_sourceFeed);
-                });
+                var show = await Task.Run(() => App.ServiceProvider.GetInstance<IShowService>().GetShow(_sourceFeed));
 
                 Episodes = show.Episodes.Select(p => new EpisodeViewModel(this, p)).ToArray();
 

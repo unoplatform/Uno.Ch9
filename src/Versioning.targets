@@ -43,8 +43,8 @@
 		<PropertyGroup>
 			<PackageName>Ch9</PackageName>
 			<PackageCompanyName>Uno Platform</PackageCompanyName>
-			<!-- Use this offset to increase the build number if the commit count was reset. -->
-			<!-- <PackageBuildNumber>$([MSBuild]::Add($(PackageBuildNumber), OFFSET))</PackageBuildNumber> -->
+			<BuildNumberOffset>50</BuildNumberOffset>
+			<PackageBuildNumber>$([MSBuild]::Add($(PackageBuildNumber), $(BuildNumberOffset)))</PackageBuildNumber>
 		</PropertyGroup>
 
 		<PropertyGroup>

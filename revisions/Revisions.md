@@ -23,13 +23,22 @@ A release is [available on AppCenter](https://install.appcenter.ms/orgs/uno-plat
 
 ---
 
+## Version 1.0.5
+
+- Replaces in-app styles to use Material styles.
+- Updates the navigation architecture to use the `NavigationView`.
+- Adds API to get the list of shows.
+- Adds support of WebAssembly.
+- Adds support of MacOS.
+- Switches to fullscreen automatically when the device goes in landscape.
+
 ## Version 1.0.4
 
 - Added *Shows* section to select from a set of shows.
 
 ## Version 1.0.3
 
-- Added Visual Studio Toolbox
+- Added *Visual Studio Toolbox*
 
 ## Version 1.0.0
 
