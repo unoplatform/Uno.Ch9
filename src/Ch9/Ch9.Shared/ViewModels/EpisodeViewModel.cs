@@ -14,13 +14,20 @@ namespace Ch9.ViewModels
 		{
 			Parent = parent;
 			Episode = episode;
+			VideoUri = episode.VideoUri;
+#if !__WASM__
 			VideoSource = MediaSource.CreateFromUri(episode.VideoUri);
+#endif
 		}
+
+		public EpisodeViewModel() { }
 
 		public ViewModelBase Parent { get; }
 
 		public Episode Episode { get; }
 		
 		public IMediaPlaybackSource VideoSource { get; }
+
+		public Uri VideoUri { get; }
 	}
 }

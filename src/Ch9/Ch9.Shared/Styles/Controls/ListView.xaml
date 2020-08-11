@@ -5,9 +5,11 @@
 					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 					xmlns:xamarin="http://Uno.UI/xamarin"
 					xmlns:toolkit="using:Uno.UI.Toolkit"
+					xmlns:ios="http:/uno.ui/ios"
+					xmlns:android="http:/uno.ui/android"
 					mc:Ignorable="xamarin">
 
-	<xamarin:Style TargetType="ScrollViewer"
+	<!--<ios:Style TargetType="ScrollViewer"
 				   x:Key="ListViewBaseScrollViewerStyle">
 		<Setter Property="Template">
 			<Setter.Value>
@@ -19,13 +21,26 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
-	</xamarin:Style>
+	</ios:Style>
+	<android:Style TargetType="ScrollViewer"
+			   x:Key="ListViewBaseScrollViewerStyle">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ScrollViewer">
+					<ListViewBaseScrollContentPresenter x:Name="ScrollContentPresenter"
+														Content="{TemplateBinding Content}"
+														ContentTemplate="{TemplateBinding ContentTemplate}"
+														ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</android:Style>-->
 
-    <DataTemplate x:Key="EmptyListViewHeaderTemplate">
-        <Grid />
-    </DataTemplate>
+	<DataTemplate x:Key="EmptyListViewHeaderTemplate">
+		<Grid />
+	</DataTemplate>
 
-    <Style TargetType="ListView"
+	<Style TargetType="ListView"
 		   x:Key="DefaultListViewStyle">
 
 		<Setter Property="IsTabStop"
@@ -137,7 +152,7 @@
 						  BorderBrush="{TemplateBinding BorderBrush}"
 						  BorderThickness="{TemplateBinding BorderThickness}"
 						  MaxWidth="395">
-						
+
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />
@@ -190,7 +205,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
-	
+
 	<Style x:Key="EpisodeListViewItemStyle"
 		   TargetType="ListViewItem">
 
@@ -286,33 +301,25 @@
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
-						<!-- Elevated View -->
-						<toolkit:ElevatedView Background="{StaticResource Color02Brush}"
-											  win:BorderBrush="{StaticResource ShadowBrush}"
-											  win:BorderThickness="1"
-											  CornerRadius="9"
-											  Elevation="8"
-											  Margin="16,16,16,0">
+						<ContentPresenter x:Name="ContentPresenter"
+										  Margin="16,16,16,0"
+										  ContentTransitions="{TemplateBinding ContentTransitions}"
+										  ContentTemplate="{TemplateBinding ContentTemplate}"
+										  Content="{TemplateBinding Content}"
+										  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
 
-							<ContentPresenter x:Name="ContentPresenter"
-											  ContentTransitions="{TemplateBinding ContentTransitions}"
-											  ContentTemplate="{TemplateBinding ContentTemplate}"
-											  Content="{TemplateBinding Content}"
-											  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-											  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-						</toolkit:ElevatedView>
-						
 						<!-- Content Presenter -->
 						<Grid x:Name="SelectionBorder"
-							  BorderBrush="{StaticResource Color03Brush}"
+							  BorderBrush="{StaticResource MaterialPrimaryVariantLightBrush}"
 							  BorderThickness="0"
-							  CornerRadius="8"
-							  Margin="16,16,16,0" />
+							  CornerRadius="9"
+							  Margin="26,26,26,12" />
 
 						<!-- Selected State -->
 						<Grid x:Name="SelectedStateOverlay"
 							  Visibility="Collapsed"
-							  Background="{StaticResource Color01_75_OpacityBrush}"
+							  Background="{StaticResource MediaPlayerOverlayColorBrush}"
 							  CornerRadius="2"
 							  VerticalAlignment="Top"
 							  HorizontalAlignment="Left"
@@ -321,7 +328,8 @@
 							<!-- Title -->
 							<TextBlock Text="Currently Playing"
 									   x:Uid="MainPage_CurrentlyPlaying"
-									   Style="{StaticResource Typo04}"
+									   Foreground="{StaticResource MediaPlayerControlColorBrush}"
+									   Style="{StaticResource MaterialBody2}"
 									   VerticalAlignment="Center"
 									   HorizontalAlignment="Center"
 									   Margin="12,7" />

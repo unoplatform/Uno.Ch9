@@ -11,33 +11,35 @@
 		<!-- Light Theme -->
 		<ResourceDictionary x:Key="Light">
 
-			<!-- Raw colors -->
-			<Color x:Key="Color01">#FF000000</Color>
-			<Color x:Key="Color01_75_Opacity">#BF000000</Color>
-			<Color x:Key="Color02">#FFFFFFFF</Color>
-			<Color x:Key="Color03">#FFFFB20B</Color>
-			<Color x:Key="Color04">#FFD2730E</Color>
-			<Color x:Key="Color05">#FFFEE8B6</Color>
-			<Color x:Key="Color06">#FF151515</Color>
-			<Color x:Key="Color07">#FF4e4e4f</Color>
-			<Color x:Key="Color08">#FFFFFFFF</Color>
+			<!-- Material colors -->
+			<Color x:Key="MaterialPrimaryColor">#FFB20B</Color>
+			<Color x:Key="MaterialPrimaryVariantDarkColor">#D2730E</Color>
+			<Color x:Key="MaterialPrimaryVariantLightColor">#FFDF83</Color>
+			<Color x:Key="MaterialBackgroundColor">#FFFFFF</Color>
+			<Color x:Key="MaterialSurfaceColor">#FFFFFF</Color>
+			<Color x:Key="MaterialErrorColor">#F85977</Color>
+			<Color x:Key="MaterialOnPrimaryColor">#FFFFFF</Color>
+			<Color x:Key="MaterialOnBackgroundColor">#000000</Color>
+			<Color x:Key="MaterialOnSurfaceColor">#000000</Color>
+			<Color x:Key="MaterialOnErrorColor">#FFFFFF</Color>
+			<Color x:Key="MaterialOverlayColor">#51000000</Color>
 
-			<Color x:Key="Shadow">#38000000</Color>
+			<Color x:Key="CardElevationShadowColor">#38000000</Color>
 			<Color x:Key="MediaPlayerControlColor">#FFFFFFFF</Color>
 			<Color x:Key="MediaPlayerBackgroundColor">#FF000000</Color>
-			<Color x:Key="CommandBarForegroundColor">#FF000000</Color>
+			<Color x:Key="MediaPlayerOverlayColor">#BF000000</Color>
+			<Color x:Key="RippleOnSurfaceColor">#FFAAAAAA</Color>
 
 			<!-- Misc Brushes -->
 			<win:AcrylicBrush x:Key="AppBackgroundBrush"
 							  BackgroundSource="HostBackdrop"
-							  TintColor="{StaticResource Color08}"
+							  TintColor="{StaticResource MaterialBackgroundColor}"
 							  TintOpacity="0.8"
-							  FallbackColor="{StaticResource Color08}" />
+							  FallbackColor="{StaticResource MaterialBackgroundColor}" />
 
 			<xamarin:SolidColorBrush x:Key="AppBackgroundBrush"
-									 Color="{StaticResource Color08}" />
+									 Color="{StaticResource MaterialBackgroundColor}" />
 
-			<!-- Not a color but we needed 2 different images for light and dark theme -->
 			<ImageBrush x:Key="UnoWinUI_ImageBrush"
 						ImageSource="ms-appx:///Assets/UnoWinUiLogos.png"
 						Stretch="Uniform" />
@@ -46,75 +48,58 @@
 		<!-- Dark Theme -->
 		<ResourceDictionary x:Key="Dark">
 
-			<!-- Raw colors -->
-			<Color x:Key="Color01">#FF131415</Color>
-			<Color x:Key="Color01_75_Opacity">#BF131415</Color>
-			<Color x:Key="Color02">#FF1F1F20</Color>
-			<Color x:Key="Color03">#FFFFDF83</Color>
-			<Color x:Key="Color04">#FFEECC85</Color>
-			<Color x:Key="Color05">#FF342F25</Color>
-			<Color x:Key="Color06">#FFF3F3F3</Color>
-			<Color x:Key="Color07">#FF9E9E9E</Color>
-			<Color x:Key="Color08">#FF131415</Color>
+			<!-- Material colors -->
+			<Color x:Key="MaterialPrimaryColor">#FFFFDF83</Color>
+			<Color x:Key="MaterialPrimaryVariantDarkColor">#FFEECC85</Color>
+			<Color x:Key="MaterialPrimaryVariantLightColor">#FF342F25</Color>
+			<Color x:Key="MaterialSecondaryColor">#FFEECC85</Color>
+			<Color x:Key="MaterialSecondaryVariantDarkColor">#2BB27E</Color>
+			<Color x:Key="MaterialSecondaryVariantLightColor">#9CFFDF</Color>
+			<Color x:Key="MaterialBackgroundColor">#FF131415</Color>
+			<Color x:Key="MaterialSurfaceColor">#FF1F1F20</Color>
+			<Color x:Key="MaterialErrorColor">#F85977</Color>
+			<Color x:Key="MaterialOnPrimaryColor">#FF1F1F20</Color>
+			<Color x:Key="MaterialOnSecondaryColor">#FF1F1F20</Color>
+			<Color x:Key="MaterialOnBackgroundColor">#FFF3F3F3</Color>
+			<Color x:Key="MaterialOnSurfaceColor">#FFF3F3F3</Color>
+			<Color x:Key="MaterialOnErrorColor">#000000</Color>
+			<Color x:Key="MaterialOverlayColor">#51000000</Color>
 
-			<Color x:Key="Shadow">#60000000</Color>
+			<Color x:Key="CardElevationShadowColor">#60000000</Color>
 			<Color x:Key="MediaPlayerControlColor">#FFFFFFFF</Color>
 			<Color x:Key="MediaPlayerBackgroundColor">#FF000000</Color>
-			<Color x:Key="CommandBarForegroundColor">#FFFFFFFF</Color>
-
-
+			<Color x:Key="MediaPlayerOverlayColor">#BF131415</Color>
+			<Color x:Key="RippleOnSurfaceColor">#FFF3F3F3</Color>
 
 			<!-- Misc Brushes -->
 			<win:AcrylicBrush x:Key="AppBackgroundBrush"
 							  BackgroundSource="HostBackdrop"
-							  TintColor="{StaticResource Color08}"
+							  TintColor="{StaticResource MaterialBackgroundColor}"
 							  TintOpacity="0.85"
-							  FallbackColor="{StaticResource Color08}" />
+							  FallbackColor="{StaticResource MaterialBackgroundColor}" />
 
 			<xamarin:SolidColorBrush x:Key="AppBackgroundBrush"
-									 Color="{StaticResource Color08}" />
+									 Color="{StaticResource MaterialBackgroundColor}" />
 
-			<!-- Not a color but we needed 2 different images for light and dark theme -->
 			<ImageBrush x:Key="UnoWinUI_ImageBrush"
 						ImageSource="ms-appx:///Assets/UnoWinUiLogosDark.png"
 						Stretch="Uniform" />
 		</ResourceDictionary>
 	</ResourceDictionary.ThemeDictionaries>
 
-	<!-- Color brushes -->
-	<SolidColorBrush x:Key="Color01Brush"
-					 Color="{ThemeResource Color01}" />
-	<SolidColorBrush x:Key="Color01_75_OpacityBrush"
-					 Color="{ThemeResource Color01_75_Opacity}" />
-	<SolidColorBrush x:Key="Color02Brush"
-					 Color="{ThemeResource Color02}" />
-	<SolidColorBrush x:Key="Color03Brush"
-					 Color="{ThemeResource Color03}" />
-	<SolidColorBrush x:Key="Color04Brush"
-					 Color="{ThemeResource Color04}" />
-	<SolidColorBrush x:Key="Color05Brush"
-					 Color="{ThemeResource Color05}" />
-	<SolidColorBrush x:Key="Color06Brush"
-					 Color="{ThemeResource Color06}" />
-	<SolidColorBrush x:Key="Color07Brush"
-					 Color="{ThemeResource Color07}" />
-	<SolidColorBrush x:Key="Color08Brush"
-					 Color="{ThemeResource Color08}" />
-
-	<SolidColorBrush x:Key="PrimaryForegroundColorBrush"
-					 Color="{ThemeResource PrimaryForegroundColor}" />
 	<SolidColorBrush x:Key="TransparentColorBrush"
 					 Color="Transparent" />
 
-	<SolidColorBrush x:Key="CommandBarBackgroundBrush"
-					 Color="{ThemeResource Color02}" />
-	<SolidColorBrush x:Key="CommandBarForegroundBrush"
-					 Color="{ThemeResource CommandBarForegroundColor}" />
-
-	<SolidColorBrush x:Key="ShadowBrush"
-					 Color="{ThemeResource Shadow}" />
+	<SolidColorBrush x:Key="CardElevationShadowColorBrush"
+					 Color="{ThemeResource CardElevationShadowColor}" />
+	
 	<SolidColorBrush x:Key="MediaPlayerControlColorBrush"
-					 Color="{ThemeResource MediaPlayerControlColor}" />
-	<SolidColorBrush x:Key="VideoPlayerBottomBrush"
+					 Color="{ThemeResource MediaPlayerControlColor}" />	
+	<SolidColorBrush x:Key="MediaPlayerOverlayColorBrush"
+					 Color="{ThemeResource MediaPlayerOverlayColor}" />
+	<SolidColorBrush x:Key="MediaPlayerBackgroundColorBrush"
 					 Color="{ThemeResource MediaPlayerBackgroundColor}" />
+	<SolidColorBrush x:Key="RippleOnSurfaceColorBrush"
+					 Color="{ThemeResource RippleOnSurfaceColor}" />
+	
 </ResourceDictionary>

@@ -26,7 +26,7 @@
 		<Setter Property="AutoPlay"
 				Value="False" />
 		<Setter Property="Background"
-				Value="{StaticResource MediaPlayerBackgroundColor}" />
+				Value="{StaticResource MediaPlayerBackgroundColorBrush}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -81,7 +81,7 @@
 		   TargetType="Thumb">
 
 		<Setter Property="Background"
-				Value="{StaticResource Color03Brush}" />
+				Value="{StaticResource MaterialPrimaryBrush}" />
 		<Setter Property="Height"
 				Value="12" />
 		<Setter Property="Width"
@@ -123,7 +123,7 @@
 		   TargetType="Slider">
 
 		<Setter Property="Background"
-				Value="{StaticResource Color02Brush}" />
+				Value="{StaticResource MaterialBackgroundBrush}" />
 		<Setter Property="BorderThickness"
 				Value="0" />
 		<Setter Property="MinWidth"
@@ -208,7 +208,7 @@
 
 								<!-- Horizontal Decrease Rect -->
 								<Rectangle x:Name="HorizontalDecreaseRect"
-										   Fill="{StaticResource Color03Brush}"
+										   Fill="{StaticResource MaterialPrimaryBrush}"
 										   Height="{ThemeResource SliderTrackThemeHeight}" />
 
 								<!-- Thumb -->
@@ -391,7 +391,7 @@
 											<DiscreteObjectKeyFrame KeyTime="0"
 																	Value="Visible" />
 										</ObjectAnimationUsingKeyFrames>
-										
+
 										<DoubleAnimation Storyboard.TargetProperty="Opacity"
 														 Storyboard.TargetName="FullScreenHelperText"
 														 From="1"
@@ -407,25 +407,24 @@
 							  toolkit:VisibleBoundsPadding.PaddingMask="Bottom">
 
 							<win:Grid x:Name="FullScreenHelperText"
-								  Background="{StaticResource Color01_75_OpacityBrush}"
-								  HorizontalAlignment="Center"
-								  Visibility="Collapsed"
-				                  VerticalAlignment="Top"
-								  Margin="0,20,0,0"
-								  Padding="10">
-								
-								<TextBlock Foreground="White" 
+									  Background="{StaticResource MediaPlayerOverlayColorBrush}"
+									  HorizontalAlignment="Center"
+									  Visibility="Collapsed"
+									  VerticalAlignment="Top"
+									  Margin="0,20,0,0"
+									  Padding="10">
+
+								<TextBlock Foreground="White"
 										   FontWeight="Bold"
-										   Text="Press ESC to exit full screen"/>
+										   Text="Press ESC to exit full screen" />
 							</win:Grid>
 
 							<!-- Play / Pause Button -->
 							<Button x:Name="PlayPauseButton"
-									Style="{StaticResource PlayPauseButtonStyle}"
-									HorizontalAlignment="Stretch"
-									VerticalAlignment="Stretch">
-								<Grid Background="{StaticResource Color01_75_OpacityBrush}"
-									  CornerRadius="2"
+									Style="{StaticResource MediaPlayerButtonStyle}"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center">
+								<Grid CornerRadius="2"
 									  Height="62"
 									  Width="62">
 
@@ -445,7 +444,7 @@
 
 							<!-- Subtitles Button -->
 							<Button x:Name="SubtitlesButton"
-									Style="{StaticResource VideoPlayerButtonStyle}"
+									Style="{StaticResource MediaPlayerButtonStyle}"
 									HorizontalAlignment="Right"
 									Visibility="Collapsed">
 
@@ -463,19 +462,19 @@
 
 							<!-- Full Window Button -->
 							<Button x:Name="FullWindowButton"
-									Style="{StaticResource VideoPlayerButtonStyle}">
+									Style="{StaticResource MediaPlayerButtonStyle}">
 
 								<!-- Icon -->
 								<Path x:Name="FullWindowSymbol"
 									  Style="{StaticResource FullScreenIconPath}"
 									  VerticalAlignment="Center"
-									  Data="M5.4,4l9.6,9.6L13.6,15L4,5.4V15H2V4V2h2h11v2H5.4z M28,17v9.6L18.4,17L17,18.4l9.6,9.6H17v2h11h2v-2V17H28z"/>
+									  Data="M5.4,4l9.6,9.6L13.6,15L4,5.4V15H2V4V2h2h11v2H5.4z M28,17v9.6L18.4,17L17,18.4l9.6,9.6H17v2h11h2v-2V17H28z" />
 							</Button>
 						</Grid>
 
 						<!-- Bottom Control Panel -->
 						<Grid x:Name="BottomControlPanel"
-							  Background="{StaticResource VideoPlayerBottomBrush}"
+							  Background="{StaticResource MediaPlayerBackgroundColorBrush}"
 							  VerticalAlignment="Bottom"
 							  toolkit:VisibleBoundsPadding.PaddingMask="Bottom">
 
@@ -583,7 +582,7 @@
 											<!-- Play Icon -->
 											<Path x:Name="PlayPauseSymbolLeft"
 												  Style="{StaticResource PlayIconPath}"
-												  Data="M0,0L15.825011,8.0009766 31.650999,15.997986 15.825011,23.998993 0,32 0,15.997986z"/>
+												  Data="M0,0L15.825011,8.0009766 31.650999,15.997986 15.825011,23.998993 0,32 0,15.997986z" />
 										</Button>
 									</Border>
 

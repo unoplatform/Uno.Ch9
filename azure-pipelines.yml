@@ -1,75 +1,131 @@
-resources:
-   containers:
-     - container: windows
-       image: nventive/build-agent:vs16.4.0
-
 variables:
-- name: NUGET_VERSION
-  value: 5.1.0
-- name: ApplicationOutputPath
-  value: $(Build.ArtifactStagingDirectory)
-- name: PackageOutputPath
-  value: $(Build.ArtifactStagingDirectory)
-- name: SolutionFileName
-  value: src/Ch9.sln
+  - group: ch9-variables
+
+  # Pool names
+  - name: windowsPoolName
+    value: 'windows 1809'
+  - name: macOSPoolName
+    value: 'Default'
+  - name: wasmPoolName
+    value: 'ubuntu-18.04'
+
+  - name: NUGET_VERSION
+    value: 5.4.0
+
+  - name: SolutionFileName
+    value: src/Ch9.sln
+
+  - name: ApplicationOutputPath
+    value: $(Build.ArtifactStagingDirectory)
+
+  - name: PackageOutputPath
+    value: $(Build.ArtifactStagingDirectory)
 
 trigger:
   branches:
     include:
       - master
- 
-pr: 
+
+pr:
   branches:
     include:
       - master
 
-jobs:
-- job: Windows
-  strategy:
-    maxParallel: 3
-    matrix:
-      Release_Android:
-        ApplicationConfiguration: Release_Android
-        ApplicationPlatform: Any CPU
-        Environment: Staging
-      Release_UWA:
-        ApplicationConfiguration: Release_UWP
-        ApplicationPlatform: x64
-        Environment: Staging
+stages:
+- stage: Build
 
-  pool:
-    name: Container
+  jobs:
+  - job: Windows
+    strategy:
+      maxParallel: 3
+      matrix:
+        Release_Android:
+          ApplicationConfiguration: Release_Android
+          ApplicationPlatform: Any CPU
+          Environment: Staging
+        Release_UWA:
+          ApplicationConfiguration: Release_UWP
+          ApplicationPlatform: x64
+          Environment: Staging
 
-  workspace:
-    clean: all
+    pool:
+      name: $(windowsPoolName)
 
-  container: windows
+    workspace:
+      clean: all
 
-  steps:
-  - template: steps.yml
+    container: nventive/build-agent:vs16.6.0
 
-- job: macOS
-  strategy:
-    maxParallel: 1
-    matrix:
-      Release_iOS:
-        ApplicationConfiguration: Release_iOS
-        ApplicationPlatform: Any CPU
-        Environment: Staging
+    steps:
+    - template: build/steps-build.yml
 
-  pool:
-    name: Default
-    demands:
-    - Xamarin.iOS -equals 13.8
+  - job: macOS
+    strategy:
+      maxParallel: 2
+      matrix:
+        Release_iOS:
+          ApplicationConfiguration: Release_iOS
+          ApplicationPlatform: Any CPU
+          Environment: Staging
+        Release_macOS:
+          ApplicationConfiguration: Release_MACOS
+          ApplicationPlatform: Any CPU
+          Environment: Staging    
 
-  workspace:
-    clean: all
+    pool:
+      name: $(macOSPoolName)
+      demands:
+      - Xamarin.iOS -equals 13.16
 
-  variables:
-  - name: NUGET_PACKAGES
-    value: $(Agent.TempDirectory)/.nuget
-  - name: NUGET_HTTP_CACHE_PATH
-    value: $(Agent.TempDirectory)/.nuget-http-cache.
+    workspace:
+      clean: all
 
-  steps:
-  - template: steps.yml
+    variables:
+    - name: NUGET_PACKAGES
+      value: $(Agent.TempDirectory)/.nuget
+    - name: NUGET_HTTP_CACHE_PATH
+      value: $(Agent.TempDirectory)/.nuget-http-cache.
+
+    steps:
+    - template: build/steps-build.yml
+
+  - job: WebAssembly
+    container: unoplatform/wasm-build:2.2
+
+    pool:
+      vmImage: $(wasmPoolName)
+
+    variables:
+      NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
+      SkipUnknowFrameworks: True
+
+    steps:
+    - template: build/steps-build-wasm.yml
+
+- stage: Release_AppCenter
+  condition: succeeded()
+  dependsOn: Build
+
+  jobs:
+  - template: build/steps-release-appcenter.yml
+
+- stage: Release_TestFlight
+  condition: succeeded()
+  dependsOn: Build
+
+  jobs:
+  - template: build/steps-release-testflight.yml
+
+- stage: Release_PlayStore
+  condition: succeeded()
+  dependsOn: Build
+
+  jobs:
+  - template: build/steps-release-playstore.yml
+
+- stage: Release_WASM
+  condition: succeeded()
+  dependsOn: Build
+
+  jobs:
+  - template: build/steps-release-wasm.yml

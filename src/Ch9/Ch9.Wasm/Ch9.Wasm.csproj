@@ -1,0 +1,93 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<NoWarn>NU1701</NoWarn>
+		<WasmHead>True</WasmHead>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
+		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Assets\Ch9Emoji.png" />
+		<None Remove="Assets\Ch9LogoNavBar.png" />
+		<None Remove="Assets\Ch9_logo.png" />
+		<None Remove="Assets\ErrorIllustration.png" />
+		<None Remove="Assets\NoWifiIllustration.png" />
+		<None Remove="Assets\SplashScreen.png" />
+		<None Remove="Assets\UnoWinUiLogos.png" />
+		<None Remove="Assets\UnoWinUiLogosDark.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Assets\Ch9LogoNavBar.png" />
+		<Content Include="Assets\Ch9_logo.png" />
+		<Content Include="Assets\ErrorIllustration.png" />
+		<Content Include="Assets\Ch9Emoji.png" />
+		<Content Include="Assets\NoWifiIllustration.png" />
+		<Content Include="Assets\SplashScreen.png" />
+		<Content Include="Assets\UnoWinUiLogos.png" />
+		<Content Include="Assets\UnoWinUiLogosDark.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="WasmCSS\*.css" />
+		<EmbeddedResource Include="WasmScripts\*.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<LinkerDescriptor Include="LinkerConfig.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--
+		This item group is required by the project template because of the
+		new SDK-Style project, otherwise some files are not added automatically.
+		You can safely remove this ItemGroup completely.
+		-->
+		<None Include="Program.cs" />
+		<None Include="LinkerConfig.xml" />
+		<None Include="wwwroot\web.config" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
+		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.2" />
+		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
+		<PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
+		<PackageReference Include="Uno.GalaSoft.MvvmLight.Platform" Version="5.4.0-uno.134" />
+    <PackageReference Include="Uno.Material" Version="1.0.0-dev.481" />
+    <PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1493" />
+		<PackageReference Include="Uno.UI.WebAssembly" Version="3.0.0-dev.1493" />
+		<PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1493" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.3.4" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.3.4" />
+		<PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.132" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+		<PackageReference Include="Microsoft.TypeScript.Compiler" Version="3.1.5">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.3.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <TypeScriptCompile Include="ts\GoogleAnalytics.ts" />
+	</ItemGroup>
+
+	<Import Project="..\Ch9.Shared\Ch9.Shared.projitems" Label="Shared" />
+	<Import Project="..\..\Versioning.targets" />
+	<Import Project="..\..\Packaging.targets" />
+
+</Project>

@@ -1,0 +1,177 @@
+﻿<UserControl x:Class="Ch9.Views.EpisodeContent"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:local="using:Ch9"
+			 xmlns:toolkit="using:Uno.UI.Toolkit"
+			 xmlns:ctoolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:wasm="http:/uno.ui/wasm"
+			 xmlns:macos="http:/uno.ui/macos"
+			 xmlns:not_wasm="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:localwasm="using:Ch9.Wasm"
+			 mc:Ignorable="d wasm macos">
+
+	<Grid Background="{StaticResource MaterialBackgroundBrush}">
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup>
+				<VisualState x:Name="VeryLarge">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="1200" />
+					</VisualState.StateTriggers>
+					<VisualState.Setters>
+						<Setter Target="MediaPlayer.Height"
+								Value="400" />
+					</VisualState.Setters>
+				</VisualState>
+
+				<VisualState x:Name="Large">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="1000" />
+					</VisualState.StateTriggers>
+
+					<VisualState.Setters>
+						<Setter Target="MediaPlayer.Height"
+								Value="350" />
+					</VisualState.Setters>
+				</VisualState>
+
+				<VisualState x:Name="VeryWide">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="900" />
+					</VisualState.StateTriggers>
+
+					<VisualState.Setters>
+						<Setter Target="MediaPlayer.Height"
+								Value="295" />
+					</VisualState.Setters>
+				</VisualState>
+
+				<VisualState x:Name="Wide">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="800" />
+					</VisualState.StateTriggers>
+
+					<VisualState.Setters>
+						<Setter Target="MediaPlayer.Height"
+								Value="240" />
+					</VisualState.Setters>
+				</VisualState>
+
+				<VisualState x:Name="Medium">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="500" />
+					</VisualState.StateTriggers>
+
+					<VisualState.Setters>
+						<Setter Target="MediaPlayer.Height"
+								Value="290" />
+					</VisualState.Setters>
+				</VisualState>
+				
+				<VisualState x:Name="Narrow">
+					<VisualState.StateTriggers>
+						<AdaptiveTrigger MinWindowWidth="400" />
+					</VisualState.StateTriggers>
+
+					<VisualState.Setters>
+						<Setter Target="MediaPlayer.Height"
+								Value="225" />
+					</VisualState.Setters>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+
+		<!-- Content -->
+		<StackPanel>
+			<!-- Video Player -->
+			<not_wasm:MediaPlayerElement x:Name="MediaPlayer"
+										 Source="{Binding VideoSource}"
+										 IsFullWindow="{Binding Parent.IsVideoFullWindow, Mode=TwoWay}"
+										 Height="180" />
+			<wasm:Border>
+				<localwasm:HtmlMediaPlayer x:Name="MediaPlayer"
+										   Height="180"
+										   Source="{Binding VideoUri}" />
+			</wasm:Border>
+			
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"
+									  MaxWidth="610" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+
+				<StackPanel Margin="16,0">
+
+					<Grid Margin="0,6,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+
+						<!-- Share button -->
+						<Button Command="{Binding Parent.ShareEpisode}"
+								CommandParameter="{Binding}"
+								Style="{StaticResource HiddenButtonStyle}"
+								wasm:Visibility="Collapsed"
+								macos:Visibility="Collapsed"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Top"
+								MinWidth="0"
+								Grid.Column="0">
+
+							<!-- Icon -->
+							<Path Data="M21 0c2.761 0 5 2.265 5 5.058 0 2.794-2.239 5.058-5 5.058-1.481 0-2.812-.651-3.728-1.687l-7.535 4.448c.17.51.263 1.055.263 1.623 0 .567-.092 1.113-.263 1.622l7.54 4.444c.915-1.032 2.244-1.682 3.723-1.682 2.761 0 5 2.264 5 5.058C26 26.735 23.761 29 21 29s-5-2.265-5-5.058c0-.57.093-1.118.265-1.63l-7.537-4.441C7.813 18.906 6.482 19.558 5 19.558c-2.761 0-5-2.264-5-5.058s2.239-5.058 5-5.058c1.482 0 2.813.652 3.729 1.688l7.534-4.448c-.17-.51-.263-1.056-.263-1.624C16 2.265 18.239 0 21 0zm0 20.907c-1.055 0-1.983.551-2.518 1.384-.015.043-.035.083-.058.123-.024.042-.05.081-.08.118-.22.42-.344.9-.344 1.41 0 1.676 1.343 3.035 3 3.035s3-1.359 3-3.035c0-1.676-1.343-3.035-3-3.035zM5 11.465c-1.657 0-3 1.359-3 3.035 0 1.676 1.343 3.035 3 3.035 1.098 0 2.058-.597 2.581-1.487l.008-.02.021-.031c.248-.442.39-.953.39-1.497 0-.543-.141-1.053-.388-1.495l-.022-.032-.011-.025C7.055 12.06 6.096 11.465 5 11.465zm16-9.442c-1.657 0-3 1.359-3 3.035 0 .542.14 1.051.387 1.492l.023.035.011.025c.524.888 1.483 1.483 2.579 1.483 1.657 0 3-1.359 3-3.035 0-1.676-1.343-3.035-3-3.035z"
+								  Fill="{StaticResource MaterialOnSurfaceMediumBrush}"
+								  Width="17"
+								  Height="19"
+								  Stretch="Uniform"
+								  VerticalAlignment="Center"
+								  Margin="0,0,10,0" />
+						</Button>
+
+						<!-- Show + Date -->
+						<TextBlock Style="{StaticResource MaterialBody1}"
+								   VerticalAlignment="Top"
+								   Margin="0,10,0,0"
+								   Grid.Column="1">
+							
+							<!-- Title -->
+							<Run Text="{Binding Episode.Show}" />
+						
+							<!-- Separator -->
+							<Run Text="•" />
+						
+							<!-- Release Date -->
+							<Run Text="{Binding Episode.FormattedDate}" />
+						</TextBlock>
+					</Grid>
+
+					<!-- Title -->
+					<TextBlock Text="{Binding Episode.Title}"
+					           Style="{StaticResource MaterialHeadline6}"
+							   Margin="0,2,0,0" />
+
+					<!-- Summary -->
+					<TextBlock Text="{Binding Episode.Summary}"
+							   Style="{StaticResource MaterialBody1}"
+							   Margin="0,16,0,0" />
+
+					<!-- Category List -->
+					<ItemsControl ItemsSource="{Binding Episode.Categories}"
+								  ItemTemplate="{StaticResource CategoryItemTemplate}"
+								  Margin="0,24,0,24">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<ctoolkit:WrapPanel HorizontalSpacing="12"
+													VerticalSpacing="12"
+													Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+					</ItemsControl>
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+	</Grid>
+</UserControl>

@@ -1,16 +1,21 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:local="using:Ch9.Styles.Controls">
-	
+					xmlns:wasm="http://Uno.UI/wasm"
+					xmlns:local="using:Ch9.Styles.Controls"
+					xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+					mc:Ignorable="wasm">
+
 	<!-- Category Item Template -->
 	<DataTemplate x:Key="CategoryItemTemplate">
-		<Grid Background="{StaticResource Color05Brush}"
+		<Grid Background="{StaticResource MaterialPrimaryVariantLightBrush}"
+			  wasm:Margin="6"
 			  CornerRadius="16"
 			  Height="30">
 
 			<!-- Category Name -->
 			<TextBlock Text="{Binding}"
-					   Style="{StaticResource Typo05}"
+					   Foreground="{StaticResource MaterialPrimaryVariantDarkBrush}"
+					   Style="{StaticResource MaterialCaption}"
 					   VerticalAlignment="Center"
 					   Margin="12,0" />
 		</Grid>

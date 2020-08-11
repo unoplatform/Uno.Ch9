@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Ch9.Domain;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 
 namespace Ch9.ViewModels
 {
-    public class ShowPageViewModel : ViewModelBase
+	[Windows.UI.Xaml.Data.Bindable]
+	public class ShowPageViewModel : ViewModelBase
     {
         public SourceFeed SourceFeed { get; set; }
 
@@ -36,5 +34,24 @@ namespace Ch9.ViewModels
                 Show = new ShowViewModel(SourceFeed);
             }
         }
-    }
+
+		public bool TryHandleBackRequested()
+		{
+			if (Show.SelectedEpisode != null && IsNarrowAndSelected)
+			{
+				if (Show.IsVideoFullWindow)
+				{
+					Show.IsVideoFullWindow = false;
+				}
+				else
+				{
+					Show.DismissSelectedEpisode.Execute(null);
+				}
+
+				return true;
+			}
+
+			return false;
+		}
+	}
 }

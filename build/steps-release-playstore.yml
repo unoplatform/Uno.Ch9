@@ -1,0 +1,31 @@
+jobs:
+- job: Release_PlayStore
+  pool: $(windowsPoolName)
+
+  container: nventive/build-agent:vs16.6.0
+
+  steps:
+  - checkout: none
+
+  - task: DownloadBuildArtifacts@0
+    inputs:
+      buildType: current
+      downloadType: single
+      artifactName: Release_Android
+
+  - task: AndroidSigning@3
+    displayName: 'Signing and aligning APK file(s) $(System.ArtifactsDirectory)/Release_Android/*.apk'
+    inputs:
+      apkFiles: '$(System.ArtifactsDirectory)/Release_Android/*.apk'
+      apksignerKeystoreFile: ch9.jks
+      apksignerKeystorePassword: '$(AndroidSigningStorePass)'
+      apksignerKeystoreAlias: '$(AndroidSigningKeyAlias)'
+      apksignerKeyPassword: '$(AndroidSigningKeyPass)'
+
+  - task: ms-vsclient.google-play.google-play-release.GooglePlayRelease@3
+    displayName: 'Release ARM64 and ARM7 to internal'
+    inputs:
+      serviceConnection: Ch9
+      apkFile: '$(System.ArtifactsDirectory)/Release_Android/uno.platform.ch9-arm64-v8a-Signed.apk'
+      languageCode: 'en-CA'
+      additionalApks: '$(System.ArtifactsDirectory)/Release_Android/uno.platform.ch9-armeabi-v7a-Signed.apk'
