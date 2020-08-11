@@ -30,13 +30,13 @@
 	            window.dataLayer = window.dataLayer || [];
 	            function gtag() { dataLayer.push(arguments); }
 	            gtag('js', new Date());
-	            gtag('config', 'G-5LTY8WD9MD');
+	            gtag('config', 'G-6YTBDVF51M');
 	            gtag("event", "screen_view", {screen_name: \"${screenName}\", app_name: \"${appName}\"});`;
 
 
 			const script1 = document.createElement("script");
 			script1.type = "text/javascript";
-			script1.src = "https://www.googletagmanager.com/gtag/js?id=G-5LTY8WD9MD";
+			script1.src = "https://www.googletagmanager.com/gtag/js?id=G-6YTBDVF51M";
 			document.body.appendChild(script1);
 			const script2 = document.createElement("script");
 			script2.type = "text/javascript";
