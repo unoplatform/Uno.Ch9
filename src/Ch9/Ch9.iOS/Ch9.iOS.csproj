@@ -200,6 +200,18 @@
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Ch9.UWP\App.xaml.cs" />
+    <ApplicationDefinition Include="..\Ch9.UWP\App.xaml" Visible="False" />
+    <Page Include="..\Ch9.UWP\Views\**\*.xaml" Visible="False">
+      <Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="..\Ch9.UWP\Views\**\*.cs" Visible="False">
+      <Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
   <ItemGroup />
   <Import Project="..\Ch9.Shared\Ch9.Shared.projitems" Label="Shared" Condition="Exists('..\Ch9.Shared\Ch9.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

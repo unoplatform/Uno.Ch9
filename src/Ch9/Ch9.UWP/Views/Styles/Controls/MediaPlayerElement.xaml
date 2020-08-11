@@ -7,7 +7,7 @@
 					mc:Ignorable="xamarin">
 
 	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
+		<ResourceDictionary Source="ms-appx:///Views/Styles/Application/Colors.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 	<Style TargetType="MediaPlayerElement"

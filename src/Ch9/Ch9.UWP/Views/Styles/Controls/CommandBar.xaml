@@ -11,7 +11,7 @@
 					mc:Ignorable="xamarin android ios wasm macos">
 
 	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
+		<ResourceDictionary Source="ms-appx:///Views/Styles/Application/Colors.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 	<Style x:Key="DefaultCommandBarStyle"
