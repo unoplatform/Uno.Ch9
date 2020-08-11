@@ -123,14 +123,13 @@
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
 
-		<Grid Height="48"
+		<Grid Height="40"
 			  x:Name="CommandBar"
-			  Padding="48,0,0,0"
+			  Padding="52,0,0,0"
 			  Grid.ColumnSpan="2">
 			<TextBlock x:Name="CommandBarTitle"
 				       Text="Recent"
-				       VerticalAlignment="Center"
-				       Margin="0,0,0,5"
+					   VerticalAlignment="Center"
 					   Style="{StaticResource MaterialHeadline6}"
 					   FontWeight="Normal" />
 		</Grid>
