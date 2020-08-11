@@ -29,7 +29,7 @@ namespace Ch9.Wasm
 			if (dependencyobject is HtmlMediaPlayer player)
 			{
 				var encodedSource = WebAssemblyRuntime.EscapeJs("" + args.NewValue);
-				var js = $"element.controls = true; element.src=\"{encodedSource}";
+				var js = $"element.controls = true; element.src=\"{encodedSource}\";";
 				player.ExecuteJavascript(js);
 			}
 		}
