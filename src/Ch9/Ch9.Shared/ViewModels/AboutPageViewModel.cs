@@ -13,10 +13,14 @@ namespace Ch9.ViewModels
 		{
 			NavigateToGitHubRepo = new RelayCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://github.com/unoplatform/Uno.Ch9")));
 			NavigateToUnoRepo = new RelayCommand(async () => await Launcher.LaunchUriAsync(new Uri("https://github.com/unoplatform")));
+
+			Version = GetType().Assembly.GetName().Version.ToString();
 		}
 
 		public ICommand NavigateToGitHubRepo { get; }
 
 		public ICommand NavigateToUnoRepo { get; }
+
+		public string Version { get; }
 	}
 }

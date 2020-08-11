@@ -107,6 +107,12 @@
 							</Hyperlink>
 						</TextBlock>
 					</Button>
+
+					<TextBlock Style="{StaticResource MaterialSubtitle2}"
+							   Foreground="{StaticResource MaterialOnBackgroundBrush}">
+						<Run Text="Version:" />
+						<Run Text="{Binding Version}" />
+					</TextBlock>
 				</StackPanel>
 
 				<StackPanel Grid.Row="1"
