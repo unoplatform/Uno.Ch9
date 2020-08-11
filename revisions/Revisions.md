@@ -21,6 +21,9 @@ A release is [available on AppCenter](https://install.appcenter.ms/orgs/uno-plat
 ### Android
 A release is [available on AppCenter](https://install.appcenter.ms/orgs/uno-platform/apps/Ch9-1).
 
+### WebAssembly
+A release is [available online](https://ch9.platform.uno/)
+
 ---
 
 ## Version 1.0.5
