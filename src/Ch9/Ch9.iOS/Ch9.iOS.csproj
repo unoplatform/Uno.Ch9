@@ -122,7 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Uno.Material" Version="1.0.0-dev.481" />
-    <PackageReference Include="Uno.UI" Version="3.0.0-dev.1549" />
+    <PackageReference Include="Uno.UI">
+      <Version>3.0.0-dev.1549</Version>
+    </PackageReference>
     <PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1493" />
     <PackageReference Include="Com.Airbnb.iOS.Lottie" Version="2.5.11" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
@@ -135,10 +137,6 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.2" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-		<PackageReference Include="MSBuildTasks" Version="1.5.0.235">
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-			<PrivateAssets>all</PrivateAssets>
-		</PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Media.xcassets\AppIcons.appiconset\Contents.json">
