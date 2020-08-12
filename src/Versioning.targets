@@ -56,15 +56,15 @@
 		<Message Text="Package build number: $(PackageBuildNumber)" />
 		<Message Text ="Package version with build number: $(_VersionWithBuildNumber)" />
 
-		<!--<AssemblyInfo CodeLanguage="CS"
-				  Condition="Exists('$(_AssemblyInfoPath)')"
-				  OutputFile="$(_AssemblyInfoPath)"
-				  AssemblyProduct="$(PackageName)"
-				  AssemblyCompany="$(PackageCompanyName)"
-				  AssemblyCopyright="Copyright (c) $(PackageCompanyName) $([System.DateTime]::Now.Year)"
-				  AssemblyVersion="$(PackageVersion)"
-				  AssemblyFileVersion="$(PackageBuildNumber)"
-				  AssemblyInformationalVersion="$(PackageInformationalVersion)" />-->
+		<AssemblyInfo CodeLanguage="CS"
+					Condition="Exists('$(_AssemblyInfoPath)')"
+					OutputFile="$(_AssemblyInfoPath)"
+					AssemblyProduct="$(PackageName)"
+					AssemblyCompany="$(PackageCompanyName)"
+					AssemblyCopyright="Copyright (c) $(PackageCompanyName) $([System.DateTime]::Now.Year)"
+					AssemblyVersion="$(PackageVersion)"
+					AssemblyFileVersion="$(PackageBuildNumber)"
+					AssemblyInformationalVersion="$(PackageInformationalVersion)" />
 
 		<!-- Android -->
 		<XmlPoke Condition="Exists('$(_ManifestPath)')"

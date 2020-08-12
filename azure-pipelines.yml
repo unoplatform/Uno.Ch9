@@ -21,8 +21,11 @@ variables:
   - name: PackageOutputPath
     value: $(Build.ArtifactStagingDirectory)
 
+  - name: IsFeatureBranch
+    value: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/feature/')]
+
   - name: IsReleaseBranch
-    value: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+    value: $[or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/RC/'))]
 
 trigger:
   branches:
@@ -106,11 +109,18 @@ stages:
     - template: build/steps-build-wasm.yml
 
 - stage: Release_AppCenter
-  condition: and(succeeded(), eq(variables['IsReleaseBranch'], 'true'))
+  condition: and(succeeded(), or(eq(variables['IsReleaseBranch'], 'true'), eq(variables['IsFeatureBranch'], 'true')))
   dependsOn: Build
 
   jobs:
   - template: build/steps-release-appcenter.yml
+
+- stage: Release_WASM
+  condition: and(succeeded(), or(eq(variables['IsReleaseBranch'], 'true'), eq(variables['IsFeatureBranch'], 'true')))
+  dependsOn: Build
+
+  jobs:
+  - template: build/steps-release-wasm.yml
 
 - stage: Release_TestFlight
   condition: and(succeeded(), eq(variables['IsReleaseBranch'], 'true'))
@@ -125,10 +135,3 @@ stages:
 
   jobs:
   - template: build/steps-release-playstore.yml
-
-- stage: Release_WASM
-  condition: succeeded()
-  dependsOn: Build
-
-  jobs:
-  - template: build/steps-release-wasm.yml
