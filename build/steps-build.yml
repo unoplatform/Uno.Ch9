@@ -11,6 +11,7 @@
     runtime: 'core'
     useConfigFile: true
     configFilePath: gitversion.yml
+    updateAssemblyInfo: true
   displayName: 'Calculate version'
 
 - task: NuGetToolInstaller@0

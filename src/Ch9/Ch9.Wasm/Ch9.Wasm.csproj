@@ -27,6 +27,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<NoWarn>NU1701</NoWarn>
 		<WasmHead>True</WasmHead>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
