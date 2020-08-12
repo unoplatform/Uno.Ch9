@@ -5,13 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Ch9.Domain;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Input;
 
 namespace Ch9.ViewModels
 {
 	[Windows.UI.Xaml.Data.Bindable]
-	public class ShowViewModel : ViewModelBase
+	public class ShowViewModel : ObservableObject
     {
         private readonly SourceFeed _sourceFeed;
 
@@ -57,21 +59,21 @@ namespace Ch9.ViewModels
         public TaskNotifier<Show> Show
         {
             get => _show;
-            set => Set(() => Show, ref _show, value);
+            set => SetProperty(ref _show, value);
         }
 
         private EpisodeViewModel[] _episodes;
         public EpisodeViewModel[] Episodes
         {
             get => _episodes;
-            set => Set(() => Episodes, ref _episodes, value);
+            set => SetProperty(ref _episodes, value);
         }
 
         private EpisodeViewModel _selectedEpisode;
         public EpisodeViewModel SelectedEpisode
         {
             get => _selectedEpisode;
-            set => Set(() => SelectedEpisode, ref _selectedEpisode, value);
+            set => SetProperty(ref _selectedEpisode, value);
         }
 
         private bool _isVideoFullWindow;
@@ -81,7 +83,7 @@ namespace Ch9.ViewModels
 
             set
             {
-                Set(() => IsVideoFullWindow, ref _isVideoFullWindow, value);
+				SetProperty(ref _isVideoFullWindow, value);
 
                 App.Instance.OnFullscreenChanged(value);
             }
@@ -91,7 +93,7 @@ namespace Ch9.ViewModels
         {
             async Task<Show> GetShow()
             {
-                var show = await Task.Run(() => App.ServiceProvider.GetInstance<IShowService>().GetShow(_sourceFeed));
+                var show = await Task.Run(() => Ioc.Default.GetService<IShowService>().GetShow(_sourceFeed));
 
                 Episodes = show.Episodes.Select(p => new EpisodeViewModel(this, p)).ToArray();
 

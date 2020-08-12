@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,6 +21,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Ch9.ViewModels;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
 #if !__MACOS__
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -46,8 +46,6 @@ namespace Ch9
 
 		private Shell _shell;
 		private bool _isActivityBackgroundCleared;
-
-		public static SimpleIoc ServiceProvider { get; } = SimpleIoc.Default;
 
 		public App()
 		{
@@ -87,7 +85,7 @@ namespace Ch9
 			// just ensure that the window is active
 			if (_shell == null)
 			{
-				_startup.Initialize(ServiceProvider);
+				_startup.Initialize(Ioc.Default);
 
 				ConfigureViewSize();
 				ConfigureStatusBar();
