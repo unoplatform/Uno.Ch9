@@ -209,7 +209,7 @@
 			<!-- Empty List Message -->
 			<TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
 					   Text="Nothing to show"
-					   x:Uid="MainPage_EmptyListMessage"
+					   x:Uid="EmptyListMessage"
 					   Style="{StaticResource MaterialHeadline6}"
 					   TextAlignment="Center"
 					   VerticalAlignment="Center"
@@ -233,14 +233,14 @@
 
 				<!-- Title -->
 				<TextBlock Text="No video selected"
-						   x:Uid="MainPage_NoSelectionTitle"
+						   x:Uid="NoSelectionTitle"
 						   Style="{StaticResource MaterialHeadline6}"
 						   TextAlignment="Center"
 						   Margin="32,16,32,0" />
 
 				<!-- Message -->
 				<TextBlock Text="Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!"
-						   x:Uid="MainPage_NoSelectionMessage"
+						   x:Uid="NoSelectionMessage"
 						   Style="{StaticResource MaterialBody1}"
 						   TextAlignment="Center"
 						   MaxWidth="380"
@@ -316,7 +316,7 @@
 
 				<!-- Reload button -->
 				<Button Content="Try Again"
-						x:Uid="MainPage_ErrorStateButtonLabel"
+						x:Uid="ErrorStateButtonLabel"
 						Command="{Binding ReloadPage}"
 						Style="{StaticResource MaterialContainedButtonStyle}"
 						HorizontalAlignment="Center"
@@ -351,7 +351,7 @@
 
 				<!-- Loading Message -->
 				<TextBlock Text="Loading..."
-						   x:Uid="MainPage_Loading"
+						   x:Uid="Loading"
 						   Style="{StaticResource MaterialHeadline5}"
 						   TextAlignment="Center" />
 			</StackPanel>
