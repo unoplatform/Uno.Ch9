@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Ch9.Domain;
-using GalaSoft.MvvmLight;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace Ch9.ViewModels
 {
 	[Windows.UI.Xaml.Data.Bindable]
-	public class ShowPageViewModel : ViewModelBase
+	public class ShowPageViewModel : ObservableObject
     {
         public SourceFeed SourceFeed { get; set; }
 
@@ -15,14 +15,14 @@ namespace Ch9.ViewModels
         public ShowViewModel Show
         {
             get => _show;
-            set => Set(() => Show, ref _show, value);
+            set => SetProperty(ref _show, value);
         }
 
         private bool _isNarrowAndSelected;
         public bool IsNarrowAndSelected
         {
             get => _isNarrowAndSelected;
-            set => Set(() => IsNarrowAndSelected, ref _isNarrowAndSelected, value);
+            set => SetProperty(ref _isNarrowAndSelected, value);
         }
 
         public void OnNavigatedTo(SourceFeed sourceFeed)

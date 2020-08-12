@@ -67,16 +67,14 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Uno.Material" Version="1.0.0-dev.481" />
-    <PackageReference Include="Uno.UI">
-      <Version>3.0.0-dev.1549</Version>
-    </PackageReference>
+		<PackageReference Include="Uno.UI" Version="3.0.0-dev.1549" />
     <PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1493" />
     <PackageReference Include="Com.Airbnb.Android.Lottie" Version="3.4.2" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
-    <PackageReference Include="Uno.GalaSoft.MvvmLight.Platform" Version="5.4.0-uno.134" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0-preview2" />
     <PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.132" />
     <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.186.g928c99f74d" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
