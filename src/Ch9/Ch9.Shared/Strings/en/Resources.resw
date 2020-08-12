@@ -120,19 +120,16 @@
   <data name="ApplicationName" xml:space="preserve">
     <value>Ch9</value>
   </data>
-  <data name="MainPage_CommandBar_Title.Content" xml:space="preserve">
-    <value>Ch9</value>
-  </data>
-  <data name="MainPage_Loading.Text" xml:space="preserve">
+  <data name="Loading.Text" xml:space="preserve">
     <value>Loading...</value>
   </data>
-  <data name="MainPage_EmptyListMessage.Text" xml:space="preserve">
+  <data name="EmptyListMessage.Text" xml:space="preserve">
     <value>Nothing to show</value>
   </data>
-  <data name="MainPage_NoSelectionTitle.Text" xml:space="preserve">
+  <data name="NoSelectionTitle.Text" xml:space="preserve">
     <value>No video selected</value>
   </data>
-  <data name="MainPage_NoSelectionMessage.Text" xml:space="preserve">
+  <data name="NoSelectionMessage.Text" xml:space="preserve">
     <value>Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!</value>
   </data>
   <data name="HasNetworkErrorToErrorTitle.TrueValue" xml:space="preserve">
@@ -149,13 +146,10 @@ and try again</value>
     <value>Something went wrong. 
 Please try again</value>
   </data>
-  <data name="MainPage_ErrorStateButtonLabel.Content" xml:space="preserve">
+  <data name="ErrorStateButtonLabel.Content" xml:space="preserve">
     <value>Try Again</value>
   </data>
-  <data name="PostPage_CommandBar_Title.Content" xml:space="preserve">
-    <value>Episode</value>
-  </data>
-  <data name="AboutPage_Title.Text" xml:space="preserve">
+  <data name="AboutPage_CommandBar.Text" xml:space="preserve">
     <value>About</value>
   </data>
   <data name="AboutPage_SourceCode.Text" xml:space="preserve">
@@ -170,22 +164,22 @@ Please try again</value>
   <data name="AboutPage_UnoRepoUrl.Text" xml:space="preserve">
     <value>https://github.com/unoplatform</value>
   </data>
-	<data name="AboutPage_BuiltWith.Text" xml:space="preserve">
+  <data name="AboutPage_BuiltWith.Text" xml:space="preserve">
     <value>BUILT WITH</value>
   </data>
-	<data name="MainPage_Recent.Content" xml:space="preserve">
+  <data name="RecentEpisodesPage_CommandBar.Text" xml:space="preserve">
     <value>Recent</value>
   </data>
-	<data name="MainPage_Shows.Content" xml:space="preserve">
+  <data name="ShowsPage_CommandBar.Text" xml:space="preserve">
     <value>Shows</value>
   </data>
-	<data name="ShowPage_Episodes.Text" xml:space="preserve">
+  <data name="ShowPage_Episodes.Text" xml:space="preserve">
     <value>Episodes</value>
   </data>
-	<data name="MainPage_FooterMessage1.Text" xml:space="preserve">
+  <data name="RecentEpisodesPage_FooterMessage1.Text" xml:space="preserve">
     <value>That’s all the recent shows!</value>
   </data>
-	<data name="MainPage_FooterMessage2.Text" xml:space="preserve">
+  <data name="RecentEpisodesPage_FooterMessage2.Text" xml:space="preserve">
     <value>For more, check out the “Shows” tab.</value>
   </data>
 </root>
