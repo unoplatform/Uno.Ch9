@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Net.NetworkInformation;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Networking.Connectivity;
 
 namespace Ch9
 {
@@ -30,7 +30,7 @@ namespace Ch9
 				RunTask(task);
 			}
 
-			else if (task.IsFaulted && !NetworkInterface.GetIsNetworkAvailable())
+			else if (task.IsFaulted && !IsInternetAvailable())
 			{
 				IsInternetFaulted = true;
 			}
@@ -94,7 +94,7 @@ namespace Ch9
 
 					if (task.IsFaulted)
 					{
-						if (!NetworkInterface.GetIsNetworkAvailable())
+						if (!IsInternetAvailable())
 						{
 							IsInternetFaulted = true;
 							PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsInternetFaulted)));
@@ -118,6 +118,13 @@ namespace Ch9
 #endif
 				},
 				scheduler: _dispatcherTaskScheduler ?? GetDefaultScheduler());
+		}
+
+		private bool IsInternetAvailable()
+		{
+			var profile = NetworkInformation.GetInternetConnectionProfile();
+			var level = profile?.GetNetworkConnectivityLevel();
+			return level == NetworkConnectivityLevel.InternetAccess;
 		}
 	}
 }
