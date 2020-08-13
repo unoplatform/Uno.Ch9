@@ -15,7 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Domain\AnalyticsService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Framework\HttpUtility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RecentEpisodesPageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShellViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ShowsPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEnumerableHasAnyToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FromEnumerableToItemsCountConverter.cs" />

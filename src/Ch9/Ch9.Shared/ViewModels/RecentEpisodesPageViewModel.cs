@@ -5,18 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Ch9.Domain;
-using GalaSoft.MvvmLight;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace Ch9.ViewModels
 {
 	[Windows.UI.Xaml.Data.Bindable]
-	public class RecentEpisodesPageViewModel : ViewModelBase
+	public class RecentEpisodesPageViewModel : ObservableObject
 	{
 		private ShowViewModel _show;
 		public ShowViewModel Show
 		{
 			get => _show;
-			set => Set(() => Show, ref _show, value);
+			set => SetProperty(ref _show, value);
 		}
 
 		public void OnNavigatedTo()
