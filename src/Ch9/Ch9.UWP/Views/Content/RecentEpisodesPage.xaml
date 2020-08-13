@@ -99,13 +99,13 @@
 										ItemTemplate="{StaticResource EpisodeItemTemplate}"
 										DetailsTemplate="{StaticResource DetailsTemplate}"
 										NoSelectionContentTemplate="{StaticResource NoSelectionTemplate}"
+										Style="{StaticResource RecentEpisodesMasterDetailsViewStyle}"
 										CompactModeThresholdWidth="800" />
 
 			<!-- Error -->
 			<Grid DataContext="{Binding Show}"
 				  Visibility="{Binding Show.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-				  Background="{StaticResource MaterialBackgroundBrush}"
-				  Grid.Row="1">
+				  Background="{StaticResource MaterialBackgroundBrush}">
 
 				<StackPanel VerticalAlignment="Center">
 
@@ -138,10 +138,9 @@
 			</Grid>
 
 			<!-- Loading -->
-			<Grid Visibility="{Binding Show.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-				  Background="{ThemeResource AppBackgroundBrush}"
-				  DataContext="{Binding Show}"
-				  Grid.Row="1">
+			<Grid DataContext="{Binding Show}"
+				  Visibility="{Binding Show.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+				  Background="{ThemeResource AppBackgroundBrush}">
 				<StackPanel VerticalAlignment="Center"
 							HorizontalAlignment="Center">
 
