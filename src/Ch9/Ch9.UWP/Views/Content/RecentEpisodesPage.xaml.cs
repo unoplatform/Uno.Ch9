@@ -25,7 +25,7 @@ namespace Ch9.Views
 
 			DataContext = new RecentEpisodesPageViewModel();
 
-			EpisodeList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
+			//EpisodeList.RegisterPropertyChangedCallback(ItemsControl.ItemsSourceProperty, OnItemsSourceChanged);
 		}
 
 		public RecentEpisodesPageViewModel ViewModel => DataContext as RecentEpisodesPageViewModel;
