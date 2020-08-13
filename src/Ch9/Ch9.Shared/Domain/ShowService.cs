@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using Windows.Networking.Connectivity;
 using Ch9.Domain;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -67,11 +68,19 @@ namespace Ch9
 			}
 	        catch (Exception e)
 	        {
-				this.Log().Warn("Couldn't load the shows. Fallbacking on the default shows.", e);
+		        if (!IsInternetAvailable()) throw;
 
+		        this.Log().Warn("Couldn't load the shows. Fallbacking on the default shows.", e);
 		        return GetFallbackShowFeeds();
 	        }
-        } 
+
+	        bool IsInternetAvailable()
+	        {
+		        var profile = NetworkInformation.GetInternetConnectionProfile();
+		        var level = profile?.GetNetworkConnectivityLevel();
+		        return level == NetworkConnectivityLevel.InternetAccess;
+	        }
+		} 
 
         /// <inheritdoc/>
         public async Task<Show> GetShow(SourceFeed sourceFeed = null)
