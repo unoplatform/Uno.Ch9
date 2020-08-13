@@ -95,6 +95,7 @@
 
 		<Grid Grid.Row="1">
 			<ctoolkit:MasterDetailsView ItemsSource="{Binding Show.Episodes}"
+										ItemContainerStyle="{StaticResource EpisodeListViewItemStyle}"
 										ItemTemplate="{StaticResource EpisodeItemTemplate}"
 										DetailsTemplate="{StaticResource DetailsTemplate}"
 										NoSelectionContentTemplate="{StaticResource NoSelectionTemplate}"

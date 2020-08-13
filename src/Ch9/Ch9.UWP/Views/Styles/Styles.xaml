@@ -22,6 +22,7 @@
 		<ResourceDictionary Source="ms-appx:///Views/Styles/Controls/NavigationView_PaneToggleButton.xaml" />
 		<ResourceDictionary Source="ms-appx:///Views/Styles/Controls/NavigationViewItemSeparator.xaml" />
 		<ResourceDictionary Source="ms-appx:///Views/Styles/Controls/NavigationView_SplitView.xaml" />
+		<ResourceDictionary Source="ms-appx:///Views/Styles/Controls/MasterDetailsView.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

@@ -140,7 +140,7 @@
     <PackageReference Include="Microsoft.UI.Xaml" Version="2.4.2" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
     <PackageReference Include="Uno.Material" Version="1.0.0-dev.481" />
-		<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0-preview2" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0-preview2" />
     <PackageReference Include="Uno.UI" Version="3.0.0-dev.1549" />
     <PackageReference Include="WindowsStateTriggers" Version="1.1.0" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI" Version="6.0.0" />
@@ -208,7 +208,7 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-		<ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
@@ -275,6 +275,10 @@
     <Page Include="Views\Styles\Controls\ListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Styles\Controls\MasterDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Styles\Controls\MediaPlayerElement.xaml">
       <Generator>MSBuild:Compile</Generator>
