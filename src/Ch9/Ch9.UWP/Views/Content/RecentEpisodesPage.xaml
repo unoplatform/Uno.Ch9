@@ -27,7 +27,7 @@
             |    List   |   Content  |     |     List    |     |             |
             | - - - - - - - - - - - -|     | - - - - - - |     | - - - - - - | 
         -->
-		
+
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
@@ -134,7 +134,7 @@
 					   Style="{StaticResource MaterialHeadline6}"
 					   FontWeight="Normal" />
 		</Grid>
-		
+
 		<!-- Episodes list -->
 		<Grid DataContext="{Binding Show}"
 			  Grid.Row="1"
@@ -232,22 +232,23 @@
 				<!-- Presenter -->
 				<ScrollViewer>
 
-					<!-- Episode -->
-					<local:EpisodeContent DataContext="{Binding SelectedEpisode}"
+					<Grid>
+						<!-- Episode -->
+						<local:EpisodeContent DataContext="{Binding SelectedEpisode}"
 										  VerticalAlignment="Top" />
+						<!-- Dismiss button -->
+						<Button x:Name="DismissButton"
+						        Command="{Binding DismissSelectedEpisode}"
+						        Style="{StaticResource MediaPlayerButtonStyle}"
+						        HorizontalAlignment="Right"
+						        VerticalAlignment="Top"
+						        Margin="8,8,16,8">
+							<Path Style="{StaticResource CloseIconPath}"
+							      Data="M21.976 2.438L23.563 4.024 14.586 13 23.563 21.976 21.976 23.563 13 14.586 4.024 23.563 2.438 21.976 11.413 13 2.438 4.024 4.024 2.438 13 11.413z"
+							      VerticalAlignment="Center" />
+						</Button>
+					</Grid>
 				</ScrollViewer>
-
-				<!-- Dismiss button -->
-				<Button x:Name="DismissButton"
-						Command="{Binding DismissSelectedEpisode}"
-						Style="{StaticResource MediaPlayerButtonStyle}"
-						HorizontalAlignment="Right"
-						VerticalAlignment="Top"
-						Margin="8,8,16,8">
-					<Path Style="{StaticResource CloseIconPath}"
-						  Data="M21.976 2.438L23.563 4.024 14.586 13 23.563 21.976 21.976 23.563 13 14.586 4.024 23.563 2.438 21.976 11.413 13 2.438 4.024 4.024 2.438 13 11.413z"
-						  VerticalAlignment="Center" />
-				</Button>
 			</Grid>
 		</Grid>
 
