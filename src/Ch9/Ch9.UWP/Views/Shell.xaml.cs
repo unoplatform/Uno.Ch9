@@ -167,6 +167,8 @@ namespace Ch9
 				if (frame.Content.GetType() == targetPageType)
 				{
 					// We're trying to navigate to the same item; ignore.
+					//Close the pan to avoid any flickering
+					RootNavigationView.IsPaneOpen = false;
 					return;
 				}
 				else if (targetPageType == rootPageType)
