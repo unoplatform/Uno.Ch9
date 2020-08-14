@@ -13,14 +13,29 @@ jobs:
       downloadType: single
       artifactName: Release_Android
 
-  - task: AndroidSigning@3
-    displayName: 'Signing and aligning APK file(s) $(System.ArtifactsDirectory)/Release_Android/*.apk'
+  - task: DownloadSecureFile@1
+    name: keyStore
+    displayName: "Download keystore from secure files"
     inputs:
-      apkFiles: '$(System.ArtifactsDirectory)/Release_Android/*.apk'
-      apksignerKeystoreFile: ch9.jks
-      apksignerKeystorePassword: '$(AndroidSigningStorePass)'
-      apksignerKeystoreAlias: '$(AndroidSigningKeyAlias)'
-      apksignerKeyPassword: '$(AndroidSigningKeyPass)'
+      secureFile: ch9.jks
+
+  # - task: AndroidSigning@3
+  #   displayName: 'Signing and aligning APK file(s) $(System.ArtifactsDirectory)/Release_Android/*.apk'
+  #   inputs:
+  #     apkFiles: '$(System.ArtifactsDirectory)/Release_Android/*.apk'
+  #     apksignerKeystoreFile: ch9.jks
+  #     apksignerKeystorePassword: '$(AndroidSigningStorePass)'
+  #     apksignerKeystoreAlias: '$(AndroidSigningKeyAlias)'
+  #     apksignerKeyPassword: '$(AndroidSigningKeyPass)'
+
+  - task: AabConvertToUniversalApk@1
+    inputs:
+      aabFilePath: '$(System.ArtifactsDirectory)/Release_Android/uno.platform.ch9.aab'
+      keystoreFilePath: '$(keyStore.secureFilePath)'
+      keystorePassword: '$(AndroidSigningStorePass)'
+      keystoreAlias: '$(AndroidSigningKeyAlias)'
+      keystoreAliasPassword: '$(AndroidSigningKeyPass)'
+      outputFolder: '$(System.ArtifactsDirectory)/Release_Android'
 
   - task: AppCenterDistribute@3
     displayName: 'Deploy Android to Visual Studio App Center'
