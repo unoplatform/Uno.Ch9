@@ -67,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Uno.Material" Version="1.0.0-dev.481" />
-		<PackageReference Include="Uno.UI" Version="3.0.0-dev.1549" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.1549" />
     <PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1493" />
     <PackageReference Include="Com.Airbnb.Android.Lottie" Version="3.4.2" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
@@ -178,9 +178,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values-night\colors.xml" />
   </ItemGroup>
-	<ItemGroup>
-		<AndroidAotProfile Include="$(MSBuildThisFileDirectory)custom.aprof" />
-	</ItemGroup>
+  <ItemGroup>
+    <AndroidAotProfile Include="$(MSBuildThisFileDirectory)custom.aprof" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Ch9.UWP\App.xaml.cs" />
     <ApplicationDefinition Include="..\Ch9.UWP\App.xaml" Visible="False" />
