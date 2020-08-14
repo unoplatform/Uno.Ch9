@@ -13,23 +13,10 @@ jobs:
       downloadType: single
       artifactName: Release_Android
 
-  - task: DownloadSecureFile@1
-    name: keyStore
-    displayName: "Download keystore from secure files"
-    inputs:
-      secureFile: ch9.jks
-
-  - task: Bash@3
-    displayName: "Build and sign App Bundle"
-    inputs:
-      targetType: "inline"
-      script: |
-        jarsigner.exe -keystore $(keyStore.secureFilePath) -storepass $(AndroidSigningStorePass) -keypass $(AndroidSigningKeyPass) -digestalg SHA-256 -sigalg SHA256withRSA $(System.ArtifactsDirectory)/Release_Android/uno.platform.ch9.aab $(AndroidSigningKeyAlias)
-
-  - task: ms-vsclient.google-play.google-play-release.GooglePlayRelease@3
-    displayName: 'Release ARM64 and ARM7 to internal'
+  - task: GooglePlayReleaseBundle@3
+    displayName: 'Publish to PlayStore internal track'
     inputs:
       serviceConnection: Ch9
-      apkFile: '$(System.ArtifactsDirectory)/Release_Android/uno.platform.ch9.aab'
+      bundleFile: '$(System.ArtifactsDirectory)/Release_Android/uno.platform.ch9-Signed.aab'
+      applicationId: '$(AndroidApplicationId)'
       languageCode: 'en-CA'
-      # additionalApks: '$(System.ArtifactsDirectory)/Release_Android/uno.platform.ch9.apk'

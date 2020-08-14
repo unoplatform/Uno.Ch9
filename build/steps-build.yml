@@ -31,6 +31,12 @@
     verbosityRestore: Normal
     noCache: true
 
+- task: DownloadSecureFile@1
+  name: keyStore
+  displayName: "Download keystore from secure files"
+  inputs:
+    secureFile: ch9.jks
+
 - task: MSBuild@1
   displayName: 'Build solution in $(ApplicationConfiguration) | $(ApplicationPlatform)'
   inputs:
@@ -40,7 +46,7 @@
     msbuildArchitecture: x86
     configuration: $(ApplicationConfiguration)
     platform: $(ApplicationPlatform)
-    msbuildArguments: '/p:PackageCertificatePassword="$(UWPCertificatePassword)"'
+    msbuildArguments: '/p:PackageCertificatePassword="$(UWPCertificatePassword)" /p:AndroidSigningKeyStore=$(keyStore.secureFilePath) /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidKeyStore=true'
     clean: false
     maximumCpuCount: true
     restoreNugetPackages: false
