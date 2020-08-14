@@ -166,6 +166,13 @@ namespace Ch9
 			{
 				if (frame.Content.GetType() == targetPageType)
 				{
+#if !__WASM__ && !__MACOS__
+					//Close the pan to avoid any flickering
+					if (Xamarin.Essentials.DeviceInfo.Idiom == Xamarin.Essentials.DeviceIdiom.Phone)
+					{
+						RootNavigationView.IsPaneOpen = false;
+					}
+#endif
 					// We're trying to navigate to the same item; ignore.
 					//Close the pan to avoid any flickering
 					RootNavigationView.IsPaneOpen = false;
