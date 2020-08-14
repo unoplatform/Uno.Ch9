@@ -35,7 +35,6 @@ jobs:
       keystorePassword: '$(AndroidSigningStorePass)'
       keystoreAlias: '$(AndroidSigningKeyAlias)'
       keystoreAliasPassword: '$(AndroidSigningKeyPass)'
-      outputFolder: '$(System.ArtifactsDirectory)/Release_Android'
 
   - task: AppCenterDistribute@3
     displayName: 'Deploy Android to Visual Studio App Center'
