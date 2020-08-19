@@ -26,6 +26,15 @@ A release is [available online](https://ch9.platform.uno/)
 
 ---
 
+## Version 1.0.6
+
+- Activated PG-AOT for Android 
+- Added AAB support for Android (updated pipelines .yaml)
+- Updated versionning through assembly info from GitVersion
+- Architecture Paradigm : Added MVVM Toolkit and removed MVVMLight
+- Switched Xamarin.Essentials internet check with the one in Uno 
+- Various UI bug fixing and improvements
+
 ## Version 1.0.5
 
 - Replaces in-app styles to use Material styles.
