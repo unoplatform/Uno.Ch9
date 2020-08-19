@@ -1,4 +1,4 @@
-<Project>
+﻿<Project>
   <!--
 	The targets in this file copy the output binaries of the different heads to a specific folder.
 	
@@ -7,12 +7,17 @@
 	
 	The ApplicationOutputPath MSBuild variable will then be used as the target folder for the copy. If it is not set, the copy will be skipped.
 	-->
+  <Target Name="_CopyApplicationPackagesForPublishing"
+          AfterTargets="Build"
+          DependsOnTargets="SignAndroidPackage"
+          Condition="'$(BuildingInsideVisualStudio)' == '' and '$(ApplicationOutputPath)' != '' and '$(AndroidApplication)' == 'true'">
+	  <Copy SourceFiles="@(ApkAbiFilesAligned)"
+	        Condition="'$(AndroidPackageFormat)' != 'aab'"
+	        DestinationFiles="@(ApkAbiFilesAligned->'$(ApplicationOutputPath)\%(RecursiveDir)%(Filename)%(Extension)')" />
 
-  <Target Name="_CopyAndroidPackagesForPublishing"
-		  AfterTargets="SignAndroidPackage"
-		  Condition="'$(ApplicationOutputPath)'!='' and '$(AndroidApplication)'=='true'">
-	<Copy SourceFiles="@(ApkAbiFilesAligned)"
-		DestinationFiles="@(ApkAbiFilesAligned->'$(ApplicationOutputPath)\%(RecursiveDir)%(Filename)%(Extension)')" />
+	  <Copy SourceFiles="$(_AabFileSigned)"
+	        Condition="'$(AndroidPackageFormat)' == 'aab'"
+	        DestinationFolder="$(ApplicationOutputPath)" />
   </Target>
 
   <Target Name="_CopyUWPPackagesForPublishing"

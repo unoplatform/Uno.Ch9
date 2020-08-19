@@ -13,21 +13,29 @@ jobs:
       downloadType: single
       artifactName: Release_Android
 
-  - task: AndroidSigning@3
-    displayName: 'Signing and aligning APK file(s) $(System.ArtifactsDirectory)/Release_Android/*.apk'
+  - task: DownloadSecureFile@1
+    name: keyStore
+    displayName: "Download keystore from secure files"
     inputs:
-      apkFiles: '$(System.ArtifactsDirectory)/Release_Android/*.apk'
-      apksignerKeystoreFile: ch9.jks
-      apksignerKeystorePassword: '$(AndroidSigningStorePass)'
-      apksignerKeystoreAlias: '$(AndroidSigningKeyAlias)'
-      apksignerKeyPassword: '$(AndroidSigningKeyPass)'
+      secureFile: ch9.jks
+
+  - task: InstallBundletool@1
+
+  - task: AabConvertToUniversalApk@1
+    inputs:
+      aabFilePath: '$(System.ArtifactsDirectory)/Release_Android/uno.platform.ch9-Signed.aab'
+      keystoreFilePath: '$(keyStore.secureFilePath)'
+      keystorePassword: '$(AndroidSigningStorePass)'
+      keystoreAlias: '$(AndroidSigningKeyAlias)'
+      keystoreAliasPassword: '$(AndroidSigningKeyPass)'
+      outputFolder: '$(Build.SourcesDirectory)/tmp'
 
   - task: AppCenterDistribute@3
     displayName: 'Deploy Android to Visual Studio App Center'
     inputs:
       serverEndpoint: 'Uno AppCenter'
       appSlug: 'uno-platform/Ch9-1'
-      appFile: '$(System.ArtifactsDirectory)/Release_Android/uno.platform.ch9-Signed.apk'
+      appFile: '$(Build.SourcesDirectory)/tmp/*.apk'
       symbolsOption: Android
       releaseNotesInput: 'CI build'
       isSilent: true

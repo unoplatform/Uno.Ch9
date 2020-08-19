@@ -171,9 +171,9 @@
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
 
-		<Grid Height="48"
+		<Grid Height="40"
 			  x:Name="CommandBar"
-			  Padding="48,0,0,0"
+			  Padding="52,0,0,0"
 			  Grid.ColumnSpan="2">
 		</Grid>
 
@@ -209,7 +209,7 @@
 			<!-- Empty List Message -->
 			<TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
 					   Text="Nothing to show"
-					   x:Uid="MainPage_EmptyListMessage"
+					   x:Uid="EmptyListMessage"
 					   Style="{StaticResource MaterialHeadline6}"
 					   TextAlignment="Center"
 					   VerticalAlignment="Center"
@@ -233,14 +233,14 @@
 
 				<!-- Title -->
 				<TextBlock Text="No video selected"
-						   x:Uid="MainPage_NoSelectionTitle"
+						   x:Uid="NoSelectionTitle"
 						   Style="{StaticResource MaterialHeadline6}"
 						   TextAlignment="Center"
 						   Margin="32,16,32,0" />
 
 				<!-- Message -->
 				<TextBlock Text="Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!"
-						   x:Uid="MainPage_NoSelectionMessage"
+						   x:Uid="NoSelectionMessage"
 						   Style="{StaticResource MaterialBody1}"
 						   TextAlignment="Center"
 						   MaxWidth="380"
@@ -264,25 +264,23 @@
 			<!-- Presenter -->
 			<ScrollViewer>
 
-				<!-- Episode -->
-				<local:EpisodeContent DataContext="{Binding SelectedEpisode}"
-									  VerticalAlignment="Top" />
+				<Grid>
+					<!-- Episode -->
+					<local:EpisodeContent DataContext="{Binding SelectedEpisode}"
+					                      VerticalAlignment="Top" />
+					<!-- Dismiss button -->
+					<Button x:Name="DismissButton"
+					        Command="{Binding DismissSelectedEpisode}"
+					        Style="{StaticResource MediaPlayerButtonStyle}"
+					        HorizontalAlignment="Right"
+					        VerticalAlignment="Top"
+					        Margin="8,8,16,8">
+						<Path Style="{StaticResource CloseIconPath}"
+						      Data="M21.976 2.438L23.563 4.024 14.586 13 23.563 21.976 21.976 23.563 13 14.586 4.024 23.563 2.438 21.976 11.413 13 2.438 4.024 4.024 2.438 13 11.413z"
+						      VerticalAlignment="Center" />
+					</Button>
+				</Grid>
 			</ScrollViewer>
-
-			<Grid>
-
-				<!-- Dismiss button -->
-				<Button x:Name="DismissButton"
-						Command="{Binding DismissSelectedEpisode}"
-						Style="{StaticResource MediaPlayerButtonStyle}"
-						HorizontalAlignment="Right"
-						VerticalAlignment="Top"
-						Margin="8,8,16,8">
-					<Path Style="{StaticResource CloseIconPath}"
-						  Data="M21.976 2.438L23.563 4.024 14.586 13 23.563 21.976 21.976 23.563 13 14.586 4.024 23.563 2.438 21.976 11.413 13 2.438 4.024 4.024 2.438 13 11.413z"
-						  VerticalAlignment="Center" />
-				</Button>
-			</Grid>
 		</Grid>
 
 		<!-- Error -->
@@ -316,7 +314,7 @@
 
 				<!-- Reload button -->
 				<Button Content="Try Again"
-						x:Uid="MainPage_ErrorStateButtonLabel"
+						x:Uid="ErrorStateButtonLabel"
 						Command="{Binding ReloadPage}"
 						Style="{StaticResource MaterialContainedButtonStyle}"
 						HorizontalAlignment="Center"
@@ -351,7 +349,7 @@
 
 				<!-- Loading Message -->
 				<TextBlock Text="Loading..."
-						   x:Uid="MainPage_Loading"
+						   x:Uid="Loading"
 						   Style="{StaticResource MaterialHeadline5}"
 						   TextAlignment="Center" />
 			</StackPanel>

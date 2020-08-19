@@ -12,13 +12,14 @@
 					xmlns:xamarin="http://uno.ui/xamarin"
 					xmlns:converters="using:Uno.Material.Converters"
 					xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives"
+					xmlns:material="using:Uno.Material.Controls"
 					mc:Ignorable="d ios android wasm not_win xamarin primitives">
 
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="../Application/Colors.xaml" />
-		<ResourceDictionary Source="ms-appx:///Styles/Controls/NavigationView_PaneToggleButton.xaml" />
-		<ResourceDictionary Source="ms-appx:///Styles/Controls/NavigationViewItemSeparator.xaml" />
-		<ResourceDictionary Source="ms-appx:///Styles/Controls/NavigationView_SplitView.xaml" />
+		<ResourceDictionary Source="ms-appx:///Views/Styles/Controls/NavigationView_PaneToggleButton.xaml" />
+		<ResourceDictionary Source="ms-appx:///Views/Styles/Controls/NavigationViewItemSeparator.xaml" />
+		<ResourceDictionary Source="ms-appx:///Views/Styles/Controls/NavigationView_SplitView.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 	<x:Double x:Key="NavDrawersFontSize">14</x:Double>
@@ -1230,12 +1231,7 @@
 												Value="1" />
 									</VisualState.Setters>
 								</VisualState>
-								<VisualState x:Name="Pressed">
-									<VisualState.Setters>
-										<Setter Target="PressedOverlay.Opacity"
-												Value="1" />
-									</VisualState.Setters>
-								</VisualState>
+								<VisualState x:Name="Pressed" />
 								<VisualState x:Name="Selected">
 									<VisualState.Setters>
 										<Setter Target="LayoutRoot.Background"
@@ -1260,8 +1256,6 @@
 								</VisualState>
 								<VisualState x:Name="PressedSelected">
 									<VisualState.Setters>
-										<Setter Target="PressedOverlay.Opacity"
-												Value="1" />
 										<Setter Target="LayoutRoot.Background"
 												Value="{StaticResource NavDrawersSelectedBrush}" />
 										<Setter Target="ContentPresenter.Foreground"
@@ -1327,9 +1321,10 @@
 								Background="{StaticResource MaterialOnSurfaceHoverBrush}"
 								Opacity="0" />
 
-						<Border x:Name="PressedOverlay"
-								Background="{StaticResource MaterialOnSurfacePressedBrush}"
-								Opacity="0" />
+						<material:Ripple Feedback="{StaticResource RippleOnSurfaceColorBrush}"
+										 FeedbackOpacity="{StaticResource MaterialPressedOpacity}"
+										 Padding="{TemplateBinding Padding}"
+										 AutomationProperties.AccessibilityView="Raw" />
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>

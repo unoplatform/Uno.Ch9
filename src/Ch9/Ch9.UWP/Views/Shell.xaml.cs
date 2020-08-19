@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Ch9.ViewModels;
 using Ch9.Views;
 using Windows.Foundation;
@@ -165,7 +166,16 @@ namespace Ch9
 			{
 				if (frame.Content.GetType() == targetPageType)
 				{
+#if !__WASM__ && !__MACOS__
+					//Close the pan to avoid any flickering
+					if (Xamarin.Essentials.DeviceInfo.Idiom == Xamarin.Essentials.DeviceIdiom.Phone)
+					{
+						RootNavigationView.IsPaneOpen = false;
+					}
+#endif
 					// We're trying to navigate to the same item; ignore.
+					//Close the pan to avoid any flickering
+					RootNavigationView.IsPaneOpen = false;
 					return;
 				}
 				else if (targetPageType == rootPageType)
@@ -218,15 +228,7 @@ namespace Ch9
 
 		private void OnNavigationViewBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
 		{
-
-			if (_activeFrame?.CanGoBack ?? false)
-			{
-				_activeFrame.GoBack();
-
-				UpdateBackButtonVisibility();
-
-				Navigated?.Invoke(this, _activeFrame);
-			}
+			TryHandleBackRequested();
 		}
 
 		private void OnNavigationViewItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -239,30 +241,36 @@ namespace Ch9
 
 		private void OnBackRequested(object sender, BackRequestedEventArgs e)
 		{
-			if (TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.TryHandleBackRequested())
+			if (TryHandleBackRequested())
 			{
 				e.Handled = true;
+			}
+		}
 
-				return;
+		private bool TryHandleBackRequested()
+		{
+			if (TryGetActiveViewModel<ShowPageViewModel>(out var showPage) && showPage.TryHandleBackRequested())
+			{
+				return true;
 			}
 
 			if (TryGetActiveViewModel<RecentEpisodesPageViewModel>(out var recentEpisodesPage) && recentEpisodesPage.TryHandleBackRequested())
 			{
-				e.Handled = true;
-
-				return;
+				return true;
 			}
 
 			if (_activeFrame?.CanGoBack ?? false)
 			{
-				e.Handled = true;
-
-				_activeFrame.GoBack();
+				GoBackAndClearDataContext(_activeFrame);
 
 				UpdateBackButtonVisibility();
 
 				Navigated?.Invoke(this, _activeFrame);
+
+				return true;
 			}
+
+			return false;
 		}
 
 		private void UpdateBackButtonVisibility()
@@ -288,7 +296,26 @@ namespace Ch9
 
 			for (var i = 0; i < backStack; i++)
 			{
-				frame.GoBack();
+				GoBackAndClearDataContext(frame);
+			}
+		}
+
+		private void GoBackAndClearDataContext(Frame frame)
+		{
+			var content = frame.Content as FrameworkElement;
+
+			frame.GoBack();
+
+			if (content != null)
+			{
+				_ = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+				{
+					// Give some time to the frame to complete any pending animations.
+					await Task.Delay(1000);
+
+					// Reset the DataContext, this will allow any GC collection to be realized.
+					content.DataContext = null;
+				});
 			}
 		}
 	}

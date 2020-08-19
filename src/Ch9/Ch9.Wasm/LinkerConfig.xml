@@ -4,6 +4,7 @@
 		<type fullname="System.Linq.Expressions*" />
 	</assembly>
 	<assembly fullname="Ch9.Wasm" />
+	<assembly fullname="WebAssembly.Bindings" />
 	<assembly fullname="System.Xml.Linq">
 		<type fullname="System.Xml.Linq.XElement" />
 	</assembly>

@@ -56,13 +56,13 @@
 			</VisualStateGroup>
 		</VisualStateManager.VisualStateGroups>
 
-		<Grid Height="48"
+		<Grid Height="40"
 			  x:Name="CommandBar"
-			  Padding="48,0,0,0">
+			  Padding="52,0,0,0">
 			<TextBlock x:Name="CommandBarTitle"
 					   Text="Shows"
+					   x:Uid="ShowsPage_CommandBar"
 					   VerticalAlignment="Center"
-					   Margin="0,0,0,5"
 					   Style="{StaticResource MaterialHeadline6}"
 					   FontWeight="Normal" />
 		</Grid>
@@ -120,7 +120,7 @@
 
 				<!-- Reload button -->
 				<Button Content="Try Again"
-						x:Uid="MainPage_ErrorStateButtonLabel"
+						x:Uid="ErrorStateButtonLabel"
 						Command="{Binding ReloadShowsList}"
 						Style="{StaticResource MaterialContainedButtonStyle}"
 						HorizontalAlignment="Center"
@@ -145,7 +145,7 @@
 
 				<!-- Loading Message -->
 				<TextBlock Text="Loading..."
-						   x:Uid="MainPage_Loading"
+						   x:Uid="Loading"
 						   Style="{StaticResource MaterialHeadline5}"
 						   TextAlignment="Center" />
 			</StackPanel>

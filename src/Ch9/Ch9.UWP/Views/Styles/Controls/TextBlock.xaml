@@ -3,7 +3,7 @@
 					xmlns:local="using:Ch9.Shared.Styles.Controls">
 
 	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="ms-appx:///Styles/Application/Colors.xaml" />
+		<ResourceDictionary Source="ms-appx:///Views/Styles/Application/Colors.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 	<!--

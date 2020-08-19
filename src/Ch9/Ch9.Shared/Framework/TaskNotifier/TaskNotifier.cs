@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Networking.Connectivity;
 
 namespace Ch9
 {
@@ -28,12 +29,11 @@ namespace Ch9
 			{
 				RunTask(task);
 			}
-#if !__WASM__ && !__MACOS__
-			else if (task.IsFaulted && Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+
+			else if (task.IsFaulted && !IsInternetAvailable())
 			{
 				IsInternetFaulted = true;
 			}
-#endif
 		}
 
 		/// <inheritdoc />
@@ -94,13 +94,11 @@ namespace Ch9
 
 					if (task.IsFaulted)
 					{
-#if !__WASM__ && !__MACOS__
-						if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+						if (!IsInternetAvailable())
 						{
 							IsInternetFaulted = true;
 							PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsInternetFaulted)));
 						}
-#endif
 
 						Console.Error.WriteLine(task.Exception);
 						_onFaulted?.Invoke(task.Exception);
@@ -120,6 +118,13 @@ namespace Ch9
 #endif
 				},
 				scheduler: _dispatcherTaskScheduler ?? GetDefaultScheduler());
+		}
+
+		private bool IsInternetAvailable()
+		{
+			var profile = NetworkInformation.GetInternetConnectionProfile();
+			var level = profile?.GetNetworkConnectivityLevel();
+			return level == NetworkConnectivityLevel.InternetAccess;
 		}
 	}
 }

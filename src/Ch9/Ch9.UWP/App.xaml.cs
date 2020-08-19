@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,6 +21,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Ch9.ViewModels;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
 #if !__MACOS__
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -47,8 +47,6 @@ namespace Ch9
 		private Shell _shell;
 		private bool _isActivityBackgroundCleared;
 
-		public static SimpleIoc ServiceProvider { get; } = SimpleIoc.Default;
-
 		public App()
 		{
 			Instance = this;
@@ -71,9 +69,9 @@ namespace Ch9
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
 		{
 			this.Resources.MergedDictionaries.Add(new Uno.Material.MaterialColorPalette());
-			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Styles/Application/Colors.xaml") });
+			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Styles/Application/Colors.xaml") });
 			this.Resources.MergedDictionaries.Add(new Uno.Material.MaterialResources());
-			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Styles/Styles.xaml") });
+			this.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Views/Styles/Styles.xaml") });
 
 #if DEBUG
 			if (System.Diagnostics.Debugger.IsAttached)
@@ -87,7 +85,7 @@ namespace Ch9
 			// just ensure that the window is active
 			if (_shell == null)
 			{
-				_startup.Initialize(ServiceProvider);
+				_startup.Initialize(Ioc.Default);
 
 				ConfigureViewSize();
 				ConfigureStatusBar();

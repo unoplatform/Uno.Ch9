@@ -47,12 +47,18 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>Full</AndroidLinkMode>
     <AndroidLinkSkip>$(AssemblyName)</AndroidLinkSkip>
-    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AotAssemblies>true</AotAssemblies>
+    <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
+    <AndroidUseDefaultAotProfile>false</AndroidUseDefaultAotProfile>
     <AndroidAotAdditionalArguments>nodebug,no-write-symbols</AndroidAotAdditionalArguments>
     <EnableLLVM>true</EnableLLVM>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidLinkTool>r8</AndroidLinkTool>
+    <AndroidPackageFormat>aab</AndroidPackageFormat>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -65,13 +71,14 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Uno.Material" Version="1.0.0-dev.481" />
+    <PackageReference Include="Uno.UI" Version="3.0.0-dev.1549" />
     <PackageReference Include="Uno.UI.Lottie" Version="3.0.0-dev.1493" />
     <PackageReference Include="Com.Airbnb.Android.Lottie" Version="3.4.2" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
-    <PackageReference Include="Uno.GalaSoft.MvvmLight.Platform" Version="5.4.0-uno.134" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0-preview2" />
     <PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.132" />
     <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.186.g928c99f74d" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
@@ -82,7 +89,7 @@
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.1.0" />
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4" Version="1.0.0" />
     <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.1.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -174,6 +181,21 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values-night\colors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAotProfile Include="$(MSBuildThisFileDirectory)custom.aprof" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Ch9.UWP\App.xaml.cs" />
+    <ApplicationDefinition Include="..\Ch9.UWP\App.xaml" Visible="False" />
+    <Page Include="..\Ch9.UWP\Views\**\*.xaml" Visible="False">
+      <Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="..\Ch9.UWP\Views\**\*.cs" Visible="False">
+      <Link>Views\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup />
   <Import Project="..\Ch9.Shared\Ch9.Shared.projitems" Label="Shared" Condition="Exists('..\Ch9.Shared\Ch9.Shared.projitems')" />

@@ -1,27 +1,31 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Http;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Ch9
 {
 	public class Startup
 	{
-		public void Initialize(SimpleIoc serviceProvider)
+		public void Initialize(Ioc ioc)
 		{
-			InitializeHttpClient(serviceProvider);
-			InitializeBusinessServices(serviceProvider);
+			ioc.ConfigureServices(services =>
+			{
+				InitializeHttpClient(services);
+				InitializeBusinessServices(services);
+			});
 		}
 
-		private void InitializeBusinessServices(SimpleIoc serviceProvider)
+		private void InitializeBusinessServices(IServiceCollection serviceProvider)
 		{
-			serviceProvider.Register<IShowService>(() => new ShowService(serviceProvider.GetInstance<HttpClient>()));
+			serviceProvider.AddSingleton<IShowService, ShowService>();
 		}
 
-		private void InitializeHttpClient(SimpleIoc serviceProvider)
+		private void InitializeHttpClient(IServiceCollection serviceProvider)
 		{
-			serviceProvider.Register(() =>
+			serviceProvider.AddTransient(s =>
 			{
 				var client = HttpUtility.CreateHttpClient();
 

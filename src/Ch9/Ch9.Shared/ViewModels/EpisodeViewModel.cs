@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +10,7 @@ namespace Ch9.ViewModels
 	[Windows.UI.Xaml.Data.Bindable]
 	public class EpisodeViewModel
 	{
-		public EpisodeViewModel(ViewModelBase parent, Episode episode)
+		public EpisodeViewModel(ObservableObject parent, Episode episode)
 		{
 			Parent = parent;
 			Episode = episode;
@@ -22,7 +22,7 @@ namespace Ch9.ViewModels
 
 		public EpisodeViewModel() { }
 
-		public ViewModelBase Parent { get; }
+		public ObservableObject Parent { get; }
 
 		public Episode Episode { get; }
 		
