@@ -89,7 +89,7 @@
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.1.0" />
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4" Version="1.0.0" />
     <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.1.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
