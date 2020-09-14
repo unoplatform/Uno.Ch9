@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using GalaSoft.MvvmLight.Ioc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +22,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Ch9.ViewModels;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
 #if !__MACOS__
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -31,6 +31,9 @@ using Uno.Extensions;
 using Uno.Logging;
 #if !__WASM__ && !__MACOS__
 using Xamarin.Essentials;
+#endif
+#if __ANDROID__
+using Uno.Foundation.Extensibility;
 #endif
 
 namespace Ch9
@@ -57,6 +60,10 @@ namespace Ch9
 			_startup = new Startup();
 
 			ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
+#if __ANDROID__
+			ApiExtensibility.Register(typeof(IApplicationViewSpanningRects), o => new Ch9.Views.DuoApplicationViewSpanningRects(o));
+			ApiExtensibility.Register(typeof(Uno.Devices.Sensors.INativeHingeAngleSensor), o => new Ch9.Views.DuoHingeAngleSensor(o));
+#endif
 
 			this.InitializeComponent();
 			ConfigureSuspension();
@@ -189,7 +196,9 @@ namespace Ch9
 #if !__WASM__ && !__MACOS__
 			if (DeviceInfo.Idiom == DeviceIdiom.Phone)
 			{
-				DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
+				// TODO: Count number of regions
+
+				DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait | DisplayOrientations.Landscape;
 			}
 #endif
 

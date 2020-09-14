@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -14,6 +13,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Uno.UI;
+using TwoPaneViewPriority = Microsoft.UI.Xaml.Controls.TwoPaneViewPriority;
 
 namespace Ch9.Views
 {
@@ -47,6 +48,13 @@ namespace Ch9.Views
 			{
 				listView.SelectedIndex = 0;
 			}
+		}
+
+		private void OnSelectedEpisodeChanged(object sender, SelectionChangedEventArgs e)
+		{
+			PaneView.PanePriority = e.AddedItems.Any()
+				? TwoPaneViewPriority.Pane2
+				: TwoPaneViewPriority.Pane1;
 		}
 	}
 }

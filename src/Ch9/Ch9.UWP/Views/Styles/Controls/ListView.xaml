@@ -235,8 +235,7 @@
 					<Grid x:Name="ContentBorder"
 						  Background="{TemplateBinding Background}"
 						  BorderBrush="{TemplateBinding BorderBrush}"
-						  BorderThickness="{TemplateBinding BorderThickness}"
-						  MaxWidth="395">
+						  BorderThickness="{TemplateBinding BorderThickness}">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal" />

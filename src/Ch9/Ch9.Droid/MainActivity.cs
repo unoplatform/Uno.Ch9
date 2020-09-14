@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Content.PM;
+using Android.Content.Res;
 using Android.Views;
 using Xamarin.Essentials;
 using Uno.UI;
@@ -15,7 +16,7 @@ namespace Ch9.Droid
 		MainLauncher = true,
 		ConfigurationChanges = ActivityHelper.AllConfigChanges,
 		WindowSoftInputMode = SoftInput.AdjustNothing | SoftInput.StateHidden,
-		ResizeableActivity = false,
+		ResizeableActivity = true,
 		LaunchMode = LaunchMode.SingleTask
 	)]
 	public class MainActivity : Windows.UI.Xaml.ApplicationActivity
