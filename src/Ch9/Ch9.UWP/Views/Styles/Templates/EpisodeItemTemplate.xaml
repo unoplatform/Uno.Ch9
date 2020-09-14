@@ -45,7 +45,7 @@
 	</DataTemplate>
 
 	<DataTemplate x:Key="SampleImageTemplate">
-		<Grid Height="200">
+		<Grid>
 			<Image Source="{Binding ImageUri}"
 				   Stretch="UniformToFill" />
 

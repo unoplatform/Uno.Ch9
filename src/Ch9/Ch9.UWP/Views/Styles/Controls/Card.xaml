@@ -2,6 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:material="using:Uno.Material.Controls"
+	xmlns:triggers="using:WindowsStateTriggers"
     xmlns:toolkit="using:Uno.UI.Toolkit">
 
 	<!-- Card ToggleButton Variables -->
@@ -18,10 +19,6 @@
 	<Style x:Key="CustomMaterialCard"
 		   TargetType="material:Card">
 
-		<Setter Property="MinHeight"
-				Value="72" />
-		<Setter Property="MaxWidth"
-				Value="344" />
 		<Setter Property="Padding"
 				Value="16,14" />
 		<Setter Property="Background"
@@ -48,17 +45,14 @@
 				<ControlTemplate TargetType="material:Card">
 					<!-- Elevated View -->
 					<toolkit:ElevatedView x:Name="ElevatedRoot"
-										  MinWidth="{TemplateBinding MinWidth}"
-										  MinHeight="{TemplateBinding MinHeight}"
-										  MaxWidth="{TemplateBinding MaxWidth}"
-										  MaxHeight="{TemplateBinding MaxHeight}"
 										  Margin="{TemplateBinding Margin}"
 										  Background="{TemplateBinding Background}"
 										  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
 										  VerticalAlignment="{TemplateBinding VerticalAlignment}"
 										  CornerRadius="{TemplateBinding CornerRadius}"
 										  Elevation="{TemplateBinding Elevation}"
-										  ShadowColor="{TemplateBinding ShadowColor}">
+										  ShadowColor="{TemplateBinding ShadowColor}"
+										  MaxWidth="344">
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
 								<VisualState x:Name="Normal">
@@ -116,6 +110,22 @@
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
+							<VisualStateGroup x:Name="LayoutModes">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="Wide">
+									<VisualState.Setters>
+										<Setter Target="Column2.Width" Value="*" />
+										<Setter Target="Details.(Grid.Row)" Value="0" />
+										<Setter Target="Details.(Grid.Column)" Value="1" />
+										<Setter Target="ElevatedRoot.MaxWidth" Value="1300" />
+										<Setter Target="MediaContentPresenter.Height" Value="145" />
+									</VisualState.Setters>
+									<VisualState.StateTriggers>
+										<triggers:AdaptiveTrigger MinWindowWidth="800" />
+									</VisualState.StateTriggers>
+								</VisualState>
+							</VisualStateGroup>
+							
 						</VisualStateManager.VisualStateGroups>
 
 						<Grid x:Name="GridRoot"
@@ -123,35 +133,42 @@
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto" />
 								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
-								<RowDefinition Height="Auto" />
 							</Grid.RowDefinitions>
 
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition x:Name="Column1" Width="*" />
+								<ColumnDefinition x:Name="Column2" Width="0" />
+							</Grid.ColumnDefinitions>
+
 							<!-- Border for PointerOver State-->
-							<Border Grid.RowSpan="4"
+							<Border Grid.RowSpan="2"
+									Grid.ColumnSpan="2"
 									x:Name="HoverOverlay"
 									Background="{StaticResource MaterialOnSurfaceHoverBrush}"
 									Opacity="0" />
 
 							<!-- Border for Focused State-->
-							<Border Grid.RowSpan="4"
+							<Border Grid.RowSpan="2"
+									Grid.ColumnSpan="2"
 									x:Name="FocusedOverlay"
 									Background="{StaticResource MaterialOnSurfaceFocusedBrush}"
 									Opacity="0" />
 
 							<!-- Media content part -->
 							<ContentPresenter x:Name="MediaContentPresenter"
+											  Height="200"
 											  Content="{TemplateBinding MediaContent}"
 											  ContentTemplate="{TemplateBinding MediaContentTemplate}"
+											  VerticalAlignment="Top"
 											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
 											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
 											  AutomationProperties.AccessibilityView="Raw"
 											  IsHitTestVisible="False"
 											  Visibility="{Binding MediaContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Material_EmptyOrNullToCollapsed}}" />
 
+							<StackPanel Grid.Row="1" Grid.Column="0" x:Name="Details">
 							<!-- Header part-->
-							<ContentPresenter Grid.Row="1"
-											  x:Name="HeaderContentPresenter"
+							<ContentPresenter x:Name="HeaderContentPresenter"
 											  Content="{TemplateBinding HeaderContent}"
 											  ContentTemplate="{TemplateBinding HeaderContentTemplate}"
 											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -160,8 +177,7 @@
 											  Visibility="{Binding HeaderContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Material_EmptyOrNullToCollapsed}}" />
 
 							<!-- SubHeader part-->
-							<ContentPresenter Grid.Row="2"
-											  x:Name="SubHeaderContentPresenter"
+							<ContentPresenter x:Name="SubHeaderContentPresenter"
 											  Content="{TemplateBinding SubHeaderContent}"
 											  ContentTemplate="{TemplateBinding SubHeaderContentTemplate}"
 											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -170,8 +186,7 @@
 											  Visibility="{Binding SubHeaderContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Material_EmptyOrNullToCollapsed}}" />
 
 							<!-- Supporting Content part-->
-							<ContentPresenter Grid.Row="3"
-											  x:Name="SupportingContentPresenter"
+							<ContentPresenter x:Name="SupportingContentPresenter"
 											  Content="{TemplateBinding SupportingContent}"
 											  ContentTemplate="{TemplateBinding SupportingContentTemplate}"
 											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -180,14 +195,14 @@
 											  Visibility="{Binding SupportingContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Material_EmptyOrNullToCollapsed}}" />
 
 							<!-- Icons section part -->
-							<ContentPresenter Grid.Row="3"
-											  x:Name="IconsContentPresenter"
+							<ContentPresenter x:Name="IconsContentPresenter"
 											  Content="{TemplateBinding IconsContent}"
 											  ContentTemplate="{TemplateBinding IconsContentTemplate}"
 											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
 											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
 											  AutomationProperties.AccessibilityView="Raw"
 											  Visibility="{Binding IconsContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Material_NullToCollapsedConverter}}" />
+							</StackPanel>
 						</Grid>
 					</toolkit:ElevatedView>
 				</ControlTemplate>

@@ -27,258 +27,165 @@
             |    List   |   Content  |     |     List    |     |             |
             | - - - - - - - - - - - -|     | - - - - - - |     | - - - - - - | 
         -->
-
+		
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition x:Name="LeftColumn"
-							  Width="*" />
-			<ColumnDefinition x:Name="RightColumn"
-							  Width="0" />
-		</Grid.ColumnDefinitions>
-
-		<VisualStateManager.VisualStateGroups>
-			<VisualStateGroup>
-				<VisualState x:Name="WideAndSelected">
-					<VisualState.StateTriggers>
-						<triggers:CompositeStateTrigger Operator="And">
-							<triggers:AdaptiveTrigger MinWindowWidth="800" />
-							<StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
-						</triggers:CompositeStateTrigger>
-					</VisualState.StateTriggers>
-
-					<VisualState.Setters>
-						<Setter Target="LeftColumn.Width"
-								Value="375" />
-						<Setter Target="RightColumn.Width"
-								Value="*" />
-						<Setter Target="EpisodePresenter.Row"
-								Value="1" />
-						<Setter Target="EpisodePresenter.Column"
-								Value="1" />
-						<Setter Target="EpisodePresenter.ColumnSpan"
-								Value="1" />
-						<Setter Target="EpisodePresenter.IsHitTestVisible"
-								Value="True" />
-						<Setter Target="ModalBackground.Visibility"
-								Value="Collapsed" />
-						<Setter Target="DismissButton.Visibility"
-								Value="Collapsed" />
-						<Setter Target="EpisodeList.Padding"
-								Value="12,0" />
-						<Setter Target="CommandBar.Padding"
-								Value="16,0,0,0" />
-						<Setter Target="CommandBarTitle.Style"
-						        Value="{StaticResource MaterialHeadline4}" />
-					</VisualState.Setters>
-				</VisualState>
-
-				<VisualState x:Name="WideAndNotSelected">
-					<VisualState.StateTriggers>
-						<triggers:CompositeStateTrigger Operator="And">
-							<triggers:AdaptiveTrigger MinWindowWidth="800" />
-							<StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToTrue}, Mode=OneWay}" />
-						</triggers:CompositeStateTrigger>
-					</VisualState.StateTriggers>
-
-					<VisualState.Setters>
-						<Setter Target="LeftColumn.Width"
-								Value="375" />
-						<Setter Target="RightColumn.Width"
-								Value="*" />
-						<Setter Target="EpisodePresenter.Row"
-								Value="1" />
-						<Setter Target="EpisodePresenter.Column"
-								Value="1" />
-						<Setter Target="EpisodePresenter.ColumnSpan"
-								Value="1" />
-						<Setter Target="ModalBackground.Visibility"
-								Value="Collapsed" />
-						<Setter Target="DismissButton.Visibility"
-								Value="Collapsed" />
-						<Setter Target="EpisodeList.Padding"
-								Value="12,0" />
-						<Setter Target="CommandBar.Padding"
-								Value="16,0,0,0" />
-						<Setter Target="CommandBarTitle.Style"
-						        Value="{StaticResource MaterialHeadline4}" />
-					</VisualState.Setters>
-				</VisualState>
-
-				<VisualState x:Name="NarrowAndSelected">
-					<VisualState.StateTriggers>
-						<triggers:CompositeStateTrigger Operator="And">
-							<StateTrigger IsActive="{x:Bind ViewModel.Show.SelectedEpisode, Converter={StaticResource NullToFalse}, Mode=OneWay}" />
-						</triggers:CompositeStateTrigger>
-					</VisualState.StateTriggers>
-
-					<VisualState.Setters>
-						<Setter Target="EpisodePresenter.IsHitTestVisible"
-								Value="True" />
-					</VisualState.Setters>
-				</VisualState>
-			</VisualStateGroup>
-		</VisualStateManager.VisualStateGroups>
-
-		<Grid Height="40"
+		<Grid Height="48"
 			  x:Name="CommandBar"
-			  Padding="52,0,0,0"
+			  Padding="48,0,0,0"
 			  Grid.ColumnSpan="2">
 			<TextBlock x:Name="CommandBarTitle"
 				       Text="Recent"
-				       x:Uid="RecentEpisodesPage_CommandBar"
-					   VerticalAlignment="Center"
+					   x:Uid="RecentEpisodesPage_CommandBar"
+				       VerticalAlignment="Center"
+				       Margin="0,0,0,5"
 					   Style="{StaticResource MaterialHeadline6}"
 					   FontWeight="Normal" />
 		</Grid>
 
-		<!-- Episodes list -->
-		<Grid DataContext="{Binding Show}"
-			  Grid.Row="1"
-			  Grid.Column="0">
+		<winui:TwoPaneView Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Mode="Wide" x:Name="PaneView">
+			<winui:TwoPaneView.Pane1>
+				<!-- Episodes list -->
+				<Grid DataContext="{Binding Show}">
 
-			<!-- List of episodes -->
-			<ListView x:Name="EpisodeList"
-					  ItemsSource="{Binding Episodes}"
-					  ItemTemplate="{StaticResource EpisodeItemTemplate}"
-					  SelectionMode="Single"
-					  SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}"
-					  ItemContainerStyle="{StaticResource EpisodeListViewItemStyle}">
-				<ListView.FooterTemplate>
-					<DataTemplate>
-						<StackPanel Margin="32,22,32,0">
+					<!-- List of episodes -->
+					<ListView x:Name="EpisodeList"
+							ItemsSource="{Binding Episodes}"
+							ItemTemplate="{StaticResource EpisodeItemTemplate}"
+							SelectionMode="Single"
+							SelectedItem="{Binding SelectedEpisode, Mode=TwoWay}"
+							SelectionChanged="OnSelectedEpisodeChanged"
+							ItemContainerStyle="{StaticResource EpisodeListViewItemStyle}">
+						<ListView.FooterTemplate>
+							<DataTemplate>
+								<StackPanel Margin="32,22,32,0">
 
-							<!-- Footer Message -->
-							<TextBlock Text="That's all the recent shows!"
-									   x:Uid="RecentEpisodesPage_FooterMessage1"
-									   Foreground="{StaticResource MaterialOnSurfaceMediumBrush}"
-									   Style="{StaticResource MaterialBody1}"
-									   TextAlignment="Center" />
+									<!-- Footer Message -->
+									<TextBlock Text="That's all the recent shows!"
+												x:Uid="RecentEpisodesPage_FooterMessage1"
+												Foreground="{StaticResource MaterialOnSurfaceMediumBrush}"
+												Style="{StaticResource MaterialBody1}"
+												TextAlignment="Center" />
 
-							<!-- Footer Message -->
-							<TextBlock Text="For more, check out the 'Shows' tab."
-									   x:Uid="RecentEpisodesPage_FooterMessage2"
-									   Foreground="{StaticResource MaterialOnSurfaceMediumBrush}"
-									   Style="{StaticResource MaterialBody1}"
-									   TextAlignment="Center" />
-						</StackPanel>
-					</DataTemplate>
-				</ListView.FooterTemplate>
-			</ListView>
+									<!-- Footer Message -->
+									<TextBlock Text="For more, check out the 'Shows' tab."
+												x:Uid="RecentEpisodesPage_FooterMessage2"
+												Foreground="{StaticResource MaterialOnSurfaceMediumBrush}"
+												Style="{StaticResource MaterialBody1}"
+												TextAlignment="Center" />
+								</StackPanel>
+							</DataTemplate>
+						</ListView.FooterTemplate>
+					</ListView>
 
-			<!-- Empty List Message -->
-			<TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
-					   Text="Nothing to show"
-					   x:Uid="EmptyListMessage"
-					   Style="{StaticResource MaterialHeadline6}"
-					   TextAlignment="Center"
-					   VerticalAlignment="Center"
-					   Margin="16,0" />
-		</Grid>
+					<!-- Empty List Message -->
+					<TextBlock Visibility="{Binding Episodes, Converter={StaticResource EnumerableHasAnyToCollapsed}, FallbackValue=Collapsed}"
+								Text="Nothing to show"
+								x:Uid="EmptyListMessage"
+								Style="{StaticResource MaterialHeadline6}"
+								TextAlignment="Center"
+								VerticalAlignment="Center"
+								Margin="16,0" />
+				</Grid>
+			</winui:TwoPaneView.Pane1>
+			<winui:TwoPaneView.Pane2>
+				<Grid>
+					<!-- No Selection -->
+					<Grid DataContext="{Binding Show}">
 
-		<!-- No Selection -->
-		<Grid DataContext="{Binding Show}"
-			  Grid.Row="1"
-			  Grid.Column="1">
+						<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToVisible}}"
+							Background="{StaticResource MaterialBackgroundBrush}">
 
-			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToVisible}}"
-				  Background="{StaticResource MaterialBackgroundBrush}">
+							<StackPanel VerticalAlignment="Center">
 
-				<StackPanel VerticalAlignment="Center">
+								<!-- Image -->
+								<Image Source="ms-appx:///Assets/Ch9Emoji.png"
+										Stretch="Uniform"
+										Width="280"
+										HorizontalAlignment="Center" />
 
-					<!-- Image -->
-					<Image Source="ms-appx:///Assets/Ch9Emoji.png"
-						   Stretch="Uniform"
-						   Width="280"
-						   HorizontalAlignment="Center" />
+								<!-- Title -->
+								<TextBlock Text="No video selected"
+											x:Uid="NoSelectionTitle"
+											Style="{StaticResource MaterialHeadline6}"
+											TextAlignment="Center"
+											Margin="32,16,32,0" />
 
-					<!-- Title -->
-					<TextBlock Text="No video selected"
-							   x:Uid="NoSelectionTitle"
-							   Style="{StaticResource MaterialHeadline6}"
-							   TextAlignment="Center"
-							   Margin="32,16,32,0" />
-
-					<!-- Message -->
-					<TextBlock Text="Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!"
-							   x:Uid="NoSelectionMessage"
-							   Style="{StaticResource MaterialBody1}"
-							   TextAlignment="Center"
-							   MaxWidth="380"
-							   Margin="32,8,32,0" />
-				</StackPanel>
-			</Grid>
-		</Grid>
-
-		<!-- Selected Episode -->
-		<Grid x:Name="EpisodePresenter"
-			  DataContext="{Binding Show}"
-			  IsHitTestVisible="False"
-			  Grid.Row="1"
-			  Grid.Column="0"
-			  Grid.ColumnSpan="2">
-
-			<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
-				  toolkit:VisibleBoundsPadding.PaddingMask="Top"
-				  Background="{StaticResource MaterialBackgroundBrush}">
-
-				<!-- Modal background -->
-				<Border x:Name="ModalBackground"
-						Background="{StaticResource MaterialBackgroundBrush}" />
-
-				<!-- Presenter -->
-				<ScrollViewer>
-
-					<Grid>
-						<!-- Episode -->
-						<local:EpisodeContent DataContext="{Binding SelectedEpisode}"
-										  VerticalAlignment="Top" />
-						<!-- Dismiss button -->
-						<Button x:Name="DismissButton"
-						        Command="{Binding DismissSelectedEpisode}"
-						        Style="{StaticResource MediaPlayerButtonStyle}"
-						        HorizontalAlignment="Right"
-						        VerticalAlignment="Top"
-						        Margin="8,8,16,8">
-							<Path Style="{StaticResource CloseIconPath}"
-							      Data="M21.976 2.438L23.563 4.024 14.586 13 23.563 21.976 21.976 23.563 13 14.586 4.024 23.563 2.438 21.976 11.413 13 2.438 4.024 4.024 2.438 13 11.413z"
-							      VerticalAlignment="Center" />
-						</Button>
+								<!-- Message -->
+								<TextBlock Text="Channel 9 videos are both informative and entertaining, give them a try by selecting one from the list!"
+											x:Uid="NoSelectionMessage"
+											Style="{StaticResource MaterialBody1}"
+											TextAlignment="Center"
+											MaxWidth="380"
+											Margin="32,8,32,0" />
+							</StackPanel>
+						</Grid>
 					</Grid>
-				</ScrollViewer>
-			</Grid>
-		</Grid>
+
+					<!-- Selected Episode -->
+					<Grid x:Name="EpisodePresenter" DataContext="{Binding Show}">
+
+						<Grid Visibility="{Binding SelectedEpisode, Converter={StaticResource NullToCollapsed}, FallbackValue=Collapsed}"
+							toolkit:VisibleBoundsPadding.PaddingMask="Top"
+							Background="{StaticResource MaterialBackgroundBrush}">
+
+							<!-- Modal background -->
+							<Border x:Name="ModalBackground"
+									Background="{StaticResource MaterialBackgroundBrush}" />
+
+						<!-- Presenter -->
+						<ScrollViewer>
+
+							<Grid>
+								<!-- Episode -->
+								<local:EpisodeContent DataContext="{Binding SelectedEpisode}"
+												  VerticalAlignment="Top" />
+								<!-- Dismiss button -->
+								<Button x:Name="DismissButton"
+										Command="{Binding DismissSelectedEpisode}"
+										Style="{StaticResource MediaPlayerButtonStyle}"
+										HorizontalAlignment="Right"
+										VerticalAlignment="Top"
+										Margin="8,8,16,8">
+									<Path Style="{StaticResource CloseIconPath}"
+										  Data="M21.976 2.438L23.563 4.024 14.586 13 23.563 21.976 21.976 23.563 13 14.586 4.024 23.563 2.438 21.976 11.413 13 2.438 4.024 4.024 2.438 13 11.413z"
+										  VerticalAlignment="Center" />
+								</Button>
+							</Grid>
+						</ScrollViewer>
+					</Grid>
+				</Grid>
+			</winui:TwoPaneView.Pane2>
+		</winui:TwoPaneView>
 
 		<!-- Error -->
 		<Grid DataContext="{Binding Show}"
-			  Visibility="{Binding Show.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-			  Background="{StaticResource MaterialBackgroundBrush}"
-			  Grid.Row="1"
-			  Grid.Column="0"
-			  Grid.ColumnSpan="2">
+			Visibility="{Binding Show.IsFaulted, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
+			Background="{StaticResource MaterialBackgroundBrush}"
+			Grid.Row="1"
+			Grid.Column="0">
 
 			<StackPanel VerticalAlignment="Center">
 
 				<!-- Image -->
 				<Image Source="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImage}}"
-					   Stretch="None"
-					   HorizontalAlignment="Center"
-					   Margin="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImageMargin}}" />
+						Stretch="None"
+						HorizontalAlignment="Center"
+						Margin="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorImageMargin}}" />
 
 				<!-- Title -->
 				<TextBlock Text="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorTitle}}"
-						   Style="{StaticResource MaterialHeadline6}"
-						   TextAlignment="Center"
-						   Margin="40,12,40,0" />
+							Style="{StaticResource MaterialHeadline6}"
+							TextAlignment="Center"
+							Margin="40,12,40,0" />
 
 				<!-- Message -->
 				<TextBlock Text="{Binding Show.IsInternetFaulted, Converter={StaticResource HasNetworkErrorToErrorMessage}}"
-						   Style="{StaticResource MaterialBody1}"
-						   TextAlignment="Center"
-						   Margin="40,8,40,0" />
+							Style="{StaticResource MaterialBody1}"
+							TextAlignment="Center"
+							Margin="40,8,40,0" />
 
 				<!-- Reload button -->
 				<Button Content="Try Again"
@@ -292,11 +199,10 @@
 
 		<!-- Loading -->
 		<Grid Visibility="{Binding Show.IsExecuting, Converter={StaticResource TrueToVisible}, FallbackValue=Collapsed}"
-			  Background="{ThemeResource AppBackgroundBrush}"
-			  DataContext="{Binding Show}"
-			  Grid.Row="1"
-			  Grid.Column="0"
-			  Grid.ColumnSpan="2">
+			Background="{ThemeResource AppBackgroundBrush}"
+			DataContext="{Binding Show}"
+			Grid.Row="1"
+			Grid.Column="0">
 			<StackPanel VerticalAlignment="Center"
 						HorizontalAlignment="Center">
 
@@ -309,9 +215,9 @@
 
 				<!-- Loading Message -->
 				<TextBlock Text="Loading..."
-						   x:Uid="Loading"
-						   Style="{StaticResource MaterialHeadline5}"
-						   TextAlignment="Center" />
+							x:Uid="Loading"
+							Style="{StaticResource MaterialHeadline5}"
+							TextAlignment="Center" />
 			</StackPanel>
 		</Grid>
 	</Grid>
