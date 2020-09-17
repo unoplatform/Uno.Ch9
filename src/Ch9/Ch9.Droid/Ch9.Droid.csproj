@@ -71,6 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Uno.Material" Version="1.0.0-dev.515" />
+    <PackageReference Include="Uno.UI" Version="3.0.17" />
+    <PackageReference Include="Uno.UI.Lottie" Version="3.0.17" />
     <PackageReference Include="Com.Airbnb.Android.Lottie" Version="3.4.2" />
     <PackageReference Include="Uno.UniversalImageLoader" Version="1.9.32" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
