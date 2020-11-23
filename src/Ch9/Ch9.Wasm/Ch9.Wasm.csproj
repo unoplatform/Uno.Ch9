@@ -86,7 +86,7 @@
 
 	<ItemGroup>
 		<!-- Note that for WebAssembly version 1.1.1 of the console logger required -->
-		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.2" />
+		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.0.0" />
 		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
