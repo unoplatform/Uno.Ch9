@@ -187,7 +187,7 @@
 											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
 											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
 											  AutomationProperties.AccessibilityView="Raw"
-											  Visibility="{Binding IconsContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Material_NullToCollapsedConverter}}" />
+											  Visibility="{Binding IconsContentTemplate, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource MaterialNullToCollapsedConverter}}" />
 						</Grid>
 					</toolkit:ElevatedView>
 				</ControlTemplate>
