@@ -33,5 +33,10 @@ namespace Ch9.Wasm
 				player.ExecuteJavascript(js);
 			}
 		}
+
+		public void Pause()
+		{
+			this.ExecuteJavascript("element.pause();");
+		}
 	}
 }

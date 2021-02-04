@@ -47,6 +47,8 @@ namespace Ch9.Views
 		{
 #if !__WASM__
 			this.MediaPlayer.MediaPlayer?.Pause();
+#else
+			this.MediaPlayer.Pause();
 #endif
 		}
 	}
