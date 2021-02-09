@@ -1,53 +1,32 @@
-jobs:
+﻿jobs:
 - job: Release_AppCenter
-  pool: $(windowsPoolName)
 
-  container: nventive/build-agent:vs16.6.0
+  pool:
+    vmImage: $(windowsImage)
 
   steps:
   - checkout: none
 
   - task: DownloadBuildArtifacts@0
     inputs:
-      buildType: current
-      downloadType: single
       artifactName: Release_Android
 
-  - task: DownloadSecureFile@1
-    name: keyStore
-    displayName: "Download keystore from secure files"
-    inputs:
-      secureFile: ch9.jks
-
-  - task: InstallBundletool@1
-
-  - task: AabConvertToUniversalApk@1
-    inputs:
-      aabFilePath: '$(System.ArtifactsDirectory)/Release_Android/uno.platform.ch9-Signed.aab'
-      keystoreFilePath: '$(keyStore.secureFilePath)'
-      keystorePassword: '$(AndroidSigningStorePass)'
-      keystoreAlias: '$(AndroidSigningKeyAlias)'
-      keystoreAliasPassword: '$(AndroidSigningKeyPass)'
-      outputFolder: '$(Build.SourcesDirectory)/tmp'
-
   - task: AppCenterDistribute@3
-    displayName: 'Deploy Android to Visual Studio App Center'
+    displayName: 'Deploy Android to App Center'
     inputs:
       serverEndpoint: 'Uno AppCenter'
       appSlug: 'uno-platform/Ch9-1'
-      appFile: '$(Build.SourcesDirectory)/tmp/*.apk'
+      appFile: '$(System.ArtifactsDirectory)/Release_Android/*.apk'
       symbolsOption: Android
       releaseNotesInput: 'CI build'
       isSilent: true
 
   - task: DownloadBuildArtifacts@0
     inputs:
-      buildType: current
-      downloadType: single
       artifactName: Release_iOS
 
   - task: AppCenterDistribute@3
-    displayName: 'Deploy iOS to Visual Studio App Center'
+    displayName: 'Deploy iOS to App Center'
     inputs:
       serverEndpoint: 'Uno AppCenter'
       appSlug: 'uno-platform/Ch9'

@@ -1,25 +1,23 @@
-variables:
+﻿variables:
   - group: ch9-variables
 
-  # Pool names
-  - name: windowsPoolName
-    value: 'windows 1809'
-  - name: macOSPoolName
-    value: 'Default'
-  - name: wasmPoolName
-    value: 'ubuntu-18.04'
+  - name: windowsImage
+    value: windows-2019
 
-  - name: NUGET_VERSION
-    value: 5.4.0
+  - name: macOSImage
+    value: macos-10.15
 
-  - name: SolutionFileName
-    value: src/Ch9.sln
+  - name: linuxImage
+    value: ubuntu-18.04
 
   - name: ApplicationOutputPath
     value: $(Build.ArtifactStagingDirectory)
 
   - name: PackageOutputPath
     value: $(Build.ArtifactStagingDirectory)
+
+  - name: IsCanaryBranch
+    value: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')]
 
   - name: IsFeatureBranch
     value: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/feature/')]
@@ -42,101 +40,104 @@ stages:
 
   jobs:
   - job: Windows
-    strategy:
-      maxParallel: 3
-      matrix:
-        Release_Android:
-          ApplicationConfiguration: Release_Android
-          ApplicationPlatform: Any CPU
-          Environment: Staging
-          BuildNumberOffset: 400050
-        Release_UWA:
-          ApplicationConfiguration: Release_UWP
-          ApplicationPlatform: x64
-          Environment: Staging
-          BuildNumberOffset: 50
 
     pool:
-      name: $(windowsPoolName)
+      vmImage: $(windowsImage)
 
-    workspace:
-      clean: all
-
-    container: nventive/build-agent:vs16.6.0
+    strategy:
+      matrix:
+        Android:
+          ApplicationConfiguration: Release_Android
+          ApplicationPlatform: Any CPU
+          BuildForPlayStore: False
+          BuildNumberOffset: 400050
+        Android_PlayStore:
+          ApplicationConfiguration: Release_Android
+          ApplicationPlatform: Any CPU
+          BuildForPlayStore: True
+          BuildNumberOffset: 400050
+        UWP:
+          ApplicationConfiguration: Release_UWP
+          ApplicationPlatform: x64
+          BuildNumberOffset: 50
+      maxParallel: 3
 
     steps:
     - template: build/steps-build.yml
 
   - job: macOS
+
+    pool:
+      vmImage: $(macOSImage)
+
     strategy:
-      maxParallel: 2
       matrix:
-        Release_iOS:
+        iOS:
           ApplicationConfiguration: Release_iOS
           ApplicationPlatform: Any CPU
-          Environment: Staging
           BuildNumberOffset: 50
-        Release_macOS:
+        macOS:
           ApplicationConfiguration: Release_MACOS
           ApplicationPlatform: Any CPU
-          Environment: Staging
           BuildNumberOffset: 50
-
-    pool:
-      name: $(macOSPoolName)
-      demands:
-      - Xamarin.iOS -equals 13.16
-
-    workspace:
-      clean: all
-
-    variables:
-    - name: NUGET_PACKAGES
-      value: $(Agent.TempDirectory)/.nuget
-    - name: NUGET_HTTP_CACHE_PATH
-      value: $(Agent.TempDirectory)/.nuget-http-cache.
+      maxParallel: 2
 
     steps:
+    - task: InstallAppleCertificate@2
+      displayName: Install Certificate
+      inputs:
+        certSecureFile: nventive.p12
+        certPwd: '$(AppleCertificatePassword)'
+        deleteCert: true
+
+    - task: InstallAppleProvisioningProfile@1
+      displayName: Install Provisioning Profile
+      inputs:
+        provProfileSecureFile: Ch9.mobileprovision
+
     - template: build/steps-build.yml
 
-  - job: WebAssembly
-    container: unoplatform/wasm-build:2.2
+  - job: Linux
 
     pool:
-      vmImage: $(wasmPoolName)
+      vmImage: $(linuxImage)
+
+    container: unoplatform/wasm-build:2.2
 
     variables:
-      NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
-      SkipUnknowFrameworks: True
       BuildNumberOffset: 50
 
     steps:
     - template: build/steps-build-wasm.yml
 
-- stage: Release_AppCenter
-  condition: and(succeeded(), or(eq(variables['IsReleaseBranch'], 'true'), eq(variables['IsFeatureBranch'], 'true')))
-  dependsOn: Build
+- ${{ if not(startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')) }}:
+  - stage: Release_AppCenter
+    condition: and(succeeded(), or(eq(variables['IsReleaseBranch'], 'true'), eq(variables['IsFeatureBranch'], 'true')))
+    dependsOn: Build
+  
+    jobs:
+    - template: build/steps-release-appcenter.yml
 
-  jobs:
-  - template: build/steps-release-appcenter.yml
+- ${{ if not(startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')) }}:
+  - stage: Release_WASM
+    condition: and(succeeded(), or(eq(variables['IsReleaseBranch'], 'true'), eq(variables['IsFeatureBranch'], 'true')))
+    dependsOn: Build
+  
+    jobs:
+    - template: build/steps-release-wasm.yml
 
-- stage: Release_WASM
-  condition: and(succeeded(), or(eq(variables['IsReleaseBranch'], 'true'), eq(variables['IsFeatureBranch'], 'true')))
-  dependsOn: Build
+- ${{ if not(startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')) }}:
+  - stage: Release_TestFlight
+    condition: and(succeeded(), eq(variables['IsReleaseBranch'], 'true'))
+    dependsOn: Build
+  
+    jobs:
+    - template: build/steps-release-testflight.yml
 
-  jobs:
-  - template: build/steps-release-wasm.yml
-
-- stage: Release_TestFlight
-  condition: and(succeeded(), eq(variables['IsReleaseBranch'], 'true'))
-  dependsOn: Build
-
-  jobs:
-  - template: build/steps-release-testflight.yml
-
-- stage: Release_PlayStore
-  condition: and(succeeded(), eq(variables['IsReleaseBranch'], 'true'))
-  dependsOn: Build
-
-  jobs:
-  - template: build/steps-release-playstore.yml
+- ${{ if not(startsWith(variables['Build.SourceBranch'], 'refs/heads/canaries/')) }}:
+  - stage: Release_PlayStore
+    condition: and(succeeded(), eq(variables['IsReleaseBranch'], 'true'))
+    dependsOn: Build
+  
+    jobs:
+    - template: build/steps-release-playstore.yml
