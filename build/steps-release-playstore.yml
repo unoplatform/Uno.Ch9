@@ -1,22 +1,20 @@
-jobs:
+﻿jobs:
 - job: Release_PlayStore
-  pool: $(windowsPoolName)
 
-  container: nventive/build-agent:vs16.6.0
+  pool:
+    vmImage: $(windowsImage)
 
   steps:
   - checkout: none
 
   - task: DownloadBuildArtifacts@0
     inputs:
-      buildType: current
-      downloadType: single
       artifactName: Release_Android
 
   - task: GooglePlayReleaseBundle@3
-    displayName: 'Publish to PlayStore internal track'
+    displayName: Publish to PlayStore internal track
     inputs:
       serviceConnection: Ch9
-      bundleFile: '$(System.ArtifactsDirectory)/Release_Android/uno.platform.ch9-Signed.aab'
-      applicationId: '$(AndroidApplicationId)'
-      languageCode: 'en-CA'
+      bundleFile: $(System.ArtifactsDirectory)/Release_Android/uno.platform.ch9-Signed.aab
+      applicationId: $(AndroidApplicationId)
+      languageCode: en-CA
