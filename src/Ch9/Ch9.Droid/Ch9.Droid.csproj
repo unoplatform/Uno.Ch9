@@ -78,7 +78,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.2" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
-    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0-preview2" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.1" />
     <PackageReference Include="Uno.WindowsStateTriggers" Version="1.1.1-uno.132" />
     <PackageReference Include="Uno.Microsoft.Toolkit.Uwp.UI.Controls" Version="6.1.0-build.207.gcac670e618" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
