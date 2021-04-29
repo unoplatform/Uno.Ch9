@@ -1,0 +1,57 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "10:00"
+  open-pull-requests-limit: 10
+  labels:
+  - kind/dependency
+  - do-not-merge/work-in-progress
+  ignore:
+  - dependency-name: Microsoft.Toolkit.Mvvm
+    versions:
+    - 7.0.0
+    - 7.0.0-preview4
+    - 7.0.0-preview5
+  - dependency-name: Xamarin.AndroidX.Lifecycle.LiveData
+    versions:
+    - 2.2.0.4
+    - 2.3.0
+    - 2.3.0.1
+  - dependency-name: Microsoft.TypeScript.MSBuild
+    versions:
+    - 4.1.2
+    - 4.1.4
+    - 4.2.2
+    - 4.2.3
+  - dependency-name: Com.Airbnb.Android.Lottie
+    versions:
+    - 3.5.0
+  - dependency-name: Xamarin.AndroidX.RecyclerView
+    versions:
+    - 1.1.0.6
+    - 1.1.0.7
+    - 1.1.0.8
+  - dependency-name: Microsoft.AppCenter.Crashes
+    versions:
+    - 4.1.0
+  - dependency-name: Microsoft.AppCenter.Analytics
+    versions:
+    - 4.1.0
+  - dependency-name: Xamarin.AndroidX.AppCompat
+    versions:
+    - 1.2.0.6
+  - dependency-name: Xamarin.Essentials
+    versions:
+    - 1.6.0
+  - dependency-name: Uno.UI.Lottie
+    versions:
+    - 3.4.0
+  - dependency-name: Newtonsoft.Json
+    versions:
+    - 12.0.3
+  - dependency-name: Microsoft.Extensions.Logging.Filter
+    versions:
+    - 1.1.2
