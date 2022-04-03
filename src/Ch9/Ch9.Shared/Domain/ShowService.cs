@@ -24,6 +24,8 @@ namespace Ch9
         private const string ITunesNamespace = "http://www.itunes.com/dtds/podcast-1.0.dtd";
         // private static readonly SourceFeed _channel9Feed = new SourceFeed("https://s.ch9.ms/feeds/rss", "Channel 9");
         private static readonly SourceFeed _channel9Feed = new SourceFeed("https://learntvpublicschedule.azureedge.net/public/schedule.json", "Microsoft Learn Shows (ex-Channel 9)");
+        private const string LearnTvLogo = "https://static.docs.com/third-party/learn-player/v1.0.0/images/Learn_Thumbnail_v2_1920x1080.jpg";
+
 
         private readonly IDictionary<string, Show> _cache = new Dictionary<string, Show>();
 
@@ -148,10 +150,22 @@ namespace Ch9
             DateTimeOffset? startTime = null;
             DateTimeOffset? endTime = null;
             Boolean? isLive = null;
+            bool inArray = false; // The url returns an Object with a property named "content" which is an Array
             while (await reader.ReadAsync())
             {
+                if (!inArray)
+                {
+                    continue;
+                }
+
                 switch (reader.TokenType)
                 {
+                    case JsonToken.StartArray:
+                        inArray = true;
+                        break;
+                    case JsonToken.EndArray:
+                        inArray = false;
+                        break;
                     case JsonToken.StartObject:
                         currentItem = new SyndicationItem();
                         break;
@@ -223,10 +237,6 @@ namespace Ch9
                     //	break;
                     //case JsonToken.Null:
                     //    break;
-                    //case JsonToken.StartArray:
-                    //	break;
-                    //case JsonToken.EndArray:
-                    //    break;
                     //case JsonToken.StartConstructor:
                     //	break;
                     //case JsonToken.Float:
@@ -266,7 +276,22 @@ namespace Ch9
             if (!String.IsNullOrWhiteSpace(details))
             {
                 currentItem.Content = SyndicationContent.CreateHtmlContent(details);
+                currentItem.ElementExtensions.Add(new SyndicationElementExtension("summary", ITunesNamespace, details));
             }
+
+            TimeSpan? duration = null;
+            if (startTime.HasValue && endTime.HasValue)
+            {
+                duration = endTime.Value - startTime.Value;
+            }
+
+            currentItem.ElementExtensions.Add(new SyndicationElementExtension("duration", ITunesNamespace, duration.HasValue ? (long)duration.Value.TotalSeconds : 0L));
+            currentItem.Links.Add(new SyndicationLink(currentItem.BaseUri, "alternate", currentItem.Title.Text, "", duration.HasValue ? (long)duration.Value.TotalSeconds : 0L));
+            currentItem.Links.Add(new SyndicationLink(currentItem.BaseUri, "", currentItem.Title.Text, "video/mp4", duration.HasValue ? (long)duration.Value.TotalSeconds : 0L));
+
+            var thumbnail = new XElement(XName.Get("thumbnail"));
+            thumbnail.SetAttributeValue(XName.Get("url"), LearnTvLogo);
+            currentItem.ElementExtensions.Add("thumbnail", YahooNamespace, thumbnail);
         }
 
         private Episode CreateEpisode(SyndicationItem item, SourceFeed sourceFeed)
