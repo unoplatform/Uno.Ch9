@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Uno.Extensions;
 using Uno.Logging;
+using System.Globalization;
 
 namespace Ch9
 {
@@ -21,19 +22,20 @@ namespace Ch9
     {
         private const string YahooNamespace = "http://search.yahoo.com/mrss/";
         private const string ITunesNamespace = "http://www.itunes.com/dtds/podcast-1.0.dtd";
-        private static readonly SourceFeed _channel9Feed = new SourceFeed("https://s.ch9.ms/feeds/rss", "Channel 9");
+        // private static readonly SourceFeed _channel9Feed = new SourceFeed("https://s.ch9.ms/feeds/rss", "Channel 9");
+        private static readonly SourceFeed _channel9Feed = new SourceFeed("https://learntvpublicschedule.azureedge.net/public/schedule.json", "Microsoft Learn Shows (ex-Channel 9)");
 
         private readonly IDictionary<string, Show> _cache = new Dictionary<string, Show>();
 
-		private readonly HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
 
-		public ShowService(HttpClient httpClient)
+        public ShowService(HttpClient httpClient)
         {
-			_httpClient = httpClient;
-		}
+            _httpClient = httpClient;
+        }
 
         /// <inheritdoc/>
-		private IEnumerable<SourceFeed> GetFallbackShowFeeds()
+        private IEnumerable<SourceFeed> GetFallbackShowFeeds()
         {
             return new List<SourceFeed>
             {
@@ -59,33 +61,33 @@ namespace Ch9
 
         public async Task<IEnumerable<SourceFeed>> GetShowFeeds()
         {
-			// If any exception occurs, fallback to the list of hardcoded shows
-	        try
-	        {
-				var response = await _httpClient.GetStringAsync("api/rssfeeds");
+            // If any exception occurs, fallback to the list of hardcoded shows
+            try
+            {
+                var response = await _httpClient.GetStringAsync("api/rssfeeds");
 
-				return JsonConvert.DeserializeObject<SourceFeed[]>(response);
-			}
-	        catch (Exception e)
-	        {
-		        if (!IsInternetAvailable()) throw;
+                return JsonConvert.DeserializeObject<SourceFeed[]>(response);
+            }
+            catch (Exception e)
+            {
+                if (!IsInternetAvailable()) throw;
 
-		        this.Log().Warn("Couldn't load the shows. Fallbacking on the default shows.", e);
-		        return GetFallbackShowFeeds();
-	        }
+                this.Log().Warn("Couldn't load the shows. Fallbacking on the default shows.", e);
+                return GetFallbackShowFeeds();
+            }
 
-	        bool IsInternetAvailable()
-	        {
-		        var profile = NetworkInformation.GetInternetConnectionProfile();
-		        var level = profile?.GetNetworkConnectivityLevel();
-		        return level == NetworkConnectivityLevel.InternetAccess;
-	        }
-		} 
+            bool IsInternetAvailable()
+            {
+                var profile = NetworkInformation.GetInternetConnectionProfile();
+                var level = profile?.GetNetworkConnectivityLevel();
+                return level == NetworkConnectivityLevel.InternetAccess;
+            }
+        } 
 
         /// <inheritdoc/>
         public async Task<Show> GetShow(SourceFeed sourceFeed = null)
         {
-	        var url = sourceFeed != null ? sourceFeed.FeedUrl : _channel9Feed.FeedUrl;
+            var url = sourceFeed != null ? sourceFeed.FeedUrl : _channel9Feed.FeedUrl;
 
             if (_cache.TryGetValue(url, out var cachedShow))
             {
@@ -129,9 +131,141 @@ namespace Ch9
 
         private async Task<SyndicationFeed> GetRssFeed(string url)
         {
-			using (var reader = await HttpUtility.GetXmlReader(url))
+            using (var reader = await HttpUtility.GetJsonReader(url))
             {
-               return SyndicationFeed.Load(reader);
+                var feedItems = await ReadFeed(reader);
+                SyndicationFeed feed = new SyndicationFeed(feedItems);
+                feed.Description = SyndicationContent.CreatePlaintextContent("Microsoft Learn TV");
+                return feed;
+            }
+        }
+
+        private static async Task<List<SyndicationItem>> ReadFeed(JsonTextReader reader)
+        {
+            List<SyndicationItem> feedItems = new List<SyndicationItem>();
+            SyndicationItem currentItem = null;
+            String currentProperty = null;
+            DateTimeOffset? startTime = null;
+            DateTimeOffset? endTime = null;
+            Boolean? isLive = null;
+            while (await reader.ReadAsync())
+            {
+                switch (reader.TokenType)
+                {
+                    case JsonToken.StartObject:
+                        currentItem = new SyndicationItem();
+                        break;
+                    case JsonToken.EndObject:
+                        CompleteFeedItem(currentItem, startTime, endTime, isLive);
+
+                        startTime = null;
+                        endTime = null;
+                        isLive = null;
+
+                        feedItems.Add(currentItem);
+                        break;
+                    case JsonToken.PropertyName:
+                        currentProperty = reader.Value.ToString();
+                        break;
+                    case JsonToken.Integer:
+                        if(currentProperty == "pubble_id")
+                        {
+                            currentItem.Id = reader.Value.ToString();
+                        }
+                        break;
+                    case JsonToken.String:
+                        switch (currentProperty)
+                        {
+                            case "title": {
+                                    currentItem.Title = SyndicationContent.CreatePlaintextContent($"|{reader.Value.ToString()}");
+                                    break;
+                                }
+                            case "description": {
+                                    currentItem.Summary = SyndicationContent.CreatePlaintextContent(reader.Value.ToString());
+                                    break;
+                                }
+                            case "externalurl": {
+                                    currentItem.BaseUri = new Uri(reader.Value.ToString());
+                                    break;
+                                }
+                            default:
+                                break;
+                        }
+                        break;
+                    case JsonToken.Boolean:
+                        if (currentProperty == "islive")
+                        {
+                            isLive = (Boolean)reader.Value;
+                        }
+                        break;
+                    case JsonToken.Date:
+                        switch (currentProperty)
+                        {
+                            case "start_time":
+                                {
+                                    startTime = DateTimeOffset.Parse(reader.Value.ToString());
+                                    currentItem.PublishDate = startTime.Value;
+                                    break;
+                                }
+                            case "end_time":
+                                {
+                                    endTime = DateTimeOffset.Parse(reader.Value.ToString());
+                                    break;
+                                }
+                            default:
+                                break;
+                        }
+                        break;
+                    // Commented out because not necessary, but useful for future improvements
+                    //case JsonToken.Undefined:
+                    //	break;
+                    //case JsonToken.None:
+                    //	break;
+                    //case JsonToken.Null:
+                    //    break;
+                    //case JsonToken.StartArray:
+                    //	break;
+                    //case JsonToken.EndArray:
+                    //    break;
+                    //case JsonToken.StartConstructor:
+                    //	break;
+                    //case JsonToken.Float:
+                    //	break;
+                    //case JsonToken.Comment:
+                    //	break;
+                    //case JsonToken.Raw:
+                    //	break;
+                    //case JsonToken.EndConstructor:
+                    //	break;
+                    //case JsonToken.Bytes:
+                    //	break;
+                    default:
+                        break;
+                }
+            }
+
+            return feedItems;
+        }
+
+        private static void CompleteFeedItem(SyndicationItem currentItem, DateTimeOffset? startTime, DateTimeOffset? endTime, bool? isLive)
+        {
+            String details = "";
+            if (isLive != null)
+            {
+                details += $"Is Live Now: {isLive.Value}<br/>\\n";
+            }
+            if (startTime != null)
+            {
+                details += $"Starts At: {startTime.Value.ToString(CultureInfo.CurrentCulture)}<br/>\\n";
+            }
+            if (endTime != null)
+            {
+                details += $"Ends At: {endTime.Value.ToString(CultureInfo.CurrentCulture)}<br/>\\n";
+            }
+
+            if (!String.IsNullOrWhiteSpace(details))
+            {
+                currentItem.Content = SyndicationContent.CreateHtmlContent(details);
             }
         }
 
@@ -140,7 +274,7 @@ namespace Ch9
             return new Episode
             {
                 Title = GetTitle(item),
-                Show =  GetShow(item, sourceFeed),
+                Show = GetShow(item, sourceFeed),
                 Summary = GetSummary(item),
                 Date = item.PublishDate,
                 Categories = GetCategories(item).ToArray(),
