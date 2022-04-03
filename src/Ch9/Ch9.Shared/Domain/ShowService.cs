@@ -147,6 +147,8 @@ namespace Ch9
             List<SyndicationItem> feedItems = new List<SyndicationItem>();
             SyndicationItem currentItem = null;
             String currentProperty = null;
+            String title = null;
+            String externalTitle = null;
             DateTimeOffset? startTime = null;
             DateTimeOffset? endTime = null;
             Boolean? isLive = null;
@@ -178,7 +180,7 @@ namespace Ch9
                         currentItem = new SyndicationItem();
                         break;
                     case JsonToken.EndObject:
-                        CompleteFeedItem(currentItem, startTime, endTime, isLive);
+                        CompleteFeedItem(currentItem, title, externalTitle, startTime, endTime, isLive);
 
                         startTime = null;
                         endTime = null;
@@ -199,7 +201,11 @@ namespace Ch9
                         switch (currentProperty)
                         {
                             case "title": {
-                                    currentItem.Title = SyndicationContent.CreatePlaintextContent($"|{reader.Value.ToString()}");
+                                    title = reader.Value.ToString();
+                                    break;
+                                }
+                            case "externaltitle": {
+                                    externalTitle = reader.Value.ToString();
                                     break;
                                 }
                             case "description": {
@@ -271,20 +277,25 @@ namespace Ch9
             return feedItems;
         }
 
-        private static void CompleteFeedItem(SyndicationItem currentItem, DateTimeOffset? startTime, DateTimeOffset? endTime, bool? isLive)
+        private static void CompleteFeedItem(SyndicationItem currentItem, String title, String externalTitle, DateTimeOffset? startTime, DateTimeOffset? endTime, bool? isLive)
         {
+            if (title == null)
+            {
+                title = externalTitle;
+            }
+
             String details = "";
             if (isLive != null)
             {
-                details += $"Is Live Now: {isLive.Value}<br/>\\n";
+                details += $"Is Live Now: {isLive.Value}";
             }
             if (startTime != null)
             {
-                details += $"Starts At: {startTime.Value.ToString(CultureInfo.CurrentCulture)}<br/>\\n";
+                details += (String.IsNullOrWhiteSpace(details) ? "" : " - ") + $"Starts At: {startTime.Value.ToString(CultureInfo.CurrentCulture)}";
             }
             if (endTime != null)
             {
-                details += $"Ends At: {endTime.Value.ToString(CultureInfo.CurrentCulture)}<br/>\\n";
+                details += (String.IsNullOrWhiteSpace(details) ? "" : " - ") + $"Ends At: {endTime.Value.ToString(CultureInfo.CurrentCulture)}";
             }
 
             if (!String.IsNullOrWhiteSpace(details))
@@ -298,6 +309,8 @@ namespace Ch9
             {
                 duration = endTime.Value - startTime.Value;
             }
+
+            currentItem.Title = SyndicationContent.CreatePlaintextContent($"{(startTime.HasValue ? (startTime.Value.ToString(CultureInfo.CurrentCulture) + ": ") : "")}{title}|");
 
             currentItem.ElementExtensions.Add(new SyndicationElementExtension("duration", ITunesNamespace, duration.HasValue ? (long)duration.Value.TotalSeconds : 0L));
             currentItem.Links.Add(new SyndicationLink(currentItem.BaseUri, "alternate", currentItem.Title.Text, "", duration.HasValue ? (long)duration.Value.TotalSeconds : 0L));
