@@ -150,22 +150,30 @@ namespace Ch9
             DateTimeOffset? startTime = null;
             DateTimeOffset? endTime = null;
             Boolean? isLive = null;
-            bool inArray = false; // The url returns an Object with a property named "content" which is an Array
+            bool? inArray = null;
+
+            // The url returns an Object with a property named "content" which is an Array
             while (await reader.ReadAsync())
             {
-                if (!inArray)
+                if (inArray == null)
                 {
+                    if (reader.TokenType == JsonToken.StartArray)
+                    {
+                        inArray = true;
+                    }
+
                     continue;
+                } else if (inArray == false) {
+                    continue;
+                } else if (inArray == true) {
+                    if (reader.TokenType == JsonToken.EndArray) {
+                        inArray = false;
+                        continue;
+                    }
                 }
 
                 switch (reader.TokenType)
                 {
-                    case JsonToken.StartArray:
-                        inArray = true;
-                        break;
-                    case JsonToken.EndArray:
-                        inArray = false;
-                        break;
                     case JsonToken.StartObject:
                         currentItem = new SyndicationItem();
                         break;
@@ -230,7 +238,13 @@ namespace Ch9
                                 break;
                         }
                         break;
-                    // Commented out because not necessary, but useful for future improvements
+                    // Commented out because not necessary, but can be useful for future improvements
+                    //case JsonToken.StartArray:
+                    //    inArray = true;
+                    //    break;
+                    //case JsonToken.EndArray:
+                    //    inArray = false;
+                    //    break;
                     //case JsonToken.Undefined:
                     //	break;
                     //case JsonToken.None:
