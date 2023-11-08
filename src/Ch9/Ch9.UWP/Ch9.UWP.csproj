@@ -132,7 +132,7 @@
 			you need to make sure that the version provided here matches https://github.com/onovotny/MSBuildSdkExtras/blob/master/Source/MSBuild.Sdk.Extras/DefaultItems/ImplicitPackages.targets#L11.
 			This is not an issue when libraries are referenced through nuget packages. See https://github.com/unoplatform/uno/issues/446 for more details.
 			-->
-      <Version>6.2.8</Version>
+      <Version>6.2.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.2" />
@@ -145,7 +145,7 @@
     <PackageReference Include="WindowsStateTriggers" Version="1.1.0" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI" Version="6.0.0" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="6.0.0" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="3.2.2" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="3.2.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
